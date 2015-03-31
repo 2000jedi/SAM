@@ -49,15 +49,15 @@ function diff(where, app, assignment){
         }
     }else if (where == "additional-button"){
         if (app == "teacher"){
-            return "";
-        }else if (app == "student"){
-            return "";
-        }else if (app == "student-in-class"){
             var html = "";
             html += "       <div>";
             html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openManageClassPanel(\"" + this.id + "\", \"" + this.name + "\")'>Delete</button>";
             html += "       </div>";
             return html;
+        }else if (app == "student"){
+            return "";
+        }else if (app == "student-in-class"){
+            return "";
         }
     }
 }
