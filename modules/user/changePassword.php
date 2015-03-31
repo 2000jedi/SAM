@@ -11,7 +11,7 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 checkForceQuit();
 
 $username = $_COOKIE['username'];
-$password = $_COOKIE['password'];
+$password = $_POST['oldPass'];
 $newPass1 = $_POST['newPass'];
 
 $result = checkValid($username, $password);
