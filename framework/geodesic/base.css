@@ -1,0 +1,271 @@
+/* Basic HTML Elements Starts Here. */
+*{transition: 0.5s ease-in-out;}
+.header-tab-a:hover,.header-tab-a:focus{background:#eee}
+a,a:hover,a:link,a:visited,a:active,a:focus{color: #09F}
+body{
+    background-color: #DDDDDD;
+}
+textarea, input{
+    resize: none;
+    outline:none;
+    position:relative;
+    display:block;
+    line-height:1.5;
+    padding: 0.25em;
+}
+.card{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #ffffff;
+    border:1px solid #d8d8d8;
+    border-bottom-width:4px;
+    word-break: break-word;
+}
+.card2{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: #ffffff;
+    border:1px solid #d8d8d8;
+    border-bottom-width:4px;
+    word-break: break-word;
+}
+.card2-title{
+    color: white;
+    padding: 0.5em;
+}
+.card2-content{
+    padding: 1em;
+}
+
+#shadow{
+    position: absolute;
+    width: 100%;
+    display: table;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 999;
+    display: table;
+}
+#floatBox{
+    position: relative;
+    overflow: scroll;
+    background: #DDD;
+}
+#floatBox-close{
+    position: absolute;
+    right:0px;
+    top:0px;
+    color: #0078e7;
+    padding: 0.5em;
+}
+#floatBox-content{
+    padding:0.5em;
+}
+
+/* This part is added to the hamburger css so they have the same height and positioning. */
+#actionBar{
+    background: #1f8dd6;
+    padding: 0.5em 0 0 0;
+    position: fixed;
+    top:0px;
+    right:0px;
+    z-index: 300;
+}
+.arrow span {
+    height: 3px;
+    -webkit-transform: translateY(29px);
+}
+.material-icon span{
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: -17px;
+    left: 10px;
+    width: 30px;
+    z-index: 1;
+}
+.arrow {
+    -webkit-transform: rotate(180deg) translateX(-3px);
+}
+.arrow .second, .arrow .third {
+    -webkit-transform: rotate(-45deg) translateY(47px);
+    left: -5px;
+    width: 15px;
+}
+.arrow .second {
+    -webkit-transform: rotate(45deg) translateY(-6px) translateX(40px)
+}
+
+@media (min-width: 960px) {
+    #header-part{
+        background-color: #1f8dd6;
+        border: 0;
+        font-size: 1.3em;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 193px;
+        height: 100%;
+        z-index: 500;
+    }
+    #appName, #userName{
+        display: block;
+        text-align: center;
+        font-size: 1.8em;
+        border: 0;
+        zoom: 1;
+        margin: 0;
+        vertical-align: middle;
+        color: white;
+        line-height: 1.5em;
+        padding: 5px 20px;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    #userName{
+        font-size: 1.4em;
+    }
+    #header-tabs-outer{
+        zoom: 1;
+        display: block;
+        vertical-align: middle;
+        list-style: none;
+        margin: 100px 0 0 0;
+        padding: 0;
+    }
+    .header-tab{
+        zoom: 1;
+        vertical-align: middle;
+        position: relative;
+        list-style: none;
+    }
+    a.header-tab-a{
+        padding: 5px 20px;
+        color: white;
+        border: 1px solid transparent;
+        border-left: 0;
+        border-right: 0;
+        display: block;
+        line-height: 1.5em;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    a.header-tab-a:hover,a.header-tab-a:active,a.header-tab-a:focus{background: #1f8dd6; color: white}
+    #body-part{
+        position: fixed;
+        top:3px;
+        left: 200px;
+        width: -moz-calc(100% - 580px);
+        width: -webkit-calc(100% - 580px);
+        width: calc(100% - 580px);
+        overflow: scroll;
+        height: 100%;
+    }
+    #right-part{
+        background: #DDD;
+        position: fixed;
+        top:0px;
+        right: 0px;
+        width: 373px;
+        overflow: scroll;
+        height: 100%;
+        box-shadow: -10px 0px 10px #888;
+        z-index: 1000;
+    }
+    #actionBar{
+        width: 373px;
+    }
+
+    .card, .card2{
+        width: 25em;
+    }
+    textarea.card, input.card{
+        width: 30em;
+    }
+    .card, .card2{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .card3{
+        width: 23em;
+    }
+    .card-limit{
+        width: 99%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    /* This type of card is only for those in limiting space. */
+}
+@media (max-width: 960px) {
+    #body-part{
+        margin-top: 65px;
+    }
+    #right-part{
+        background: #DDD;
+        position: fixed;
+        top:0px;
+        right: 0px;
+        width: 100%;
+        overflow: scroll;
+        height: 100%;
+        z-index: 1000;
+    }
+
+    textarea, input{
+        width: 100%;
+    }
+    .form{padding-right: 2em;}
+
+    #header-part{
+        background-color: #1f8dd6;
+        border: 0;
+        font-size: 1em;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        text-align: center;
+        z-index: 500;
+    }
+    #appName, #userName{display: none}
+    #header-tabs-outer{
+        display: inline-block;
+        zoom: 1;
+        vertical-align: middle;
+        position: relative;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        z-index: 1;
+    }
+    .header-tab{
+        display: inline-block;
+        zoom: 1;
+        vertical-align: middle;
+        position: relative;
+        list-style: none;
+    }
+    a.header-tab-a{
+        padding: 1em;
+        color: white;
+        border: 1px solid transparent;
+        border-left: 0;
+        border-right: 0;
+        display: block;
+        line-height: 1.5em;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    a.header-tab-a:hover,a.header-tab-a:active,a.header-tab-a:focus{background: #1f8dd6; color: white}
+
+    #actionBar{
+        width: 100%;
+    }
+}
