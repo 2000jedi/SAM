@@ -14,7 +14,7 @@ $result = checkForceQuit();
 $userID = $result->uid;
 $class = $_GET['class'];
 
-$sql = "SELECT * from assignment WHERE class = '$class' ORDER BY dueday ASC";
+$sql = "SELECT * from assignment WHERE class = '$class' AND dueday > (NOW() - 10) ORDER BY dueday DESC";
 $result = $conn->query($sql);
 
 $arr = array();
@@ -26,11 +26,12 @@ while($row = $result->fetch_assoc()) {
     $type = $row['type'];
     $content = $row['content'];
     $attachment = $row['attachment'];
+    $publish = $row['publish'];
     $dueday = $row['dueday'];
     $duration = $row['duration'];
     $receiver = $row['receiver'];
     $teacher = $row['teacher'];
-    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $dueday, $duration, $class, $receiver, $teacher);
+    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $receiver, $teacher);
     $arr[$counter] = $unitAssignment;
     $counter++;
 }

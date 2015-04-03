@@ -25,12 +25,13 @@ while($row = $result->fetch_assoc()) {
     $type = $row['type'];
     $content = $row['content'];
     $attachment = $row['attachment'];
+    $publish = $row['publish'];
     $dueday = $row['dueday'];
     $duration = $row['duration'];
     $class = $row['class'];
     $receiver = $row['receiver'];
     $teacher = $row['teacher'];
-    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $dueday, $duration, $class, $receiver, $teacher);
+    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $receiver, $teacher);
     $arr[$counter] = $unitAssignment;
     $counter++;
 }

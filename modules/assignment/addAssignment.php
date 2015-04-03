@@ -20,6 +20,9 @@ if ($type == "1"){
     $duration = $_POST['duration'];
 }
 $dueday = $_POST['dueday'];
+if ($dueday == ""){
+    $dueday = "2038-1-1";
+}
 if ($_POST['hasAttachment'] == "true"){
     function genRandomString(){
         $length = 5;
@@ -55,7 +58,7 @@ $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
     $id = $row['id'];
-    $sql2 = "INSERT INTO assignment (type, content, attachment, dueday, duration, class, receiver, teacher, viewed) VALUES ($type, '$content', '$attachment', '$dueday', $duration, '$class', '$id',
+    $sql2 = "INSERT INTO assignment (type, content, attachment, publish, dueday, duration, class, receiver, teacher, viewed) VALUES ($type, '$content', '$attachment', now(), '$dueday', $duration, '$class', '$id',
 '$teacher', false)";
     $conn->query($sql2);
 }

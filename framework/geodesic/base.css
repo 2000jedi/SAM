@@ -102,6 +102,16 @@ textarea, input{
 .arrow .second {
     -webkit-transform: rotate(45deg) translateY(-6px) translateX(40px)
 }
+.belowActionBar{
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    height: -moz-calc(100% - 55px);
+    height: -webkit-calc(100% - 55px);
+    height: calc(100% - 55px);
+    overflow: scroll;
+}
 
 @media (min-width: 955px) {
     #header-part{

@@ -17,6 +17,7 @@ class UnitAssignment {
      */
     var $content;
     var $attachment;
+    var $publish;
     var $dueday;
     var $duration;
     var $class;
@@ -24,11 +25,12 @@ class UnitAssignment {
     var $receiver;
     var $teacher;
 
-    function __construct($id, $type, $content, $attachment, $dueday, $duration, $class, $receiver, $teacher){
+    function __construct($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $receiver, $teacher){
         $this->id = $id;
         $this->type = $type;
         $this->content = $content;
         $this->attachment = $attachment;
+        $this->publish = $publish;
         $this->dueday = $dueday;
         $this->duration = $duration;
 

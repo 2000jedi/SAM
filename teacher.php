@@ -27,6 +27,7 @@ if (!function_exists('checkForceQuit')){
 <body>
 <script>
     function toggleModules(id){
+        $('#right-part').hide();
         $('#mClass').hide();
         $('#left-tab-Class').css("background","#1f8dd6").css("color","white");
         $('#mSettings').hide();
@@ -64,7 +65,7 @@ if (!function_exists('checkForceQuit')){
         <div style="display: none;" id="right-part-class-id"></div>
         <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff" id="right-part-title">Manage Class</div>
     </div>
-    <div id="assignment-list" style="position: absolute;top:55px;left: 0px;width: 100%;"></div>
+    <div id="assignment-list" class="belowActionBar"></div>
 </div>
 <div id="shadow" style="display: none;">
     <div style="display:table-cell;vertical-align: middle">
@@ -122,7 +123,7 @@ if (!function_exists('checkForceQuit')){
                                     <textarea class="card" id="add-card-form-content-2" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
                                 <div class="form">
-                                    <label>Expire Date:</label>
+                                    <label>Expire Date (leave it blank to keep it permanently):</label>
                                     <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="date" />
                                 </div>
                                 <div class="form">
@@ -166,6 +167,7 @@ if (!function_exists('checkForceQuit')){
         }
     }
     <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
     ?>
     function loadClass(func){
@@ -293,10 +295,6 @@ if (!function_exists('checkForceQuit')){
                     alert("Content is empty!");
                     return false;
                 }
-                if ( isNull($('#add-card-form-dueday-2').val()) ){
-                    alert("Expire day is empty!")
-                    return false;
-                }
                 if ( !validDate($('#add-card-form-dueday-2').val()) ){
                     alert("Expire day is invalid!")
                     return false;
@@ -331,7 +329,7 @@ if (!function_exists('checkForceQuit')){
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
-                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.dueday, row.subject, row.duration);
+                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
                 $('#assignment-list').append(assignment.getHTML());
             }
         });

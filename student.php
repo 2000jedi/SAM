@@ -43,6 +43,54 @@ if (!function_exists('checkForceQuit')){
                 width: -webkit-calc(100% - 200px);
                 width: calc(100% - 200px);
             }
+            #assignment-time-management-caller{
+                position: fixed;
+                background-color: #FF3333;
+                text-align: center;
+                box-shadow: -10px 10px 10px gray;
+                color: white;
+                font-size: 3em;
+                right: 5px;
+                top: 5px;
+                width: 1.3em;
+                height: 1.3em;
+                border-radius: 5em;
+                z-index: 1500;
+            }
+            #assignment-time-management-wrapper{
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: 2000;
+                width: 370px;
+                box-shadow: -10px 0px 10px #888;
+                height: 100%;
+                background-color: rgba(239,239,239,0.9);
+            }
+            #assignment-time-management-wrapper.hide{
+                display: none;
+            }
+            #assignment-time-management{
+                margin-top: 3em;
+            }
+            #panel-close{
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 1.5em;
+                color: #0078e7;
+                padding: 0.5em;
+            }
+        }
+        @media (max-width: 955px) {
+            #assignment-time-management-caller{
+                display: none;
+            }
+            #assignment-time-management{
+            }
+            #panel-close{
+                display: none;
+            }
         }
     </style>
 </head>
@@ -50,6 +98,7 @@ if (!function_exists('checkForceQuit')){
 <script>
     function toggleModules(id){
         $('#right-part').hide();
+        $('#assignment-time-management-wrapper').addClass("hide");
         $('#mStream').hide();
         $('#left-tab-Stream').css("background","#1f8dd6").css("color","white");
         $('#mClass').hide();
@@ -58,6 +107,9 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-Settings').css("background","#1f8dd6").css("color","white");
         $('#m'+id).show()
         $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
+        if (id == "Stream"){
+            $('#assignment-time-management-wrapper').removeClass("hide");
+        }
     }
 </script>
 <div id="header-part">
@@ -71,7 +123,13 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="body-part">
     <div id="mStream">
-        <div class="card card-limit" style="margin: 0;padding: 0"><div id="assignment-time-management" style="margin: 1em"></div></div>
+        <div id="assignment-time-management-caller" style="display: none;" onclick="$('#assignment-time-management-wrapper').show();$('#assignment-time-management-caller').hide()">
+            <div>+</div>
+        </div>
+        <div id="assignment-time-management-wrapper">
+            <div id="panel-close" onclick="$('#assignment-time-management-wrapper').hide();$('#assignment-time-management-caller').show()">Close</div>
+            <div id="assignment-time-management"></div>
+        </div>
         <div id="assignment-list" style="position: relative">
             <div class="card">Loading information...</div>
         </div>
@@ -96,7 +154,7 @@ if (!function_exists('checkForceQuit')){
         <div style="display: none;" id="right-part-class-id"></div>
         <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff" id="right-part-title">Manage Class</div>
     </div>
-    <div id="assignment-list-in-class" style="position: absolute;top:55px;left: 0px; width: 100%"></div>
+    <div id="assignment-list-in-class" class="belowActionBar"></div>
 </div>
 
 <div id="shadow" style="display: none;">
@@ -115,17 +173,12 @@ if (!function_exists('checkForceQuit')){
 <script>
     /* Class Module */
     <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
     ?>
-    var DateDiff = {
-        inDays: function(d1, d2) {
-            var t2 = d2.getTime();
-            var t1 = d1.getTime();
-            return parseInt((t2-t1)/(24*3600*1000));
-        }
-    }
+
 
     function loadAssignment(func){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
@@ -135,34 +188,79 @@ if (!function_exists('checkForceQuit')){
 
             var idList = "";
 
+            /* Notification Start */
+            var todayItemCounter = 0;
+            var todayHoursCounter = 0.0;
+            function outputTodayNotification(){
+                var notification = "<div class=\"card\">" + "Assignments due tomorrow: <br>" + todayItemCounter + " item(s)/" + todayHoursCounter + " hour(s)" +"</div>";
+                return notification;
+            }
+            /* Notification End */
+
+            /* Suggestion Start */
+            var len = data.length;
+            var assignmentCounter = 0;
             var todayTime = 0.0;
             var separatedRecommendation = "";
+            var subjectArr = new Array(), hoursArr = new Array(), itemsArr = new Array();
 
-            for (var i = 0; i < data.length; i++){
+            function findIDInArrayByName(name){
+                for (var i = 0; i < subjectArr.length; i++){
+                    if ( subjectArr[i] == name ){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+            function addTo(name, hours){
+                var id = findIDInArrayByName(name);
+                if ( id == -1 ){
+                    subjectArr[0] = name;
+                    hoursArr[0] = hours;
+                    itemsArr[0] = 1
+                }else{
+                    hoursArr[id] = hoursArr[id] + hours;
+                    itemsArr[id] = itemsArr[id] + 1;
+                }
+            }
+            function outputSuggestion(){
+                for (var i = 0; i < subjectArr.length; i++){
+                    separatedRecommendation += subjectArr[i] + ": " + hoursArr[i] + " hour(s)/" + itemsArr[i] + " item(s)<br />";
+                }
+                var assignmentTimeRecommendation = "Recommendation: " + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s) today.<br />";
+                var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"Details:<br />"+separatedRecommendation+"</div>";
+
+                return suggestion;
+            }
+            /* Suggestion End */
+
+            for (var i = 0; i < len; i++){
                 var row = data[i];
 
                 if (row.type == "1"){
                     var timeUnit = parseFloat(row.duration);
                     var date = row.dueday;
-                    var daysLeft = DateDiff.inDays(new Date(), new Date(date)) + 1;
+                    var daysLeft = DateDiff.inDays(new Date(), new Date(date));
                     var todayDoingTime = parseFloat(parseFloat(timeUnit/daysLeft).toFixed(1));
 
-                    var abbrHWContent = row.content;
-                    if (abbrHWContent.length > 10){
-                        abbrHWContent = abbrHWContent.substring(0,10) + "...";
+                    if (daysLeft == 1){
+                        todayItemCounter += 1;
+                        todayHoursCounter += todayDoingTime;
                     }
-                    separatedRecommendation += todayDoingTime + " hours for class " + row.class + " on:<br />"+"&nbsp;&nbsp;&nbsp;&nbsp;"+abbrHWContent+"<br/>";
+
+                    addTo(row.subject, todayDoingTime);
                     todayTime += todayDoingTime;
+
+                    assignmentCounter++;
                 }
 
                 idList += ";" + row.id;
 
-                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, date, row.subject, row.duration);
+                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
                 $('#assignment-list').append(assignment.getHTML());
             }
 
-            var assignmentTimeRecommendation = "You are recommended to spend " + parseFloat(todayTime).toFixed(1) + " hours on assignments today.<br />";
-            $('#assignment-time-management').html(assignmentTimeRecommendation+"Details:<br />"+separatedRecommendation);
+            $('#assignment-time-management').html(outputTodayNotification() + outputSuggestion());
 
             localStorage.assignmentIDList = idList;
         });
@@ -193,7 +291,7 @@ if (!function_exists('checkForceQuit')){
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 idList += ";" + row.id;
-                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.dueday, row.subject, row.duration);
+                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
                 $('#assignment-list-in-class').append(assignment.getHTML());
             }
             localStorage.assignmentIDList2 = idList;
@@ -227,7 +325,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
     ?>
 
-    toggleModules('Stream');
+    toggleModules('Stream'); $('#assignment-time-management-wrapper').removeClass("hide");
     loadAssignment(function(){
         $('#assignment-list').html("");
     });
@@ -237,10 +335,6 @@ if (!function_exists('checkForceQuit')){
 
     localStorage.assignmentIDList = "";
     localStorage.assignmentIDList2 = "";
-
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/fixfuckingsafari.js";
-    ?>
 
     setInterval(function(){
         WaterFall(localStorage.assignmentIDList,"assignment-list-");

@@ -1,8 +1,9 @@
-function typeHTML(type){
+/* Click to expand module start */
+function typeHTML(type, subject){
     type = type - 1;
-    var color = new Array("#f33", "#0C0");
-    var typeText = new Array("Assignment", "Information");
-    return "   <div class='card2-title' style='background:"+ color[type] +"'>"+typeText[type]+"</div>";
+    var color = new Array("black", "#0C0", "#F33", "#F93");
+    var typeText = new Array("Assignment ONE DAY LEFT", "Information", "Assignment TWO DAYS LEFT", "Assignment");
+    return "   <div class='card2-title' style='background:"+ color[type] +"'>"+subject+" "+typeText[type]+"</div>";
 }
 function whetherExpandHTML(id, content){
     if (content.length > 200){
@@ -13,16 +14,34 @@ function whetherExpandHTML(id, content){
 }
 function whetherExpandCSS(content) {
     if (content.length > 200){
-        return ";display:none";
+        return "height: 3em; overflow: hidden; box-shadow: inset 0px -10px 5px #DDD";
     }else{
         return "";
     }
 }
 function contentExpanding(id){
-    var nowPosition = $('#body-part').scrollTop();
-    $('#assignment-list-content-'+id).toggle();
-    $('#body-part').scrollTop(nowPosition);
+    var cssText1 = "3em", cssText2 = "hidden", cssText3 = "inset 0px -10px 5px #DDD";
+    if ( $('#assignment-list-content-'+id).css("overflow") == "hidden"){
+        cssText1 = "";
+        cssText2 = "";
+        cssText3 = "";
+    }
+    $('#assignment-list-content-'+id).css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
 }
+/* Click to expand module end */
+
+/* Delete Assignment Start */
+function deleteAssignment(id){
+    var conf = confirm("DO YOU REALLY want to delete the assignment?\nData will be permanently removed from server.\n\nTips: You should copy the content if you merely want to edit the assignment/information.");
+    if (conf == true) {
+        $.get("/modules/assignment/deleteAssignment.php",{assignment: id},function(data){
+            $('#assignment-list-'+id).remove();
+            alert(data);
+        });
+    }
+}
+
+/* Delete Assignment End */
 
 function diff(where, app, assignment){
     if (where == "prefix-id"){
@@ -53,7 +72,7 @@ function diff(where, app, assignment){
         if (app == "teacher"){
             var html = "";
             html += "       <div>";
-            html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openManageClassPanel(\"" + this.id + "\", \"" + this.name + "\")'>Delete</button>";
+            html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='deleteAssignment(\"" + assignment.id + "\")'> Delete </button>";
             html += "       </div>";
             return html;
         }else if (app == "student"){
@@ -63,7 +82,20 @@ function diff(where, app, assignment){
         }
     }
 }
-function Assignment(app, id, type, content, attachment, dueday, subject, duration){
+function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration){
+    function dealWithType(type, dueday){
+        var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
+        if (type == "2"){
+            return 2;
+        }
+        if (daysLeft == 1){
+            return 1;
+        }else if (daysLeft == 2){
+            return 3;
+        }else if (daysLeft > 2 || daysLeft <= 0){
+            return 4;
+        }
+    }
     function dealWithAttachment(attachment) {
         if (attachment == "null"){
             return "No attachment.";
@@ -74,9 +106,10 @@ function Assignment(app, id, type, content, attachment, dueday, subject, duratio
     this.app = app;
 
     this.id = id;
-    this.type = parseInt(type);
+    this.type = dealWithType(type, dueday);
     this.content = content;
     this.attachment = dealWithAttachment(attachment);
+    this.publish = publish;
     this.dueday = dueday;
     this.subject = subject;
     this.duration = duration + " hours";
@@ -84,19 +117,21 @@ function Assignment(app, id, type, content, attachment, dueday, subject, duratio
     this.getHTML = function() {
         var html = "";
         html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'>";
-        html += typeHTML(this.type);
+        html += typeHTML(this.type, this.subject);
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>";
-        html += "           <div style='margin:0.5em'>Content:</div>";
-        html += diff("expand-content", this.app, this);
-        html += "           <div style='margin:0.5em"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + this.content + "</div>";
-
-        var dueDayLabel = new Array("Due day: ", "Expire day: ");
-        html += "           <div style='margin:0.5em'>"+ dueDayLabel[this.type-1] + this.dueday + "</div>";
-        if (this.type == 1){
-            html += "           <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
-        }
         html += "           <div style='margin:0.5em'>Subject: " + this.subject + "</div>";
+        html += "           <div style='margin:0.5em;display:table;width:100%;text-align:left'>"
+        html += "               <div style='display:table-cell'>Published: " + this.publish + "</div>";
+
+        var dueDayLabel = new Array("Due: ", "Expire: ");
+        html += "               <div style='display:table-cell'>"+ dueDayLabel[parseInt(type)-1] + this.dueday + "</div>";
+        html += "           </div>";
+        if (parseInt(type) == 1){
+            html += "       <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
+        }
+        html += "           <div style='margin: 0.5em;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + this.content + "</div>";
+        html += diff("expand-content", this.app, this);
         html += "           <div style='margin:0.5em'>Attachment: " + this.attachment + "</div>";
         html += "       </div>";
         html += diff("additional-button", this.app, this);
