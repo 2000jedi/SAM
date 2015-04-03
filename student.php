@@ -24,7 +24,7 @@ if (!function_exists('checkForceQuit')){
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
     <style>
-        @media (min-width: 960px) {
+        @media (min-width: 955px) {
             #body-part {
                 position: fixed;
                 top: 3px;
@@ -67,7 +67,6 @@ if (!function_exists('checkForceQuit')){
         <li class="header-tab"><a href="#" class="header-tab-a" id="left-tab-Stream" onclick="toggleModules('Stream')">Stream</a></li>
         <li class="header-tab"><a href="#" class="header-tab-a" id="left-tab-Class" onclick="toggleModules('Class')">Classes</a></li>
         <li class="header-tab"><a href="#" class="header-tab-a" id="left-tab-Settings" onclick="toggleModules('Settings')">Settings</a></li>
-        <li class="header-tab"><a href="#" class="header-tab-a" onclick="signOut()">Sign Out</a></li>
     </ul>
 </div>
 <div id="body-part">
@@ -79,7 +78,7 @@ if (!function_exists('checkForceQuit')){
     </div>
     <div id="mClass" style="display: none">
         <div id="classList"></div>
-        <div class="card" style="text-align:center" onclick="openAddClassBox()">Add Class</div>
+        <div class="card" style="text-align:center" onclick="addToClass()">Add Class</div>
     </div>
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
@@ -158,7 +157,7 @@ if (!function_exists('checkForceQuit')){
 
                 idList += ";" + row.id;
 
-                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, date, row.duration);
+                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, date, row.subject, row.duration);
                 $('#assignment-list').append(assignment.getHTML());
             }
 
@@ -194,7 +193,7 @@ if (!function_exists('checkForceQuit')){
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 idList += ";" + row.id;
-                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.dueday, row.duration);
+                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.dueday, row.subject, row.duration);
                 $('#assignment-list-in-class').append(assignment.getHTML());
             }
             localStorage.assignmentIDList2 = idList;
@@ -207,6 +206,21 @@ if (!function_exists('checkForceQuit')){
         $('#right-part-class-id').html(id);
         $('#right-part-title').html("View " + name);
         $('#right-part').show();
+    }
+    function addToClass(){
+        var classID = prompt("Please enter the class ID", "");
+        if (isNaN(classID)){
+            alert("Invalid class ID");
+        }else if (classID == null || classID == ""){
+            // Do nothing.
+        }else{
+            $.get("/modules/class/addToClass.php",{class: classID},function(data){
+                loadClass(function(){
+                    $('#classList').empty();
+                })
+                alert(data);
+            })
+        }
     }
 
     <?php

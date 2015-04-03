@@ -19,7 +19,9 @@ function whetherExpandCSS(content) {
     }
 }
 function contentExpanding(id){
+    var nowPosition = $('#body-part').scrollTop();
     $('#assignment-list-content-'+id).toggle();
+    $('#body-part').scrollTop(nowPosition);
 }
 
 function diff(where, app, assignment){
@@ -61,7 +63,7 @@ function diff(where, app, assignment){
         }
     }
 }
-function Assignment(app, id, type, content, attachment, dueday, duration){
+function Assignment(app, id, type, content, attachment, dueday, subject, duration){
     function dealWithAttachment(attachment) {
         if (attachment == "null"){
             return "No attachment.";
@@ -76,6 +78,7 @@ function Assignment(app, id, type, content, attachment, dueday, duration){
     this.content = content;
     this.attachment = dealWithAttachment(attachment);
     this.dueday = dueday;
+    this.subject = subject;
     this.duration = duration + " hours";
 
     this.getHTML = function() {
@@ -93,6 +96,7 @@ function Assignment(app, id, type, content, attachment, dueday, duration){
         if (this.type == 1){
             html += "           <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
         }
+        html += "           <div style='margin:0.5em'>Subject: " + this.subject + "</div>";
         html += "           <div style='margin:0.5em'>Attachment: " + this.attachment + "</div>";
         html += "       </div>";
         html += diff("additional-button", this.app, this);

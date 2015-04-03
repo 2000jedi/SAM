@@ -20,6 +20,7 @@ class UnitAssignment {
     var $dueday;
     var $duration;
     var $class;
+    var $subject;
     var $receiver;
     var $teacher;
 
@@ -37,6 +38,16 @@ class UnitAssignment {
         if ($result->num_rows > 0) {
             while($row = mysqli_fetch_assoc($result)) {
                 $this->class = $row["name"];
+            }
+        } else {
+            $this->class = "Unknown";
+        }
+
+        $sql2 = "SELECT * FROM teacher WHERE id = '$teacher'";
+        $result2 = $conn->query($sql2);
+        if ($result2->num_rows > 0) {
+            while($row = mysqli_fetch_assoc($result2)) {
+                $this->subject = $row["subject"];
             }
         } else {
             $this->class = "Unknown";

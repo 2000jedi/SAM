@@ -33,8 +33,8 @@ while($row = $result->fetch_assoc()) {
         $counter++;
     }else{
         $classIDs = explode(";",$row['class']);
-        $sql2 = "SELECT * from class WHERE id = '$classIDs[0]'";
-        for ($i = 1; $i < sizeof($classIDs); $i++){
+        $sql2 = "SELECT * from class WHERE id = '$classIDs[1]'";
+        for ($i = 2; $i < sizeof($classIDs); $i++){
             $sql2 = $sql2." OR id = '$classIDs[$i]'";
         }
         $result2 = $conn->query($sql2);

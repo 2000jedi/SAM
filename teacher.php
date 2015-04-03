@@ -41,7 +41,6 @@ if (!function_exists('checkForceQuit')){
     <ul id="header-tabs-outer">
         <li class="header-tab"><a href="#" id="left-tab-Class" class="header-tab-a" onclick="toggleModules('Class')">Classes</a></li>
         <li class="header-tab"><a href="#" id="left-tab-Settings" class="header-tab-a" onclick="toggleModules('Settings')">Settings</a></li>
-        <li class="header-tab"><a href="#" class="header-tab-a" onclick="signOut()">Sign Out</a></li>
     </ul>
 </div>
 <div id="body-part">
@@ -332,7 +331,7 @@ if (!function_exists('checkForceQuit')){
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
-                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.dueday, row.duration);
+                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.dueday, row.subject, row.duration);
                 $('#assignment-list').append(assignment.getHTML());
             }
         });

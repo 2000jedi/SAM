@@ -103,7 +103,7 @@ textarea, input{
     -webkit-transform: rotate(45deg) translateY(-6px) translateX(40px)
 }
 
-@media (min-width: 960px) {
+@media (min-width: 955px) {
     #header-part{
         background-color: #1f8dd6;
         border: 0;
@@ -203,15 +203,23 @@ textarea, input{
     }
     /* This type of card is only for those in limiting space. */
 }
-@media (max-width: 960px) {
+@media (max-width: 955px) {
     #body-part{
-        margin-top: 65px;
+        position: fixed;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        height: -moz-calc(100% - 65px);
+        height: -webkit-calc(100% - 65px);
+        height: calc(100% - 65px);
+        overflow: scroll;
     }
     #right-part{
         background: #DDD;
         position: fixed;
-        top:0px;
-        right: 0px;
+        top:0;
+        right: 0;
         width: 100%;
         overflow: scroll;
         height: 100%;
@@ -228,8 +236,8 @@ textarea, input{
         border: 0;
         font-size: 1em;
         position: fixed;
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
         width: 100%;
         text-align: center;
         z-index: 500;

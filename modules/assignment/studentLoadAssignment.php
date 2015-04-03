@@ -13,7 +13,7 @@ $result = checkForceQuit();
 
 $student = $result->uid;
 
-$sql = "SELECT * from assignment WHERE receiver = '$student' ORDER BY dueday ASC";
+$sql = "SELECT * from assignment WHERE receiver = '$student' AND dueday > NOW() ORDER BY dueday ASC";
 $result = $conn->query($sql);
 
 $arr = array();
