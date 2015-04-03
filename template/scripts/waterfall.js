@@ -3,11 +3,10 @@ function WaterFall(list, prefix){
     var widthOfWindow = $('#body-part').width(), widthEachCard = 370;
     var numberOfColumns = parseInt(widthOfWindow / widthEachCard);
 
-
     var idList = list;
     var idListArr = idList.split(";");
 
-    if (numberOfColumns != 1) {
+    if (numberOfColumns != 1 && numberOfColumns != 0) {
         var heightStorage = new Array();
         for (var i = 0; i < numberOfColumns; i++){
             heightStorage[i] = 0.5;

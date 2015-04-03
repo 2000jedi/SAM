@@ -77,7 +77,7 @@ if (!function_exists('checkForceQuit')){
             <div class="card">Loading information...</div>
         </div>
     </div>
-    <div id="mClass"style="display: none">
+    <div id="mClass" style="display: none">
         <div id="classList"></div>
         <div class="card" style="text-align:center" onclick="openAddClassBox()">Add Class</div>
     </div>
@@ -87,7 +87,7 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="right-part" style="display:none">
     <div id="actionBar">
-        <div style="display: inline-block" onclick="$('#right-part').hide()">
+        <div style="display: inline-block" onclick="$('#assignment-list-in-class').empty();setTimeout(function(){$('#right-part').hide()},200)">
             <div class="material-icon arrow" data-icon="arrow" style="width: 50px;height: 30px;">
                 <span class="first"></span>
                 <span class="second"></span>
@@ -106,8 +106,7 @@ if (!function_exists('checkForceQuit')){
             <div id="floatBox">
                 <div id="floatBox-close" onclick="$('#shadow').hide()">Close</div>
                 <div class="settings_title_bar" id="floatBox-title"></div>
-                <div id="floatBox-content">
-                </div>
+                <div id="floatBox-content"></div>
             </div>
         </div>
     </div>
