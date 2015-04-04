@@ -1,7 +1,7 @@
 var DateDiff = {
     inDays: function(d1, d2) {
-        var t2 = d2.getTime();
-        var t1 = d1.getTime();
+        var t2 = new Date(d2.setHours(0,0,0,0)).getTime();
+        var t1 = new Date(d1.setHours(0,0,0,0)).getTime();
         return parseInt((t2-t1)/(24*3600*1000));
     }
 };

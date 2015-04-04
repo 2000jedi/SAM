@@ -111,7 +111,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.attachment = dealWithAttachment(attachment);
     this.publish = publish;
     this.dueday = dueday;
-    this.subject = subject;
+    this.subject = subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
     this.duration = duration + " hours";
 
     this.getHTML = function() {
@@ -130,7 +130,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (parseInt(type) == 1){
             html += "       <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
         }
-        html += "           <div style='margin: 0.5em;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + this.content + "</div>";
+        html += "           <div style='margin: 0.5em; border: 1px solid #EEE; padding:0.5em; border-bottom: 2px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'><div>" + this.content + "</div></div>";
         html += diff("expand-content", this.app, this);
         html += "           <div style='margin:0.5em'>Attachment: " + this.attachment + "</div>";
         html += "       </div>";

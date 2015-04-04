@@ -4,6 +4,7 @@
 a,a:hover,a:link,a:visited,a:active,a:focus{color: #09F}
 body{
     background-color: #DDDDDD;
+    font-family: Arial, Helvetica, sans-serif;
 }
 textarea, input{
     resize: none;

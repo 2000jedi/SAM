@@ -52,8 +52,8 @@ if (!function_exists('checkForceQuit')){
                 font-size: 3em;
                 right: 5px;
                 top: 5px;
-                width: 1.3em;
-                height: 1.3em;
+                width: 1.2em;
+                height: 1.2em;
                 border-radius: 5em;
                 z-index: 1500;
             }
@@ -66,6 +66,9 @@ if (!function_exists('checkForceQuit')){
                 box-shadow: -10px 0px 10px #888;
                 height: 100%;
                 background-color: rgba(239,239,239,0.9);
+            }
+            #assignment-time-management-caller.hide{
+                display: none;
             }
             #assignment-time-management-wrapper.hide{
                 display: none;
@@ -123,11 +126,11 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="body-part">
     <div id="mStream">
-        <div id="assignment-time-management-caller" style="display: none;" onclick="$('#assignment-time-management-wrapper').show();$('#assignment-time-management-caller').hide()">
+        <div id="assignment-time-management-caller" class="hide" onclick="$('#assignment-time-management-wrapper').removeClass('hide');$('#assignment-time-management-caller').addClass('hide')">
             <div>+</div>
         </div>
         <div id="assignment-time-management-wrapper">
-            <div id="panel-close" onclick="$('#assignment-time-management-wrapper').hide();$('#assignment-time-management-caller').show()">Close</div>
+            <div id="panel-close" onclick="$('#assignment-time-management-wrapper').addClass('hide');$('#assignment-time-management-caller').removeClass('hide')">Close</div>
             <div id="assignment-time-management"></div>
         </div>
         <div id="assignment-list" style="position: relative">
