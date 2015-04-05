@@ -14,7 +14,7 @@ $result = checkForceQuit();
 $userID = $result->uid;
 $class = $_GET['class'];
 
-$sql = "SELECT * from assignment WHERE class = '$class' AND dueday > (NOW() - 10) ORDER BY dueday DESC";
+$sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 10) ORDER BY dueday DESC";
 $result = $conn->query($sql);
 
 $arr = array();

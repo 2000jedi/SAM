@@ -147,7 +147,7 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="right-part" style="display:none">
     <div id="actionBar">
-        <div style="display: inline-block" onclick="$('#assignment-list-in-class').empty();setTimeout(function(){$('#right-part').hide()},200)">
+        <div style="display: inline-block" onclick="$('#assignment-list-in-class').empty();localStorage.assignmentIDList2 = '';setTimeout(function(){$('#right-part').hide()},200)">
             <div class="material-icon arrow" data-icon="arrow" style="width: 50px;height: 30px;">
                 <span class="first"></span>
                 <span class="second"></span>
@@ -302,7 +302,7 @@ if (!function_exists('checkForceQuit')){
     }
     function openViewClassPanel(id, name){
         loadAssignmentInClass(id, function(){
-            $('#assignment-list-in-class').html("");
+            // No nothing.
         });
         $('#right-part-class-id').html(id);
         $('#right-part-title').html("View " + name);

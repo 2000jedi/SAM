@@ -13,6 +13,7 @@ $db_dbname = "missile";
 
 // Create connection
 $conn = new mysqli($db_servername, $db_username, $db_password, $db_dbname);
+$conn->set_charset("utf8");
 
 // Check connection
 if ($conn->connect_error) {
