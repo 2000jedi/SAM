@@ -13,6 +13,7 @@ if (!function_exists('checkForceQuit')){
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title><?= $appName ?> - Teacher</title>
@@ -47,7 +48,7 @@ if (!function_exists('checkForceQuit')){
 <div id="body-part">
     <div id="mClass">
         <div id="classList"></div>
-        <div class="card" style="text-align:center" onclick="openAddClassBox()">Add Class</div>
+        <div class="card" style="text-align:center" onclick="addClass()">Add Class</div>
     </div>
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
@@ -76,16 +77,7 @@ if (!function_exists('checkForceQuit')){
                     <div id="floatBox-title" style="margin: 0.5em"></div>
                 </div>
                 <div id="floatBox-content">
-                    <div id="floatBox-add-class">
-                        <div>
-                            <div class="form">
-                                <input class="card" id="new-class-name" type="text" placeholder="The name for the new class" />
-                            </div>
-                            <div style="text-align: center">
-                                <button onclick="addClass()" class="pure-button pure-button-primary" style="margin:0 auto;display:inline-block;">Add</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="floatBox-add-class"></div>
                     <div id="floatBox-add-card">
                         <div style="text-align: center;display: table; width: 100%;margin-bottom: 1.5em">
                             <div style="display: table-cell" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('')">Assignment</div>
@@ -95,19 +87,19 @@ if (!function_exists('checkForceQuit')){
                             <form id="submit_form_node" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
                                 <input id="add-card-class-id" type="hidden" name="class" />
                                 <input type="hidden" name="type" value="1" />
-                                <div class="form">
+                                <div>
                                     <label>Content:</label>
                                     <textarea class="card" id="add-card-form-content" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
-                                <div class="form">
+                                <div>
                                     <label>Estimated Duration (in hours):</label>
                                     <input class="card" id="add-card-form-duration" name="duration" type="text" placeholder="Estimated Duration" />
                                 </div>
-                                <div class="form">
+                                <div style="position: relative;">
                                     <label>Due day:</label>
-                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="date" />
+                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
                                 </div>
-                                <div class="form">
+                                <div>
                                     <label>Add attachment (optional):</label>
                                     <input class="card" id="add-card-form-file" style="margin-top: 0.5em" name="attachment" type="file" />
                                 </div>
@@ -118,15 +110,15 @@ if (!function_exists('checkForceQuit')){
                             <form id="submit_form_node_2" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data" style="display: none;">
                                 <input id="add-card-class-id-2" type="hidden" name="class" />
                                 <input type="hidden" name="type" value="2" />
-                                <div class="form">
+                                <div>
                                     <label>Content:</label>
                                     <textarea class="card" id="add-card-form-content-2" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
-                                <div class="form">
+                                <div style="position: relative;">
                                     <label>Expire Date (leave it blank to keep it permanently):</label>
-                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="date" />
+                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="date" data-format="MM/dd/yyyy" />
                                 </div>
-                                <div class="form">
+                                <div>
                                     <label>Add attachment (optional):</label>
                                     <input class="card" id="add-card-form-file-2" style="margin-top: 0.5em" name="attachment" type="file" />
                                 </div>
@@ -142,23 +134,23 @@ if (!function_exists('checkForceQuit')){
     </div>
 </div>
 </body>
+<?php
+require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
+?>
 </html>
+
 <script>
     /* Class Module */
-    function openAddClassBox(){
-        $('#floatBox-add-class').show();
-        $('#floatBox-add-card').hide();
-        $('#floatBox-title').html("Add Class");
-        $('#shadow').css("display","table");
-    }
     function addClass(){
-        var name = $('#new-class-name').val();
-        if (name != null || name != "" ) {
+        var name = prompt("Please enter the name for the new Class", "");
+        if (name == null || name == ""){
+            // Do nothing.
+        }else{
             $.post("/modules/class/createClass.php", {name: name}, function (data) {
                 if (data == "Success") {
                     $('#new-class-name').val("");
                     $('#shadow').hide();
-                    loadClass(function(){
+                    loadClass(function () {
                         $('#classList').html("");
                     });
                 }
@@ -186,7 +178,6 @@ if (!function_exists('checkForceQuit')){
     }
 
     function openAddCardBox(id, name){
-        $('#floatBox-add-class').hide();
         $('#floatBox-add-card').show();
         $('#floatBox-title').html("Add Assignment/Information: " + name);
         $('#add-card-class-id').val(id);

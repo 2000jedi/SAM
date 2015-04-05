@@ -51,7 +51,7 @@ textarea, input{
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.8);
-    z-index: 999;
+    z-index: 2000;
     display: table;
 }
 #floatBox{
@@ -237,10 +237,10 @@ textarea, input{
         z-index: 1000;
     }
 
-    textarea, input{
+    textarea.card, input.card{
         width: 100%;
     }
-    .form{padding-right: 2em;}
+    .card{margin-left: -0.5em;margin-right: -0.5em}
 
     #header-part{
         background-color: #1f8dd6;

@@ -13,6 +13,7 @@ if (!function_exists('checkForceQuit')){
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title><?= $appName ?> - Student</title>
@@ -173,6 +174,9 @@ if (!function_exists('checkForceQuit')){
 </div>
 </body>
 </html>
+<?php
+require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
+?>
 <script>
     /* Class Module */
     <?php
@@ -195,7 +199,7 @@ if (!function_exists('checkForceQuit')){
             var todayItemCounter = 0;
             var todayHoursCounter = 0.0;
             function outputTodayNotification(){
-                var notification = "<div class=\"card\">" + "Assignments due tomorrow: <br>" + todayItemCounter + " item(s)/" + todayHoursCounter + " hour(s)" +"</div>";
+                var notification = "<div class=\"card\">" + "Assignments due tomorrow: <br>" + todayItemCounter + " item(s)/" + parseFloat(todayHoursCounter).toFixed(1) + " hour(s)" +"</div>";
                 return notification;
             }
             /* Notification End */
@@ -228,7 +232,7 @@ if (!function_exists('checkForceQuit')){
             }
             function outputSuggestion(){
                 for (var i = 0; i < subjectArr.length; i++){
-                    separatedRecommendation += subjectArr[i] + ": " + hoursArr[i] + " hour(s)/" + itemsArr[i] + " item(s)<br />";
+                    separatedRecommendation += subjectArr[i] + ": " + itemsArr[i] + " item(s)/" + parseFloat(hoursArr[i]).toFixed(1) + " hour(s)<br />";
                 }
                 var assignmentTimeRecommendation = "Recommendation: " + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s) today.<br />";
                 var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"Details:<br />"+separatedRecommendation+"</div>";

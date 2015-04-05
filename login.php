@@ -32,6 +32,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
 }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <title><?= $appName ?></title>
@@ -47,10 +48,10 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     <div id="body-part">
         <div class="card"><?=$msg ?></div>
         <form id="form" action="login.php" method="post">
-            <div class="form">
+            <div>
                 <input class="card" name="username" type="text" placeholder="Your username." />
             </div>
-            <div class="form">
+            <div>
                 <input class="card" name="password" type="password" placeholder="Your password." />
             </div>
             <input type="submit" style="display:none"/>
