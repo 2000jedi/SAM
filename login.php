@@ -42,6 +42,19 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     <link rel="stylesheet" href="/framework/geodesic/base.css">
 </head>
 <body>
+<script src="/framework/js/jq.js"></script>
+<script>
+    function forgotPassword(){
+        var user = $('#username').val();
+        if (user == null || user == ""){
+            alert("Please input your username first!");
+        }else{
+            $.get("/modules/user/forgotPasswordSendMail.php",{user: user},function(data){
+                alert(data);
+            });
+        }
+    }
+</script>
     <header id="header-part" style="color: white; text-align: center;padding: 1em 0">
         <span id="appname" style="display: block"><?= $appName ?></span>
     </header>
@@ -49,7 +62,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
         <div class="card"><?=$msg ?></div>
         <form id="form" action="login.php" method="post">
             <div>
-                <input class="card" name="username" type="text" placeholder="Your username." />
+                <input class="card" id="username" name="username" type="text" placeholder="Your username." />
             </div>
             <div>
                 <input class="card" name="password" type="password" placeholder="Your password." />
@@ -58,9 +71,8 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
         </form>
         <div style="text-align: center">
             <button onclick="$('#form').submit()" class="pure-button pure-button-primary" style="margin:0 auto;display:inline-block;">Sign In</button>
-            <button onclick="" class="pure-button pure-button-primary" style="margin:0 auto;display:inline-block;">Forgot Password</button>
+            <button onclick="forgotPassword()" class="pure-button pure-button-primary" style="margin:0 auto;display:inline-block;">Forgot Password</button>
         </div>
     </div>
 </body>
 </html>
-<script src="/framework/js/jq.js"></script>

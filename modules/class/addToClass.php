@@ -25,7 +25,6 @@ $sql1 = "SELECT * FROM student WHERE id = '$student'";
 $result1 = $conn->query($sql1);
 
 
-
 while($row = $result1->fetch_assoc()) {
     $classes = $row['class'];
     if ( strpos($classes, $class) ){

@@ -5,6 +5,36 @@ var DateDiff = {
         return parseInt((t2-t1)/(24*3600*1000));
     }
 };
+var Utils = {
+    string:{
+        url:{
+            Regex:function(){
+                // Regular Expression for URL validation https://gist.github.com/dperini/729294
+                // Author: Diego Perini
+                // Updated: 2010/12/05
+                return /(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?/gi;
+            },
+            RegexFormat:function(str){
+                return str.replace(this.Regex(),function(word){
+                    return "<a href=\"" + word + "\" target=_blank>" + word + "</a>";
+                });
+            }
+        },
+        line:{
+            Regex:function(){
+                return /\n|\r\n|\r/g;
+            },
+            RegexFormat:function(str){
+                return str.replace(this.Regex(),"<br>");
+            }
+        },
+        formattedPostContent:function(str){
+            str = this.line.RegexFormat(str);
+            str = this.url.RegexFormat(str);
+            return str;
+        }
+    }
+};
 
 // Fix Safari
 (function (window) {

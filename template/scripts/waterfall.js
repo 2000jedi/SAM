@@ -1,12 +1,14 @@
-function WaterFall(list, prefix){
-
-    var widthOfWindow = $('#body-part').width(), widthEachCard = 370;
+function WaterFall(list, prefix, panelOpen){
+    if ($(window).width() < 955){
+        panelOpen = false;
+    }
+    var ifCompensate = panelOpen ? 1:0, widthOfWindow = $('#body-part').width() - rightBarTheoreticalWidth * ifCompensate, widthEachCard = 370;
     var numberOfColumns = parseInt(widthOfWindow / widthEachCard);
 
     var idList = list;
     var idListArr = idList.split(";");
 
-    if (numberOfColumns != 1 && numberOfColumns != 0) {
+    if (numberOfColumns != 1 && numberOfColumns != 0 || ($(window).width() > 740 && widthOfWindow > widthEachCard)) {
         var heightStorage = new Array();
         for (var i = 0; i < numberOfColumns; i++){
             heightStorage[i] = 0.5;

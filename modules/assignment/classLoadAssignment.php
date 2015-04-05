@@ -14,7 +14,16 @@ $result = checkForceQuit();
 $userID = $result->uid;
 $class = $_GET['class'];
 
-$sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 10) ORDER BY dueday DESC";
+$sql1 = "SELECT * FROM student WHERE class LIKE '%;$class%'";
+$result1 = $conn->query($sql1);
+
+$studentID = "";
+
+while($row = $result1->fetch_assoc()) {
+    $studentID = $row['id'];
+}
+
+$sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 10) AND receiver = '$studentID' ORDER BY dueday DESC";
 $result = $conn->query($sql);
 
 $arr = array();

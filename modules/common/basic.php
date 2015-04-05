@@ -12,5 +12,12 @@ function Redirect($url, $permanent = false)
 
     exit();
 }
+function equalFloat($a, $b){
+    if (abs(($a-$b)/$b) < 0.00001) {
+        return true;
+    }else{
+        return false;
+    }
+}
 
 ?>

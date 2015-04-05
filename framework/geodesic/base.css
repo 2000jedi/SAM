@@ -64,6 +64,7 @@ textarea, input{
     right:0px;
     top:0px;
     color: #0078e7;
+    background: rgba(207, 207, 207, 0.8);
     padding: 0.5em;
 }
 #floatBox-content{
@@ -239,8 +240,13 @@ textarea, input{
 
     textarea.card, input.card{
         width: 100%;
+        padding-right: 0;
+        margin-right: -0.5em;
+        margin-left: -0.05em;
     }
-    .card{margin-left: -0.5em;margin-right: -0.5em}
+    .card{
+        box-sizing: border-box;
+    }
 
     #header-part{
         background-color: #1f8dd6;

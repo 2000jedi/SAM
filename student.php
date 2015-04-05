@@ -66,7 +66,7 @@ if (!function_exists('checkForceQuit')){
                 width: 370px;
                 box-shadow: -10px 0px 10px #888;
                 height: 100%;
-                background-color: rgba(239,239,239,0.9);
+                background-color: rgba(207, 207, 207, 0.7);
             }
             #assignment-time-management-caller.hide{
                 display: none;
@@ -100,9 +100,13 @@ if (!function_exists('checkForceQuit')){
 </head>
 <body>
 <script>
+    var rightBarTheoreticalWidth = 365, boolMinus = true;
+
     function toggleModules(id){
         $('#right-part').hide();
         $('#assignment-time-management-wrapper').addClass("hide");
+        $('#assignment-time-management-caller').removeClass("hide");
+        boolMinus = false;
         $('#mStream').hide();
         $('#left-tab-Stream').css("background","#1f8dd6").css("color","white");
         $('#mClass').hide();
@@ -113,6 +117,8 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
         if (id == "Stream"){
             $('#assignment-time-management-wrapper').removeClass("hide");
+            $('#assignment-time-management-caller').addClass("hide");
+            boolMinus = true;
         }
     }
 </script>
@@ -127,11 +133,11 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="body-part">
     <div id="mStream">
-        <div id="assignment-time-management-caller" class="hide" onclick="$('#assignment-time-management-wrapper').removeClass('hide');$('#assignment-time-management-caller').addClass('hide')">
+        <div id="assignment-time-management-caller" class="hide" onclick="$('#assignment-time-management-wrapper').removeClass('hide');boolMinus = true; $('#assignment-time-management-caller').addClass('hide')">
             <div>+</div>
         </div>
         <div id="assignment-time-management-wrapper">
-            <div id="panel-close" onclick="$('#assignment-time-management-wrapper').addClass('hide');$('#assignment-time-management-caller').removeClass('hide')">Close</div>
+            <div id="panel-close" onclick="$('#assignment-time-management-wrapper').addClass('hide'); boolMinus = false; $('#assignment-time-management-caller').removeClass('hide')">Close</div>
             <div id="assignment-time-management"></div>
         </div>
         <div id="assignment-list" style="position: relative">
@@ -199,7 +205,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
             var todayItemCounter = 0;
             var todayHoursCounter = 0.0;
             function outputTodayNotification(){
-                var notification = "<div class=\"card\">" + "Assignments due tomorrow: <br>" + todayItemCounter + " item(s)/" + parseFloat(todayHoursCounter).toFixed(1) + " hour(s)" +"</div>";
+                var notification = "<div class=\"card\"><b>Assignments due tomorrow:</b><br>" + todayItemCounter + " item(s)/" + parseFloat(todayHoursCounter).toFixed(1) + " hour(s)" +"</div>";
                 return notification;
             }
             /* Notification End */
@@ -234,8 +240,8 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                 for (var i = 0; i < subjectArr.length; i++){
                     separatedRecommendation += subjectArr[i] + ": " + itemsArr[i] + " item(s)/" + parseFloat(hoursArr[i]).toFixed(1) + " hour(s)<br />";
                 }
-                var assignmentTimeRecommendation = "Recommendation: " + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s) today.<br />";
-                var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"Details:<br />"+separatedRecommendation+"</div>";
+                var assignmentTimeRecommendation = "<b>Recommendation:</b><br>" + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s) today.<br />";
+                var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"<b>Details:</b><br />"+separatedRecommendation+"</div>";
 
                 return suggestion;
             }
@@ -344,8 +350,8 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
     localStorage.assignmentIDList2 = "";
 
     setInterval(function(){
-        WaterFall(localStorage.assignmentIDList,"assignment-list-");
-        WaterFall(localStorage.assignmentIDList2,"assignment-list-class-");
+        WaterFall(localStorage.assignmentIDList,"assignment-list-", boolMinus);
+        WaterFall(localStorage.assignmentIDList2,"assignment-list-class-", boolMinus);
     }, 200);
 
 </script>

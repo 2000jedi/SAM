@@ -40,8 +40,22 @@ function deleteAssignment(id){
         });
     }
 }
-
 /* Delete Assignment End */
+
+/* Mark Completion Start */
+function markCompletion(id){
+    var actual = prompt("You may tell us how much time you actually spent on the assignment. The data will be used to predict your actual completion time based on the estimation by your teacher. (You can leave it blank or input non-numeric values. It will not be recorded.)\n\nDO YOU REALLY want to mark the assignment as completed?\nIt will not be counted into recommendation any more.");
+    if (actual == null){
+        return;
+    }
+    $.post("/modules/assignment/markCompletion.php",{id: id, actual: actual}, function(data){
+        loadAssignment(function(){
+            $('#assignment-list').html("");
+        });
+        alert(data);
+    });
+}
+/* Mark Completion End */
 
 function diff(where, app, assignment){
     if (where == "prefix-id"){
@@ -76,7 +90,13 @@ function diff(where, app, assignment){
             html += "       </div>";
             return html;
         }else if (app == "student"){
-            return "";
+            var html = "";
+            if (assignment.type != 2) {
+                html += "       <div>";
+                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markCompletion(\"" + assignment.id + "\")'> Mark As Completed </button>";
+                html += "       </div>";
+            }
+            return html;
         }else if (app == "student-in-class"){
             return "";
         }
@@ -130,7 +150,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (parseInt(type) == 1){
             html += "       <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
         }
-        html += "           <div style='margin: 0.5em; border: 1px solid #EEE; padding:0.5em; border-bottom: 2px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'><div>" + this.content + "</div></div>";
+        html += "           <div style='margin: 0.5em; border: 1px solid #EEE; padding:0.5em; border-bottom: 2px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
         html += diff("expand-content", this.app, this);
         html += "           <div style='margin:0.5em'>Attachment: " + this.attachment + "</div>";
         html += "       </div>";

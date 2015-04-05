@@ -58,8 +58,8 @@ $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
     $id = $row['id'];
-    $sql2 = "INSERT INTO assignment (type, content, attachment, publish, dueday, duration, class, receiver, teacher, viewed) VALUES ($type, '$content', '$attachment', now(), '$dueday', $duration, '$class', '$id',
-'$teacher', false)";
+    $sql2 = "INSERT INTO assignment (type, content, attachment, publish, dueday, duration, class, receiver, teacher, actual) VALUES ($type, '$content', '$attachment', now(), '$dueday', $duration, '$class', '$id',
+'$teacher', -1)";
     $conn->query($sql2);
 }
 
