@@ -14,16 +14,7 @@ $result = checkForceQuit();
 $userID = $result->uid;
 $class = $_GET['class'];
 
-$sql1 = "SELECT * FROM student WHERE class LIKE '%;$class%'";
-$result1 = $conn->query($sql1);
-
-$studentID = "";
-
-while($row = $result1->fetch_assoc()) {
-    $studentID = $row['id'];
-}
-
-$sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 10) AND receiver = '$studentID' ORDER BY dueday DESC";
+$sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 10) ORDER BY dueday DESC";
 $result = $conn->query($sql);
 
 $arr = array();
@@ -38,9 +29,8 @@ while($row = $result->fetch_assoc()) {
     $publish = $row['publish'];
     $dueday = $row['dueday'];
     $duration = $row['duration'];
-    $receiver = $row['receiver'];
     $teacher = $row['teacher'];
-    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $receiver, $teacher);
+    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $teacher, false);
     $arr[$counter] = $unitAssignment;
     $counter++;
 }

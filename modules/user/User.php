@@ -16,6 +16,10 @@ class User {
         $this->uid = $uid;
     }
 
+    function setUsername( $username ){
+        $this->username = $username;
+    }
+
     function changePassword($_newPassword){
         global $conn;
         $newPassword = openssl_digest($_newPassword, 'sha512');

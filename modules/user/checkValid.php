@@ -33,6 +33,7 @@ function checkForceQuit(){
         if ( $result == false ){
             die("You are detected as an unexpected intruder.");
         }else{
+            $result->setUsername($username);
             return $result;
         }
     }else{

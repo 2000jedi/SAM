@@ -66,13 +66,14 @@ if (!function_exists('checkForceQuit')){
                 width: 370px;
                 box-shadow: -10px 0px 10px #888;
                 height: 100%;
-                background-color: rgba(207, 207, 207, 0.7);
+                background: rgba(207, 207, 207, 0.7);
             }
             #assignment-time-management-caller.hide{
                 display: none;
             }
             #assignment-time-management-wrapper.hide{
-                display: none;
+                width: 0;
+                overflow: hidden;
             }
             #assignment-time-management{
                 margin-top: 3em;
@@ -122,6 +123,7 @@ if (!function_exists('checkForceQuit')){
         }
     }
 </script>
+<div id="loading" style="display:block">Loading...</div>
 <div id="header-part">
     <a id="appName" href="#"><?= $appName ?></a>
     <a id="userName" href="#"><?= $username ?></a>
@@ -140,9 +142,7 @@ if (!function_exists('checkForceQuit')){
             <div id="panel-close" onclick="$('#assignment-time-management-wrapper').addClass('hide'); boolMinus = false; $('#assignment-time-management-caller').removeClass('hide')">Close</div>
             <div id="assignment-time-management"></div>
         </div>
-        <div id="assignment-list" style="position: relative">
-            <div class="card">Loading information...</div>
-        </div>
+        <div id="assignment-list" style="position: relative"></div>
     </div>
     <div id="mClass" style="display: none">
         <div id="classList"></div>
@@ -228,9 +228,10 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
             function addTo(name, hours){
                 var id = findIDInArrayByName(name);
                 if ( id == -1 ){
-                    subjectArr[0] = name;
-                    hoursArr[0] = hours;
-                    itemsArr[0] = 1
+                    var initialLen = subjectArr.length;
+                    subjectArr[initialLen] = name;
+                    hoursArr[initialLen] = hours;
+                    itemsArr[initialLen] = 1;
                 }else{
                     hoursArr[id] = hoursArr[id] + hours;
                     itemsArr[id] = itemsArr[id] + 1;
@@ -246,11 +247,15 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                 return suggestion;
             }
             /* Suggestion End */
-
+            function convertSubject(subject){
+                return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
+            }
             for (var i = 0; i < len; i++){
                 var row = data[i];
 
-                if (row.type == "1"){
+                var subject = convertSubject(row.subject);
+
+                if (row.type == "1" && !row.finished){
                     var timeUnit = parseFloat(row.duration);
                     var date = row.dueday;
                     var daysLeft = DateDiff.inDays(new Date(), new Date(date));
@@ -261,7 +266,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                         todayHoursCounter += todayDoingTime;
                     }
 
-                    addTo(row.subject, todayDoingTime);
+                    addTo(subject, todayDoingTime);
                     todayTime += todayDoingTime;
 
                     assignmentCounter++;
@@ -269,7 +274,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
 
                 idList += ";" + row.id;
 
-                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
+                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
                 $('#assignment-list').append(assignment.getHTML());
             }
 
@@ -304,7 +309,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 idList += ";" + row.id;
-                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
+                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration, row.finished);
                 $('#assignment-list-in-class').append(assignment.getHTML());
             }
             localStorage.assignmentIDList2 = idList;
@@ -329,6 +334,9 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                 loadClass(function(){
                     $('#classList').empty();
                 })
+                loadAssignment(function(){
+                    $('#assignment-list').html("");
+                });
                 alert(data);
             })
         }

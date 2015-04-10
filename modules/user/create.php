@@ -6,19 +6,52 @@
  * Time: 21:25
  */
 
-require $_SERVER['DOCUMENT_ROOT']."/modules/common/crypto.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/database/connect.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 
-$username = $_GET['username'];
-$email = $_GET['email'];
-$password = openssl_digest($username, 'sha512');
+$result = checkForceQuit();
 
-$sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$password', '$email')";
+$admin = $result->username;
 
-if ($conn->query($sql) === TRUE) {
-    echo "Success";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+if ($admin != "t001"){
+    die("Permission Denied!");
+}else{
+    $type = $_POST['type'];
+    $username = $_POST['username'];
+    $password = openssl_digest($username, 'sha512');
+    $email = "sam@developersam.com";
+
+    $sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$password', '$email')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Success<br>";
+    } else {
+        echo "Unexpected error 1.";
+    }
+
+    $sql2 = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql2);
+
+    $id = "";
+
+    while($row = $result->fetch_assoc()) {
+        $id = $row['uid'];
+    }
+
+    $sql3 = "";
+
+    if ($type == "s"){
+        $sql3 = "INSERT INTO student (id, class) VALUES ('$id', '')";
+    }else if ($type == "t"){
+        $subject = $_POST['subject'];
+        $sql3 = "INSERT INTO teacher (id, subject) VALUES ('$id', '$subject')";
+    }
+
+    if ($conn->query($sql3) === TRUE) {
+        echo "Success<br>";
+    } else {
+        echo "Unexpected error 3.";
+    }
+
 }
 
 ?>

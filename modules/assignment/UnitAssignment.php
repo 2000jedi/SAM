@@ -22,10 +22,10 @@ class UnitAssignment {
     var $duration;
     var $class;
     var $subject;
-    var $receiver;
     var $teacher;
+    var $finished;
 
-    function __construct($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $receiver, $teacher){
+    function __construct($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $teacher, $finished){
         $this->id = $id;
         $this->type = $type;
         $this->content = $content;
@@ -33,6 +33,7 @@ class UnitAssignment {
         $this->publish = $publish;
         $this->dueday = $dueday;
         $this->duration = $duration;
+        $this->finished = $finished;
 
         $sql = "SELECT * FROM class WHERE id = '$class'";
         global $conn;
@@ -55,7 +56,6 @@ class UnitAssignment {
             $this->class = "Unknown";
         }
 
-        $this->receiver = $receiver;
         $this->teacher = $teacher;
     }
 }

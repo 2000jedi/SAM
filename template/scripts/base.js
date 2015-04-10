@@ -1,3 +1,12 @@
+$(document).ajaxSend(function(event,xhr,option){
+    if (option.type === "GET"){
+        $('#loading').css('opacity', 0.8);
+    }
+});
+$(document).ajaxComplete(function(){
+    $('#loading').css('opacity', 0);
+});
+
 var DateDiff = {
     inDays: function(d1, d2) {
         var t2 = new Date(d2.setHours(0,0,0,0)).getTime();

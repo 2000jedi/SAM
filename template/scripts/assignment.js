@@ -55,6 +55,25 @@ function markCompletion(id){
         alert(data);
     });
 }
+function markInfoAsRead(id){
+    var conf = confirm("DO YOU REALLY read the information?");
+    if (conf == true) {
+        $.post("/modules/assignment/markCompletion.php", {id: id, actual: 0}, function (data) {
+            loadAssignment(function () {
+                $('#assignment-list').html("");
+            });
+            alert(data);
+        });
+    }
+}
+function markUnCompletion(id){
+    $.post("/modules/assignment/markUnCompletion.php",{id: id}, function(data){
+        loadAssignment(function(){
+            $('#assignment-list').html("");
+        });
+        alert(data);
+    });
+}
 /* Mark Completion End */
 
 function diff(where, app, assignment){
@@ -91,9 +110,19 @@ function diff(where, app, assignment){
             return html;
         }else if (app == "student"){
             var html = "";
-            if (assignment.type != 2) {
+            if (assignment.type != 2 && !assignment.finished) {
                 html += "       <div>";
                 html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markCompletion(\"" + assignment.id + "\")'> Mark As Completed </button>";
+                html += "       </div>";
+            }
+            if (assignment.type != 2 && assignment.finished) {
+                html += "       <div>";
+                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markUnCompletion(\"" + assignment.id + "\")'> Mark As Uncompleted </button>";
+                html += "       </div>";
+            }
+            if (assignment.type == 2 && !assignment.finished) {
+                html += "       <div>";
+                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markInfoAsRead(\"" + assignment.id + "\")'> Mark As Read </button>";
                 html += "       </div>";
             }
             return html;
@@ -102,7 +131,7 @@ function diff(where, app, assignment){
         }
     }
 }
-function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration){
+function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration, finished){
     function dealWithType(type, dueday){
         var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
         if (type == "2"){
@@ -131,21 +160,25 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.attachment = dealWithAttachment(attachment);
     this.publish = publish;
     this.dueday = dueday;
-    this.subject = subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
+    this.subject = subject;
     this.duration = duration + " hours";
+    this.finished = finished;
 
     this.getHTML = function() {
         var html = "";
-        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'>";
+        var finishedCSS = "";
+        if (this.finished){
+            finishedCSS = " style='opacity:0.6'"
+        }
+        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'"+ finishedCSS +">";
         html += typeHTML(this.type, this.subject);
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>";
-        html += "           <div style='margin:0.5em'>Subject: " + this.subject + "</div>";
         html += "           <div style='margin:0.5em;display:table;width:100%;text-align:left'>"
-        html += "               <div style='display:table-cell'>Published: " + this.publish + "</div>";
+        html += "               <div style='display:table-cell'><div class='changeLineOrNot'>Published:&nbsp;</div><div class='changeLineOrNot'>" + this.publish + "</div></div>";
 
-        var dueDayLabel = new Array("Due: ", "Expire: ");
-        html += "               <div style='display:table-cell'>"+ dueDayLabel[parseInt(type)-1] + this.dueday + "</div>";
+        var dueDayLabel = new Array("<div class='changeLineOrNot'>Due:&nbsp;</div>", "<div class='changeLineOrNot'>Expire:&nbsp;</div>");
+        html += "               <div style='display:table-cell'>"+ dueDayLabel[parseInt(type)-1] + "<div class='changeLineOrNot'>" + this.dueday + "</div></div>";
         html += "           </div>";
         if (parseInt(type) == 1){
             html += "       <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";

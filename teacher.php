@@ -37,6 +37,7 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
     }
 </script>
+<div id="loading" style="display:block">Loading...</div>
 <div id="header-part">
     <a id="appName" href="#"><?= $appName ?></a>
     <a id="userName" href="#"><?= $username ?></a>
@@ -66,7 +67,12 @@ if (!function_exists('checkForceQuit')){
         <div style="display: none;" id="right-part-class-id"></div>
         <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff" id="right-part-title">Manage Class</div>
     </div>
-    <div id="assignment-list" class="belowActionBar"></div>
+    <div class="belowActionBar">
+        <div style="text-align: center">
+            <button class="pure-button pure-button-primary" style="width: 100%; background-color: #0099ff" onclick="deleteClass()"> Delete Class </button>
+        </div>
+        <div id="assignment-list"></div>
+    </div>
 </div>
 <div id="shadow" style="display: none;">
     <div style="display:table-cell;vertical-align: middle">
@@ -95,9 +101,10 @@ if (!function_exists('checkForceQuit')){
                                     <label>Estimated Duration (in hours):</label>
                                     <input class="card" id="add-card-form-duration" name="duration" type="text" placeholder="Estimated Duration" />
                                 </div>
-                                <div style="position: relative;">
-                                    <label>Due day:</label>
-                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
+                                <div style="position: relative">
+                                    <label>Due:</label><br />
+                                    <label>(press backspace or delete button to clear input)</label>
+                                    <input class="card" id="add-card-form-dueday" data-native="mobile" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
@@ -114,8 +121,9 @@ if (!function_exists('checkForceQuit')){
                                     <label>Content:</label>
                                     <textarea class="card" id="add-card-form-content-2" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
-                                <div style="position: relative;">
-                                    <label>Expire Date (leave it blank to keep it permanently):</label>
+                                <div style="position: relative">
+                                    <label>Expire (leave it blank to keep it permanently):</label><br />
+                                    <label>(press backspace or delete button to clear input)</label>
                                     <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="date" data-format="MM/dd/yyyy" />
                                 </div>
                                 <div>
@@ -140,6 +148,10 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
 </html>
 
 <script>
+    <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+    ?>
     /* Class Module */
     function addClass(){
         var name = prompt("Please enter the name for the new Class", "");
@@ -158,10 +170,6 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
             })
         }
     }
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-    ?>
     function loadClass(func){
         $.get("/modules/class/loadClass.php",function(data){
             func();
@@ -320,7 +328,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
-                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration);
+                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration, row.finished);
                 $('#assignment-list').append(assignment.getHTML());
             }
         });
@@ -332,6 +340,16 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
         $('#right-part-class-id').html(id);
         $('#right-part-title').html("Manage " + name);
         $('#right-part').show();
+    }
+    function deleteClass(){
+        var id = $('#right-part-class-id').html();
+        var conf = confirm("DO YOU REALLY want to delete the class? All the data related to the class will be removed from the server permanently!");
+        if (conf == true) {
+            $.get("/modules/class/deleteClass.php",{class: id},function(data){
+                alert(data);
+                window.location = "/";
+            });
+        }
     }
 
     <?php

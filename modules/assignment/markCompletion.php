@@ -26,7 +26,8 @@ if (is_numeric($actual)){
     $actual = 0;
 }
 
-$sql = "UPDATE assignment SET actual = '$actual' WHERE id = '$id' AND receiver = '$student'";
+$sql = "INSERT INTO personalassignment (assignment, uid, actual) VALUES ($id, $student, $actual)";
+
 if ($conn->query($sql) === TRUE) {
     echo "Thank you for cooperation!";
 } else {
