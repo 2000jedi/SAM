@@ -16,15 +16,18 @@ if (!function_exists('checkForceQuit')){
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <title><?= $appName ?> - Student</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/framework/pure/pure-min.css">
-    <link rel="stylesheet" href="/framework/geodesic/base.css">
-    <link rel="stylesheet" href="/framework/geodesic/settings.css">
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
     <style>
+        <?php
+            require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
+        ?>
         @media (min-width: 955px) {
             #body-part {
                 position: fixed;
@@ -286,6 +289,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
     ?>
+
     function loadClass(func){
         $.get("/modules/class/loadClass.php",function(data){
             func();
@@ -337,7 +341,6 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                 loadAssignment(function(){
                     $('#assignment-list').html("");
                 });
-                alert(data);
             })
         }
     }

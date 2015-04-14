@@ -36,7 +36,6 @@ function deleteAssignment(id){
     if (conf == true) {
         $.get("/modules/assignment/deleteAssignment.php",{assignment: id},function(data){
             $('#assignment-list-'+id).remove();
-            alert(data);
         });
     }
 }
@@ -52,7 +51,6 @@ function markCompletion(id){
         loadAssignment(function(){
             $('#assignment-list').html("");
         });
-        alert(data);
     });
 }
 function markInfoAsRead(id){
@@ -62,7 +60,6 @@ function markInfoAsRead(id){
             loadAssignment(function () {
                 $('#assignment-list').html("");
             });
-            alert(data);
         });
     }
 }
@@ -71,7 +68,6 @@ function markUnCompletion(id){
         loadAssignment(function(){
             $('#assignment-list').html("");
         });
-        alert(data);
     });
 }
 /* Mark Completion End */

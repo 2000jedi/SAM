@@ -16,14 +16,19 @@ if (!function_exists('checkForceQuit')){
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" />
     <title><?= $appName ?> - Teacher</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/framework/pure/pure-min.css">
-    <link rel="stylesheet" href="/framework/geodesic/base.css">
-    <link rel="stylesheet" href="/framework/geodesic/settings.css">
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
+    <style>
+        <?php
+            require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
+        ?>
+    </style>
 </head>
 <body>
 <script>
@@ -104,7 +109,7 @@ if (!function_exists('checkForceQuit')){
                                 <div style="position: relative">
                                     <label>Due:</label><br />
                                     <label>(press backspace or delete button to clear input)</label>
-                                    <input class="card" id="add-card-form-dueday" data-native="mobile" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
+                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>

@@ -1,5 +1,24 @@
 /* Basic HTML Elements Starts Here. */
 *{transition: 0.5s ease-in-out;}
+::-webkit-scrollbar {
+    background:transparent;overflow:visible; width:15px;}
+::-webkit-scrollbar-thumb {
+    background-color:rgba(0,0,0,0.2); border:solid #eee;}
+::-webkit-scrollbar-thumb:hover {
+    background:rgba(0,0,0,0.4);}
+::-webkit-scrollbar-thumb:horizontal {
+    border-width:1px 1px;min-width:40px;}
+::-webkit-scrollbar-thumb:vertical {
+    border-width:1px 1px;min-height:40px;}
+::-webkit-scrollbar-track-piece{
+    background-color:#fff;}
+::-webkit-scrollbar-corner {
+    background:transparent;}
+::-webkit-scrollbar-thumb {
+    background-color: #DDD;}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #999;}
+
 .header-tab-a:hover,.header-tab-a:focus{background:#eee}
 a,a:hover,a:link,a:visited,a:active,a:focus{color: #09F}
 #loading{
@@ -70,13 +89,13 @@ textarea, input{
 }
 #floatBox{
     position: relative;
-    overflow: scroll;
+    overflow: auto;
     background: #DDD;
 }
 #floatBox-close{
     position: absolute;
-    right:0px;
-    top:0px;
+    right:0;
+    top:0;
     color: #0078e7;
     background: rgba(207, 207, 207, 0.8);
     padding: 0.5em;
@@ -126,7 +145,7 @@ textarea, input{
     height: -moz-calc(100% - 55px);
     height: -webkit-calc(100% - 55px);
     height: calc(100% - 55px);
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 @media (min-width: 955px) {
@@ -191,7 +210,7 @@ textarea, input{
         width: -moz-calc(100% - 580px);
         width: -webkit-calc(100% - 580px);
         width: calc(100% - 580px);
-        overflow: scroll;
+        overflow-y: auto;
         height: 100%;
     }
     #right-part{
@@ -200,7 +219,7 @@ textarea, input{
         top:0px;
         right: 0px;
         width: 373px;
-        overflow: scroll;
+        overflow-y: auto;
         height: 100%;
         box-shadow: -10px 0px 10px #888;
         z-index: 1000;
@@ -232,14 +251,14 @@ textarea, input{
 @media (max-width: 955px) {
     #body-part{
         position: fixed;
-        top: 65px;
+        top: 58px;
         left: 0;
         width: 100%;
         z-index: 1000;
-        height: -moz-calc(100% - 65px);
-        height: -webkit-calc(100% - 65px);
-        height: calc(100% - 65px);
-        overflow: scroll;
+        height: -moz-calc(100% - 58px);
+        height: -webkit-calc(100% - 58px);
+        height: calc(100% - 58px);
+        overflow-y: auto;
     }
     #right-part{
         background: #DDD;
@@ -247,7 +266,7 @@ textarea, input{
         top:0;
         right: 0;
         width: 100%;
-        overflow: scroll;
+        overflow-y: auto;
         height: 100%;
         z-index: 1000;
     }
