@@ -1,10 +1,10 @@
 $(document).ajaxSend(function(event,xhr,option){
     if (option.type === "GET"){
-        $('#loading').css('opacity', 0.8);
+        $('#loading').css('opacity', 0.8).css("width", "").css("height", "").css("padding", "").css("left", "");
     }
 });
 $(document).ajaxComplete(function(){
-    $('#loading').css('opacity', 0);
+    $('#loading').css('opacity', 0).css("width", 0).css("height", 0).css("padding",0).css("left", 0);
 });
 
 var DateDiff = {

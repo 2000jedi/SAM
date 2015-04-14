@@ -2,7 +2,20 @@
 *{transition: 0.5s ease-in-out;}
 .header-tab-a:hover,.header-tab-a:focus{background:#eee}
 a,a:hover,a:link,a:visited,a:active,a:focus{color: #09F}
-#loading{position:fixed;z-index:4242;padding:10px;font-weight:100;left:50%;top:0px;width:auto;height:auto;background: white;color: #09F}
+#loading{
+    position: fixed;
+    z-index: 4242;
+    padding: 10px;
+    font-weight: 100;
+    left: -moz-calc(50% - 80px);
+    left: -webkit-calc(50% - 80px);
+    left: calc(50% - 80px);
+    top: 0;
+    width: auto;
+    height: auto;
+    background: white;
+    color: #09F
+}
 body{
     background-color: #DDDDDD;
     font-family: Arial, Helvetica, sans-serif;

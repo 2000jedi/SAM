@@ -241,7 +241,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                 for (var i = 0; i < subjectArr.length; i++){
                     separatedRecommendation += subjectArr[i] + ": " + itemsArr[i] + " item(s)/" + parseFloat(hoursArr[i]).toFixed(1) + " hour(s)<br />";
                 }
-                var assignmentTimeRecommendation = "<b>Recommendation:</b><br>" + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s) today.<br />";
+                var assignmentTimeRecommendation = "<b>Total hours left:</b><br>" + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s).<br />";
                 var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"<b>Details:</b><br />"+separatedRecommendation+"</div>";
 
                 return suggestion;
@@ -259,7 +259,7 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
                     var timeUnit = parseFloat(row.duration);
                     var date = row.dueday;
                     var daysLeft = DateDiff.inDays(new Date(), new Date(date));
-                    var todayDoingTime = parseFloat(parseFloat(timeUnit/daysLeft).toFixed(1));
+                    var todayDoingTime = parseFloat(parseFloat(timeUnit).toFixed(1));
 
                     if (daysLeft == 1){
                         todayItemCounter += 1;

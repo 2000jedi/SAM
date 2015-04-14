@@ -149,7 +149,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (attachment == "null"){
             return "No attachment.";
         }else{
-            return "<a target=_blank href='" + attachment +"'>Attachment</a>";
+            return "<a target=_blank href='" + attachment +"'>Download</a>";
         }
     }
     this.app = app;

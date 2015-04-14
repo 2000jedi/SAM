@@ -86,8 +86,8 @@ if (!function_exists('checkForceQuit')){
                     <div id="floatBox-add-class"></div>
                     <div id="floatBox-add-card">
                         <div style="text-align: center;display: table; width: 100%;margin-bottom: 1.5em">
-                            <div style="display: table-cell" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('')">Assignment</div>
-                            <div style="display: table-cell" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('_2')">Information</div>
+                            <div id="switch-between-tab" style="display: table-cell; border-bottom: 4px solid rgb(19, 47, 158)" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('')">Assignment</div>
+                            <div id="switch-between-tab_2" style="display: table-cell; border-bottom: 4px solid #0078e7" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('_2')">Information</div>
                         </div>
                         <div>
                             <form id="submit_form_node" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
@@ -195,7 +195,10 @@ require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
     function switchBetweenAddCardTab(id){
         $('#submit_form_node').hide();
         $('#submit_form_node_2').hide();
-        $('#submit_form_node'+id).show();
+        $('#submit_form_node'+id).show()
+        $('#switch-between-tab'+id).css("border-bottom", "4px solid rgb(19, 47, 158)");
+        id = id == "" ? "_2" : "";
+        $('#switch-between-tab'+id).css("border-bottom", "4px solid #0078e7");;
     }
     function hasFile(){
         //if there is a value, return true, else: false;
