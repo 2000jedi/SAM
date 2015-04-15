@@ -3,7 +3,7 @@ function WaterFall(list, prefix, panelOpen){
         panelOpen = false;
     }
     var ifCompensate = panelOpen ? 1:0, widthOfWindow = $('#body-part').width() - rightBarTheoreticalWidth * ifCompensate, widthEachCard = 370;
-    var numberOfColumns = parseInt(widthOfWindow / widthEachCard);
+    var numberOfColumns = Math.floor(widthOfWindow / (widthEachCard + 10 ) );
 
     var idList = list;
     var idListArr = idList.split(";");

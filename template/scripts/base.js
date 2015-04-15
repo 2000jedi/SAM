@@ -1,6 +1,9 @@
 $(document).ajaxSend(function(event,xhr,option){
     if (option.type === "GET"){
-        $('#loading').css('opacity', 0.8).css("width", "").css("height", "").css("padding", "").css("left", "");
+        $('#loading').css('opacity', 0.8).css("width", "").css("height", "").css("padding", "").css("left", "").html("Loading...");
+    }
+    if (option.type === "POST"){
+        $('#loading').css('opacity', 0.8).css("width", "").css("height", "").css("padding", "").css("left", "").html("Sending...");
     }
 });
 $(document).ajaxComplete(function(){

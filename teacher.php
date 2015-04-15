@@ -22,11 +22,13 @@ if (!function_exists('checkForceQuit')){
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
+    <script src="/template/fix/safari/fixdateinput.js"></script>
     <style>
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
+            require $_SERVER['DOCUMENT_ROOT']."/template/fix/safari/fixdateinput.css";
         ?>
     </style>
 </head>
@@ -57,7 +59,7 @@ if (!function_exists('checkForceQuit')){
         <div class="card" style="text-align:center" onclick="addClass()">Add Class</div>
     </div>
     <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
     ?>
 </div>
 <div id="right-part" style="display:none">
@@ -106,10 +108,9 @@ if (!function_exists('checkForceQuit')){
                                     <label>Estimated Duration (in hours):</label>
                                     <input class="card" id="add-card-form-duration" name="duration" type="text" placeholder="Estimated Duration" />
                                 </div>
-                                <div style="position: relative">
-                                    <label>Due:</label><br />
-                                    <label>(press backspace or delete button to clear input)</label>
-                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="date" placeholder="Due Day" data-format="MM/dd/yyyy" />
+                                <div>
+                                    <label>Due:</label>
+                                    <input class="card" id="add-card-form-dueday" name="dueday" style="margin-top: 0.5em" type="text" placeholder="Due Day" data-format="yyyy-MM-dd" />
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
@@ -127,9 +128,8 @@ if (!function_exists('checkForceQuit')){
                                     <textarea class="card" id="add-card-form-content-2" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
                                 <div style="position: relative">
-                                    <label>Expire (leave it blank to keep it permanently):</label><br />
-                                    <label>(press backspace or delete button to clear input)</label>
-                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="date" data-format="MM/dd/yyyy" />
+                                    <label>Expire (leave it blank to keep it permanently):</label>
+                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="text"placeholder="Expire Day"  data-format="yyyy-MM-dd" />
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
@@ -147,16 +147,15 @@ if (!function_exists('checkForceQuit')){
     </div>
 </div>
 </body>
-<?php
-require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
-?>
-</html>
-
 <script>
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
     ?>
+    $(function() {
+        $('#add-card-form-dueday').datepick();
+        $('#add-card-form-dueday-2').datepick();
+    });
     /* Class Module */
     function addClass(){
         var name = prompt("Please enter the name for the new Class", "");

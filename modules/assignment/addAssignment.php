@@ -23,6 +23,8 @@ $dueday = $_POST['dueday'];
 if ($dueday == ""){
     $dueday = "2038-1-1";
 }
+$dueday = date("Y-m-d", strtotime($dueday));
+
 if ($_POST['hasAttachment'] == "true"){
     function genRandomString(){
         $length = 5;

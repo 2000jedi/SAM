@@ -1,24 +1,5 @@
 /* Basic HTML Elements Starts Here. */
 *{transition: 0.5s ease-in-out;}
-::-webkit-scrollbar {
-    background:transparent;overflow:visible; width:15px;}
-::-webkit-scrollbar-thumb {
-    background-color:rgba(0,0,0,0.2); border:solid #eee;}
-::-webkit-scrollbar-thumb:hover {
-    background:rgba(0,0,0,0.4);}
-::-webkit-scrollbar-thumb:horizontal {
-    border-width:1px 1px;min-width:40px;}
-::-webkit-scrollbar-thumb:vertical {
-    border-width:1px 1px;min-height:40px;}
-::-webkit-scrollbar-track-piece{
-    background-color:#fff;}
-::-webkit-scrollbar-corner {
-    background:transparent;}
-::-webkit-scrollbar-thumb {
-    background-color: #DDD;}
-::-webkit-scrollbar-thumb:hover {
-    background-color: #999;}
-
 .header-tab-a:hover,.header-tab-a:focus{background:#eee}
 a,a:hover,a:link,a:visited,a:active,a:focus{color: #09F}
 #loading{
@@ -149,6 +130,26 @@ textarea, input{
 }
 
 @media (min-width: 955px) {
+
+    ::-webkit-scrollbar {
+        background:transparent;overflow:visible; width:15px;}
+    ::-webkit-scrollbar-thumb {
+        background-color:rgba(0,0,0,0.2); border:solid #eee;}
+    ::-webkit-scrollbar-thumb:hover {
+        background:rgba(0,0,0,0.4);}
+    ::-webkit-scrollbar-thumb:horizontal {
+        border-width:1px 1px;min-width:40px;}
+    ::-webkit-scrollbar-thumb:vertical {
+        border-width:1px 1px;min-height:40px;}
+    ::-webkit-scrollbar-track-piece{
+        background-color:#fff;}
+    ::-webkit-scrollbar-corner {
+        background:transparent;}
+    ::-webkit-scrollbar-thumb {
+        background-color: #DDD;}
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #999;}
+
     #header-part{
         background-color: #1f8dd6;
         border: 0;

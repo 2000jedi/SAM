@@ -102,9 +102,8 @@ if (!function_exists('checkForceQuit')){
         }
     </style>
 </head>
-<body>
 <script>
-    var rightBarTheoreticalWidth = 365, boolMinus = true;
+    var rightBarTheoreticalWidth = 370, boolMinus = true;
 
     function toggleModules(id){
         $('#right-part').hide();
@@ -183,9 +182,6 @@ if (!function_exists('checkForceQuit')){
 </div>
 </body>
 </html>
-<?php
-require $_SERVER['DOCUMENT_ROOT']."/template/pages/fixsafarijsload.html";
-?>
 <script>
     /* Class Module */
     <?php
