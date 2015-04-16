@@ -7,51 +7,11 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/user/createFunction.php";
 
-$result = checkForceQuit();
+$type = $_POST['type'];
+$username = $_POST['username'];
 
-$admin = $result->username;
-
-if ($admin != "t001"){
-    die("Permission Denied!");
-}else{
-    $type = $_POST['type'];
-    $username = $_POST['username'];
-    $password = openssl_digest($username, 'sha512');
-    $email = "sam@developersam.com";
-
-    $sql = "INSERT INTO user (username, password, email) VALUES ('$username', '$password', '$email')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Success<br>";
-    } else {
-        echo "Unexpected error 1.";
-    }
-
-    $sql2 = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-    $result = $conn->query($sql2);
-
-    $id = "";
-
-    while($row = $result->fetch_assoc()) {
-        $id = $row['uid'];
-    }
-
-    $sql3 = "";
-
-    if ($type == "s"){
-        $sql3 = "INSERT INTO student (id, class) VALUES ('$id', '')";
-    }else if ($type == "t"){
-        $subject = $_POST['subject'];
-        $sql3 = "INSERT INTO teacher (id, subject) VALUES ('$id', '$subject')";
-    }
-
-    if ($conn->query($sql3) === TRUE) {
-        echo "Success<br>";
-    } else {
-        echo "Unexpected error 3.";
-    }
-
-}
+create($username, $type);
 
 ?>
