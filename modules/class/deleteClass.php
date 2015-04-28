@@ -45,9 +45,10 @@ while($row = $result->fetch_assoc()) {
     $sql2 = "UPDATE student SET class = '$newStr' WHERE id = $id";
     $conn->query($sql2);
 
-    $sql3 = "DELETE FROM class WHERE id = '$class'";
-    $conn->query($sql3);
 }
+
+$sql3 = "DELETE FROM class WHERE id = '$class'";
+$conn->query($sql3);
 
 echo "The class is removed from the server.";
 
