@@ -147,7 +147,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else{
             var arr = attachment.split(";"), html = "";
             for (var i = 1; i < arr.length; i++){
-                html += " <a target=_blank href='" + attachment +"'>Attachment " + i + "</a>";
+                html += " <a target=_blank href='" + arr[i] +"'>Attachment " + i + "</a>";
             }
             return html;
         }

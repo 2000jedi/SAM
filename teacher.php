@@ -250,15 +250,15 @@ if (!function_exists('checkForceQuit')){
                     }
                 }
                 if ( isNull($('#add-card-form-dueday').val()) ){
-                    alert("Due day is empty!")
+                    alert("Due day is empty!");
                     return false;
                 }
                 if ( !validDate($('#add-card-form-dueday').val()) ){
-                    alert("Due day is invalid!")
+                    alert("Due day is invalid!");
                     return false;
                 }
                 if ( parseInt(localStorage.filesize1) > 25 ){
-                    alert("File size should not exceed 25MB.")
+                    alert("File size in total should not exceed 25MB.");
                     return false;
                 }
                 $('#submit_btn_add_card').prop('disabled',true).val("Sending...");
@@ -306,11 +306,11 @@ if (!function_exists('checkForceQuit')){
                     return false;
                 }
                 if ( !validDate($('#add-card-form-dueday-2').val()) ){
-                    alert("Expire day is invalid!")
+                    alert("Expire day is invalid!");
                     return false;
                 }
                 if (parseInt(localStorage.filesize2) > 25){
-                    alert("File size should not exceed 25MB.")
+                    alert("File size in total should not exceed 25MB.");
                     return false;
                 }
                 $('#submit_btn_add_card-2').prop('disabled',true).val("Sending...");
@@ -332,10 +332,18 @@ if (!function_exists('checkForceQuit')){
         return false;
     });
     $('#add-card-form-file').bind('change', function() {
-        localStorage.filesize1 = this.files[0].size/1024/1024;
+        var temp = 0;
+        for (var i = 0; i < this.files.length; i++){
+            temp += this.files[i].size/1024/1024;
+        }
+        localStorage.filesize1 = temp;
     });
     $('#add-card-form-file-2').bind('change', function() {
-        localStorage.filesize2 = this.files[0].size/1024/1024;
+        var temp = 0;
+        for (var i = 0; i < this.files.length; i++){
+            temp += this.files[i].size/1024/1024;
+        }
+        localStorage.filesize2 = temp;
     });
     localStorage.filesizeValid1 = true;
     localStorage.filesizeValid2 = true;
