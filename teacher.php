@@ -114,7 +114,7 @@ if (!function_exists('checkForceQuit')){
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
-                                    <input class="card" id="add-card-form-file" style="margin-top: 0.5em" name="attachment" type="file" />
+                                    <input class="card" id="add-card-form-file" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
                                 </div>
                                 <div style="text-align: center">
                                     <input type="submit" value="Submit" id="submit_btn_add_card" class="pure-button pure-button-primary" style="display:inline-block" />
@@ -129,11 +129,11 @@ if (!function_exists('checkForceQuit')){
                                 </div>
                                 <div style="position: relative">
                                     <label>Expire (leave it blank to keep it permanently):</label>
-                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="text"placeholder="Expire Day"  data-format="yyyy-MM-dd" />
+                                    <input class="card" id="add-card-form-dueday-2" name="dueday" style="margin-top: 0.5em" type="text" placeholder="Expire Day"  data-format="yyyy-MM-dd" />
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
-                                    <input class="card" id="add-card-form-file-2" style="margin-top: 0.5em" name="attachment" type="file" />
+                                    <input class="card" id="add-card-form-file-2" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
                                 </div>
                                 <div style="text-align: center">
                                     <input type="submit" value="Submit" id="submit_btn_add_card-2" class="pure-button pure-button-primary" style="display:inline-block" />
@@ -257,6 +257,10 @@ if (!function_exists('checkForceQuit')){
                     alert("Due day is invalid!")
                     return false;
                 }
+                if ( parseInt(localStorage.filesize1) > 25 ){
+                    alert("File size should not exceed 25MB.")
+                    return false;
+                }
                 $('#submit_btn_add_card').prop('disabled',true).val("Sending...");
 
                 return true;
@@ -305,6 +309,10 @@ if (!function_exists('checkForceQuit')){
                     alert("Expire day is invalid!")
                     return false;
                 }
+                if (parseInt(localStorage.filesize2) > 25){
+                    alert("File size should not exceed 25MB.")
+                    return false;
+                }
                 $('#submit_btn_add_card-2').prop('disabled',true).val("Sending...");
                 return true;
             },
@@ -323,7 +331,14 @@ if (!function_exists('checkForceQuit')){
         });
         return false;
     });
-
+    $('#add-card-form-file').bind('change', function() {
+        localStorage.filesize1 = this.files[0].size/1024/1024;
+    });
+    $('#add-card-form-file-2').bind('change', function() {
+        localStorage.filesize2 = this.files[0].size/1024/1024;
+    });
+    localStorage.filesizeValid1 = true;
+    localStorage.filesizeValid2 = true;
 
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";

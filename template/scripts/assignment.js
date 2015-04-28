@@ -143,9 +143,13 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     }
     function dealWithAttachment(attachment) {
         if (attachment == "null"){
-            return "No attachment.";
+            return " No attachment.";
         }else{
-            return "<a target=_blank href='" + attachment +"'>Download</a>";
+            var arr = attachment.split(";"), html = "";
+            for (var i = 1; i < arr.length; i++){
+                html += " <a target=_blank href='" + attachment +"'>Attachment " + i + "</a>";
+            }
+            return html;
         }
     }
     this.app = app;
@@ -181,7 +185,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         html += "           <div style='margin: 0.5em; border: 1px solid #EEE; padding:0.5em; border-bottom: 2px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
         html += diff("expand-content", this.app, this);
-        html += "           <div style='margin:0.5em'>Attachment: " + this.attachment + "</div>";
+        html += "           <div style='margin:0.5em'>Attachment:" + this.attachment + "</div>";
         html += "       </div>";
         html += diff("additional-button", this.app, this);
         html += "   </div>";
