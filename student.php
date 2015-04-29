@@ -190,6 +190,9 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
     ?>
+    function convertSubject(subject){
+        return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
+    }
 
 
     function loadAssignment(func){
@@ -246,9 +249,7 @@ if (!function_exists('checkForceQuit')){
                 return suggestion;
             }
             /* Suggestion End */
-            function convertSubject(subject){
-                return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
-            }
+
             for (var i = 0; i < len; i++){
                 var row = data[i];
 
@@ -293,7 +294,7 @@ if (!function_exists('checkForceQuit')){
             for ( var i = 0; i < data.length; i++){
                 var id = data[i].id;
                 var teacher = data[i].teacher;
-                var name = data[i].name;
+                var name = convertSubject(data[i].name);
 
                 var oneClass = new ClassStudent(id, teacher, name);
                 $('#classList').append(oneClass.getHTML());

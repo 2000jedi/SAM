@@ -41,7 +41,16 @@ while($row = $result->fetch_assoc()) {
         while($row2 = $result2->fetch_assoc()) {
             $id = $row2['id'];
             $teacher = $row2['teacher'];
-            $name = $row2['name'];
+            $name = "Unknown";
+
+            $sql3 = "SELECT * FROM teacher WHERE id = '$teacher'";
+            $result3 = $conn->query($sql3);
+            if ($result3->num_rows > 0) {
+                while($row = mysqli_fetch_assoc($result3)) {
+                    $name = $row["subject"];
+                }
+            }
+
             $unitClass = new UnitClass($id, $teacher, $name);
             $arr[$counter] = $unitClass;
             $counter++;
