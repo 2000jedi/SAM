@@ -310,11 +310,22 @@ if (!function_exists('checkForceQuit')){
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 idList += ";" + row.id;
-                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration, row.finished);
+                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
                 $('#assignment-list-in-class').append(assignment.getHTML());
             }
             localStorage.assignmentIDList2 = idList;
         });
+    }
+    function quitClass(id){
+        var conf = confirm("DO YOU REALLY want to quit the class?");
+        if (conf == true) {
+            $.get("/modules/class/quitClass.php", {class: id}, function (data) {
+                loadClass(function () {
+                    $('#classList').html("");
+                });
+                alert(data);
+            });
+        }
     }
     function openViewClassPanel(id, name){
         loadAssignmentInClass(id, function(){
@@ -338,6 +349,7 @@ if (!function_exists('checkForceQuit')){
                 loadAssignment(function(){
                     $('#assignment-list').html("");
                 });
+                alert(data);
             })
         }
     }

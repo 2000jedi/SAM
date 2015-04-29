@@ -32,6 +32,7 @@ function ClassStudent(id, teacher, name){
         html += "       <div style='margin-bottom: 0.5em'>" + name + "</div>";
         html += "       <div>";
         html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openViewClassPanel(\""+this.id+"\", \""+this.name+"\")'>View</button>";
+        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='quitClass(\""+this.id+"\")'>Quit</button>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";
