@@ -40,13 +40,9 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-Class').css("background","#1f8dd6").css("color","white");
         $('#mSettings').hide();
         $('#left-tab-Settings').css("background","#1f8dd6").css("color","white");
-        $('#m'+id).show()
+        $('#m'+id).show();
         $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
     }
-    <?php
-    require $_SERVER['DOCUMENT_ROOT']."/template/dropzone/multifile.js";
-    ?>
-
 </script>
 <div id="loading" style="display:block">Loading...</div>
 <div id="header-part">

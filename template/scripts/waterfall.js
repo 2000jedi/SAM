@@ -51,7 +51,7 @@ function WaterFall(list, prefix, panelOpen){
         for (var i = 1; i < idListArr.length; i++) {
             var id = idListArr[i];
             var node = document.getElementById(prefix+id);
-            node.style.position = "";
+            node.style.position = "relative";
             node.style.left = "";
             node.style.top = "";
             node.style.width = "";

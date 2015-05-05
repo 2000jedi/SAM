@@ -1,9 +1,15 @@
 /* Click to expand module start */
+/*
 function typeHTML(type, subject){
     type = type - 1;
     var color = new Array("black", "#0C0", "#F33", "#F93");
     var typeText = new Array("Assignment ONE DAY LEFT", "Information", "Assignment TWO DAYS LEFT", "Assignment");
     return "   <div class='card2-title' style='background:"+ color[type] +"'>"+subject+" "+typeText[type]+"</div>";
+}*/
+function typeColor(type){
+    type = type - 1;
+    var color = new Array("black", "#0C0", "#F33", "#F93");
+    return color[type];
 }
 function whetherExpandHTML(id, content){
     if (content.length > 200){
@@ -189,7 +195,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.publish = publish;
     this.dueday = dueday;
     this.subject = subject;
-    this.duration = duration + " hours";
+    this.duration = duration;
     this.finished = finished;
 
     this.getHTML = function() {
@@ -198,6 +204,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (this.finished){
             finishedCSS = " style='opacity:0.6'"
         }
+        /*
         html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'"+ finishedCSS +">";
         html += typeHTML(this.type, this.subject);
         html += "   <div class='card2-content'>";
@@ -220,6 +227,32 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         html += "           <div style='margin:0.5em'>Attachment: <span>" + this.attachment + "</span></div>";
         html += "       </div>";
+        html += diff("additional-button", this.app, this);
+        html += "   </div>";
+        html += "</div>";
+        */
+        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'"+ finishedCSS +" style='position: relative'>";
+        html += "   <div style='position: absolute; right: 0; top: 0; width: 140px; height: 70px; color: white;'>";
+        function calculateDaysLeft(dueday){
+            var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
+            return daysLeft;
+        }
+        html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 70px; font-size: 1.5em; text-align: center; background: "+typeColor(this.type)+"'>"+calculateDaysLeft(this.dueday)+"</div>";
+        html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #09F; text-align: center'>" + this.duration + "</div>";
+        html += "       <div style='right: 72px; bottom: 0px; font-size: 0.6em; position: absolute;'>days left</div>"
+        html += "       <div style='right: 2px; bottom: 0px; font-size: 0.6em; position: absolute'>hours needed</div>"
+        html += "   </div>";
+        html += "   <div class='card2-content'>";
+        html += "       <div style='height: 70px; margin-left: 0.5em'>";
+        html += "           <div style='margin-bottom: 0.5em'><span style='border-bottom: 1px #BBB dotted'>Subject: " + this.subject + "</span></div>";
+        if (app == "teacher") {
+            html += "           <div style='margin-bottom: 0.5em'><span style='border-bottom: 1px #BBB dotted'>Published: " + this.publish + "</span></div>";
+        }
+        html += "           <div><span style='border-bottom: 1px #BBB dotted'>Due: " + this.dueday + "</span></div>";
+        html += "       </div>";
+        html += "       <div style='margin: 0.5em; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
+        html += diff("expand-content", this.app, this);
+        html += "       <div style='margin:0.5em'>Attachment: <span>" + this.attachment + "</span></div>";
         html += diff("additional-button", this.app, this);
         html += "   </div>";
         html += "</div>";
