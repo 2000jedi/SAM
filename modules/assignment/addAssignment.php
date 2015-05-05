@@ -40,13 +40,13 @@ if ($_POST['hasAttachment'] == "true"){
 
         return strtolower($string);
     }
-    $rand = genRandomString();
 
     $target_dir = "/files/attachments/";
 
     $attachment = "";
 
     for ($i = 0; $i < count($_FILES["attachment"]['name']); $i++ ){
+        $rand = genRandomString();
         $fileType = pathinfo($_FILES["attachment"]["name"][$i], PATHINFO_EXTENSION);
         $final_filename = $rand."_".session_id()."_".time().".".$fileType;
         $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;

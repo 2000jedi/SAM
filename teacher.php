@@ -43,6 +43,10 @@ if (!function_exists('checkForceQuit')){
         $('#m'+id).show()
         $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
     }
+    <?php
+    require $_SERVER['DOCUMENT_ROOT']."/template/dropzone/multifile.js";
+    ?>
+
 </script>
 <div id="loading" style="display:block">Loading...</div>
 <div id="header-part">
@@ -90,7 +94,16 @@ if (!function_exists('checkForceQuit')){
                     <div id="floatBox-title" style="margin: 0.5em"></div>
                 </div>
                 <div id="floatBox-content">
-                    <div id="floatBox-add-class"></div>
+                    <div id="floatBox-update-card">
+                        <div>
+                            <label>Content:</label>
+                            <div style="display: none" id="update-card-content-id"></div>
+                            <textarea class="card" id="update-card-content-ta" name="content" type="text" placeholder="Content"></textarea>
+                        </div>
+                        <div>
+                            <div class="pure-button pure-button-primary" onclick="sendUpdateAssignment()"> Update </div>
+                        </div>
+                    </div>
                     <div id="floatBox-add-card">
                         <div style="text-align: center;display: table; width: 100%;margin-bottom: 1.5em">
                             <div id="switch-between-tab" style="display: table-cell; border-bottom: 4px solid rgb(19, 47, 158)" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('')">Assignment</div>
@@ -114,13 +127,14 @@ if (!function_exists('checkForceQuit')){
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
-                                    <input class="card" id="add-card-form-file" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
+                                    <input class="card uploadfile1" id="add-card-form-file" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
+                                    <button id="add-card-form-file-button-1">Add More Files</button>
                                 </div>
                                 <div style="text-align: center">
                                     <input type="submit" value="Submit" id="submit_btn_add_card" class="pure-button pure-button-primary" style="display:inline-block" />
                                 </div>
                             </form>
-                            <form id="submit_form_node_2" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data" style="display: none;">
+                            <form id="submit_form_node_2" class="dropzone" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data" style="display: none;">
                                 <input id="add-card-class-id-2" type="hidden" name="class" />
                                 <input type="hidden" name="type" value="2" />
                                 <div>
@@ -133,7 +147,8 @@ if (!function_exists('checkForceQuit')){
                                 </div>
                                 <div>
                                     <label>Add attachment (optional):</label>
-                                    <input class="card" id="add-card-form-file-2" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
+                                    <input class="card uploadfile2" id="add-card-form-file-2" style="margin-top: 0.5em" name="attachment[]" type="file" multiple />
+                                    <button id="add-card-form-file-button-2">Add More Files</button>
                                 </div>
                                 <div style="text-align: center">
                                     <input type="submit" value="Submit" id="submit_btn_add_card-2" class="pure-button pure-button-primary" style="display:inline-block" />
@@ -152,6 +167,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
     ?>
+
     $(function() {
         $('#add-card-form-dueday').datepick();
         $('#add-card-form-dueday-2').datepick();
@@ -189,7 +205,14 @@ if (!function_exists('checkForceQuit')){
         })
     }
 
+    function openUpdateCardBox(){
+        $('#floatBox-add-card').hide();
+        $('#floatBox-update-card').show();
+        $('#floatBox-title').html("Update Assignment");
+        $('#shadow').css("display","table");
+    }
     function openAddCardBox(id, name){
+        $('#floatBox-update-card').hide();
         $('#floatBox-add-card').show();
         $('#floatBox-title').html("Add Assignment/Information: " + name);
         $('#add-card-class-id').val(id);
@@ -331,22 +354,32 @@ if (!function_exists('checkForceQuit')){
         });
         return false;
     });
-    $('#add-card-form-file').bind('change', function() {
+    $('#add-card-form-file-button-1').click(function(e){
+        e.preventDefault();
+        html = "<input class='card uploadfile1' name='attachment[]' type='file' multiple />";
+        $(this).before(html);
+    });
+    $('#add-card-form-file-button-2').click(function(e){
+        e.preventDefault();
+        html = "<input class='card uploadfile2' name='attachment[]' type='file' multiple />";
+        $(this).before(html);
+    });
+    $('.uploadfile1').bind('change', function() {
         var temp = 0;
         for (var i = 0; i < this.files.length; i++){
             temp += this.files[i].size/1024/1024;
         }
-        localStorage.filesize1 = temp;
+        localStorage.filesize1 = parseInt(localStorage.filesize1) + temp;
     });
-    $('#add-card-form-file-2').bind('change', function() {
+    $('.uploadfile2').bind('change', function() {
         var temp = 0;
         for (var i = 0; i < this.files.length; i++){
             temp += this.files[i].size/1024/1024;
         }
-        localStorage.filesize2 = temp;
+        localStorage.filesize2 = parseInt(localStorage.filesize2) + temp;
     });
-    localStorage.filesizeValid1 = true;
-    localStorage.filesizeValid2 = true;
+    localStorage.filesize1 = 0;
+    localStorage.filesize2 = 0;
 
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";

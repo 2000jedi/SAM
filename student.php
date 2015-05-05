@@ -329,7 +329,7 @@ if (!function_exists('checkForceQuit')){
     }
     function openViewClassPanel(id, name){
         loadAssignmentInClass(id, function(){
-            // No nothing.
+            $('#assignment-list-in-class').html("");
         });
         $('#right-part-class-id').html(id);
         $('#right-part-title').html("View " + name);

@@ -40,6 +40,33 @@ function deleteAssignment(id){
     }
 }
 /* Delete Assignment End */
+/* Update Assignment Start */
+function updateAssignment(id){
+    var idS = id.split("-");
+    var assignmentID = idS[idS.length-1];
+
+    var content = $("#"+id).html().replace(/<br.*?>/g, "\n");
+    $('#update-card-content-id').html(assignmentID);
+    $('#update-card-content-ta').val(content);
+
+    openUpdateCardBox();
+}
+function sendUpdateAssignment(){
+    var id = $('#update-card-content-id').html();
+    var content = $('#update-card-content-ta').val();
+    $.post("/modules/assignment/updateAssignment.php",{id: id, content: content}, function(data){
+        alert(data);
+        $('#update-card-content-id').html("");
+        $('#update-card-content-ta').val("");
+        $('#shadow').hide();
+
+        loadAssignment($('#right-part-class-id').html(), function(){
+            $('#assignment-list').html("");
+        });
+    })
+}
+/* Update Assignment End */
+
 
 /* Mark Completion Start */
 function markCompletion(id){
@@ -102,6 +129,7 @@ function diff(where, app, assignment){
             var html = "";
             html += "       <div>";
             html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='deleteAssignment(\"" + assignment.id + "\")'> Delete </button>";
+            html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='updateAssignment(\"" + diff("prefix-content-id", assignment.app, assignment) + "\")'> Update Content </button>";
             html += "       </div>";
             return html;
         }else if (app == "student"){
@@ -143,7 +171,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     }
     function dealWithAttachment(attachment) {
         if (attachment == "null"){
-            return " No attachment.";
+            return "No attachment.";
         }else{
             var arr = attachment.split(";"), html = "";
             for (var i = 1; i < arr.length; i++){
@@ -174,18 +202,23 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += typeHTML(this.type, this.subject);
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>";
-        html += "           <div style='margin:0.5em;display:table;width:100%;text-align:left'>"
-        html += "               <div style='display:table-cell'><div class='changeLineOrNot'>Published:&nbsp;</div><div class='changeLineOrNot'>" + this.publish + "</div></div>";
-
+        html += "           <div style='margin: 0.5em; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
+        html += diff("expand-content", this.app, this);
+        html += "           <div style='height:0.5em'></div>"; // only serve to add a empty line.
+        html += "           <div style='margin:0.5em;display:table;width:100%;text-align:left'>";
+        if (app == "teacher"){
+            html += "               <div style='display:table-cell'>";
+            html += "                   <div class='changeLineOrNot'>Published:&nbsp;</div>";
+            html += "                   <div class='changeLineOrNot'>" + this.publish + "</div>";
+            html += "               </div>";
+        }
         var dueDayLabel = new Array("<div class='changeLineOrNot'>Due:&nbsp;</div>", "<div class='changeLineOrNot'>Expire:&nbsp;</div>");
         html += "               <div style='display:table-cell'>"+ dueDayLabel[parseInt(type)-1] + "<div class='changeLineOrNot'>" + this.dueday + "</div></div>";
         html += "           </div>";
         if (parseInt(type) == 1){
-            html += "       <div style='margin:0.5em'>Estimated duration: " + this.duration + "</div>";
+            html += "       <div style='margin:0.5em'>Estimated duration: <span>" + this.duration + "</span></div>";
         }
-        html += "           <div style='margin: 0.5em; border: 1px solid #EEE; padding:0.5em; border-bottom: 2px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
-        html += diff("expand-content", this.app, this);
-        html += "           <div style='margin:0.5em'>Attachment:" + this.attachment + "</div>";
+        html += "           <div style='margin:0.5em'>Attachment: <span>" + this.attachment + "</span></div>";
         html += "       </div>";
         html += diff("additional-button", this.app, this);
         html += "   </div>";
