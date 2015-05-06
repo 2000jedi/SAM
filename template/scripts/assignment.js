@@ -1,14 +1,7 @@
 /* Click to expand module start */
-/*
-function typeHTML(type, subject){
-    type = type - 1;
-    var color = new Array("black", "#0C0", "#F33", "#F93");
-    var typeText = new Array("Assignment ONE DAY LEFT", "Information", "Assignment TWO DAYS LEFT", "Assignment");
-    return "   <div class='card2-title' style='background:"+ color[type] +"'>"+subject+" "+typeText[type]+"</div>";
-}*/
 function typeColor(type){
     type = type - 1;
-    var color = new Array("rgb(255, 197, 186)", "#E0FFE0", "rgb(255, 229, 215)", "rgb(255, 241, 222)");
+    var color = new Array("#FF9999", "#E0FFE0", "#FFBBAA", "#FFEEBB");
     return color[type];
 }
 function whetherExpandHTML(id, content){
@@ -204,33 +197,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (this.finished) {
             finishedCSS = " style='opacity:0.6'"
         }
-        /*
-         html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'"+ finishedCSS +">";
-         html += typeHTML(this.type, this.subject);
-         html += "   <div class='card2-content'>";
-         html += "       <div style='margin-bottom: 0.5em'>";
-         html += "           <div style='margin: 0.5em; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
-         html += diff("expand-content", this.app, this);
-         html += "           <div style='height:0.5em'></div>"; // only serve to add a empty line.
-         html += "           <div style='margin:0.5em;display:table;width:100%;text-align:left'>";
-         if (app == "teacher"){
-         html += "               <div style='display:table-cell'>";
-         html += "                   <div class='changeLineOrNot'>Published:&nbsp;</div>";
-         html += "                   <div class='changeLineOrNot'>" + this.publish + "</div>";
-         html += "               </div>";
-         }
-         var dueDayLabel = new Array("<div class='changeLineOrNot'>Due:&nbsp;</div>", "<div class='changeLineOrNot'>Expire:&nbsp;</div>");
-         html += "               <div style='display:table-cell'>"+ dueDayLabel[parseInt(type)-1] + "<div class='changeLineOrNot'>" + this.dueday + "</div></div>";
-         html += "           </div>";
-         if (parseInt(type) == 1){
-         html += "       <div style='margin:0.5em'>Estimated duration: <span>" + this.duration + "</span></div>";
-         }
-         html += "           <div style='margin:0.5em'>Attachment: <span>" + this.attachment + "</span></div>";
-         html += "       </div>";
-         html += diff("additional-button", this.app, this);
-         html += "   </div>";
-         html += "</div>";
-         */
         html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative'>";
         html += "   <div style='position: absolute; right: 0; top: 0; width: 140px; height: 70px; color: grey'>";
         function calculateDaysLeft(dueday) {
@@ -243,18 +209,18 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
         var daysLeft = calculateDaysLeft(this.dueday);
         if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 75px; font-size: 1.5em; text-align: center; border-radius: 7px; border: 1px solid #dddddd; background: " + typeColor(this.type) + "'>" + daysLeft + "</div>";
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 70px; font-size: 1.5em; text-align: center; background: " + typeColor(this.type) + "'>" + daysLeft + "</div>";
         }
         if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #E0F3FD; text-align: center; border-radius: 7px; border: 1px solid #dddddd'>" + this.duration + "h</div>";
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #E0F3FD; text-align: center;'>" + this.duration + "h</div>";
         } else {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #e0ffe0; text-align: center; border-radius: 7px; border: 1px solid #dddddd'>Info</div>";
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #e0ffe0; text-align: center;'>Info</div>";
         }
         if ( this.type != 2 ) {
-            html += "       <div style='right: 79px; bottom: 0px; font-size: 0.8em; position: absolute'>days left</div>";
+            html += "       <div style='right: 73px; bottom: 0px; font-size: 0.8em; position: absolute'>days left</div>";
         }
         if (this.type != 2){
-            html += "       <div style='right: 4px; bottom: 0px; font-size: 0.8em; position: absolute'>needed</div>";
+            html += "       <div style='right: 3px; bottom: 0px; font-size: 0.8em; position: absolute'>needed</div>";
         }
         html += "   </div>";
         html += "   <div class='card2-content'>";
