@@ -328,8 +328,8 @@ textarea, input{
         width: 100%;
     }
 }
-@media (min-width: 500px) {
-    .changeLineOrNot {
-        display: inline-block;
+@media (max-width: 320px) {
+    .blockSpanForSmallScreen{
+        display: block;
     }
 }

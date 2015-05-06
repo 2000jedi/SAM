@@ -387,7 +387,7 @@ if (!function_exists('checkForceQuit')){
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
-                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, row.subject, row.duration, row.finished);
+                var assignment = new Assignment("teacher", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
                 $('#assignment-list').append(assignment.getHTML());
             }
         });

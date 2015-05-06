@@ -190,9 +190,6 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
     ?>
-    function convertSubject(subject){
-        return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
-    }
 
 
     function loadAssignment(func){

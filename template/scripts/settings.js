@@ -6,6 +6,8 @@ function changePassword(){
 
     if (newPass1 != newPass2){
         alert("Two passwords do not match.");
+    }else if (newPass1.length < 9){
+        alert("The new password is too short.");
     }else{
         $.post("/modules/user/changePassword.php",{oldPass: oldPass, newPass: newPass1}, function(data){
             if (data == "success"){

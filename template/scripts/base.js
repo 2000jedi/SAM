@@ -161,3 +161,6 @@ var Utils = {
         }
     });
 }(window));
+function convertSubject(subject){
+    return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
+}
