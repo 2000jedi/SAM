@@ -114,8 +114,8 @@ if (!function_exists('checkForceQuit')){
                                     <textarea class="card" id="add-card-form-content" name="content" type="text" placeholder="Content"></textarea>
                                 </div>
                                 <div>
-                                    <label>Estimated Duration (in hours):</label>
-                                    <input class="card" id="add-card-form-duration" name="duration" type="text" placeholder="Estimated Duration" />
+                                    <label>Estimated Duration (in minutes):</label>
+                                    <input class="card" id="add-card-form-duration" name="duration" type="text" placeholder="Estimated Duration (Now in minutes)" />
                                 </div>
                                 <div>
                                     <label>Due:</label>
@@ -194,8 +194,9 @@ if (!function_exists('checkForceQuit')){
                 var id = data[i].id;
                 var teacher = data[i].teacher;
                 var name = data[i].name;
+                var subject = convertSubject(data[i].subject);
 
-                var oneClass = new ClassTeacher(id, teacher, name);
+                var oneClass = new ClassTeacher(id, teacher, name, subject);
                 $('#classList').append(oneClass.getHTML());
             }
         })

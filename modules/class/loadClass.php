@@ -28,7 +28,18 @@ while($row = $result->fetch_assoc()) {
         $id = $row['id'];
         $teacher = $row['teacher'];
         $name = $row['name'];
-        $unitClass = new UnitClass($id, $teacher, $name);
+
+        $subject = "Unknown";
+
+        $sql3 = "SELECT * FROM teacher WHERE id = '$teacher'";
+        $result3 = $conn->query($sql3);
+        if ($result3->num_rows > 0) {
+            while($row = mysqli_fetch_assoc($result3)) {
+                $subject = $row["subject"];
+            }
+        }
+
+        $unitClass = new UnitClass($id, $teacher, $name, $subject);
         $arr[$counter] = $unitClass;
         $counter++;
     }else{
@@ -41,17 +52,19 @@ while($row = $result->fetch_assoc()) {
         while($row2 = $result2->fetch_assoc()) {
             $id = $row2['id'];
             $teacher = $row2['teacher'];
-            $name = "Unknown";
+            $name = $row2['name'];
+
+            $subject = "Unknown";
 
             $sql3 = "SELECT * FROM teacher WHERE id = '$teacher'";
             $result3 = $conn->query($sql3);
             if ($result3->num_rows > 0) {
                 while($row = mysqli_fetch_assoc($result3)) {
-                    $name = $row["subject"];
+                    $subject = $row["subject"];
                 }
             }
 
-            $unitClass = new UnitClass($id, $teacher, $name);
+            $unitClass = new UnitClass($id, $teacher, $name, $subject);
             $arr[$counter] = $unitClass;
             $counter++;
         }

@@ -204,7 +204,7 @@ if (!function_exists('checkForceQuit')){
             var todayItemCounter = 0;
             var todayHoursCounter = 0.0;
             function outputTodayNotification(){
-                var notification = "<div class=\"card\"><b>Assignments due tomorrow:</b><br>" + todayItemCounter + " item(s)/" + parseFloat(todayHoursCounter).toFixed(1) + " hour(s)" +"</div>";
+                var notification = "<div class=\"card\"><b>Assignments due tomorrow:</b><br>" + todayItemCounter + " item(s)/" + parseFloat(todayHoursCounter).toFixed(1) + " min" +"</div>";
                 return notification;
             }
             /* Notification End */
@@ -238,9 +238,9 @@ if (!function_exists('checkForceQuit')){
             }
             function outputSuggestion(){
                 for (var i = 0; i < subjectArr.length; i++){
-                    separatedRecommendation += subjectArr[i] + ": " + itemsArr[i] + " item(s)/" + parseFloat(hoursArr[i]).toFixed(1) + " hour(s)<br />";
+                    separatedRecommendation += subjectArr[i] + ": " + itemsArr[i] + " item(s)/" + parseFloat(hoursArr[i]).toFixed(1) + " min<br />";
                 }
-                var assignmentTimeRecommendation = "<b>Total hours left:</b><br>" + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " hour(s).<br />";
+                var assignmentTimeRecommendation = "<b>Total min left:</b><br>" + assignmentCounter + " item(s)/" + parseFloat(todayTime).toFixed(1) + " min.<br />";
                 var suggestion = "<div class=\"card\">"+assignmentTimeRecommendation+"<b>Details:</b><br />"+separatedRecommendation+"</div>";
 
                 return suggestion;
@@ -291,9 +291,10 @@ if (!function_exists('checkForceQuit')){
             for ( var i = 0; i < data.length; i++){
                 var id = data[i].id;
                 var teacher = data[i].teacher;
-                var name = convertSubject(data[i].name);
+                var name = data[i].name;
+                var subject = convertSubject(data[i].subject);
 
-                var oneClass = new ClassStudent(id, teacher, name);
+                var oneClass = new ClassStudent(id, teacher, name, subject);
                 $('#classList').append(oneClass.getHTML());
             }
         })

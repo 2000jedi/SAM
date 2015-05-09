@@ -11,11 +11,13 @@ class UnitClass {
     var $id;
     var $teacher;
     var $name;
+    var $subject;
 
-    function __construct($id,$teacher,$name ){
+    function __construct($id,$teacher,$name,$subject){
         $this->id = $id;
         $this->teacher = $teacher;
         $this->name = $name;
+        $this->subject = $subject;
     }
 
 }

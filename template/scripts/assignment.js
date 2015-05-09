@@ -212,7 +212,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 70px; font-size: 1.5em; text-align: center; background: " + typeColor(this.type) + "'>" + daysLeft + "</div>";
         }
         if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #E0F3FD; text-align: center;'>" + this.duration + "h</div>";
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.1em; background: #E0F3FD; text-align: center;'>" + this.duration + " min</div>";
         } else {
             html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #e0ffe0; text-align: center;'>Info</div>";
         }
