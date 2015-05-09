@@ -22,15 +22,8 @@ $counter = 0;
 
 while($row = $result->fetch_assoc()) {
 
-    $id = $row['id'];
-    $type = $row['type'];
-    $content = $row['content'];
-    $attachment = $row['attachment'];
-    $publish = $row['publish'];
-    $dueday = $row['dueday'];
-    $duration = $row['duration'];
-    $teacher = $row['teacher'];
-    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $teacher, false);
+    $unitAssignment = new UnitAssignment();
+    $unitAssignment->constructFromDBRow($row, $class, false);
     $arr[$counter] = $unitAssignment;
     $counter++;
 }

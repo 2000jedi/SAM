@@ -46,12 +46,15 @@ if ($_POST['hasAttachment'] == "true"){
     $attachment = "";
 
     for ($i = 0; $i < count($_FILES["attachment"]['name']); $i++ ){
+        $originalName = $_FILES["attachment"]['name'][$i];
+        $realNameArr = explode(".",$originalName);
+        $realName = $realNameArr[0];
         $rand = genRandomString();
-        $fileType = pathinfo($_FILES["attachment"]["name"][$i], PATHINFO_EXTENSION);
-        $final_filename = $rand."_".session_id()."_".time().".".$fileType;
+        $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
+        $final_filename = $realName."_".time().".".$fileType;
         $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
 
-        $attachment .= ";".$target_dir.$final_filename;
+        $attachment .= ";".$target_dir.$final_filename.";".$originalName;
 
         move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $target_file);
     }

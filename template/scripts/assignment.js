@@ -173,8 +173,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             return "No attachment.";
         }else{
             var arr = attachment.split(";"), html = "";
-            for (var i = 1; i < arr.length; i++){
-                html += " <a target=_blank href='" + arr[i] +"'>Attachment " + i + "</a>";
+            for (var i = 1; i < arr.length-1; i = i+2){
+                html += " <a target=_blank href='" + arr[i] +"'>" + arr[i+1] + "</a>";
             }
             return html;
         }

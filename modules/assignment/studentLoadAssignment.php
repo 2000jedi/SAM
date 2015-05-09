@@ -46,16 +46,6 @@ $counter = 0;
 
 while($row = $result->fetch_assoc()) {
 
-    $id = $row['id'];
-    $type = $row['type'];
-    $content = $row['content'];
-    $attachment = $row['attachment'];
-    $publish = $row['publish'];
-    $dueday = $row['dueday'];
-    $duration = $row['duration'];
-    $class = $row['class'];
-    $teacher = $row['teacher'];
-
     $finished = false;
 
     $sql2 = "SELECT * FROM personalassignment WHERE assignment = $id AND uid = $student";
@@ -70,7 +60,8 @@ while($row = $result->fetch_assoc()) {
         }
     }
 
-    $unitAssignment = new UnitAssignment($id, $type, $content, $attachment, $publish, $dueday, $duration, $class, $teacher, $finished);
+    $unitAssignment = new UnitAssignment();
+    $unitAssignment->constructFromDBRow($row, $class, $finished);
     $arr[$counter] = $unitAssignment;
     $counter++;
 }
