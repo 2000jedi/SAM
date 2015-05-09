@@ -45,6 +45,8 @@ $counter = 0;
 
 
 while($row = $result->fetch_assoc()) {
+    $id = $row['id'];
+    $class = $row['class'];
 
     $finished = false;
 
@@ -54,16 +56,15 @@ while($row = $result->fetch_assoc()) {
         $finished = true;
     }
 
-    if ($finished == true){
-        if (intval($type) == 2){
-            continue;
-        }
+    if (intval($row['type']) == 2 && $finished == true){
+        // Do nothing
+    }else{
+        $unitAssignment = new UnitAssignment();
+        $unitAssignment->constructFromDBRow($row, $class, $finished);
+        $arr[$counter] = $unitAssignment;
+        $counter++;
     }
 
-    $unitAssignment = new UnitAssignment();
-    $unitAssignment->constructFromDBRow($row, $class, $finished);
-    $arr[$counter] = $unitAssignment;
-    $counter++;
 }
 
 echo json_encode($arr);

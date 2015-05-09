@@ -174,7 +174,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else{
             var arr = attachment.split(";"), html = "";
             for (var i = 1; i < arr.length-1; i = i+2){
-                html += " <a target=_blank href='" + arr[i] +"'>" + arr[i+1] + "</a>";
+                var url = arr[i];
+                var name = arr[i+1];
+                var hrefText = "/modules/common/downloader.php?path=" + url + "&name=" + name;
+                html += " <a target=_blank href='" + hrefText +"'>" + arr[i+1] + "</a>";
             }
             return html;
         }
