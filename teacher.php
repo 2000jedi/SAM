@@ -267,6 +267,9 @@ if (!function_exists('checkForceQuit')){
                     if ( parseFloat($('#add-card-form-duration').val()) <=0  ){
                         alert("Duration should be greater than zero!");
                         return false;
+                    }else if ( parseFloat($('#add-card-form-duration').val()) > 1000  ){
+                        alert("It is inappropriate to give students so much homework to do!");
+                        return false;
                     }
                 }
                 if ( isNull($('#add-card-form-dueday').val()) ){

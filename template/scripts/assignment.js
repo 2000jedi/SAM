@@ -1,7 +1,12 @@
 /* Click to expand module start */
-function typeColor(type){
+function typeColorBackground(type){
     type = type - 1;
-    var color = new Array("#FF9999", "#E0FFE0", "#FFBBAA", "#FFEEBB");
+    var color = new Array("rgba(255,52,25,1)", "rgba(21, 199, 2, 1)", "rgba(255,153,33,1)", "rgba(71,71,71,1)");
+    return color[type];
+}
+function typeColorBox(type){
+    type = type - 1;
+    var color = new Array("rgba(255,101,80,1)", "rgba(77, 212, 63, 1)", "rgba(255,177,86,1)", "rgba(115,115,115,1)");
     return color[type];
 }
 function whetherExpandHTML(id, content){
@@ -127,31 +132,30 @@ function diff(where, app, assignment){
         if (app == "teacher"){
             var html = "";
             html += "       <div>";
-            html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='deleteAssignment(\"" + assignment.id + "\")'> Delete </button>";
             html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='updateAssignment(\"" + diff("prefix-content-id", assignment.app, assignment) + "\")'> Update Content </button>";
             html += "       </div>";
             return html;
         }else if (app == "student"){
-            var html = "";
-            if (assignment.type != 2 && !assignment.finished) {
-                html += "       <div>";
-                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markCompletion(\"" + assignment.id + "\")'> Mark As Completed </button>";
-                html += "       </div>";
-            }
-            if (assignment.type != 2 && assignment.finished) {
-                html += "       <div>";
-                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markUnCompletion(\"" + assignment.id + "\")'> Mark As Uncompleted </button>";
-                html += "       </div>";
-            }
-            if (assignment.type == 2 && !assignment.finished) {
-                html += "       <div>";
-                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='markInfoAsRead(\"" + assignment.id + "\")'> Mark As Read </button>";
-                html += "       </div>";
-            }
-            return html;
+            return "";
         }else if (app == "student-in-class"){
             return "";
         }
+    }else if (where == "iconButton"){
+        var html = "";
+        if (app == "student") {
+            if (assignment.type != 2 && !assignment.finished) {
+                html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
+            }
+            if (assignment.type != 2 && assignment.finished) {
+                html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
+            }
+            if (assignment.type == 2 && !assignment.finished) {
+                html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
+            }
+        }else {
+            html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
+        }
+        return html;
     }
 }
 function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration, finished){
@@ -177,7 +181,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 var url = arr[i];
                 var name = arr[i+1];
                 var hrefText = "/modules/common/downloader.php?path=" + url + "&name=" + name;
-                html += " <a target=_blank href='" + hrefText +"'>" + arr[i+1] + "</a>";
+                html += " <a target=_blank style='display:block' href='" + hrefText +"'>" + arr[i+1] + "</a>";
             }
             return html;
         }
@@ -200,8 +204,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (this.finished) {
             finishedCSS = " style='opacity:0.6'"
         }
-        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative'>";
-        html += "   <div style='position: absolute; right: 0; top: 0; width: 140px; height: 70px; color: grey'>";
         function calculateDaysLeft(dueday) {
             var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
             if (daysLeft < 0) {
@@ -209,43 +211,49 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
             return daysLeft;
         }
-
         var daysLeft = calculateDaysLeft(this.dueday);
-        if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 70px; font-size: 1.5em; text-align: center; background: " + typeColor(this.type) + "'>" + daysLeft + "</div>";
-        }
-        if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.1em; background: #E0F3FD; text-align: center;'>" + this.duration + " min</div>";
-        } else {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:0; right: 0px; font-size: 1.2em; background: #e0ffe0; text-align: center;'>Info</div>";
-        }
-        if ( this.type != 2 ) {
-            html += "       <div style='right: 73px; bottom: 0px; font-size: 0.8em; position: absolute'>days left</div>";
-        }
-        if (this.type != 2){
-            html += "       <div style='right: 3px; bottom: 0px; font-size: 0.8em; position: absolute'>needed</div>";
-        }
-        html += "   </div>";
-        html += "   <div class='card2-content'>";
+
+        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative'>";
         if ( this.type == 2 && daysLeft > 1000 ) {
-            html += "       <div style='height: 50px; margin-left: 0.5em'>";
-            html += "           <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='border-bottom: 1px #BBB dotted; font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
+            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; background: " + typeColorBackground(this.type) + "'>";
+            html += "       <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }else{
-            html += "       <div style='height: 70px; margin-left: 0.5em'>";
-            html += "           <div style='margin-bottom: 0.5em'><span style='border-bottom: 1px #BBB dotted; font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
+            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; background: " + typeColorBackground(this.type) + "'>";
+            html += "       <div style='margin-bottom: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }
         if (app == "teacher") {
-            html += "           <div style='margin-bottom: 0.5em'><span style='border-bottom: 1px #BBB dotted'>Published: " + this.publish + "</span></div>";
+            // html += "           <div style='margin-bottom: 0.5em'><span>Published: " + this.publish + "</span></div>";
         }
         if ( !( this.type == 2 && daysLeft > 1000) ) {
             var dueDayLabel = new Array("Due", "Expire");
-            html += "           <div><span style='border-bottom: 1px #BBB dotted'><span class='blockSpanForSmallScreen'>" + dueDayLabel[parseInt(type) - 1] + ": </span><span class='blockSpanForSmallScreen'>" + this.dueday + "</span></span></div>";
+            html += "           <div><span><span class='blockSpanForSmallScreen'>" + dueDayLabel[parseInt(type) - 1] + ": </span><span class='blockSpanForSmallScreen'>" + this.dueday + "</span></span></div>";
         }
         html += "       </div>";
-        html += "       <div style='margin: 0.5em; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
+        html += "   <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
+        if (this.type != 2) {
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 90px; font-size: 1.5em; text-align: center; background: " + typeColorBox(this.type) + "'>" + daysLeft + "</div>";
+        }
+        if (this.type != 2) {
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 10px; font-size: 1.1em; background: " + typeColorBox(this.type) + "; text-align: center;'>" + this.duration + " min</div>";
+        } else {
+            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 10px; font-size: 1.2em; background: " + typeColorBox(this.type) + "; text-align: center;'>Info</div>";
+        }
+        if ( this.type != 2 ) {
+            html += "       <div style='right: 93px; bottom: 0px; font-size: 0.8em; position: absolute'>days left</div>";
+        }
+        if (this.type != 2){
+            html += "       <div style='right: 13px; bottom: 0px; font-size: 0.8em; position: absolute'>needed</div>";
+        }
+        html += "   </div>";
+        html += "   <div class='card2-content'>";
+        html += "       <div style='margin:0.5em 0; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
         html += diff("expand-content", this.app, this);
-        html += "       <div style='margin:0.5em'>Attachment: <span>" + this.attachment + "</span></div>";
         html += diff("additional-button", this.app, this);
+        html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><img src='/files/icons/attachment.png' width='50px' height='50px' /></div>";
+        html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'>" + diff("iconButton", this.app, this) + "</div>";
+        html += "       </div>";
         html += "   </div>";
         html += "</div>";
         return html;
