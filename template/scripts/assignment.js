@@ -69,7 +69,7 @@ function sendUpdateAssignment(){
 
 /* Mark Completion Start */
 function markCompletion(id){
-    var actual = prompt("You may tell us how much time you actually spent on the assignment. The data will be used to predict your actual completion time based on the estimation by your teacher. (You can leave it blank or input non-numeric values. It will not be recorded.)\n\nDO YOU REALLY want to mark the assignment as completed?\nIt will not be counted into recommendation any more.");
+    var actual = prompt("You may tell us how much time you actually spent on the assignment (in minutes). (You can leave it blank.)");
     if (actual == null){
         return;
     }
