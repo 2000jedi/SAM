@@ -250,9 +250,9 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += diff("expand-content", this.app, this);
         html += diff("additional-button", this.app, this);
         html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><img src='/files/icons/attachment.png' width='50px' height='50px' /></div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
         html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'>" + diff("iconButton", this.app, this) + "</div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + diff("iconButton", this.app, this) + "</a></div>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";
