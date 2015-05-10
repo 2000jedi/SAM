@@ -152,7 +152,7 @@ function diff(where, app, assignment){
             if (assignment.type == 2 && !assignment.finished) {
                 html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
             }
-        }else {
+        }else if ( app == "teacher"){
             html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
         }
         return html;
