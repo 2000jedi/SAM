@@ -89,6 +89,9 @@ if (!function_exists('checkForceQuit')){
                 color: #0078e7;
                 padding: 0.5em;
             }
+            .noHWCard{
+                margin-left: 0;
+            }
         }
         @media (max-width: 955px) {
             #assignment-time-management-caller{
@@ -98,6 +101,10 @@ if (!function_exists('checkForceQuit')){
             }
             #panel-close{
                 display: none;
+            }
+            .noHWCard{
+                margin-left: auto;
+                margin-right: auto;
             }
         }
     </style>
@@ -196,6 +203,9 @@ if (!function_exists('checkForceQuit')){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
             func();
 
+            if (data == "[]"){
+                // $('#assignment-list').html("<div class='card noHWCard'>No homework.<br>Why not add a class?</div>")
+            }
             data = JSON.parse(data);
 
             var idList = "";
@@ -218,9 +228,7 @@ if (!function_exists('checkForceQuit')){
 
             function findIDInArrayByName(name){
                 for (var i = 0; i < subjectArr.length; i++){
-                    if ( subjectArr[i] == name ){
-                        return i;
-                    }
+                    if ( subjectArr[i] == name ){return i;}
                 }
                 return -1;
             }

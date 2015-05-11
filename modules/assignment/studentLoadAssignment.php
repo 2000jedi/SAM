@@ -21,9 +21,8 @@ $sqlForClass = "";
 while($row = $result->fetch_assoc()) {
     $classIDs = explode(";",$row['class']);
 
-    $sqlForClass = "class = ".$classIDs[1]." ";
-
     if (count($classIDs)>1){
+        $sqlForClass = "class = ".$classIDs[1]." ";
         for ($i = 2; $i < count($classIDs) ; $i++){
             $classID = $classIDs[$i];
             $sqlForClass = $sqlForClass."OR class = ".$classIDs[$i]." ";

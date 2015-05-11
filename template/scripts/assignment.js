@@ -144,16 +144,20 @@ function diff(where, app, assignment){
         var html = "";
         if (app == "student") {
             if (assignment.type != 2 && !assignment.finished) {
-                html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
+                // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
+                html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
             }
             if (assignment.type != 2 && assignment.finished) {
-                html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
+                // html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
+                html += "<img src='/files/icons/unfinished.jpg' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
             }
             if (assignment.type == 2 && !assignment.finished) {
-                html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
+                // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
+                html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
             }
         }else if ( app == "teacher"){
-            html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
+            // html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
+            html += "<img src='/files/icons/delete.jpg' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
         }
         return html;
     }
@@ -250,7 +254,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += diff("expand-content", this.app, this);
         html += diff("additional-button", this.app, this);
         html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
+        // html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.jpg' width='50px' height='50px' /></a></div>";
         html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
         html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + diff("iconButton", this.app, this) + "</a></div>";
         html += "       </div>";

@@ -44,31 +44,32 @@ while($row = $result->fetch_assoc()) {
         $counter++;
     }else{
         $classIDs = explode(";",$row['class']);
-        $sql2 = "SELECT * from class WHERE id = '$classIDs[1]'";
-        for ($i = 2; $i < sizeof($classIDs); $i++){
-            $sql2 = $sql2." OR id = '$classIDs[$i]'";
-        }
-        $result2 = $conn->query($sql2);
-        while($row2 = $result2->fetch_assoc()) {
-            $id = $row2['id'];
-            $teacher = $row2['teacher'];
-            $name = $row2['name'];
-
-            $subject = "Unknown";
-
-            $sql3 = "SELECT * FROM teacher WHERE id = '$teacher'";
-            $result3 = $conn->query($sql3);
-            if ($result3->num_rows > 0) {
-                while($row = mysqli_fetch_assoc($result3)) {
-                    $subject = $row["subject"];
-                }
+        if (count($classIDs) > 1){
+            $sql2 = "SELECT * from class WHERE id = '$classIDs[1]'";
+            for ($i = 2; $i < sizeof($classIDs); $i++){
+                $sql2 = $sql2." OR id = '$classIDs[$i]'";
             }
+            $result2 = $conn->query($sql2);
+            while($row2 = $result2->fetch_assoc()) {
+                $id = $row2['id'];
+                $teacher = $row2['teacher'];
+                $name = $row2['name'];
 
-            $unitClass = new UnitClass($id, $teacher, $name, $subject);
-            $arr[$counter] = $unitClass;
-            $counter++;
+                $subject = "Unknown";
+
+                $sql3 = "SELECT * FROM teacher WHERE id = '$teacher'";
+                $result3 = $conn->query($sql3);
+                if ($result3->num_rows > 0) {
+                    while($row = mysqli_fetch_assoc($result3)) {
+                        $subject = $row["subject"];
+                    }
+                }
+
+                $unitClass = new UnitClass($id, $teacher, $name, $subject);
+                $arr[$counter] = $unitClass;
+                $counter++;
+            }
         }
-
     }
 }
 
