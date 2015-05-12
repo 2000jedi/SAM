@@ -13,6 +13,7 @@ function ClassTeacher(id, teacher, name, subject){
         html += "       <div>";
         html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openManageClassPanel(\""+this.id+"\", \""+this.name+"\")'>Manage</button>";
         html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openAddCardBox(\""+this.id+"\", \""+this.name+"\")'>Add New</button>";
+        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='viewMembers(\""+this.id+"\")'>View Members</button>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";

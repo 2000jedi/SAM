@@ -100,6 +100,9 @@ if (!function_exists('checkForceQuit')){
                             <div class="pure-button pure-button-primary" onclick="sendUpdateAssignment()"> Update </div>
                         </div>
                     </div>
+                    <div id="floatBox-view-members">
+                        <div id="floatBox-view-members-list"></div>
+                    </div>
                     <div id="floatBox-add-card">
                         <div style="text-align: center;display: table; width: 100%;margin-bottom: 1.5em">
                             <div id="switch-between-tab" style="display: table-cell; border-bottom: 4px solid rgb(19, 47, 158)" class="pure-button pure-button-primary" onclick="switchBetweenAddCardTab('')">Assignment</div>
@@ -204,12 +207,14 @@ if (!function_exists('checkForceQuit')){
 
     function openUpdateCardBox(){
         $('#floatBox-add-card').hide();
+        $('#floatBox-view-members').hide();
         $('#floatBox-update-card').show();
         $('#floatBox-title').html("Update Assignment");
         $('#shadow').css("display","table");
     }
     function openAddCardBox(id, name){
         $('#floatBox-update-card').hide();
+        $('#floatBox-view-members').hide();
         $('#floatBox-add-card').show();
         $('#floatBox-title').html("Add Assignment/Information: " + name);
         $('#add-card-class-id').val(id);
@@ -395,6 +400,29 @@ if (!function_exists('checkForceQuit')){
                 $('#assignment-list').append(assignment.getHTML());
             }
         });
+    }
+    function viewMembers(id){
+        $.get('/modules/class/loadClassMembers.php',{class: id},function(data){
+            data = JSON.parse(data);
+
+            var html = "";
+            for (var i = 0; i < data.length; i++){
+                var userInfo = data[i];
+                var username = userInfo.username;
+                var ChineseName = userInfo.ChineseName;
+                var EnglishName = userInfo.EnglishName;
+                html += "<div class='card' style='display:table; width: calc(100%-2em);box-sizing: border-box;'>";
+                html += "   <div style='display: table-cell; width: 65%'>Name: "+ ChineseName + " ("+ EnglishName + ")</div><div style='display: table-cell; width: 30%'>ID:"+username+"</div>";
+                html += "</div>";
+            }
+            $('#floatBox-view-members-list').html(html);
+            $('#floatBox-title').html("Members in my class");
+
+            $('#floatBox-update-card').hide();
+            $('#floatBox-add-card').hide();
+            $('#floatBox-view-members').show();
+            $('#shadow').css("display","table");
+        })
     }
     function openManageClassPanel(id, name){
         loadAssignment(id, function(){
