@@ -10,10 +10,10 @@ function ClassTeacher(id, teacher, name, subject){
         html += "   <div class='card2-title' style='background: #00cc00'>"+this.subject+" (ID = " + this.id + ")</div>";
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
-        html += "       <div>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openManageClassPanel(\""+this.id+"\", \""+this.name+"\")'>Manage</button>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='openAddCardBox(\""+this.id+"\", \""+this.name+"\")'>Add New</button>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='viewMembers(\""+this.id+"\")'>View Members</button>";
+        html += "       <div style='line-height: 40px'>";
+        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='openManageClassPanel(\""+this.id+"\", \""+this.name+"\")'>Manage</button>";
+        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='openAddCardBox(\""+this.id+"\", \""+this.name+"\")'>New</button>";
+        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='viewMembers(\""+this.id+"\")'>Students</button>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";

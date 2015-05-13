@@ -15,7 +15,7 @@ $teacher = $result->uid;
 
 $class = $_GET['class'];
 
-$sql = "SELECT * from student WHERE class LIKE '%;$class%'";
+$sql = "SELECT * from student WHERE class LIKE '%;$class;%' OR class LIKE '%;$class'";
 $result = $conn->query($sql);
 
 $studentArr = array();

@@ -217,20 +217,20 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         var daysLeft = calculateDaysLeft(this.dueday);
 
-        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative'>";
+        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative; border-radius: 5px'>";
         if ( this.type == 2 && daysLeft > 1000 ) {
-            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; background: " + typeColorBackground(this.type) + "'>";
+            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 5px; border-top-right-radius: 5px; background: " + typeColorBackground(this.type) + "'>";
             html += "       <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }else{
-            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; background: " + typeColorBackground(this.type) + "'>";
+            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 5px; border-top-right-radius: 5px; background: " + typeColorBackground(this.type) + "'>";
             html += "       <div style='margin-bottom: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }
         if (app == "teacher") {
-            // html += "           <div style='margin-bottom: 0.5em'><span>Published: " + this.publish + "</span></div>";
+            html += "           <div style='margin-bottom: 0.5em; font-size: 0.8em'><span>Pub: " + this.publish + "</span></div>";
         }
         if ( !( this.type == 2 && daysLeft > 1000) ) {
             var dueDayLabel = new Array("Due", "Expire");
-            html += "           <div><span><span class='blockSpanForSmallScreen'>" + dueDayLabel[parseInt(type) - 1] + ": </span><span class='blockSpanForSmallScreen'>" + this.dueday + "</span></span></div>";
+            html += "           <div style='font-size: 0.8em'><span><span class='blockSpanForSmallScreen'>" + dueDayLabel[parseInt(type) - 1] + ": </span><span class='blockSpanForSmallScreen'>" + this.dueday + "</span></span></div>";
         }
         html += "       </div>";
         html += "   <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
