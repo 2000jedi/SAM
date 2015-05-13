@@ -37,8 +37,8 @@
       <file leaf-file-name="assignment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/scripts/assignment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79454255" vertical-offset="1575" max-vertical-offset="4065">
-              <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.33707866" vertical-offset="1575" max-vertical-offset="4065">
+              <caret line="119" column="42" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <marker date="1431524952000" expanded="true" signature="9034:9071" placeholder="..." />
@@ -720,12 +720,12 @@
       <workItem from="1431254186369" duration="5899000" />
       <workItem from="1431337244663" duration="1237000" />
       <workItem from="1431433359290" duration="3200000" />
-      <workItem from="1431518880203" duration="5101000" />
+      <workItem from="1431518880203" duration="5138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179632000" />
+    <option name="totallyTimeSpent" value="179669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1361" height="741" extended-state="6" />
@@ -1220,8 +1220,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/scripts/assignment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79454255" vertical-offset="1575" max-vertical-offset="4065">
-          <caret line="138" column="22" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.33707866" vertical-offset="1575" max-vertical-offset="4065">
+          <caret line="119" column="42" selection-start-line="119" selection-start-column="42" selection-end-line="119" selection-end-column="42" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <marker date="1431524952000" expanded="true" signature="9034:9071" placeholder="..." />
