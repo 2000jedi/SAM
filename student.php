@@ -60,6 +60,7 @@ if (!function_exists('checkForceQuit')){
                 height: 1.2em;
                 border-radius: 5em;
                 z-index: 1500;
+                cursor: pointer;
             }
             #assignment-time-management-wrapper{
                 position: fixed;
@@ -88,6 +89,7 @@ if (!function_exists('checkForceQuit')){
                 font-size: 1.5em;
                 color: #0078e7;
                 padding: 0.5em;
+                cursor: pointer;
             }
             .noHWCard{
                 margin-left: 0;

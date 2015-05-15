@@ -162,5 +162,25 @@ var Utils = {
     });
 }(window));
 function convertSubject(subject){
-    return subject.substr(0,1).toUpperCase() + subject.substr(1).toLowerCase();
+    function UpperLower(subjectA){
+        return subjectA.substr(0,1).toUpperCase() + subjectA.substr(1).toLowerCase();
+    }
+
+    if (subject.toUpperCase() == "TOK"){
+        return "TOK";
+    }
+
+    var subjects = subject.split(" ");
+
+    var returnVal = "";
+
+    for (var i = 0; i < subjects.length; i++){
+        var oneSubject = UpperLower(subjects[i]);
+        returnVal += oneSubject + " ";
+    }
+
+    returnVal = returnVal.substr(0, returnVal.length-1);
+
+    return returnVal;
+
 }

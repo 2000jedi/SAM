@@ -218,11 +218,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         var daysLeft = calculateDaysLeft(this.dueday);
 
         html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative; border-radius: 5px'>";
+        html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 4px; border-top-right-radius: 4px; background: " + typeColorBackground(this.type) + "'>";
         if ( this.type == 2 && daysLeft > 1000 ) {
-            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 5px; border-top-right-radius: 5px; background: " + typeColorBackground(this.type) + "'>";
             html += "       <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }else{
-            html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 5px; border-top-right-radius: 5px; background: " + typeColorBackground(this.type) + "'>";
             html += "       <div style='margin-bottom: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
         }
         if (app == "teacher") {
@@ -255,7 +254,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += diff("additional-button", this.app, this);
         html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
         // html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.jpg' width='50px' height='50px' /></a></div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><img src='/files/icons/attachment.jpg' width='50px' height='50px' /></div>";
         html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
         html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + diff("iconButton", this.app, this) + "</a></div>";
         html += "       </div>";

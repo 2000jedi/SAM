@@ -405,7 +405,7 @@ if (!function_exists('checkForceQuit')){
         $.get('/modules/class/loadClassMembers.php',{class: id},function(data){
             data = JSON.parse(data);
 
-            var html = "";
+            var html = "<div class='card' style='width: calc(100%-2em);box-sizing: border-box;'>Total Number: " + data.length + "</div>";
             for (var i = 0; i < data.length; i++){
                 var userInfo = data[i];
                 var username = userInfo.username;

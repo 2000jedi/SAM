@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
         $password = openssl_digest($row['password'], 'sha512');
 
         if ($password == $pass){
-            $newPass = openssl_digest("s20148123", 'sha512');
+            $newPass = openssl_digest($username, 'sha512');
             $sql2 = "UPDATE user SET password = '$newPass' WHERE username = '$username'";
             if ($conn->query($sql2) === TRUE) {
                 echo "Your password has been reset as '$username'. <a href='/login.php'>Sign in</a>";
