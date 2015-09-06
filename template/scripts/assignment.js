@@ -1,13 +1,11 @@
 /* Click to expand module start */
 function typeColorBackground(type){
     type = type - 1;
-    var color = new Array("rgba(255,52,25,1)", "rgba(21, 199, 2, 1)", "rgba(255,153,33,1)", "rgba(71,71,71,1)");
+    var color = new Array("#F44336", "#4CAF50", "#F57C00", "rgba(71,71,71,1)");
     return color[type];
 }
 function typeColorBox(type){
-    type = type - 1;
-    var color = new Array("rgba(255,101,80,1)", "rgba(77, 212, 63, 1)", "rgba(255,177,86,1)", "rgba(115,115,115,1)");
-    return color[type];
+    return "rgba(255, 255,255,0.2);";
 }
 function whetherExpandHTML(id, content){
     if (content.length > 200){

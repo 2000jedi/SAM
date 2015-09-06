@@ -137,7 +137,7 @@ textarea, input{
         background:transparent; width:0px;}
 
     #header-part{
-        background-color: #1f8dd6;
+        background-color: #2196F3;
         border: 0;
         font-size: 1.3em;
         position: fixed;
@@ -189,7 +189,7 @@ textarea, input{
         text-decoration: none;
         white-space: nowrap;
     }
-    a.header-tab-a:hover,a.header-tab-a:active,a.header-tab-a:focus{background: #1f8dd6; color: white}
+    a.header-tab-a:hover,a.header-tab-a:active,a.header-tab-a:focus{background: #2196F3; color: white}
     #body-part{
         position: fixed;
         top:3px;
@@ -273,7 +273,7 @@ textarea, input{
     }
 
     #header-part{
-        background-color: #1f8dd6;
+        background-color: #2196F3;
         border: 0;
         font-size: 1em;
         position: fixed;

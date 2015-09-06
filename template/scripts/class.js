@@ -7,7 +7,7 @@ function ClassTeacher(id, teacher, name, subject){
     this.getHTML = function(){
         var html = "";
         html += "<div id='class-list-"+ this.id +"' class='card2'>";
-        html += "   <div class='card2-title' style='background: #00cc00'>"+this.subject+" (ID = " + this.id + ")</div>";
+        html += "   <div class='card2-title' style='background: #4CAF50'>"+this.subject+" (ID = " + this.id + ")</div>";
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
         html += "       <div style='line-height: 40px'>";
@@ -30,7 +30,7 @@ function ClassStudent(id, teacher, name, subject){
     this.getHTML = function(){
         var html = "";
         html += "<div id='class-list-"+ this.id +"' class='card2'>";
-        html += "   <div class='card2-title' style='background: #00cc00'>"+this.subject+" (ID = " + this.id + ")</div>";
+        html += "   <div class='card2-title' style='background: #4CAF50'>"+this.subject+" (ID = " + this.id + ")</div>";
         html += "   <div class='card2-content'>";
         html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
         html += "       <div>";

@@ -37,11 +37,11 @@ if (!function_exists('checkForceQuit')){
     function toggleModules(id){
         $('#right-part').hide();
         $('#mClass').hide();
-        $('#left-tab-Class').css("background","#1f8dd6").css("color","white");
+        $('#left-tab-Class').css("background","#2196F3").css("color","white");
         $('#mSettings').hide();
-        $('#left-tab-Settings').css("background","#1f8dd6").css("color","white");
+        $('#left-tab-Settings').css("background","#2196F3").css("color","white");
         $('#m'+id).show();
-        $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
+        $('#left-tab-'+id).css("background","white").css("color","#2196F3");
     }
 </script>
 <div id="loading" style="display:block">Loading...</div>

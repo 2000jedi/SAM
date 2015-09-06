@@ -120,13 +120,13 @@ if (!function_exists('checkForceQuit')){
         $('#assignment-time-management-caller').removeClass("hide");
         boolMinus = false;
         $('#mStream').hide();
-        $('#left-tab-Stream').css("background","#1f8dd6").css("color","white");
+        $('#left-tab-Stream').css("background","#2196F3").css("color","white");
         $('#mClass').hide();
-        $('#left-tab-Class').css("background","#1f8dd6").css("color","white");
+        $('#left-tab-Class').css("background","#2196F3").css("color","white");
         $('#mSettings').hide();
-        $('#left-tab-Settings').css("background","#1f8dd6").css("color","white");
-        $('#m'+id).show()
-        $('#left-tab-'+id).css("background","white").css("color","#1f8dd6");
+        $('#left-tab-Settings').css("background","#2196F3").css("color","white");
+        $('#m'+id).show();
+        $('#left-tab-'+id).css("background","white").css("color","#2196F3");
         if (id == "Stream"){
             $('#assignment-time-management-wrapper').removeClass("hide");
             $('#assignment-time-management-caller').addClass("hide");
