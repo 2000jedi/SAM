@@ -7,6 +7,7 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/client/classes/Device.php";
 
 $result = checkForceQuit();
 
@@ -66,6 +67,17 @@ $class = $_POST['class'];
 
 $sql2 = "INSERT INTO assignment (type, content, attachment, publish, dueday, duration, class, teacher) VALUES ($type, '$content', '$attachment', now(), '$dueday', $duration, '$class', '$teacher')";
 $conn->query($sql2);
+
+
+$sql3 = "SELECT * from student WHERE class LIKE '%;$class;%' OR class LIKE '%;$class' ORDER BY id ASC";
+$result = $conn->query($sql3);
+
+
+while($row = $result->fetch_assoc()) {
+    $id = $row['id'];
+    $device = new Device($id);
+    $device->push('The teacher has just assigned homework.');
+}
 
 echo "Success";
 

@@ -160,7 +160,7 @@ if (!function_exists('checkForceQuit')){
         <div class="card" style="text-align:center" onclick="addToClass()">Add Class</div>
     </div>
     <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
     ?>
 </div>
 <div id="right-part" style="display:none">
@@ -298,14 +298,16 @@ if (!function_exists('checkForceQuit')){
         $.get("/modules/class/loadClass.php",function(data){
             func();
             data = JSON.parse(data);
-            for ( var i = 0; i < data.length; i++){
+            for ( var i = 0; i < data.length; i++) {
                 var id = data[i].id;
-                var teacher = data[i].teacher;
-                var name = data[i].name;
-                var subject = convertSubject(data[i].subject);
+                if (id != "39") {
+                    var teacher = data[i].teacher;
+                    var name = data[i].name;
+                    var subject = convertSubject(data[i].subject);
 
-                var oneClass = new ClassStudent(id, teacher, name, subject);
-                $('#classList').append(oneClass.getHTML());
+                    var oneClass = new ClassStudent(id, teacher, name, subject);
+                    $('#classList').append(oneClass.getHTML());
+                }
             }
         })
     }

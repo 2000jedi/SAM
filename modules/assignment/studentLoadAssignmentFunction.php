@@ -32,7 +32,7 @@ function studentLoadAssignment($student){
         $sqlForClass = "1 = 0";
     }
 
-    $sql = "SELECT * from assignment WHERE $sqlForClass AND dueday > curdate() ORDER BY dueday ASC";
+    $sql = "SELECT * from assignment WHERE ( $sqlForClass AND dueday > curdate() ) OR class = '39' ORDER BY dueday ASC";
     $result = $conn->query($sql);
 
     $arr = array();
