@@ -62,7 +62,7 @@ function checkAndOutput($username){
 
     $resultOfCheck = checkValid($username, $username);
     if ($resultOfCheck == false) {
-        
+
     } else {
         $sql = "SELECT * FROM userInfo WHERE username = '$username'";
         $result = $conn->query($sql);

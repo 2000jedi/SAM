@@ -6,7 +6,6 @@
  * Time: 19:36
  */
 
-require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 
 $result = checkForceQuit();
 
@@ -16,12 +15,14 @@ if ($admin != "t001"){
     die("Permission Denied!");
 }else{
     ?>
-    <form action='/modules/user/massiveCreateUser.php' method="post">
+    <form action='/modules/user/massiveCreateUser.php' method="post" style="margin: 0.5em">
         <div>
             <label>classprefix</label>
             <input name="classprefix" />
         </div>
-        <input type="submit" />
+        <div style="text-align: center; margin: 1em">
+            <input type="submit" class="pure-button pure-button-primary" />
+        </div>
     </form>
 <?php
 }

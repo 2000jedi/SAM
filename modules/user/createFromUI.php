@@ -6,7 +6,6 @@
  * Time: 21:25
  */
 
-require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 
 $result = checkForceQuit();
 
@@ -16,7 +15,7 @@ if ($admin != "t001"){
     die("Permission Denied!");
 }else{
     ?>
-    <form action='/modules/user/create.php' method="post">
+    <form action='/modules/user/create.php' method="post" style="margin: 0.5em">
         <div>
             <label>username</label>
             <input name="username" />
@@ -29,7 +28,9 @@ if ($admin != "t001"){
             <label>subject</label>
             <input name="subject" />
         </div>
-        <input type="submit" />
+        <div style="text-align: center; margin: 1em">
+            <input type="submit" class="pure-button pure-button-primary" />
+        </div>
     </form>
 <?php
 }
