@@ -6,21 +6,12 @@
  * Time: 19:33
  */
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/user/createFunction.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/user/ManipulateUserClass.php";
 
-$type = "s";
 $classprefix = $_POST['classprefix'];
 
-for ($i = 1; $i < 36; $i++){
-
-    if ($i < 10){
-        $i = "0".$i;
-    }
-
-    $username = $type.$classprefix.$i;
-    echo $username." is created.<br>";
-    create($username, $type);
-}
+$manipulation = new ManipulateUserClass();
+$manipulation->massiveCreateUser($classprefix);
 
 
 ?>

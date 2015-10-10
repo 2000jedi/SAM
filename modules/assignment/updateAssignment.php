@@ -6,6 +6,7 @@
  * Time: 19:37
  */
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/ManipulateAssignmentClass.php";
 
 $result = checkForceQuit();
 
@@ -14,12 +15,9 @@ $teacher = $result->uid;
 $id = $_POST['id'];
 $content = $_POST['content'];
 
-$sql = "UPDATE assignment SET content = '$content' WHERE id = '$id' AND teacher = '$teacher'";
+$manipulation = new ManipulateAssignmentClass();
+$manipulation->setAssignment($id);
+$manipulation->updateAssignment($content, $teacher);
 
-if ($conn->query($sql) === TRUE) {
-    echo "Success!";
-} else {
-    echo "Unexpected error.";
-}
 
 ?>

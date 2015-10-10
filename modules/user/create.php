@@ -7,11 +7,13 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/user/createFunction.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/user/ManipulateUserClass.php";
 
 $type = $_POST['type'];
 $username = $_POST['username'];
 
-create($username, $type);
+$manipulation = new ManipulateUserClass();
+
+$manipulation->create($username, $type);
 
 ?>

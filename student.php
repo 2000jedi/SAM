@@ -157,7 +157,6 @@ if (!function_exists('checkForceQuit')){
     </div>
     <div id="mClass" style="display: none">
         <div id="classList"></div>
-        <div class="card" style="text-align:center" onclick="addToClass()">Add Class</div>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
@@ -326,17 +325,6 @@ if (!function_exists('checkForceQuit')){
             localStorage.assignmentIDList2 = idList;
         });
     }
-    function quitClass(id){
-        var conf = confirm("DO YOU REALLY want to quit the class?");
-        if (conf == true) {
-            $.get("/modules/class/quitClass.php", {class: id}, function (data) {
-                loadClass(function () {
-                    $('#classList').html("");
-                });
-                alert(data);
-            });
-        }
-    }
     function openViewClassPanel(id, name){
         loadAssignmentInClass(id, function(){
             $('#assignment-list-in-class').html("");
@@ -344,24 +332,6 @@ if (!function_exists('checkForceQuit')){
         $('#right-part-class-id').html(id);
         $('#right-part-title').html("View " + name);
         $('#right-part').show();
-    }
-    function addToClass(){
-        var classID = prompt("Please enter the class ID", "");
-        if (isNaN(classID)){
-            alert("Invalid class ID");
-        }else if (classID == null || classID == ""){
-            // Do nothing.
-        }else{
-            $.get("/modules/class/addToClass.php",{class: classID},function(data){
-                loadClass(function(){
-                    $('#classList').empty();
-                })
-                loadAssignment(function(){
-                    $('#assignment-list').html("");
-                });
-                alert(data);
-            })
-        }
     }
 
     <?php

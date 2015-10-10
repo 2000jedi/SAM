@@ -6,6 +6,7 @@
  * Time: 19:37
  */
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/ManipulateAssignmentClass.php";
 
 $result = checkForceQuit();
 
@@ -13,12 +14,9 @@ $student = $result->uid;
 
 $id = $_POST['id'];
 
-$sql = "DELETE FROM personalassignment WHERE assignment = '$id' AND uid = $student";
+$manipulation = new ManipulateAssignmentClass();
+$manipulation->setAssignment($id);
+$manipulation->markUnCompletion($student);
 
-if ($conn->query($sql) === TRUE) {
-    echo "Success!";
-} else {
-    echo "Unexpected error.";
-}
 
 ?>

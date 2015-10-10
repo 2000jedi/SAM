@@ -8,14 +8,15 @@
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/UnitAssignment.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/studentLoadAssignmentFunction.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/ManipulateAssignmentClass.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/client/v1/assignment/updateNotificationRaw.php";
 
 $result = checkForceQuit();
 
 $student = $result->uid;
 
-$newNotificationRaw = studentLoadAssignment($student);
+$manipulation = new ManipulateAssignmentClass();
+$newNotificationRaw = $manipulation->studentLoadAssignment($student);
 
 updateNotificationRaw($student, $newNotificationRaw);
 

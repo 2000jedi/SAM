@@ -22,7 +22,7 @@ if (!function_exists('checkForceQuit')){
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
-    <script src="/template/fix/safari/fixdateinput.js"></script>
+    <script src="/framework/fix/safari/fixdateinput.js"></script>
     <style>
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";

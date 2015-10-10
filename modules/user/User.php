@@ -44,4 +44,15 @@ class User {
     function __destruct(){}
 }
 
+function userVariableConversion($variable, $from, $to){
+    global $conn;
+    $output = "";
+    $sql = "SELECT * FROM user WHERE $from = '$variable'";
+    $result = $conn->query($sql);
+    while($row = mysqli_fetch_assoc($result)) {
+        $output = $row[$to];
+    }
+    return $output;
+}
+
 ?>

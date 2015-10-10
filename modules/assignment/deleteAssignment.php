@@ -7,6 +7,7 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/assignment/ManipulateAssignmentClass.php";
 
 $result = checkForceQuit();
 
@@ -14,14 +15,9 @@ $teacher = $result->uid;
 
 $assignment = $_GET['assignment'];
 
-$sql = "DELETE FROM assignment WHERE id = '$assignment' AND teacher = '$teacher'";
-$sql2 = "DELETE FROM personalassignment WHERE assignment = '$assignment'";
-
-if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE ) {
-    echo "Successfully deleted one assignment.";
-} else {
-    echo "Unexpected Error";
-}
+$manipulation = new ManipulateAssignmentClass();
+$manipulation->setAssignment($assignment);
+$manipulation->deleteAssignment($teacher);
 
 
 ?>

@@ -7,18 +7,14 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/class/ManipulateClassClass.php";
 
 $result = checkForceQuit();
 
 $name = $_POST['name'];
 $teacher = $result->uid;
 
-$sql = "INSERT INTO class (teacher, name) VALUES ('$teacher', '$name')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Success";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
+$manipulation = new ManipulateClassClass($class);
+$manipulation->createClass($name, $teacher);
 
 ?>

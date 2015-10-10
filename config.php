@@ -8,5 +8,8 @@
 
 $appName = "SAM";
 
+$modes = array("local", "SAE");
+
+$mode = $modes[0];
 
 ?>

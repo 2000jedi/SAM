@@ -16,16 +16,29 @@ class Security {
 
     function updateIP($ip){
         global $conn;
-        $sql = "SELECT * from IPDB WHERE uid = '$this->uid' AND ip = '$ip'";
 
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            // IP already in the DB, do nothing.
-        } else {
-            $sql2 = "INSERT INTO IPDB (uid, ip) VALUES ('$this->uid', '$ip')";
-            $conn->query($sql2);
+        $s = new Security('28');
+        $ipArr = $s->getIPs();
+        $bool = true;
+
+        for ($i = 0; $i < sizeof($ipArr); $i++){
+            if ( $ip == $ipArr[$i] ){
+                $bool = false;
+            }
         }
-        $this->ip = $ip;
+
+        if ($bool){
+            $sql = "SELECT * from IPDB WHERE uid = '$this->uid' AND ip = '$ip'";
+
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                // IP already in the DB, do nothing.
+            } else {
+                $sql2 = "INSERT INTO IPDB (uid, ip) VALUES ('$this->uid', '$ip')";
+                $conn->query($sql2);
+            }
+            $this->ip = $ip;
+        }
     }
 
     function getIPs(){
