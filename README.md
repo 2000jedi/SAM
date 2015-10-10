@@ -117,6 +117,7 @@ The structure of the code
             - Used to check the identity of a user
         4.  ManipulateUserClass.php
             - Check the document in file
+            - **It behaves differently on local development and SAE**
         5.  create.php
             - Used to create a single user
         6.  massiveCreateUser.php
@@ -127,7 +128,6 @@ The structure of the code
             - Used to list all the user info of whom has default password
         9.  forgotPasswordSendMail.php
             - Used to send mail to those who forgot password
-            - **It behaves differently on local development and SAE**
         10.  forgotPassword.php
             - Used to respond to the reset password command
         11.  changeEmail.php

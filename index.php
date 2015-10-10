@@ -16,7 +16,6 @@
  * For teacher, the page will include teacher.php.
  */
 
-require $_SERVER['DOCUMENT_ROOT']."/config.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/common/basic.php";
 

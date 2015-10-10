@@ -8,7 +8,6 @@
 
 class Device {
     var $uid;
-    var $token;
 
     function __construct( $uid ){
         $this->uid = $uid;
@@ -52,21 +51,26 @@ class Device {
     }
 
     function pushIOS($token, $msg){
-        echo "hahaha! Pushed to an iOS device.<br> msg = '$msg'";
+        // echo "hahaha! Pushed to an iOS device.<br> msg = '$msg'";
     }
 
     function pushAndroid($token, $msg){
+        global $mode;
 
-        $appid = 22812;
-        $title = 'Update';
-        $acts = "[\"2,com.developersam.samclient,com.developersam.samclient.MainActivity\"]";
-        $extra = array(
-            'handle_by_app'=>'0'
-        );
+        if ($mode == "SAE"){
+            $appid = 22812;
+            $title = '1';
+            // title == version of client
+            $acts = "[\"2,com.developersam.samclient,com.developersam.samclient.MainActivity\"]";
+            // keep it constant for now
+            $extra = array(
+                'handle_by_app'=>'1'
+            );
 
-        $adpns = new SaeADPNS();
-        $result = $adpns->push($appid, $token, $title, $msg, $acts, $extra);
+            $adpns = new SaeADPNS();
+            $result = $adpns->push($appid, $token, $title, $msg, $acts, $extra);
 
-        echo "hahaha! Pushed to an Android device.<br> msg = '$msg'";
+            // echo "hahaha! Pushed to an Android device.<br> msg = '$msg'";
+        }
     }
 }

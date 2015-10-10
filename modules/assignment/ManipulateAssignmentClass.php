@@ -206,6 +206,7 @@ class ManipulateAssignmentClass {
      */
     function addAssignment(){
         global $conn;
+        global $mode;
 
         $result = checkForceQuit();
 
@@ -246,17 +247,38 @@ class ManipulateAssignmentClass {
             $attachment = "";
 
             for ($i = 0; $i < count($_FILES["attachment"]['name']); $i++ ){
-                $originalName = $_FILES["attachment"]['name'][$i];
-                $realNameArr = explode(".",$originalName);
-                $realName = $realNameArr[0];
-                $rand = genRandomString();
-                $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
-                $final_filename = $realName."_".time().".".$fileType;
-                $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
+                if ($mode == "local"){
+                    $originalName = $_FILES["attachment"]['name'][$i];
+                    $realNameArr = explode(".",$originalName);
+                    $realName = $realNameArr[0];
+                    $rand = genRandomString();
+                    $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
+                    $final_filename = $realName."_".time().".".$fileType;
+                    $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
 
-                $attachment .= ";".$target_dir.$final_filename.";".$originalName;
+                    $attachment .= ";".$target_dir.$final_filename.";".$originalName;
 
-                move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $target_file);
+                    move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $target_file);
+                }else if ($mode == "SAE"){
+                    $originalName = $_FILES["attachment"]['name'][$i];
+
+                    $realNameArr = explode(".",$originalName);
+                    $realName = $realNameArr[0];
+                    $rand = genRandomString();
+                    $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
+                    $final_filename = $realName."_".time().".".$fileType;
+                    $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
+
+
+                    $fileContent=file_get_contents($_FILES["attachment"]["tmp_name"][$i]);
+                    $temp=new SaeStorage();
+                    $temp->write("wflmssam",$final_filename,$fileContent);//写入文件
+                    $url=$temp->getUrl($domain,$final_filename);//获取地址
+
+
+                    $attachment .= ";".$url.";".$originalName;
+                }
+
             }
 
 
@@ -275,7 +297,7 @@ class ManipulateAssignmentClass {
         while($row = $result->fetch_assoc()) {
             $id = $row['id'];
             $device = new Device($id);
-            $device->push('The teacher has just assigned homework.');
+            $device->push('[{"version": "1","title": "NEW!", "msg": "Your teacher assigned new homework."}]');
         }
 
         echo "Success";

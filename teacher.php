@@ -28,7 +28,7 @@ if (!function_exists('checkForceQuit')){
             require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
-            require $_SERVER['DOCUMENT_ROOT']."/template/fix/safari/fixdateinput.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/fix/safari/fixdateinput.css";
         ?>
     </style>
 </head>

@@ -6,8 +6,11 @@
  * Time: 20:11
  */
 
+require $_SERVER['DOCUMENT_ROOT']."/config.php";
+
 $path = $_GET['path'];
 $name = $_GET['name'];
+
 
 $pathArr = explode("/",$path);
 $realPath = $pathArr[count($pathArr)-1];
@@ -22,6 +25,15 @@ if ( $type == "png" || $type == "jpg" || $type == "gif" ){
 
 header("Content-Disposition: inline; filename='$name'");
 header('Pragma: no-cache');
-readfile($path);
+
+if ($mode == "local"){
+    readfile($path);
+}else if ($mode == "SAE"){
+    $s = new SaeStorage();
+
+    $content = $s->read('wflmssam', $realPath);
+
+    echo $content;
+}
 
 ?>
