@@ -30,7 +30,7 @@ The structure of the code
         - Used to deal with the request related to assignments
         1.  ManipulateAssignmentClass.php
             - Check the document in file
-            - *It behaves differently on local development and SAE*
+            - **It behaves differently on local development and SAE**
         2.  UnitAssignment.php
             - A class created mainly for JSON object construction
         3.  addAssignment.php
@@ -73,7 +73,7 @@ The structure of the code
                 - A class for a device. Programmers can:
                     - Update its info
                     - Push notification
-                - *It behaves differently on local development and SAE*
+                - **It behaves differently on local development and SAE**
             3.  updateToken.php
                 - Update token for pushing notification
         2.  v1/assignment/
@@ -90,12 +90,12 @@ The structure of the code
             - It is used to encrypt/decrypt/hash strings
         3.  downloader.php
             - Once visited with appropriate parameters, it will download the designated file.
-            - *It behaves differently on local development and SAE*
+            - **It behaves differently on local development and SAE**
     5.  database/
         - It is used to deal with the database
         1.  connect.php
             - Used to connect to database
-            - *It behaves differently on local development and SAE*
+            - **It behaves differently on local development and SAE**
     6.  security/
         - Used to enhance the security of the system
         - Used to find the cracker when the system is compromised
@@ -127,7 +127,7 @@ The structure of the code
             - Used to list all the user info of whom has default password
         9.  forgotPasswordSendMail.php
             - Used to send mail to those who forgot password
-            - *It behaves differently on local development and SAE*
+            - **It behaves differently on local development and SAE**
         10.  forgotPassword.php
             - Used to respond to the reset password command
         11.  changeEmail.php
