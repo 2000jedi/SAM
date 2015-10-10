@@ -135,6 +135,7 @@ The structure of the code
         12.  changePassword.php
             - Used to changePassword
 4.  template/
+    - Template that would be requested
     1.  pages/
         - Store the pages that would be repeatedly used in apps
         1.  settings.html
