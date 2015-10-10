@@ -4,23 +4,23 @@ SAM - System of Assignment Management
 The structure of the code
 -------------------------
 1.  files/
-    - All the static resources needed
+    * All the static resources needed
 2.  framework/
-    - All the frameworks that are either from prominent developers or files I used in other projects.
+    * All the frameworks that are either from prominent developers or files I used in other projects.
     2.1.  fix/
-        - Fix the stupid data input of safari
+        * Fix the stupid data input of safari
     2.2.  geodesic/
-        - Sam's UI Framework
+        * Sam's UI Framework
     2.3.  googlefont/
-        - Static Google Fonts file
+        * Static Google Fonts file
     2.4.  js/
-        - Javascript frameworks
+        * Javascript frameworks
         2.4.1.  form.js
-            - jQuery form
+            * jQuery form
         2.4.2.  jq.js
-            - jQuery framework
+            * jQuery framework
     2.5.  pure/
-        - UI framework from Yahoo with some modification from Sam
+        * UI framework from Yahoo with some modification from Sam
 3.  modules/
     - All the php files used to process ajax requests
     - Some folders have a 'ManipulateXXXClass.php', which shall contain all the process functions and their documents.
