@@ -1,3 +1,8 @@
+/*
+
+    Part I: AJAX Handling
+
+ */
 $(document).ajaxSend(function(event,xhr,option){
     if (option.type === "GET"){
         $('#loading').css('opacity', 0.8).css("width", "").css("height", "").css("padding", "").css("left", "").html("Loading...");
