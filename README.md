@@ -1,7 +1,6 @@
 SAM
 ====
 - System of Assignment Management
-----------------------------------
 
 The structure of the code
 -------------------------
