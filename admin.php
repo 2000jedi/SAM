@@ -7,7 +7,6 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
-require $_SERVER['DOCUMENT_ROOT']."/config.php";
 
 $result = checkForceQuit();
 
@@ -31,7 +30,6 @@ if ($admin != "t001"){
             require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
-            require $_SERVER['DOCUMENT_ROOT']."/template/fix/safari/fixdateinput.css";
         ?>
     </style>
 </head>
@@ -144,38 +142,6 @@ if ($admin != "t001"){
             }
         })
     }
-    function viewMembers(id, type) {
-        $.get('/modules/class/loadClassMembers.php', {class: id}, function (data) {
-            data = JSON.parse(data);
-
-            if (type == 1){
-                var html = "Total Number: " + data.length + "\n";
-                for (var i = 0; i < data.length; i++) {
-                    var userInfo = data[i];
-                    var username = userInfo.username;
-                    var ChineseName = userInfo.ChineseName;
-                    var EnglishName = userInfo.EnglishName;
-                    html += "Name: " + ChineseName + " (" + EnglishName + ")      ID:" + username + "\n";
-                }
-                alert(html);
-            }else if (type == 2){
-                var html = "";
-                for (var i = 0; i < data.length; i++) {
-                    var userInfo = data[i];
-                    var username = userInfo.username;
-                    html += ";"+ username;
-                }
-                var result = prompt("Edit", html);
-                if (result == null){
-                    return;
-                }
-                $.post('/modules/class/changeClassMembers.php', {class: id, studentList: result}, function (data) {
-                    alert(data);
-                });
-            }
-        })
-    }
-
     loadClass(function(){});
 
 </script>

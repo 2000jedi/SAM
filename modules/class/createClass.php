@@ -14,7 +14,7 @@ $result = checkForceQuit();
 $name = $_POST['name'];
 $teacher = $result->uid;
 
-$manipulation = new ManipulateClassClass($class);
+$manipulation = new ManipulateClassClass('');
 $manipulation->createClass($name, $teacher);
 
 ?>

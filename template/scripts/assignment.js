@@ -1,165 +1,103 @@
-/* Click to expand module start */
-function typeColorBackground(type){
-    type = type - 1;
-    var color = new Array("#F44336", "#4CAF50", "#F57C00", "rgba(71,71,71,1)");
-    return color[type];
-}
-function typeColorBox(type){
-    return "rgba(255, 255,255,0.2);";
-}
-function whetherExpandHTML(id, content){
-    if (content.length > 200){
-        return "           <div style='margin:0.5em' onclick='contentExpanding("+id+")'><a href='#'>Click to display/hide.</a></div>";
-    }else{
-        return "           ";
-    }
-}
-function whetherExpandCSS(content) {
-    if (content.length > 200){
-        return "height: 3em; overflow: hidden; box-shadow: inset 0px -10px 5px #DDD";
-    }else{
-        return "";
-    }
-}
-function contentExpanding(id){
-    var cssText1 = "3em", cssText2 = "hidden", cssText3 = "inset 0px -10px 5px #DDD";
-    if ( $('#assignment-list-content-'+id).css("overflow") == "hidden"){
-        cssText1 = "";
-        cssText2 = "";
-        cssText3 = "";
-    }
-    $('#assignment-list-content-'+id).css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
-}
-/* Click to expand module end */
+/*
 
-/* Delete Assignment Start */
-function deleteAssignment(id){
-    var conf = confirm("DO YOU REALLY want to delete the assignment?\nData will be permanently removed from server.\n\nTips: You should copy the content if you merely want to edit the assignment/information.");
-    if (conf == true) {
-        $.get("/modules/assignment/deleteAssignment.php",{assignment: id},function(data){
-            $('#assignment-list-'+id).remove();
+    Part I: Manipulate Assignment
+    - It provides API for Assignment() to create UI
+    - It also provides API for button to process a specific assignment
+
+ */
+function ManipulateAssignment(id){
+    this.id = id;
+
+    this.contentExpanding = function(){
+        var cssText1 = "3em", cssText2 = "hidden", cssText3 = "inset 0px -10px 5px #DDD";
+        if ( $('#assignment-list-content-'+this.id).css("overflow") == "hidden"){
+            cssText1 = "";
+            cssText2 = "";
+            cssText3 = "";
+        }
+        $('#assignment-list-content-'+this.id).css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
+    };
+
+    this.deleteAssignment = function(){
+        var conf = confirm("DO YOU REALLY want to delete the assignment?");
+        if (conf == true) {
+            $.get("/modules/assignment/deleteAssignment.php",{assignment: this.id},function(data){
+                $('#assignment-list-'+this.id).remove();
+            });
+        }
+    };
+
+    this.updateAssignment = function(){
+        var idS = this.id.split("-");
+        var assignmentID = idS[idS.length-1];
+
+        var content = $("#"+this.id).html().replace(/<br.*?>/g, "\n");
+        $('#update-card-content-id').html(assignmentID);
+        $('#update-card-content-ta').val(content);
+
+        new Class('','').openUpdateCardBox();
+    };
+
+    this.sendUpdateAssignment = function(){
+        var id = $('#update-card-content-id').html();
+        var content = $('#update-card-content-ta').val();
+        $.post("/modules/assignment/updateAssignment.php",{id: id, content: content}, function(data){
+            alert(data);
+            $('#update-card-content-id').html("");
+            $('#update-card-content-ta').val("");
+            $('#shadow').hide();
+
+            new Class($('#right-part-class-id').html(),'').loadAssignment(1, function(){
+                $('#assignment-list').html("");
+            });
+        })
+    };
+
+     this.markCompletion = function(){
+        var actual = prompt("You may tell us how much time you actually spent on the assignment (in minutes). (You can leave it blank.)");
+        if (actual == null){
+            return;
+        }
+        $.post("/modules/assignment/markCompletion.php",{id: this.id, actual: actual}, function(data){
+            loadAssignment(function(){
+                $('#assignment-list').html("");
+            });
         });
-    }
-}
-/* Delete Assignment End */
-/* Update Assignment Start */
-function updateAssignment(id){
-    var idS = id.split("-");
-    var assignmentID = idS[idS.length-1];
+    };
 
-    var content = $("#"+id).html().replace(/<br.*?>/g, "\n");
-    $('#update-card-content-id').html(assignmentID);
-    $('#update-card-content-ta').val(content);
-
-    openUpdateCardBox();
-}
-function sendUpdateAssignment(){
-    var id = $('#update-card-content-id').html();
-    var content = $('#update-card-content-ta').val();
-    $.post("/modules/assignment/updateAssignment.php",{id: id, content: content}, function(data){
-        alert(data);
-        $('#update-card-content-id').html("");
-        $('#update-card-content-ta').val("");
-        $('#shadow').hide();
-
-        loadAssignment($('#right-part-class-id').html(), function(){
-            $('#assignment-list').html("");
-        });
-    })
-}
-/* Update Assignment End */
-
-
-/* Mark Completion Start */
-function markCompletion(id){
-    var actual = prompt("You may tell us how much time you actually spent on the assignment (in minutes). (You can leave it blank.)");
-    if (actual == null){
-        return;
-    }
-    $.post("/modules/assignment/markCompletion.php",{id: id, actual: actual}, function(data){
-        loadAssignment(function(){
-            $('#assignment-list').html("");
-        });
-    });
-}
-function markInfoAsRead(id){
-    var conf = confirm("DO YOU REALLY read the information?");
-    if (conf == true) {
-        $.post("/modules/assignment/markCompletion.php", {id: id, actual: 0}, function (data) {
-            loadAssignment(function () {
+    this.markInfoAsRead = function(){
+        var conf = confirm("DO YOU REALLY read the information?");
+        if (conf == true) {
+            $.post("/modules/assignment/markCompletion.php", {id: this.id, actual: 0}, function (data) {
+                loadAssignment(function () {
+                    $('#assignment-list').html("");
+                });
+            });
+        }
+    };
+    this.markUnCompletion = function(){
+        $.post("/modules/assignment/markUnCompletion.php",{id: this.id}, function(data){
+            loadAssignment(function(){
                 $('#assignment-list').html("");
             });
         });
     }
-}
-function markUnCompletion(id){
-    $.post("/modules/assignment/markUnCompletion.php",{id: id}, function(data){
-        loadAssignment(function(){
-            $('#assignment-list').html("");
-        });
-    });
-}
-/* Mark Completion End */
 
-function diff(where, app, assignment){
-    if (where == "prefix-id"){
-        if (app == "teacher"){
-            return "assignment-list-" + assignment.id;
-        }else if (app == "student"){
-            return "assignment-list-" + assignment.id;
-        }else if (app == "student-in-class"){
-            return "assignment-list-class-" + assignment.id;
-        }
-    }else if (where == "prefix-content-id"){
-        if (app == "teacher"){
-            return "assignment-list-content-" + assignment.id;
-        }else if (app == "student"){
-            return "assignment-list-content-" + assignment.id;
-        }else if (app == "student-in-class"){
-            return "assignment-list-content-2-" + assignment.id;
-        }
-    }else if (where == "expand-content"){
-        if (app == "teacher"){
-            return whetherExpandHTML("\""+assignment.id+"\"", "\""+assignment.content+"\"");
-        }else if (app == "student"){
-            return whetherExpandHTML("\""+assignment.id+"\"", "\""+assignment.content+"\"");
-        }else if (app == "student-in-class"){
-            return whetherExpandHTML("\"2-"+assignment.id+"\"", "\""+assignment.content+"\"");
-        }
-    }else if (where == "additional-button"){
-        if (app == "teacher"){
-            var html = "";
-            html += "       <div>";
-            html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='updateAssignment(\"" + diff("prefix-content-id", assignment.app, assignment) + "\")'> Update Content </button>";
-            html += "       </div>";
-            return html;
-        }else if (app == "student"){
-            return "";
-        }else if (app == "student-in-class"){
-            return "";
-        }
-    }else if (where == "iconButton"){
-        var html = "";
-        if (app == "student") {
-            if (assignment.type != 2 && !assignment.finished) {
-                // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
-                html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='markCompletion(\"" + assignment.id + "\")' />";
-            }
-            if (assignment.type != 2 && assignment.finished) {
-                // html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
-                html += "<img src='/files/icons/unfinished.jpg' width='50px' height='50px' onclick='markUnCompletion(\"" + assignment.id + "\")'/>";
-            }
-            if (assignment.type == 2 && !assignment.finished) {
-                // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
-                html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='markInfoAsRead(\"" + assignment.id + "\")'/>";
-            }
-        }else if ( app == "teacher"){
-            // html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
-            html += "<img src='/files/icons/delete.jpg' width='50px' height='50px' onclick='deleteAssignment(\"" + assignment.id + "\")'/>";
-        }
-        return html;
-    }
 }
+// Part I ends
+
+
+/*
+
+    Part II: Assignment UI
+    - It creates the assignment card UI in different conditions
+
+
+    Parameter app:
+        'student' - Student Stream View
+        'student in class' - Student Class View
+        'teacher' - Teacher Class View
+ */
 function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration, finished){
     function dealWithType(type, dueday){
         var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
@@ -188,6 +126,16 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             return html;
         }
     }
+
+    function typeColorBackground(type){
+        type = type - 1;
+        var color = new Array("#F44336", "#4CAF50", "#F57C00", "rgba(71,71,71,1)");
+        return color[type];
+    }
+    function typeColorBox(type){
+        return "rgba(255, 255,255,0.2);";
+    }
+
     this.app = app;
 
     this.id = id;
@@ -199,6 +147,83 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.subject = subject;
     this.duration = duration;
     this.finished = finished;
+
+
+    this.whetherExpandCSS = function() {
+        if (this.content.length > 200){
+            return "height: 3em; overflow: hidden; box-shadow: inset 0px -10px 5px #DDD";
+        }else{
+            return "";
+        }
+    };
+    this.whetherExpandHTML = function(){
+        if (this.content.length > 200){
+            return "           <div style='margin:0.5em' onclick='new ManipulateAssignment("+this.id+").contentExpanding()'><a href='#'>Click to display/hide.</a></div>";
+        }else{
+            return "           ";
+        }
+    };
+
+    this.diff = function(where){
+        var assignment = this;
+        if (where == "prefix-id"){
+            if (assignment.app == "teacher"){
+                return "assignment-list-" + assignment.id;
+            }else if (assignment.app == "student"){
+                return "assignment-list-" + assignment.id;
+            }else if (assignment.app == "student-in-class"){
+                return "assignment-list-class-" + assignment.id;
+            }
+        }else if (where == "prefix-content-id"){
+            if (assignment.app == "teacher"){
+                return "assignment-list-content-" + assignment.id;
+            }else if (assignment.app == "student"){
+                return "assignment-list-content-" + assignment.id;
+            }else if (assignment.app == "student-in-class"){
+                return "assignment-list-content-2-" + assignment.id;
+            }
+        }else if (where == "expand-content"){
+            if (assignment.app == "teacher"){
+                return this.whetherExpandHTML();
+            }else if (assignment.app == "student"){
+                return this.whetherExpandHTML();
+            }else if (assignment.app == "student-in-class"){
+                return this.whetherExpandHTML();
+            }
+        }else if (where == "additional-button"){
+            if (assignment.app == "teacher"){
+                var html = "";
+                html += "       <div>";
+                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment()'> Update Content </button>";
+                html += "       </div>";
+                return html;
+            }else if (assignment.app == "student"){
+                return "";
+            }else if (assignment.app == "student-in-class"){
+                return "";
+            }
+        }else if (where == "iconButton"){
+            var html = "";
+            if (assignment.app == "student") {
+                if (assignment.type != 2 && !assignment.finished) {
+                    // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markCompletion()' />";
+                    html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markCompletion()' />";
+                }
+                if (assignment.type != 2 && assignment.finished) {
+                    // html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markUnCompletion()'/>";
+                    html += "<img src='/files/icons/unfinished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markUnCompletion()'/>";
+                }
+                if (assignment.type == 2 && !assignment.finished) {
+                    // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markInfoAsRead()'/>";
+                    html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markInfoAsRead()'/>";
+                }
+            }else if ( assignment.app == "teacher"){
+                // html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").deleteAssignment()'/>";
+                html += "<img src='/files/icons/delete.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").deleteAssignment()'/>";
+            }
+            return html;
+        }
+    };
 
     this.getHTML = function() {
         var html = "";
@@ -215,7 +240,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         var daysLeft = calculateDaysLeft(this.dueday);
 
-        html += "<div id='" + diff("prefix-id", this.app, this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative; border-radius: 5px'>";
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative; border-radius: 5px'>";
         html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 4px; border-top-right-radius: 4px; background: " + typeColorBackground(this.type) + "'>";
         if ( this.type == 2 && daysLeft > 1000 ) {
             html += "       <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
@@ -247,17 +272,19 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         html += "   </div>";
         html += "   <div class='card2-content'>";
-        html += "       <div style='margin:0.5em 0; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+whetherExpandCSS(this.content)+"' id='" + diff("prefix-content-id", this.app, this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
-        html += diff("expand-content", this.app, this);
-        html += diff("additional-button", this.app, this);
+        html += "       <div style='margin:0.5em 0; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
+        html += this.diff("expand-content", this);
+        html += this.diff("additional-button", this);
         html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
         // html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
         html += "           <div style='display: table-cell; width: 50px; height: 50px'><img src='/files/icons/attachment.jpg' width='50px' height='50px' /></div>";
         html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + diff("iconButton", this.app, this) + "</a></div>";
+        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + this.diff("iconButton", this) + "</a></div>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";
         return html;
     }
 }
+// Part II ends
+

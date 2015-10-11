@@ -187,9 +187,10 @@ if (!function_exists('checkForceQuit')){
     /* Class Module */
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
     ?>
 
 
@@ -279,62 +280,14 @@ if (!function_exists('checkForceQuit')){
             localStorage.assignmentIDList = idList;
         });
     }
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-    ?>
-
-    function loadClass(func){
-        $.get("/modules/class/loadClass.php",function(data){
-            func();
-            data = JSON.parse(data);
-            for ( var i = 0; i < data.length; i++) {
-                var id = data[i].id;
-                if (id != "39") {
-                    var teacher = data[i].teacher;
-                    var name = data[i].name;
-                    var subject = convertSubject(data[i].subject);
-
-                    var oneClass = new ClassStudent(id, teacher, name, subject);
-                    $('#classList').append(oneClass.getHTML());
-                }
-            }
-        })
-    }
-    function loadAssignmentInClass(id, func){
-        $.get("/modules/assignment/classLoadAssignment.php",{class: id},function(data){
-            func();
-            data = JSON.parse(data);
-
-            var idList = "";
-            for (var i = 0; i < data.length; i++){
-                var row = data[i];
-                idList += ";" + row.id;
-                var assignment = new Assignment("student-in-class",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
-                $('#assignment-list-in-class').append(assignment.getHTML());
-            }
-            localStorage.assignmentIDList2 = idList;
-        });
-    }
-    function openViewClassPanel(id, name){
-        loadAssignmentInClass(id, function(){
-            $('#assignment-list-in-class').html("");
-        });
-        $('#right-part-class-id').html(id);
-        $('#right-part-title').html("View " + name);
-        $('#right-part').show();
-    }
-
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
-    ?>
 
     toggleModules('Stream'); $('#assignment-time-management-wrapper').removeClass("hide");
     loadAssignment(function(){
         $('#assignment-list').html("");
     });
-    loadClass(function(){
+    new Class('', '').loadClass(1, function(){
         $('#classList').html("");
-    })
+    });
 
     localStorage.assignmentIDList = "";
     localStorage.assignmentIDList2 = "";

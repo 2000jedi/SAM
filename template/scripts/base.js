@@ -1,6 +1,7 @@
 /*
 
-    Part I: AJAX Handling
+    Part I: AJAX Handling Loading
+    This part is used to display the loading sign to assuage user's anxiety
 
  */
 $(document).ajaxSend(function(event,xhr,option){
@@ -14,7 +15,21 @@ $(document).ajaxSend(function(event,xhr,option){
 $(document).ajaxComplete(function(){
     $('#loading').css('opacity', 0).css("width", 0).css("height", 0).css("padding",0).css("left", 0);
 });
+// Part I ends
 
+
+/*
+
+    Part II: Operation Libraries
+    This part is used to process basic operations
+
+    DateDiff.inDays(d1, d2) calculates the date difference between two days
+    Util.string
+        .url.RegexFormat(str) gives the link in text a <a></a>
+        .line.RegexFormat(str) gives ENTER in text a <br/>
+        .formattedPostContent(str) combines url and line regex format
+
+ */
 var DateDiff = {
     inDays: function(d1, d2) {
         var t2 = new Date(d2.setHours(0,0,0,0)).getTime();
@@ -52,14 +67,23 @@ var Utils = {
         }
     }
 };
+// Part II ends
 
-// Fix Safari
+
+/*
+
+    Part III: Fix Safari
+    It is a third party library
+
+    - From the original author:
+        This library re-implements setTimeout, setInterval, clearTimeout, clearInterval for iOS6.
+        iOS6 suffers from a bug that kills timers that are created while a page is scrolling.
+        This library fixes that problem by recreating timers after scrolling finishes (with interval correction).
+        This code is free to use by anyone (MIT, blabla).
+        Original Author: rkorving@wizcorp.jp
+
+  */
 (function (window) {
-    // This library re-implements setTimeout, setInterval, clearTimeout, clearInterval for iOS6.
-    // iOS6 suffers from a bug that kills timers that are created while a page is scrolling.
-    // This library fixes that problem by recreating timers after scrolling finishes (with interval correction).
-    // This code is free to use by anyone (MIT, blabla).
-    // Original Author: rkorving@wizcorp.jp
     var timeouts = {};
     var intervals = {};
     var orgSetTimeout = window.setTimeout;
@@ -187,5 +211,5 @@ function convertSubject(subject){
     returnVal = returnVal.substr(0, returnVal.length-1);
 
     return returnVal;
-
 }
+// Part III ends
