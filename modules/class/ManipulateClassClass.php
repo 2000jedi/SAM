@@ -219,7 +219,7 @@ class ManipulateClassClass {
 
         $sql = "SELECT * from class WHERE teacher='$user'";
         if ($_COOKIE['username'] == "t001" && isset($_GET['inAdmin'])){
-            $sql = "SELECT * from class";
+            $sql = "SELECT * from class ORDER BY id ASC";
         }
         if ($userType == "s"){
             $sql = "SELECT * from student WHERE id='$user'";
