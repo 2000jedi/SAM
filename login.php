@@ -9,7 +9,7 @@ require $_SERVER['DOCUMENT_ROOT']."/config.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/common/basic.php";
 
-$msg = "You have not signed in.";
+$msg = "You have not signed in.<br /><br /> If you are the first time user of SAM, your username is the username on TSIMS, and your password is your username. <br />Please change your password as soon as possible.";
 
 if ( isset($_COOKIE['username']) and isset($_COOKIE['password']) ) {
     if (checkValid($_COOKIE["username"], $_COOKIE["password"]) != false) {
