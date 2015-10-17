@@ -37,16 +37,7 @@ if (!function_exists('checkForceQuit')){
                 width: -webkit-calc(100% - 200px);
                 width: calc(100% - 200px);
             }
-            #right-part{
-                width: -moz-calc(100% - 200px);
-                width: -webkit-calc(100% - 200px);
-                width: calc(100% - 200px);
-            }
-            #actionBar{
-                width: -moz-calc(100% - 200px);
-                width: -webkit-calc(100% - 200px);
-                width: calc(100% - 200px);
-            }
+
             #assignment-time-management-caller{
                 position: fixed;
                 background-color: #FF3333;
@@ -157,15 +148,11 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="right-part" style="display:none">
     <div id="actionBar">
-        <div style="display: inline-block" onclick="$('#assignment-list-in-class').empty();localStorage.assignmentIDList2 = '';setTimeout(function(){$('#right-part').hide()},200)">
-            <div class="material-icon arrow" data-icon="arrow" style="width: 50px;height: 30px;">
-                <span class="first"></span>
-                <span class="second"></span>
-                <span class="third"></span>
-            </div>
-        </div>
         <div style="display: none;" id="right-part-class-id"></div>
-        <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff" id="right-part-title">Manage Class</div>
+        <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff; cursor: pointer" onclick="$('#assignment-list-in-class').empty();localStorage.assignmentIDList2 = '';setTimeout(function(){$('#right-part').hide()},200)">
+            <div style="font-size: 2em; display: table-cell; vertical-align: middle">&nbsp;&times;&nbsp;</div>
+            <div id="right-part-title" style="display: table-cell; vertical-align: middle"> Manage Class</div>
+        </div>
     </div>
     <div id="assignment-list-in-class" class="belowActionBar"></div>
 </div>

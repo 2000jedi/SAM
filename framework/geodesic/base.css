@@ -90,7 +90,7 @@ textarea, input{
 
 /* This part is added to the hamburger css so they have the same height and positioning. */
 #actionBar{
-    background: #1f8dd6;
+    background: #2196F3;
     padding: 0.5em 0 0 0;
     position: fixed;
     top:0px;
@@ -123,12 +123,12 @@ textarea, input{
 }
 .belowActionBar{
     position: absolute;
-    top: 55px;
+    top: 80px;
     left: 0;
     width: 100%;
-    height: -moz-calc(100% - 55px);
-    height: -webkit-calc(100% - 55px);
-    height: calc(100% - 55px);
+    height: -moz-calc(100% - 80px);
+    height: -webkit-calc(100% - 80px);
+    height: calc(100% - 80px);
     overflow-y: auto;
 }
 
@@ -206,14 +206,18 @@ textarea, input{
         position: fixed;
         top:0px;
         right: 0px;
-        width: 373px;
+        width: -moz-calc(100% - 200px);
+        width: -webkit-calc(100% - 200px);
+        width: calc(100% - 200px);
         overflow-y: auto;
         height: 100%;
         box-shadow: -10px 0px 10px #888;
         z-index: 1000;
     }
     #actionBar{
-        width: 373px;
+        width: -moz-calc(100% - 200px);
+        width: -webkit-calc(100% - 200px);
+        width: calc(100% - 200px);
     }
 
     .card, .card2{
@@ -230,9 +234,8 @@ textarea, input{
         width: 23em;
     }
     .card-limit{
-        width: 99%;
-        margin-top: 0;
-        margin-bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
     /* This type of card is only for those in limiting space. */
 }

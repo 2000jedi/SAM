@@ -73,15 +73,11 @@ if (!function_exists('checkForceQuit')){
 </div>
 <div id="right-part" style="display:none">
     <div id="actionBar">
-        <div style="display: inline-block" onclick="$('#right-part').hide()">
-            <div class="material-icon arrow" data-icon="arrow" style="width: 50px;height: 30px;">
-                <span class="first"></span>
-                <span class="second"></span>
-                <span class="third"></span>
-            </div>
-        </div>
         <div style="display: none;" id="right-part-class-id"></div>
-        <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff" id="right-part-title">Manage Class</div>
+        <div style="display: inline-table; vertical-align: middle;padding-bottom:15px;font-size: 1.5em;color: #ffffff; cursor: pointer" onclick="$('#right-part').hide()">
+            <div style="font-size: 2em; display: table-cell; vertical-align: middle">&nbsp;&times;&nbsp;</div>
+            <div id="right-part-title" style="display: table-cell; vertical-align: middle"> Manage Class</div>
+        </div>
     </div>
     <div class="belowActionBar">
         <div style="text-align: center">
