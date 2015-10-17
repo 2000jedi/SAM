@@ -350,5 +350,63 @@ class ManipulateUserClass {
     }
     // Part III ends
 
+    function studentInClass(){
+        global $conn;
+        $sql = "SELECT id,class FROM student";
+        $student = $conn->query($sql);
+        
+        $sql = "SELECT subject FROM teacher";
+        $subjects = $conn->query($sql);
+        $subjectsProcessed = array();
+        $subjectsCnt = 0;
+        while ($i = $subjects->fetch_assoc()){
+            if (!array_search($i['subject'],$subjectsProcessed)){
+                $subjectsProcessed[$subjectsCnt] = $i['subject'];
+                //echo $subjectsProcessed[$subjectsCnt];
+                //echo '<br>';
+                $subjectsCnt++;
+            }
+        }
+        //echo $subjectsCnt;
+        echo '<table border="1">';
+        echo '<tr><td>StudentID</td>';
+        for($i = 0; $i < $subjectsCnt; $i++){
+            echo "<td> $subjectsProcessed[$i] </td>";
+        }
+        echo '</tr>';
+        
+        while ($i = $student->fetch_assoc()){
+            echo '<tr>';
+            $studentId = $i['id'];
+            
+            $studentClass = explode(';',substr($i['class'],1));
+            $sql = "SELECT username FROM user where uid = '$studentId'";
+            $result = $conn->query($sql);
+            $studentName = $result->fetch_assoc()['username'];
+            echo "<td> $studentName </td>";
+            $studentSubjects = array();
+            foreach ($studentClass as $j){
+                $sql = "SELECT teacher FROM class where id = '$j'";
+                $result = $conn->query($sql);
+                $teacherId = $result->fetch_assoc()['teacher'];
+                $sql = "SELECT subject FROM teacher where id = '$teacherId'";
+                $result = $conn->query($sql);
+                array_push($studentSubjects,array_search($result->fetch_assoc()['subject'],$subjectsProcessed));
+            }
+            $k = 0;
+            for ($j = 0; $j < $subjectsCnt; $j++){
+
+                if (($k < count($studentSubjects)) && ($j == $studentSubjects[$k])){
+                    echo '<td>√</td>';
+                    $k++;
+                }
+                else{
+                    echo '<td></td>';
+                }
+            }
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
 
 }
