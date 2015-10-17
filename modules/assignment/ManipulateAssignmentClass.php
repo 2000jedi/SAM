@@ -66,7 +66,7 @@ class ManipulateAssignmentClass {
 
             $finished = false;
 
-            $sql2 = "SELECT * FROM personalassignment WHERE assignment = $id AND uid = $student";
+            $sql2 = "SELECT * FROM personalassignment WHERE assignment = '$id' AND uid = '$student' AND actual >= 0";
             $result2 = $conn->query($sql2);
             if ($result2->num_rows > 0) {
                 $finished = true;
@@ -131,6 +131,14 @@ class ManipulateAssignmentClass {
      * where $student is the uid of a student
      * (The function is NOT called by the client side, but do not delete!)
      *
+     * loadPersonalScore($student) loads the score of an assignment of the student,
+     * where $student is the uid of a student
+     *
+     * loadPersonalScores() lists all the personal scores of an assignment
+     *
+     * updatePersonalScore($student, $score) updates score of an assignment of a specific person
+     * where $student is the uid of a student, and $score is the numerical value of score (in 100)
+     *
      */
     function setAssignment($assignment){
         $this->assignment = $assignment;
@@ -161,6 +169,19 @@ class ManipulateAssignmentClass {
         }
     }
 
+    function personalAssignmentExist($student){
+        global $conn;
+
+        $sqlSearchExist = "SELECT * FROM personalassignment WHERE assignment = '$this->assignment' AND uid = '$student'";
+        $result = $conn->query($sqlSearchExist);
+
+        if ($result->num_rows > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function markCompletion($actual, $student){
         global $conn;
 
@@ -175,7 +196,15 @@ class ManipulateAssignmentClass {
             $actual = 0;
         }
 
-        $sql = "INSERT INTO personalassignment (assignment, uid, actual) VALUES ($this->assignment, $student, $actual)";
+        $exist = $this->personalAssignmentExist($student);
+
+        $sql = "";
+        if ($exist) {
+            $sql = "UPDATE personalassignment SET actual = '$actual' WHERE assignment = '$this->assignment' AND uid = '$student'";
+        }else{
+            $sql = "INSERT INTO personalassignment (assignment, uid, actual) VALUES ($this->assignment, $student, $actual)";
+        }
+
 
         if ($conn->query($sql) === TRUE) {
             echo "Thank you for cooperation!";
@@ -193,6 +222,70 @@ class ManipulateAssignmentClass {
             echo "Success!";
         } else {
             echo "Unexpected error.";
+        }
+    }
+
+    function loadPersonalScore($student){
+        global $conn;
+
+        $sql = "SELECT * FROM personalassignment WHERE assignment = '$this->assignment' AND uid = '$student'";
+
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $score = $row['score'];
+                return $score;
+            }
+            return "0";
+        }else{
+            return "0";
+        }
+    }
+
+    function loadPersonalScores(){
+        global $conn;
+
+        $sqlFindClass = "SELECT * FROM assignment WHERE id = '$this->assignment'";
+        $result = $conn->query($sqlFindClass);
+
+        $class = '0';
+        while($row = $result->fetch_assoc()) {
+            $class = $row['class'];
+        }
+
+        $maniClass = new ManipulateClassClass($class);
+        $members = $maniClass->loadClassMembers();
+
+        $scoreArr = array();
+
+        for ($i = 0; $i < sizeof($members); $i++){
+            $studentUserInfo = $members[$i];
+            $student = $studentUserInfo->uid;
+            $name = $studentUserInfo->username;
+
+            $score = $this->loadPersonalScore($student);
+            $scoreArr[$i*3] = $student;
+            $scoreArr[$i*3+1] = $name;
+            $scoreArr[$i*3+2] = $score;
+        }
+
+        return $scoreArr;
+    }
+
+    function updatePersonalScore($student, $score){
+        global $conn;
+
+        $exist = $this->personalAssignmentExist($student);
+
+        if ($exist) {
+            $sqlAddRecord = "UPDATE personalassignment SET score = '$score' WHERE assignment = '$this->assignment' AND uid = '$student'";
+        }else{
+            $sqlAddRecord = "INSERT INTO personalassignment (assignment, uid, actual, score) VALUES ('$this->assignment', '$student', -1, '$score')";
+        }
+        if ($conn->query($sqlAddRecord) === TRUE) {
+            return true;
+        } else {
+            return false;
         }
     }
     // Part II ends

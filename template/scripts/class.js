@@ -148,6 +148,7 @@ function Class(id, name){
 
                 $('#floatBox-update-card').hide();
                 $('#floatBox-add-card').hide();
+                $('#floatBox-update-scores').hide();
                 $('#floatBox-view-members').show();
                 $('#shadow').css("display","table");
             }else if (type == 1){
@@ -199,6 +200,7 @@ function Class(id, name){
     this.openAddCardBox = function(){
         $('#floatBox-update-card').hide();
         $('#floatBox-view-members').hide();
+        $('#floatBox-update-scores').hide();
         $('#floatBox-add-card').show();
         $('#floatBox-title').html("Add Assignment/Information: " + this.name);
         $('#add-card-class-id').val(this.id);
@@ -240,6 +242,7 @@ function Class(id, name){
     this.openUpdateCardBox = function(){
         $('#floatBox-add-card').hide();
         $('#floatBox-view-members').hide();
+        $('#floatBox-update-scores').hide();
         $('#floatBox-update-card').show();
         $('#floatBox-title').html("Update Assignment");
         $('#shadow').css("display","table");

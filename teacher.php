@@ -160,6 +160,14 @@ if (!function_exists('checkForceQuit')){
                             </form>
                         </div>
                     </div>
+                    <div id="floatBox-update-scores">
+                        <div id="floatBox-update-scores-assignment-id" style="display: none"></div>
+                        <div id="floatBox-update-scores-assignment-num" style="display: none"></div>
+                        <div id="floatBox-update-scores-dynamic-inputs"></div>
+                        <div>
+                            <div class="pure-button pure-button-primary" onclick="new ManipulateAssignment($('#floatBox-update-scores-assignment-id').html()).updateScores( parseInt($('#floatBox-update-scores-assignment-num').html()))"> Update </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -21,8 +21,9 @@ function ManipulateAssignment(id){
     this.deleteAssignment = function(){
         var conf = confirm("DO YOU REALLY want to delete the assignment?");
         if (conf == true) {
-            $.get("/modules/assignment/deleteAssignment.php",{assignment: this.id},function(data){
-                $('#assignment-list-'+this.id).remove();
+            var HWID = this.id;
+            $.get("/modules/assignment/deleteAssignment.php",{assignment: HWID},function(data){
+                $('#assignment-list-'+HWID).remove();
             });
         }
     };
@@ -80,6 +81,61 @@ function ManipulateAssignment(id){
             loadAssignment(function(){
                 $('#assignment-list').html("");
             });
+        });
+    };
+
+    this.updateScoresPopUp = function(){
+        $('#floatBox-update-scores-dynamic-inputs').html("");
+        var assignmentID = this.id;
+        $.get("/modules/assignment/loadPersonalScores.php",{assignment: assignmentID}, function(data){
+            data = JSON.parse(data);
+
+            var num = data.length/3;
+            $('#floatBox-update-scores-assignment-id').html(assignmentID);
+            $('#floatBox-update-scores-assignment-num').html(num);
+
+            var html = "<div>";
+            html += "   <span style='width: 80px; display: inline-block'>IDs</span>";
+            html += "   <span style='width: 80px; margin-left: 1em'>Scores (0-100)</span>";
+            html += "</div>"
+            for (var i = 0; i < (data.length/3); i++){
+                var uid = data[i*3];
+                var username = data[i*3+1];
+                var score = data[i*3+2];
+
+                html += "<div>";
+                html += "   <span id='floatBox-update-scores-dynamic-inputs-uid-"+i+"' style='display:none'>" + uid + "</span>";
+                html += "   <span id='floatBox-update-scores-dynamic-inputs-username-"+i+"' style='width:80px'>" + username + "</span>";
+                html += "   <input id='floatBox-update-scores-dynamic-inputs-score-"+i+"' type='number' style='width:80px; display:inline; margin-left: 1em' value='" + score + "' />";
+                html += "</div>"
+            }
+
+            $('#floatBox-update-scores-dynamic-inputs').append(html);
+
+            $('#floatBox-update-card').hide();
+            $('#floatBox-view-members').hide();
+            $('#floatBox-add-card').hide();
+            $('#floatBox-update-scores').show();
+            $('#floatBox-title').html("Update Score");
+            $('#add-card-class-id').val(this.id);
+            $('#add-card-class-id-2').val(this.id);
+            $('#shadow').css("display","table");
+        });
+    };
+
+    this.updateScores = function(num){
+
+        var uidParameter = "", scoreParameter = "";
+        for (var i = 0; i < num; i++){
+            var uid = ";" + $('#floatBox-update-scores-dynamic-inputs-uid-' + i).html();
+            var score = ";" + $('#floatBox-update-scores-dynamic-inputs-score-' + i).val();
+            uidParameter += uid;
+            scoreParameter += score;
+        }
+
+        $.post("/modules/assignment/updatePersonalScore.php",{assignment: this.id, students: uidParameter, scores: scoreParameter}, function(data){
+            alert("Success!");
+            $('#shadow').hide();
         });
     }
 
@@ -195,6 +251,9 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 var html = "";
                 html += "       <div>";
                 html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment()'> Update Content </button>";
+                if (assignment.type != 2){
+                    html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()'> Update Scores </button>";
+                }
                 html += "       </div>";
                 return html;
             }else if (assignment.app == "student"){
