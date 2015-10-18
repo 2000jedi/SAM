@@ -96,16 +96,23 @@ function ManipulateAssignment(id){
 
             var html = "<div>";
             html += "   <span style='width: 80px; display: inline-block'>IDs</span>";
+            html += "   <span style='width: 80px; display: inline-block'>Names(C)</span>";
+            html += "   <span style='width: 80px; display: inline-block'>Names(E)</span>";            
             html += "   <span style='width: 80px; margin-left: 1em'>Scores (0-100)</span>";
             html += "</div>"
             for (var i = 0; i < (data.length/3); i++){
                 var uid = data[i*3];
                 var username = data[i*3+1];
                 var score = data[i*3+2];
+                var ChineseName = data[i*3+1];
+                var EnglishName = data[i*3+1];
+                //[2015/10/18]Pelin to Sam: Please set the correct data for "Chinese Name" and "English Name", I am just using the student ID as spaceholders.
 
                 html += "<div>";
                 html += "   <span id='floatBox-update-scores-dynamic-inputs-uid-"+i+"' style='display:none'>" + uid + "</span>";
                 html += "   <span id='floatBox-update-scores-dynamic-inputs-username-"+i+"' style='width:80px'>" + username + "</span>";
+                html += "   <span id='floatBox-update-scores-dynamic-inputs-username-"+i+"' style='width:80px'>" + ChineseName + "</span>";
+                html += "   <span id='floatBox-update-scores-dynamic-inputs-username-"+i+"' style='width:80px'>" + EnglishName + "</span>";
                 html += "   <input id='floatBox-update-scores-dynamic-inputs-score-"+i+"' type='number' style='width:80px; display:inline; margin-left: 1em' value='" + score + "' />";
                 html += "</div>"
             }
