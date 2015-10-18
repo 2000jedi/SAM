@@ -244,6 +244,13 @@ class ManipulateUserClass {
      *
      * listUserWithDefaultPassword() lists the user info of those who have default password
      *
+     * studentInClass() echos a table like follows
+     * Student subjectA subjectB subjectC
+     * AAA     Tick              Tick
+     * BBB     Tick     Tick     Tick
+     * CCC     Tick     Tick
+     * Then admin can decide which subject teacher should join SAM the next to maximize our working efficiency
+     *
      */
     function listUserInfo(){
         global $conn;
@@ -348,65 +355,101 @@ class ManipulateUserClass {
             }
         }
     }
-    // Part III ends
 
     function studentInClass(){
         global $conn;
-        $sql = "SELECT id,class FROM student";
+
+        $sql = "SELECT * FROM student";
         $student = $conn->query($sql);
-        
-        $sql = "SELECT subject FROM teacher";
+        // $student contains the query result of enumeration of students with their classes.
+
+        $sql = "SELECT * FROM teacher";
         $subjects = $conn->query($sql);
+        // $teacher contains the query result of enumeration of teachers with their subjects.
+
         $subjectsProcessed = array();
         $subjectsCnt = 0;
         while ($i = $subjects->fetch_assoc()){
             if (!array_search($i['subject'],$subjectsProcessed)){
                 $subjectsProcessed[$subjectsCnt] = $i['subject'];
-                //echo $subjectsProcessed[$subjectsCnt];
-                //echo '<br>';
                 $subjectsCnt++;
             }
         }
-        //echo $subjectsCnt;
-        echo '<table border="1">';
-        echo '<tr><td>StudentID</td>';
+        // This part puts all the subjects into $subjectsProcessed.
+
+        $tableHTML = "";
+
+        $tableHTML = $tableHTML."<div style='display: table'><div style='display: table-cell; width: 80px; border: 1px solid #CCC; padding: 0.5em'>username</div>";
+
+
+        // echo '<table border="1">';
+        // echo '<tr><td>StudentID</td>';
         for($i = 0; $i < $subjectsCnt; $i++){
-            echo "<td> $subjectsProcessed[$i] </td>";
+            $tableHTML = $tableHTML."<div style='display: table-cell; width: 80px; border: 1px solid #CCC; padding: 0.5em'>$subjectsProcessed[$i]</div>";
+            // echo "<td> $subjectsProcessed[$i] </td>";
+            // echo the subjects in $subjectsProcessed
         }
-        echo '</tr>';
-        
+        // echo '</tr>';
+
+        $tableHTML = $tableHTML."</div>";
+
+
         while ($i = $student->fetch_assoc()){
-            echo '<tr>';
+
+            // echo '<tr>';
+
             $studentId = $i['id'];
-            
-            $studentClass = explode(';',substr($i['class'],1));
-            $sql = "SELECT username FROM user where uid = '$studentId'";
+
+            $sql = "SELECT * FROM user where uid = '$studentId'";
             $result = $conn->query($sql);
             $studentName = $result->fetch_assoc()['username'];
-            echo "<td> $studentName </td>";
+            // Find the username of each user by uid
+
+            // echo "<td> $studentName </td>";
+
+            $tableHTML = $tableHTML."<div style='display: table'><div style='display: table-cell; width: 80px; border: 1px solid #CCC; padding: 0.5em'>$studentName</div>";
+
             $studentSubjects = array();
+            // set up $studentSubjects as an empty array for later addition of elements
+
+
+            $studentClass = explode(';',substr($i['class'],1));
+
             foreach ($studentClass as $j){
                 $sql = "SELECT teacher FROM class where id = '$j'";
                 $result = $conn->query($sql);
                 $teacherId = $result->fetch_assoc()['teacher'];
                 $sql = "SELECT subject FROM teacher where id = '$teacherId'";
                 $result = $conn->query($sql);
-                array_push($studentSubjects,array_search($result->fetch_assoc()['subject'],$subjectsProcessed));
+                $subjectName = $result->fetch_assoc()['subject'];
+                array_push($studentSubjects, array_search($subjectName, $subjectsProcessed));
             }
+            // $studentSubjects contains all the subject the student has
+
             $k = 0;
             for ($j = 0; $j < $subjectsCnt; $j++){
 
                 if (($k < count($studentSubjects)) && ($j == $studentSubjects[$k])){
-                    echo '<td>√</td>';
+                    $tableHTML = $tableHTML."<div style='display: table-cell; width: 80px; border: 1px solid #CCC; padding: 0.5em'>√</div>";
+                    // echo '<td>√</td>';
                     $k++;
                 }
                 else{
-                    echo '<td></td>';
+                    $tableHTML = $tableHTML."<div style='display: table-cell; width: 80px; border: 1px solid #CCC; padding: 0.5em'></div>";
+                    // echo '<td></td>';
                 }
+                // If an element in $studentSubjects is the same as that in $subjectProcessed, tick; otherwise, do nothing.
             }
-            echo '</tr>';
+            // echo '</tr>';
+
+            $tableHTML = $tableHTML."</div>";
         }
-        echo '</table>';
+        //echo '</table>';
+        echo $tableHTML;
     }
+
+
+
+    // Part III ends
 
 }

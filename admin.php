@@ -71,6 +71,9 @@ if ($admin != "t001"){
         <div class="card">
             <a href="/modules/user/listUserWithDefaultPassword.php" target="_blank">List User With Default Password</a>
         </div>
+        <div class="card">
+            <a href="/modules/user/studentInClass.php" target="_blank">Student In Class</a>
+        </div>
     </div>
     <div id="mCreateUsers">
         <div class="card">
