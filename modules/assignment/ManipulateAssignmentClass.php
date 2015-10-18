@@ -261,12 +261,16 @@ class ManipulateAssignmentClass {
         for ($i = 0; $i < sizeof($members); $i++){
             $studentUserInfo = $members[$i];
             $student = $studentUserInfo->uid;
-            $name = $studentUserInfo->username;
+            $username = $studentUserInfo->username;
+            $chineseName = $studentUserInfo->ChineseName;
+            $englishName = $studentUserInfo->EnglishName;
 
             $score = $this->loadPersonalScore($student);
-            $scoreArr[$i*3] = $student;
-            $scoreArr[$i*3+1] = $name;
-            $scoreArr[$i*3+2] = $score;
+            $scoreArr[$i*5] = $student;
+            $scoreArr[$i*5+1] = $username;
+            $scoreArr[$i*5+2] = $chineseName;
+            $scoreArr[$i*5+3] = $englishName;
+            $scoreArr[$i*5+4] = $score;
         }
 
         return $scoreArr;
