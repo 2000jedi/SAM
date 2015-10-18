@@ -92,7 +92,7 @@ if (!function_exists('checkForceQuit')){
             <div id="floatBox">
                 <div id="floatBox-close" onclick="$('#shadow').hide()">Close</div>
                 <div class="settings_title_bar" style="padding: 0;">
-                    <div id="floatBox-title" style="margin: 0.5em"></div>
+                    <div id="floatBox-title" style="margin: 0.3em"></div>
                 </div>
                 <div id="floatBox-content">
                     <div id="floatBox-update-card">
