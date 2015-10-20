@@ -296,7 +296,7 @@ function Class(id, name){
                 if (data == "Success") {
                     $('#new-class-name').val("");
                     $('#shadow').hide();
-                    loadClass(function () {
+                    new Class('').loadClass(2, function () {
                         $('#classList').html("");
                     });
                 }

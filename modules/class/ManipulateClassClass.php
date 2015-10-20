@@ -46,8 +46,9 @@ class ManipulateClassClass {
                 $userInfo = new UserInfo();
                 $userInfo->constructByDBRow($row1);
                 $studentArr[$counter] = $userInfo;
+
+                $counter++;
             }
-            $counter++;
         }
 
         return $studentArr;
@@ -218,7 +219,7 @@ class ManipulateClassClass {
         $userType = substr($_COOKIE['username'], 0, 1);
 
         $sql = "SELECT * from class WHERE teacher='$user'";
-        if ($_COOKIE['username'] == "t001" && isset($_GET['inAdmin'])){
+        if ($_COOKIE['username'] == "t001"){
             $sql = "SELECT * from class ORDER BY id ASC";
         }
         if ($userType == "s"){
