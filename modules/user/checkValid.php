@@ -8,7 +8,7 @@
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/database/connect.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/User.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/security/Security.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/statistics/OperationLog.php";
 
 function checkValid($_username, $_password){
     $password = openssl_digest($_password, 'sha512');
@@ -19,8 +19,12 @@ function checkValid($_username, $_password){
     if ($result->num_rows > 0) {
         while($row = mysqli_fetch_assoc($result)) {
             $user = new User($row["uid"]);
-            $s = new Security($user->uid);
-            $s->updateIP(get_client_ip());
+
+            $oL = new OperationLog();
+            $oL->constructByInfo('', $user->uid, get_client_ip(), '', $_SERVER['REQUEST_URI']);
+            $oL->writeIntoDB();
+            // $s = new Security($user->uid);
+            // $s->updateIP(get_client_ip());
             return $user;
         }
     } else {

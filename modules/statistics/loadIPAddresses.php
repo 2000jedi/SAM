@@ -8,6 +8,8 @@ $admin = $result->username;
 if ($admin != "t001"){
     die("Permission Denied!");
 }else {
+
+    /*
     $sql = "SELECT * FROM user";
     $result = $conn->query($sql);
 
@@ -24,6 +26,7 @@ if ($admin != "t001"){
             echo $html;
         }
     }
+    */
 }
 
 ?>

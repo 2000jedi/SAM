@@ -37,14 +37,12 @@ if ($admin != "t001"){
 <script>
     function toggleModules(id) {
         $('#right-part').hide();
-        $('#mListUsers').hide();
-        $('#left-tab-ListUsers').css("background", "#2196F3").css("color", "white");
+        $('#mStatistics').hide();
+        $('#left-tab-Statistics').css("background", "#2196F3").css("color", "white");
         $('#mCreateUsers').hide();
         $('#left-tab-CreateUsers').css("background", "#2196F3").css("color", "white");
         $('#mClasses').hide();
         $('#left-tab-Classes').css("background", "#2196F3").css("color", "white");
-        $('#mIP').hide();
-        $('#left-tab-IP').css("background", "#2196F3").css("color", "white");
         $('#m' + id).show();
         $('#left-tab-' + id).css("background", "white").css("color", "#2196F3");
     }
@@ -53,18 +51,16 @@ if ($admin != "t001"){
     <a id="appName" href="#"><?= $appName ?></a>
     <a id="userName" href="#">t001</a>
     <ul id="header-tabs-outer">
-        <li class="header-tab"><a href="#" id="left-tab-ListUsers" class="header-tab-a" onclick="toggleModules('ListUsers')">List Users</a>
+        <li class="header-tab"><a href="#" id="left-tab-Statistics" class="header-tab-a" onclick="toggleModules('Statistics')">Statistics</a>
         </li>
         <li class="header-tab"><a href="#" id="left-tab-CreateUsers" class="header-tab-a" onclick="toggleModules('CreateUsers')">Create Users</a>
         </li>
         <li class="header-tab"><a href="#" id="left-tab-Classes" class="header-tab-a" onclick="toggleModules('Classes')">Classes</a>
         </li>
-        <li class="header-tab"><a href="#" id="left-tab-IP" class="header-tab-a" onclick="toggleModules('IP')">IP</a>
-        </li>
     </ul>
 </div>
 <div id="body-part">
-    <div id="mListUsers">
+    <div id="mStatistics">
         <div class="card">
             <a href="/modules/user/listUserInfo.php" target="_blank">List User Info</a>
         </div>
@@ -74,6 +70,11 @@ if ($admin != "t001"){
         <div class="card">
             <a href="/modules/user/studentInClass.php" target="_blank">Student In Class</a>
         </div>
+        <!--
+        <div class="card">
+            <a href="/modules/statistics/loadIPAddresses.php" target="_blank">IP Address List</a>
+        </div>
+        -->
     </div>
     <div id="mCreateUsers">
         <div class="card">
@@ -110,12 +111,8 @@ if ($admin != "t001"){
         </div>
     </div>
     <div id="mClasses">
-
     </div>
     <div id="mIP">
-        <div class="card">
-            <a href="/modules/security/loadIPAddresses.php" target="_blank">IP Address List</a>
-        </div>
     </div>
 </div>
 </body>
@@ -128,7 +125,7 @@ if ($admin != "t001"){
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
     ?>
-    toggleModules("ListUsers");
+    toggleModules("Statistics");
 
     function loadClass(func){
         $.get("/modules/class/loadClass.php?inAdmin=true",function(data){
