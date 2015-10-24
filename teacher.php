@@ -61,6 +61,7 @@ if (!function_exists('checkForceQuit')){
         $('#m'+id).show();
         $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
         $('#title').html(id);
+        $('.demo-drawer').removeClass("is-visible")
     }
 
 
@@ -95,6 +96,7 @@ if (!function_exists('checkForceQuit')){
         <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
+            <div class="card" style="text-align:center" onclick="new Class('', '').addClass()">Add Class</div>
         </div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
@@ -142,9 +144,6 @@ if (!function_exists('checkForceQuit')){
                             <div id="floatBox-view-members-list"></div>
                         </div>
                         <div id="floatBox-add-card">
-
-
-
                             <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                                 <div class="mdl-tabs__tab-bar">
                                     <a href="#add-panel-1" class="mdl-tabs__tab is-active"><span class='material-icons'>assignment</span> Assignment</a>
@@ -206,30 +205,6 @@ if (!function_exists('checkForceQuit')){
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-                            <div style="text-align: center;display: table; width: 100%;margin-bottom: 1.5em">
-                                <div id="switch-between-tab" style="display: table-cell; border-bottom: 4px solid rgb(19, 47, 158)" class="pure-button pure-button-primary" onclick="new Class('', '').switchBetweenAddCardTab('')">Assignment</div>
-                                <div id="switch-between-tab_2" style="display: table-cell; border-bottom: 4px solid #0078e7" class="pure-button pure-button-primary" onclick="new Class('', '').switchBetweenAddCardTab('_2')">Information</div>
-                            </div>
-                            -->
-                            <div>
-
-
                             </div>
                         </div>
                         <div id="floatBox-update-scores">

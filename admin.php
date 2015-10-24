@@ -48,6 +48,7 @@ if ($admin != "t001"){
         $('#m' + id).css("display", "");
         $('#left-tab-' + id).css("background","#00BCD4").css("color","#37474F");
         $('#title').html(id);
+        $('.demo-drawer').removeClass("is-visible")
     }
 </script>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">

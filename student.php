@@ -62,6 +62,7 @@ if (!function_exists('checkForceQuit')){
         $('#m'+id).show();
         $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
         $('#title').html(id);
+        $('.demo-drawer').removeClass("is-visible")
     }
 </script>
 <body>
