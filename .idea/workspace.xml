@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c083adbc-b77c-4c51-82c6-4f96c56e3b64" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/assignment/ManipulateAssignmentClass.php" afterPath="$PROJECT_DIR$/modules/assignment/ManipulateAssignmentClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/assignment.js" afterPath="$PROJECT_DIR$/template/scripts/assignment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/geodesic/base.css" afterPath="$PROJECT_DIR$/framework/geodesic/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/base.js" afterPath="$PROJECT_DIR$/template/scripts/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/class.js" afterPath="$PROJECT_DIR$/template/scripts/class.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/pages/settings.html" afterPath="$PROJECT_DIR$/template/pages/settings.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/settings.js" afterPath="$PROJECT_DIR$/template/scripts/settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student.php" afterPath="$PROJECT_DIR$/student.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teacher.php" afterPath="$PROJECT_DIR$/teacher.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/waterfall.js" afterPath="$PROJECT_DIR$/template/scripts/waterfall.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="htdocs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +27,18 @@
     <favorites_list name="htdocs" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="waterfall.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/template/scripts/waterfall.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48154092" vertical-offset="0" max-vertical-offset="623">
+              <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,7 +88,6 @@
         <option value="$PROJECT_DIR$/template/scripts/settings.js" />
         <option value="$PROJECT_DIR$/template/pages/settings.html" />
         <option value="$PROJECT_DIR$/student2.php" />
-        <option value="$PROJECT_DIR$/template/scripts/waterfall.js" />
         <option value="$PROJECT_DIR$/student.php" />
         <option value="$PROJECT_DIR$/teacher2.php" />
         <option value="$PROJECT_DIR$/index.php" />
@@ -99,6 +96,7 @@
         <option value="$PROJECT_DIR$/template/scripts/assignment.js" />
         <option value="$PROJECT_DIR$/framework/geodesic/base.css" />
         <option value="$PROJECT_DIR$/teacher.php" />
+        <option value="$PROJECT_DIR$/template/scripts/waterfall.js" />
       </list>
     </option>
   </component>
@@ -605,16 +603,16 @@
       <workItem from="1445139105304" duration="2135000" />
       <workItem from="1445169083992" duration="4704000" />
       <workItem from="1445345200965" duration="661000" />
-      <workItem from="1445604690010" duration="37549000" />
+      <workItem from="1445604690010" duration="37771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282971000" />
+    <option name="totallyTimeSpent" value="283193000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="23" width="1361" height="741" extended-state="7" />
-    <editor active="false" />
+    <frame x="-3" y="23" width="1361" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -636,7 +634,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24943139" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24943139" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1179,14 +1177,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/scripts/waterfall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38523275" vertical-offset="0" max-vertical-offset="623">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/geodesic/base.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9496644" vertical-offset="9829" max-vertical-offset="10485">
@@ -1199,6 +1189,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8555377" vertical-offset="2872" max-vertical-offset="3495">
           <caret line="227" column="0" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/scripts/waterfall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48154092" vertical-offset="0" max-vertical-offset="623">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>

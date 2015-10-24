@@ -5,15 +5,17 @@ function Waterfall(id){
     });
 
     var width = container.width(), columnNum = 0;
-    if (width < 500){
-        columnNum = 0.5;
-    }else if ( width < 800){
+    if ( width < 800){
         columnNum = 1;
     }else{
         columnNum = 2;
     }
 
     height = height/columnNum;
-    container.height(height);
+    if (width < 500){
+        container.css("height", "auto");
+    }else{
+        container.height(height);
+    }
 
 }
