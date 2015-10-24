@@ -25,9 +25,11 @@ if ($admin != "t001"){
     <link rel="shortcut icon" href="/favicon.ico"/>
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/material.js"></script>
     <style>
         <?php
-            require $_SERVER['DOCUMENT_ROOT']."/framework/pure/pure-min.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/material/material.min.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/material/material-dashboard-styles.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
@@ -38,91 +40,95 @@ if ($admin != "t001"){
     function toggleModules(id) {
         $('#right-part').hide();
         $('#mStatistics').hide();
-        $('#left-tab-Statistics').css("background", "#2196F3").css("color", "white");
+        $('#left-tab-Statistics').css("background","").css("color","#eceff1");
         $('#mCreateUsers').hide();
-        $('#left-tab-CreateUsers').css("background", "#2196F3").css("color", "white");
+        $('#left-tab-CreateUsers').css("background","").css("color","#eceff1");
         $('#mClasses').hide();
-        $('#left-tab-Classes').css("background", "#2196F3").css("color", "white");
-        $('#m' + id).show();
-        $('#left-tab-' + id).css("background", "white").css("color", "#2196F3");
+        $('#left-tab-Classes').css("background","").css("color","#eceff1");
+        $('#m' + id).css("display", "");
+        $('#left-tab-' + id).css("background","#00BCD4").css("color","#37474F");
+        $('#title').html(id);
     }
 </script>
-<div id="header-part">
-    <a id="appName" href="#"><?= $appName ?></a>
-    <a id="userName" href="#">t001</a>
-    <ul id="header-tabs-outer">
-        <li class="header-tab"><a href="#" id="left-tab-Statistics" class="header-tab-a" onclick="toggleModules('Statistics')">Statistics</a>
-        </li>
-        <li class="header-tab"><a href="#" id="left-tab-CreateUsers" class="header-tab-a" onclick="toggleModules('CreateUsers')">Create Users</a>
-        </li>
-        <li class="header-tab"><a href="#" id="left-tab-Classes" class="header-tab-a" onclick="toggleModules('Classes')">Classes</a>
-        </li>
-    </ul>
-</div>
-<div id="body-part">
-    <div id="mStatistics">
-        <div class="card">
-            <a href="/modules/user/listUserInfo.php" target="_blank">List User Info</a>
+<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+    <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+            <span id="title" class="mdl-layout-title">Home</span>
         </div>
-        <div class="card">
-            <a href="/modules/user/listUserWithDefaultPassword.php" target="_blank">List User With Default Password</a>
-        </div>
-        <div class="card">
-            <a href="/modules/user/studentInClass.php" target="_blank">Student In Class</a>
-        </div>
-        <!--
-        <div class="card">
-            <a href="/modules/statistics/loadIPAddresses.php" target="_blank">IP Address List</a>
-        </div>
-        -->
+    </header>
+    <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+        <header class="demo-drawer-header">
+            <img src="/framework/material-images/user.png" class="demo-avatar">
+            <div class="demo-avatar-dropdown">
+                <span style="display: block; margin-top: 0.5em">t001</span>
+            </div>
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+            <a id="left-tab-Statistics" onclick="toggleModules('Statistics')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Statistics</a>
+            <a id="left-tab-CreateUsers" onclick="toggleModules('CreateUsers')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Create Users</a>
+            <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Classes</a>
+        </nav>
     </div>
-    <div id="mCreateUsers">
-        <div class="card">
-            <div style="text-align: center">Create A User</div>
-            <form action='/modules/user/create.php' method="post" style="margin: 0.5em">
-                <div>
-                    <label>username</label>
-                    <input name="username" />
-                </div>
-                <div>
-                    <label>type</label>
-                    <input name="type" />
-                </div>
-                <div>
-                    <label>subject</label>
-                    <input name="subject" />
-                </div>
-                <div style="text-align: center; margin: 1em">
-                    <input type="submit" class="pure-button pure-button-primary" />
-                </div>
-            </form>
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
+        <div id="mStatistics">
+            <div class="card">
+                <a href="/modules/user/listUserInfo.php" target="_blank">List User Info</a>
+            </div>
+            <div class="card">
+                <a href="/modules/user/listUserWithDefaultPassword.php" target="_blank">List User With Default Password</a>
+            </div>
+            <div class="card">
+                <a href="/modules/user/studentInClass.php" target="_blank">Student In Class</a>
+            </div>
+            <!--
+            <div class="card">
+                <a href="/modules/statistics/loadIPAddresses.php" target="_blank">IP Address List</a>
+            </div>
+            -->
         </div>
-        <div class="card">
-            <div style="text-align: center">Mass-produce Users</div>
-            <form action='/modules/user/massiveCreateUser.php' method="post" style="margin: 0.5em">
-                <div>
-                    <label>classprefix</label>
-                    <input name="classprefix" />
-                </div>
-                <div style="text-align: center; margin: 1em">
-                    <input type="submit" class="pure-button pure-button-primary" />
-                </div>
-            </form>
+        <div id="mCreateUsers">
+            <div class="card">
+                <div style="text-align: center">Create A User</div>
+                <form action='/modules/user/create.php' method="post" style="margin: 0.5em">
+                    <div>
+                        <label>username</label>
+                        <input name="username" />
+                    </div>
+                    <div>
+                        <label>type</label>
+                        <input name="type" />
+                    </div>
+                    <div>
+                        <label>subject</label>
+                        <input name="subject" />
+                    </div>
+                    <div style="text-align: center; margin: 1em">
+                        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <div style="text-align: center">Mass-produce Users</div>
+                <form action='/modules/user/massiveCreateUser.php' method="post" style="margin: 0.5em">
+                    <div>
+                        <label>classprefix</label>
+                        <input name="classprefix" />
+                    </div>
+                    <div style="text-align: center; margin: 1em">
+                        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div id="mClasses">
-    </div>
-    <div id="mIP">
-    </div>
+        <div id="mClasses" class="mdl-grid demo-content"></div>
+    </main>
 </div>
 </body>
 <script>
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-    ?>
-
-    <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
     ?>
     toggleModules("Statistics");

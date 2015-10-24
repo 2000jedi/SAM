@@ -20,11 +20,13 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/common/basic.php";
 
 if ( isset($_COOKIE['username']) and isset($_COOKIE['password']) ) {
-    if (checkValid($_COOKIE["username"], $_COOKIE["password"]) == false) {
+    $check = checkValid($_COOKIE["username"], $_COOKIE["password"]);
+    if ( $check == false) {
         Redirect("/login.php");
     }else{
         $username = $_COOKIE['username'];
         $userType = substr($username, 0, 1);
+
         if ($userType == "s"){
             require "student.php";
         }elseif ($userType == "t") {

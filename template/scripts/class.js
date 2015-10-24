@@ -15,14 +15,17 @@ function ClassAdmin(id, teacher, name, subject){
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='class-list-"+ this.id +"' class='card2'>";
-        html += "   <div class='card2-title' style='background: #4CAF50'>"+this.subject+" (ID = " + this.id + ")</div>";
-        html += "   <div class='card2-content'>";
-        html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
-        html += "       <div style='line-height: 40px'>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(1)'>Students</button>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(2)'>Edit</button>";
-        html += "       </div>";
+        html += "<div id='class-list-"+ this.id +"' class='demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
+        html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__actions mdl-card--border'>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(1)'>Students</a>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(2)'>Edit</a>";
         html += "   </div>";
         html += "</div>";
         return html;
@@ -37,15 +40,18 @@ function ClassTeacher(id, teacher, name, subject){
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='class-list-"+ this.id +"' class='card2'>";
-        html += "   <div class='card2-title' style='background: #4CAF50'>"+this.subject+" (ID = " + this.id + ")</div>";
-        html += "   <div class='card2-content'>";
-        html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
-        html += "       <div style='line-height: 40px'>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openManageClassPanel()'>Manage</button>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openAddCardBox()'>New</button>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block; padding: .5em .9em' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(0)'>Students</button>";
-        html += "       </div>";
+        html += "<div id='class-list-"+ this.id +"' class='demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
+        html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__actions mdl-card--border'>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openManageClassPanel()'>Manage</a>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openAddCardBox()'>New</a>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(0)'>Students</a>";
         html += "   </div>";
         html += "</div>";
         return html;
@@ -60,13 +66,16 @@ function ClassStudent(id, teacher, name, subject){
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='class-list-"+ this.id +"' class='card2'>";
-        html += "   <div class='card2-title' style='background: #4CAF50'>"+this.subject+" (ID = " + this.id + ")</div>";
-        html += "   <div class='card2-content'>";
-        html += "       <div style='margin-bottom: 0.5em'>" + this.name + "</div>";
-        html += "       <div>";
-        html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</button>";
-        html += "       </div>";
+        html += "<div id='class-list-"+ this.id +"' class='demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
+        html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "   </div>";
+        html += "   <div class='mdl-card__actions mdl-card--border'>";
+        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
         html += "   </div>";
         html += "</div>";
         return html;
@@ -108,12 +117,6 @@ function ClassStudent(id, teacher, name, subject){
     func is the function used for further processing after loading
 
     .openUpdateCardBox() opens the update content of assignment box
-
-    .switchBetweenAddCardTab(id) switches between 'Assignment' and 'Information'
-    id == ''
-        - assignment
-    id == '_2'
-        - information
 
     .loadClass(type, func) loads assignments for a student/teacher
     type == 1
@@ -246,15 +249,6 @@ function Class(id, name){
         $('#floatBox-update-card').show();
         $('#floatBox-title').html("Update Assignment");
         $('#shadow').css("display","table");
-    };
-
-    this.switchBetweenAddCardTab = function(id){
-        $('#submit_form_node').hide();
-        $('#submit_form_node_2').hide();
-        $('#submit_form_node'+id).show()
-        $('#switch-between-tab'+id).css("border-bottom", "4px solid rgb(19, 47, 158)");
-        id = id == "" ? "_2" : "";
-        $('#switch-between-tab'+id).css("border-bottom", "4px solid #0078e7");;
     };
 
     this.loadClass = function(type, func){

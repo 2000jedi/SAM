@@ -53,7 +53,7 @@ class ManipulateAssignmentClass {
             $sqlForClass = "1 = 0";
         }
 
-        $sql = "SELECT * from assignment WHERE dueday > curdate() AND ( $sqlForClass OR class = '39' )  ORDER BY type ASC, dueday ASC";
+        $sql = "SELECT * from assignment WHERE dueday > curdate() AND ( $sqlForClass OR class = '39' ) ORDER BY type ASC, dueday ASC";
         $result = $conn->query($sql);
 
         $arr = array();
@@ -72,7 +72,7 @@ class ManipulateAssignmentClass {
                 $finished = true;
             }
 
-            if ($finished == true){
+            if ($finished == true && $row['type'] == "2"){
                 // Do nothing
             }else{
                 $unitAssignment = new UnitAssignment();
@@ -89,7 +89,7 @@ class ManipulateAssignmentClass {
     function classLoadAssignment($class){
         global $conn;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 180) ORDER BY dueday DESC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 180) ORDER BY type ASC, dueday ASC";
         $result = $conn->query($sql);
 
         $arr = array();

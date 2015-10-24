@@ -9,7 +9,7 @@ function ManipulateAssignment(id){
     this.id = id;
 
     this.contentExpanding = function(){
-        var cssText1 = "3em", cssText2 = "hidden", cssText3 = "inset 0px -10px 5px #DDD";
+        var cssText1 = "3.7em", cssText2 = "hidden", cssText3 = "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)";
         if ( $('#assignment-list-content-'+this.id).css("overflow") == "hidden"){
             cssText1 = "";
             cssText2 = "";
@@ -32,7 +32,7 @@ function ManipulateAssignment(id){
         var idS = this.id.split("-");
         var assignmentID = idS[idS.length-1];
 
-        var content = $("#"+this.id).html().replace(/<br.*?>/g, "\n");
+        var content = $("#"+this.id).children().html().replace(/<br.*?>/g, "\n");
         $('#update-card-content-id').html(assignmentID);
         $('#update-card-content-ta').val(content);
 
@@ -174,26 +174,24 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     }
     function dealWithAttachment(attachment) {
         if (attachment == "null"){
-            return "No attachment.";
+            return "";
         }else{
-            var arr = attachment.split(";"), html = "";
+            var arr = attachment.split(";"), html = "<div style='margin-top: 1em; border-top: 1px solid #CCC; padding-top: .5em'>";
             for (var i = 1; i < arr.length-1; i = i+2){
                 var url = arr[i];
                 var name = arr[i+1];
                 var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
-                html += " <a target=_blank style='display:block' href='" + hrefText +"'>" + arr[i+1] + "</a>";
+                html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + arr[i+1] + "</a></div>";
             }
+            html += "</div>";
             return html;
         }
     }
 
     function typeColorBackground(type){
         type = type - 1;
-        var color = new Array("#F44336", "#4CAF50", "#F57C00", "rgba(71,71,71,1)");
+        var color = new Array("red", "green", "deep-orange", "teal");
         return color[type];
-    }
-    function typeColorBox(type){
-        return "rgba(255, 255,255,0.2);";
     }
 
     this.app = app;
@@ -210,15 +208,15 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
 
     this.whetherExpandCSS = function() {
-        if (this.content.length > 200){
-            return "height: 3em; overflow: hidden; box-shadow: inset 0px -10px 5px #DDD";
+        if (this.content.length > 100){
+            return "height: 3.7em; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);";
         }else{
             return "";
         }
     };
     this.whetherExpandHTML = function(){
-        if (this.content.length > 200){
-            return "           <div style='margin:0.5em' onclick='new ManipulateAssignment("+this.id+").contentExpanding()'><a href='#'>Click to display/hide.</a></div>";
+        if (this.content.length > 100){
+            return "           <div style='margin:0.5em; font-size:16px' onclick='new ManipulateAssignment("+this.id+").contentExpanding()'><a href='#'>Click to display/hide.</a></div>";
         }else{
             return "           ";
         }
@@ -253,12 +251,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
                 var html = "";
-                html += "       <div>";
-                html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment()'> Update Content </button>";
+                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment()'>Update Content</a>";
                 if (assignment.type != 2){
-                    html += "           <button class='pure-button pure-button-primary' style='display: inline-block' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()'> Update Scores </button>";
+                    html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
                 }
-                html += "       </div>";
                 return html;
             }else if (assignment.app == "student"){
                 return "";
@@ -268,22 +264,22 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else if (where == "iconButton"){
             var html = "";
             if (assignment.app == "student") {
+                var methodName, methodText;
                 if (assignment.type != 2 && !assignment.finished) {
-                    // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markCompletion()' />";
-                    html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markCompletion()' />";
+                    methodName = "markCompletion()"; methodText = "Mark as completed";
                 }
                 if (assignment.type != 2 && assignment.finished) {
-                    // html += "<img src='/files/icons/unfinished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markUnCompletion()'/>";
-                    html += "<img src='/files/icons/unfinished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markUnCompletion()'/>";
+                    methodName = "markUnCompletion()"; methodText = "Mark as uncompleted";
                 }
                 if (assignment.type == 2 && !assignment.finished) {
-                    // html += "<img src='/files/icons/finished.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markInfoAsRead()'/>";
-                    html += "<img src='/files/icons/finished.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").markInfoAsRead()'/>";
+                    methodName = "markInfoAsRead()"; methodText = "Mark as read";
                 }
             }else if ( assignment.app == "teacher"){
-                // html += "<img src='/files/icons/delete.png' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").deleteAssignment()'/>";
-                html += "<img src='/files/icons/delete.jpg' width='50px' height='50px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").deleteAssignment()'/>";
+                methodName = "deleteAssignment()"; methodText = "Delete";
+            }else{
+                return "";
             }
+            html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName +"'>" + methodText + "</a>";
             return html;
         }
     };
@@ -303,46 +299,41 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         var daysLeft = calculateDaysLeft(this.dueday);
 
-        html += "<div id='" + this.diff("prefix-id", this) + "' class='card2 card-limit'" + finishedCSS + " style='position: relative; border-radius: 5px'>";
-        html += "   <div style='height: 70px; padding:1.5em 0 0 1.0em; color: white; border-top-left-radius: 4px; border-top-right-radius: 4px; background: " + typeColorBackground(this.type) + "'>";
-        if ( this.type == 2 && daysLeft > 1000 ) {
-            html += "       <div style='margin-bottom: 0.5em; margin-top: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
-        }else{
-            html += "       <div style='margin-bottom: 0.5em'><span style='font-size: 1.2em'><b>" + this.subject + "</b></span></div>";
-        }
-        if (app == "teacher") {
-            html += "           <div style='margin-bottom: 0.5em; font-size: 0.8em'><span>Pub: " + this.publish + "</span></div>";
-        }
-        if ( !( this.type == 2 && daysLeft > 1000) ) {
-            var dueDayLabel = new Array("Due", "Expire");
-            html += "           <div style='font-size: 0.8em'><span><span class='blockSpanForSmallScreen'>" + dueDayLabel[parseInt(type) - 1] + ": </span><span class='blockSpanForSmallScreen'>" + this.dueday + "</span></span></div>";
-        }
-        html += "       </div>";
-        html += "   <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
+        var iconTextBeforeSubject = this.type == 2 ? "assignment" : "book";
+
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'" + finishedCSS + ">";
+        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+
+        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--" + typeColorBackground(this.type) + "-300' style='position: relative'>";
+
+        html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>" + iconTextBeforeSubject + "</span> " + this.subject + "</h2>";
+        html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
         if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 90px; font-size: 1.5em; text-align: center; background: " + typeColorBox(this.type) + "'>" + daysLeft + "</div>";
+            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 90px; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2)'>" + daysLeft + "</div>";
         }
         if (this.type != 2) {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 10px; font-size: 1.1em; background: " + typeColorBox(this.type) + "; text-align: center;'>" + this.duration + " min</div>";
+            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>" + this.duration + "</div>";
         } else {
-            html += "       <div style='line-height: 70px; position: absolute; width:70px; top:13px; right: 10px; font-size: 1.2em; background: " + typeColorBox(this.type) + "; text-align: center;'>Info</div>";
+            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>Info</div>";
         }
         if ( this.type != 2 ) {
-            html += "       <div style='right: 93px; bottom: 0px; font-size: 0.8em; position: absolute'>days left</div>";
+            html += "               <div style='right: 93px; bottom: -9px; font-size: 11px; position: absolute'>days left</div>";
         }
         if (this.type != 2){
-            html += "       <div style='right: 13px; bottom: 0px; font-size: 0.8em; position: absolute'>needed</div>";
+            html += "               <div style='right: 13px; bottom: -9px; font-size: 11px; position: absolute'>min needed</div>";
         }
-        html += "   </div>";
-        html += "   <div class='card2-content'>";
-        html += "       <div style='margin:0.5em 0; border: 2px solid #EEE; padding:0.5em; border-bottom: 3px solid #DDD;"+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>" + Utils.string.formattedPostContent(this.content) + "</div>";
+        html += "           </div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "           <div style='line-height: 1.5; "+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>";
+        html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
+        html += "           </div>";
         html += this.diff("expand-content", this);
+        html += "       </div>";
+
+        html += "       <div class='mdl-card__actions mdl-card--border'>";
+        html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
-        html += "       <div style='display: table; width: 100%; margin: 0.5em 0; vertical-align: top'>";
-        // html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'><img src='/files/icons/attachment.png' width='50px' height='50px' /></a></div>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><img src='/files/icons/attachment.jpg' width='50px' height='50px' /></div>";
-        html += "           <div style='display: table-cell; vertical-align: top; text-align: left; padding: 10px'>" + this.attachment + "</div>";
-        html += "           <div style='display: table-cell; width: 50px; height: 50px'><a href='#'>" + this.diff("iconButton", this) + "</a></div>";
         html += "       </div>";
         html += "   </div>";
         html += "</div>";
@@ -350,4 +341,3 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     }
 }
 // Part II ends
-

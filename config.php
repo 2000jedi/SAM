@@ -12,4 +12,8 @@ $modes = array("local", "SAE");
 
 $mode = $modes[0];
 
+$protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
+
+$baseURL = $protocol.$_SERVER['HTTP_HOST'];
+
 ?>
