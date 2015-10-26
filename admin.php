@@ -82,6 +82,9 @@ if ($admin != "t001"){
             <div class="card">
                 <a href="/modules/user/studentInClass.php" target="_blank">Student In Class</a>
             </div>
+            <div class="card">
+                <a href="/modules/statistics/loadActiveUsers.php" target="_blank">Active Users</a>
+            </div>
             <!--
             <div class="card">
                 <a href="/modules/statistics/loadIPAddresses.php" target="_blank">IP Address List</a>

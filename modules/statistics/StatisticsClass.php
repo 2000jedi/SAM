@@ -3,22 +3,36 @@
  * Author: Pelinium
  * Date: 2015/10/25
  */
-require $_SERVER['DOCUMENT_ROOT']."/config.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/statistics/OperationLog.php";
 
-$conn = mysql_connect("localhost","root","");//please change them
-if (!$conn){
-	die('Could not connect: ' . mysql_error());
-	}
-	else{echo "Connected<br/>";
+class StatisticsClass {
+
+	function __construct(){
+		// Do nothing
 	}
 
-	mysql_select_db("missile", $conn);
-	$result = mysql_query("SELECT * FROM OperationLog WHERE time>='2015-10-24' and time<='2015-10-26'
-	and uid='28'");//By changing the time period and uid, we can know the operations of a certain user at a certain day.
-	while ($row = mysql_fetch_array($result))
-  	{
-  	echo $row['uid'] . " " .  $row['ip']. " ".$row['time'] . " ". $row['page'];
-  	echo "<br />";
-  	}
+	function loadActiveUsers(){
+		global $conn;
+
+		$sql = "SELECT * FROM IPDB";
+		$ips = $conn->query($sql);
+		$sql = "SELECT * FROM user ORDER BY username ASC";
+		$users = $conn->query($sql);
+		//read from DB using uid,username and ip
+
+		$ip = array();
+		while ($i = $ips->fetch_assoc()){
+			$ip[$i['uid']] = $i['ip'];
+		}
+		//enumerate ip and save to a list
+		//$user = array();
+		while ($i = $users->fetch_assoc()){
+			//$user[$i['username']] = $ip[$i['uid']];
+			if (array_key_exists($i['uid'],$ip) !== false){
+				$userName = $i['username'];
+				echo $userName."<br />";
+			}
+		}
+		//enumerate username then print to the screen, find the ip according to the previous uid
+	}
+}
 ?>
