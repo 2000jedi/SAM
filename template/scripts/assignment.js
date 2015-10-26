@@ -324,6 +324,17 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         html += "           </div>";
         html += "       </div>";
+        if ( !(this.type == 2 && daysLeft > 1000) ) {
+            html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
+            if (app == "teacher") {
+                html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
+            }
+            if (!( this.type == 2 && daysLeft > 1000)) {
+                var dueDayLabel = new Array("Due", "Expire");
+                html += "           <div>" + dueDayLabel[parseInt(type) - 1] + ": " + this.dueday + "</div>";
+            }
+            html += "       </div>";
+        }
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
         html += "           <div style='line-height: 1.5; "+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
