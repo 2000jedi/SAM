@@ -8,14 +8,15 @@
 function ManipulateAssignment(id){
     this.id = id;
 
-    this.contentExpanding = function(){
+    this.contentExpanding = function(idPrefix){
         var cssText1 = "3.7em", cssText2 = "hidden", cssText3 = "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)";
-        if ( $('#assignment-list-content-'+this.id).css("overflow") == "hidden"){
+        var obj = $('#' + idPrefix);
+        if (obj.css("overflow") == "hidden"){
             cssText1 = "";
             cssText2 = "";
             cssText3 = "";
         }
-        $('#assignment-list-content-'+this.id).css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
+        obj.css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
     };
 
     this.deleteAssignment = function(){
@@ -98,7 +99,7 @@ function ManipulateAssignment(id){
             html += "   <span style='width: 80px; display: inline-block'>IDs</span>";
             html += "   <span style='width: 150px; display: inline-block'>Names</span>";
             html += "   <span style='width: 80px; margin-left: 1em'>Scores (0-100)</span>";
-            html += "</div>"
+            html += "</div>";
             for (var i = 0; i < (data.length/5); i++){
                 var uid = data[i*5];
                 var username = data[i*5+1];
@@ -216,7 +217,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     };
     this.whetherExpandHTML = function(){
         if (this.content.length > 100){
-            return "           <div style='margin:0.5em; font-size:16px' onclick='new ManipulateAssignment("+this.id+").contentExpanding()'><a href='#'>Click to display/hide.</a></div>";
+            return "           <div style='margin:0.5em; font-size:16px' onclick='new ManipulateAssignment(\""+this.id+"\").contentExpanding(\""+this.diff("prefix-content-id", this)+"\")'><a href='#'>Click to display/hide.</a></div>";
         }else{
             return "           ";
         }
