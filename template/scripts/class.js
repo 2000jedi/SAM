@@ -184,7 +184,7 @@ function Class(id, name){
 
     this.openManageClassPanel = function(){
         new Class(this.id, this.name).loadAssignment(1, function(){
-            $('#assignment-list').html("");
+            $('#assignment-list').masonry().masonry("remove", $('#assignment-list').children()).html("");
         });
         $('#right-part-class-id').html(this.id);
         $('#right-part-title').html("Manage " + this.name);
@@ -193,7 +193,7 @@ function Class(id, name){
 
     this.openViewClassPanel = function(){
         new Class(this.id, this.name).loadAssignment(0, function(){
-            $('#assignment-list-in-class').html("");
+            $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
         });
         $('#right-part-class-id').html(this.id);
         $('#right-part-title').html("View " + this.name);
@@ -224,7 +224,7 @@ function Class(id, name){
 
     this.loadAssignment = function(type, func){
         var app = new Array(); app[0] = "student-in-class"; app[1] = "teacher";
-        var appendID = new Array(); appendID[0] = "#assignment-list-in-class"; appendID[1] = "#assignment-list";
+        var appendID = new Array(); appendID[0] = "#assignment-list-class"; appendID[1] = "#assignment-list";
 
 
         $.get("/modules/assignment/classLoadAssignment.php",{class: id},function(data){
@@ -236,9 +236,10 @@ function Class(id, name){
                 var row = data[i];
                 idList += ";" + row.id;
                 var assignment = new Assignment(app[type],row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
-                $(appendID[type]).append(assignment.getHTML());
+                $(appendID[type]).append(assignment.getHTML()).masonry().masonry('appended', $(appendID[type]+"-"+row.id));
             }
-            localStorage.assignmentIDList2 = idList;
+            updateMasonry(appendID[type].substr(1));
+
         });
     };
 

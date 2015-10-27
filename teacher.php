@@ -37,6 +37,7 @@ if (!function_exists('checkForceQuit')){
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
     <script src="/framework/js/material.js"></script>
     <script src="/framework/fix/safari/fixdateinput.js"></script>
     <style>
@@ -48,6 +49,9 @@ if (!function_exists('checkForceQuit')){
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
+        #assignment-list{
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +111,7 @@ if (!function_exists('checkForceQuit')){
         <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
             <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list').empty();$('#right-part').hide()">
                     <span class="mdl-layout-title" style="display: flex; flex-direction: row">
-                        <span class="material-icons"style="display: flex">close</span>
+                        <span class="material-icons" style="display: flex">close</span>
                         <span id="right-part-title" style="display: flex">Manage Class</span>
                     </span>
                     <span class="mdl-layout-title" style="display: flex; flex-direction: row; text-indent: 5em" onclick="new Class('', '').deleteClass()">
@@ -116,7 +120,7 @@ if (!function_exists('checkForceQuit')){
                     </span>
             </div>
         </header>
-        <div id="assignment-list" class="pinterestStyleWrapper mdl-grid demo-content"></div>
+        <div id="assignment-list"></div>
     </div>
     <div id="shadow" style="display: none;">
         <div style="display:table-cell;vertical-align: middle">
@@ -389,7 +393,4 @@ if (!function_exists('checkForceQuit')){
     toggleModules("Classes");
     new Class('', '').loadClass(2, function(){});
 
-    setInterval(function(){
-        Waterfall("assignment-list");
-    }, 200);
 </script>

@@ -40,6 +40,7 @@ if (!function_exists('checkForceQuit')){
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
     <script src="/framework/js/material.js"></script>
     <style>
         <?php
@@ -48,6 +49,42 @@ if (!function_exists('checkForceQuit')){
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
+        /*
+            Desktop: 840px
+            Tablet: 480px
+        */
+        @media (min-width: 840px){
+            #percentageRings{
+                position: fixed;
+                top: 56px;
+                right: 0px;
+                height: calc(100% - 56px);
+                height: -moz-calc(100% - 56px);
+                height: -webkit-calc(100% - 56px);
+                width: 200px;
+            }
+            #todaySVG, #totalSVG{
+                display: block;
+                width: 100%;
+            }
+            #assignment-list-wrapper{
+                width: calc(100% - 240px);
+                width: -moz-calc(100% - 240px);
+                width: -webkit-calc(100% - 240px);
+            }
+        }
+        @media (max-width: 840px){
+            #todaySVG, #totalSVG{
+                width: 120px;
+                height: 120px;
+            }
+            #assignment-list-wrapper{
+                width: 100%;
+            }
+        }
+        #assignment-list, #assignment-list-class{
+            margin: 0 auto;
+        }
     </style>
 </head>
 <script>
@@ -88,23 +125,31 @@ if (!function_exists('checkForceQuit')){
     <main class="mdl-layout__content mdl-color--grey-100">
         <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
         <div id="mHome">
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <svg id="todaySVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto">
+            <div id="percentageRings" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+                <svg id="todaySVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative; font-family: Roboto">
                     <use xlink:href="#todayCircleChart" mask="url(#piemask)" />
-                    <text x="0.5" y="0.55" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
+                    <text x="0.5" y="0.55" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
                         <tspan dy="0" font-size="0.3" id="todayPercentage">0</tspan><tspan dy="-0.07" font-size="0.2">%</tspan>
                     </text>
-                    <text x="0.5" y="0.7" font-family="Roboto" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">TODAY</text>
+                    <text x="0.5" y="0.65" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">
+                        <tspan dy="0" font-size="0.1" id="todayItemsDone">0</tspan><tspan dy="0" font-size="0.08"> OUT OF </tspan><tspan dy="0" font-size="0.1" id="todayTotalItems">0</tspan>
+                    </text>
+                    <text x="0.5" y="0.75" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">TODAY</text>
                 </svg>
-                <svg id="totalSVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto">
+                <svg id="totalSVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative">
                     <use xlink:href="#totalCircleChart" mask="url(#piemask)" />
                     <text x="0.5" y="0.55" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
                         <tspan dy="0" font-size="0.3" id="totalPercentage">0</tspan><tspan dy="-0.07" font-size="0.2">%</tspan>
                     </text>
-                    <text x="0.5" y="0.7" font-family="Roboto" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">ALL</text>
+                    <text x="0.5" y="0.65" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">
+                        <tspan dy="0" font-size="0.1" id="totalItemsDone">0</tspan><tspan dy="0" font-size="0.08"> OUT OF </tspan><tspan dy="0" font-size="0.1" id="totalTotalItems">0</tspan>
+                    </text>
+                    <text x="0.5" y="0.75" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">ALL</text>
                 </svg>
             </div>
-            <div id="assignment-list" class="pinterestStyleWrapper mdl-grid demo-content"></div>
+            <div id="assignment-list-wrapper">
+                <div id="assignment-list"></div>
+            </div>
         </div>
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
@@ -122,7 +167,7 @@ if (!function_exists('checkForceQuit')){
                     </span>
             </div>
         </header>
-        <div id="assignment-list-in-class" class="pinterestStyleWrapper mdl-grid demo-content"></div>
+        <div id="assignment-list-class"></div>
     </div>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
@@ -160,6 +205,7 @@ if (!function_exists('checkForceQuit')){
             data = JSON.parse(data);
 
             var todayDoneTime = 0, todayTotalTime = 0, totalDoneTime = 0, totalTotalTime = 0;
+            var todayDoneItems = 0, todayTotalItems = 0, totalDoneItems = 0, totalTotalItems = 0;
 
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
@@ -172,13 +218,17 @@ if (!function_exists('checkForceQuit')){
                     if (daysLeft == 1){
                         if (row.finished == true){
                             todayDoneTime += singleTime;
+                            todayDoneItems++;
                         }
                         todayTotalTime += singleTime;
+                        todayTotalItems++;
                     }
                     if (row.finished == true){
                         totalDoneTime += singleTime;
+                        totalDoneItems++;
                     }
                     totalTotalTime += singleTime;
+                    totalTotalItems++;
                 }
                 function ProcessPercentage(percentage){
                     if (percentage < 0.01){
@@ -202,7 +252,7 @@ if (!function_exists('checkForceQuit')){
             var todayPercentage = ProcessPercentage(parseFloat(parseFloat(todayDoneTime / todayTotalTime)).toFixed(2));
             var totalPercentage = ProcessPercentage(parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2));
 
-            function changeCircle(id, percentage){
+            function changeCircle(id, percentage, itemDone, itemTotal){
                 var deg = (1 - percentage) * 360;
                 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
                     var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
@@ -222,10 +272,13 @@ if (!function_exists('checkForceQuit')){
                 }
                 var updatedText = parseInt(percentage * 100).toString();
                 $('#' + id + 'Percentage').html(updatedText);
+                $('#' + id + 'ItemsDone').html(itemDone.toString());
+                $('#' + id + 'TotalItems').html(itemTotal.toString());
             }
 
-            changeCircle("today", todayPercentage);
-            changeCircle("total", totalPercentage);
+            changeCircle("today", todayPercentage, todayDoneItems, todayTotalItems);
+            changeCircle("total", totalPercentage, totalDoneItems, totalTotalItems);
+            updateMasonry('assignment-list');
         });
     }
 
@@ -243,9 +296,5 @@ if (!function_exists('checkForceQuit')){
     localStorage.assignmentIDList2 = "";
 
 
-    setInterval(function(){
-        Waterfall("assignment-list");
-        Waterfall("assignment-list-in-class");
-    }, 200);
 
 </script>
