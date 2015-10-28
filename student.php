@@ -126,10 +126,10 @@ if (!function_exists('checkForceQuit')){
         <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
         <div id="mHome">
             <div id="percentageRings" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <svg id="todaySVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative; font-family: Roboto">
+                <svg id="todaySVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative">
                     <use xlink:href="#todayCircleChart" mask="url(#piemask)" />
                     <text x="0.5" y="0.55" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
-                        <tspan dy="0" font-size="0.3" id="todayPercentage">0</tspan><tspan dy="-0.07" font-size="0.2">%</tspan>
+                        <tspan dy="0" font-size="0.3" id="todayPercentage">0</tspan><tspan dy="-0.09" font-size="0.15">%</tspan>
                     </text>
                     <text x="0.5" y="0.65" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">
                         <tspan dy="0" font-size="0.1" id="todayItemsDone">0</tspan><tspan dy="0" font-size="0.08"> OUT OF </tspan><tspan dy="0" font-size="0.1" id="todayTotalItems">0</tspan>
@@ -138,8 +138,8 @@ if (!function_exists('checkForceQuit')){
                 </svg>
                 <svg id="totalSVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative">
                     <use xlink:href="#totalCircleChart" mask="url(#piemask)" />
-                    <text x="0.5" y="0.55" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
-                        <tspan dy="0" font-size="0.3" id="totalPercentage">0</tspan><tspan dy="-0.07" font-size="0.2">%</tspan>
+                    <text x="0.5" y="0.55" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">
+                        <tspan dy="0" font-size="0.3" id="totalPercentage">0</tspan><tspan dy="-0.09" font-size="0.15">%</tspan>
                     </text>
                     <text x="0.5" y="0.65" font-size="0.1" fill="#888" text-anchor="middle" dy="0.1">
                         <tspan dy="0" font-size="0.1" id="totalItemsDone">0</tspan><tspan dy="0" font-size="0.08"> OUT OF </tspan><tspan dy="0" font-size="0.1" id="totalTotalItems">0</tspan>
