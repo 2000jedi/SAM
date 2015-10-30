@@ -393,4 +393,8 @@ if (!function_exists('checkForceQuit')){
     toggleModules("Classes");
     new Class('', '').loadClass(2, function(){});
 
+    $('#assignment-list').on( 'click', '.assignment-list', function() {
+        $('#assignment-list').masonry('layout');
+    });
+
 </script>

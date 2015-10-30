@@ -29,11 +29,11 @@ function ManipulateAssignment(id){
         }
     };
 
-    this.updateAssignment = function(){
+    this.updateAssignment = function(content){
         var idS = this.id.split("-");
         var assignmentID = idS[idS.length-1];
 
-        var content = $("#"+this.id).children().html().replace(/<br.*?>/g, "\n");
+        content = content.replace(/<br.*?>/g, "\n");
         $('#update-card-content-id').html(assignmentID);
         $('#update-card-content-ta').val(content);
 
@@ -182,7 +182,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 var url = arr[i];
                 var name = arr[i+1];
                 var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
-                html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + arr[i+1] + "</a></div>";
+                html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
             }
             html += "</div>";
             return html;
@@ -260,7 +260,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
                 var html = "";
-                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment()'>Update Content</a>";
+                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
                 if (assignment.type != 2){
                     html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
                 }

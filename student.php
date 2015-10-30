@@ -295,6 +295,12 @@ if (!function_exists('checkForceQuit')){
     localStorage.assignmentIDList = "";
     localStorage.assignmentIDList2 = "";
 
+    $('#assignment-list').on( 'click', '.assignment-list', function() {
+        $('#assignment-list').masonry('layout');
+    });
+    $('#assignment-list-class').on( 'click', '.assignment-list-class', function() {
+        $('#assignment-list-class').masonry('layout');
+    });
 
 
 </script>
