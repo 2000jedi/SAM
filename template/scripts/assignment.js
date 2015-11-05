@@ -12,8 +12,8 @@ function ManipulateAssignment(id){
         var cssText1 = "3.7em", cssText2 = "hidden", cssText3 = "0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)";
         var obj = $('#' + idPrefix);
         if (obj.css("overflow") == "hidden"){
-            cssText1 = "";
-            cssText2 = "";
+            cssText1 = "auto";
+            cssText2 = "visible";
             cssText3 = "";
         }
         obj.css("height", cssText1).css("overflow", cssText2).css("box-shadow", cssText3);
@@ -344,7 +344,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
             html += "       </div>";
         }
-        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='overflow: visible'>";
         html += "           <div style='line-height: 1.5; "+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
         html += "           </div>";
