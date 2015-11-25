@@ -71,7 +71,7 @@ function ManipulateAssignment(id){
         var conf = confirm("DO YOU REALLY read the information?");
         if (conf == true) {
             $.post("/modules/assignment/markCompletion.php", {id: this.id, actual: 0}, function (data) {
-                loadAssignment(function () {
+                loadAssignment(function() {
                     $('#assignment-list').html("");
                 });
             });
@@ -249,6 +249,12 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }else if (assignment.app == "student-in-class"){
                 return "assignment-list-content-2-" + assignment.id;
             }
+        }else if (where == "finished-css"){
+            if (assignment.app == "student"){
+                return " style='opacity:0.6'";
+            }else{
+                return "";
+            }
         }else if (where == "expand-content"){
             if (assignment.app == "teacher"){
                 return this.whetherExpandHTML();
@@ -297,7 +303,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         var html = "";
         var finishedCSS = "";
         if (this.finished) {
-            finishedCSS = " style='opacity:0.6'"
+            finishedCSS = this.diff("finished-css", this);
         }
         function calculateDaysLeft(dueday) {
             var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
@@ -310,8 +316,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
         var iconTextBeforeSubject = this.type == 2 ? "assignment" : "book";
 
-        html += "<div id='" + this.diff("prefix-id", this) + "' class='AssignmentCard " + this.diff("prefix", this) + " demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'" + finishedCSS + ">";
-        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='AssignmentCard " + this.diff("prefix", this) + " demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'" + finishedCSS + ">";
 
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--" + typeColorBackground(this.type) + "-300' style='position: relative'>";
 

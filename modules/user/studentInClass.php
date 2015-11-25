@@ -3,7 +3,11 @@
     require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 
     $result = checkForceQuit();
-    
-    $manipulation = new ManipulateUserClass();
-    $manipulation->studentInClass();
+    if ($result->username != "t001"){
+        die("Permission Denied!");
+    }else {
+
+        $manipulation = new ManipulateUserClass();
+        $manipulation->studentInClass();
+    }
 ?>

@@ -183,6 +183,7 @@ function Class(id, name){
     };
 
     this.openManageClassPanel = function(){
+        updateMasonry('assignment-list');
         new Class(this.id, this.name).loadAssignment(1, function(){
             $('#assignment-list').masonry().masonry("remove", $('#assignment-list').children()).html("");
         });
@@ -192,6 +193,7 @@ function Class(id, name){
     };
 
     this.openViewClassPanel = function(){
+        updateMasonry('assignment-list-in-class');
         new Class(this.id, this.name).loadAssignment(0, function(){
             $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
         });

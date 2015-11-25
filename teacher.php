@@ -179,6 +179,7 @@ if (!function_exists('checkForceQuit')){
                                             <label class="mdl-textfield__label" for="add-card-form-file"></label>
                                         </div>
                                         <button id="add-card-form-file-button-1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5; display: block" >Add More Files</button>
+                                        <progress id='progress1' value="0" max='100' style="width: 100%; display: none"></progress>
                                         <div style="text-align: center; margin-top: 1em">
                                             <input type="submit" value="Submit" id="submit_btn_add_card" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
                                         </div>
@@ -204,6 +205,7 @@ if (!function_exists('checkForceQuit')){
                                             <label class="mdl-textfield__label" for="add-card-form-file-2"></label>
                                         </div>
                                         <button id="add-card-form-file-button-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5; display: block" >Add More Files</button>
+                                        <progress id='progress2' value="0" max='100' style="width: 100%; display: none"></progress>
                                         <div style="text-align: center">
                                             <input type="submit" value="Submit" id="submit_btn_add_card-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
                                         </div>
@@ -312,6 +314,7 @@ if (!function_exists('checkForceQuit')){
 
         return true;
     }
+
     $('#submit_form_node').submit(function(){
         $(this).ajaxSubmit({
             beforeSubmit: function(){
@@ -319,7 +322,11 @@ if (!function_exists('checkForceQuit')){
                     return false;
                 }
                 $('#submit_btn_add_card').prop('disabled',true).val("Sending...");
+                $("#progress1").show();
                 return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress1').attr("value", percentComplete);
             },
             clearForm: true,
             data:{hasAttachment: hasFile('add-card-form-file')},
@@ -330,6 +337,7 @@ if (!function_exists('checkForceQuit')){
                 }
                 $('#submit_btn_add_card').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
+                $("#progress2").hide();
                 new Class($('#add-card-class-id').val(), '').loadAssignment(1, function(){
                     $('#assignment-list').html("");
                 })
@@ -344,7 +352,11 @@ if (!function_exists('checkForceQuit')){
                     return false;
                 }
                 $('#submit_btn_add_card-2').prop('disabled',true).val("Sending...");
+                $("#progress2").show();
                 return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress2').attr("value", percentComplete);
             },
             clearForm: true,
             data:{hasAttachment: hasFile('add-card-form-file-2')},
@@ -355,6 +367,7 @@ if (!function_exists('checkForceQuit')){
                 }
                 $('#submit_btn_add_card-2').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
+                $("#progress2").hide();
                 new Class($('#add-card-class-id-2').val(), '').loadAssignment(1, function(){
                     $('#assignment-list').html("");
                 })

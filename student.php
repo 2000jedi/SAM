@@ -197,6 +197,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
     ?>
 
+    updateMasonry('assignment-list');
 
     function loadAssignment(func){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
@@ -211,7 +212,6 @@ if (!function_exists('checkForceQuit')){
                 var row = data[i];
                 var subject = convertSubject(row.subject);
                 if (row.type == "1"){
-                    var timeUnit = parseFloat(row.duration);
                     var date = row.dueday;
                     var daysLeft = DateDiff.inDays(new Date(), new Date(date));
                     var singleTime = parseFloat(parseFloat(row.duration).toFixed(1));
@@ -230,14 +230,8 @@ if (!function_exists('checkForceQuit')){
                     totalTotalTime += singleTime;
                     totalTotalItems++;
                 }
-                function ProcessPercentage(percentage){
-                    if (percentage < 0.01){
-                        return 0.01;
-                    }
-                    return percentage;
-                }
                 var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
-                $('#assignment-list').append(assignment.getHTML())
+                $('#assignment-list').append(assignment.getHTML()).masonry().masonry('appended', $("#assignment-list-"+row.id));
             }
 
             if (todayTotalTime == 0){
@@ -247,6 +241,13 @@ if (!function_exists('checkForceQuit')){
             if (totalTotalTime == 0){
                 totalDoneTime = 1;
                 totalTotalTime = 1;
+            }
+
+            function ProcessPercentage(percentage){
+                if (percentage < 0.01){
+                    return 0.01;
+                }
+                return percentage;
             }
 
             var todayPercentage = ProcessPercentage(parseFloat(parseFloat(todayDoneTime / todayTotalTime)).toFixed(2));
@@ -292,11 +293,8 @@ if (!function_exists('checkForceQuit')){
         $('#classList').html("");
     });
 
-    localStorage.assignmentIDList = "";
-    localStorage.assignmentIDList2 = "";
-
     $('#assignment-list').on( 'click', '.assignment-list', function() {
-        $('#assignment-list').masonry('layout');
+        updateMasonry('assignment-list');
     });
     $('#assignment-list-class').on( 'click', '.assignment-list-class', function() {
         $('#assignment-list-class').masonry('layout');
