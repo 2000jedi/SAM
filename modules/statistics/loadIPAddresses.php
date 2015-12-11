@@ -1,4 +1,9 @@
 <?php
+/*
+Author: Jedi
+Date: 2015/10/29
+*/
+
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/ManipulateUserClass.php";
 
@@ -12,5 +17,4 @@ if ($admin != "t001"){
     $manipulation = new ManipulateUserClass();
     $manipulation->enumUserIP();
 }
-
 ?>
