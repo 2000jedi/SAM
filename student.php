@@ -94,12 +94,14 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-Home').css("background","").css("color","#eceff1");
         $('#mClasses').hide();
         $('#left-tab-Classes').css("background","").css("color","#eceff1");
+        $('#mActivities').hide();
+        $('#left-tab-Activities').css("background","").css("color","#eceff1");
         $('#mSettings').hide();
         $('#left-tab-Settings').css("background","").css("color","#eceff1");
         $('#m'+id).show();
         $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
         $('#title').html(id);
-        $('.demo-drawer').removeClass("is-visible")
+        $('.demo-drawer').removeClass("is-visible");
     }
 </script>
 <body>
@@ -119,6 +121,7 @@ if (!function_exists('checkForceQuit')){
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Classes</a>
+            <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">group</i>Activities</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -154,6 +157,7 @@ if (!function_exists('checkForceQuit')){
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
         </div>
+        <div id="mActivities"></div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
         ?>

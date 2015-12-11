@@ -6,7 +6,9 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/UnitActivity.php" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/UnitActivityComment.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/user/ManipulateUserClass.php" afterPath="$PROJECT_DIR$/modules/user/ManipulateUserClass.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/statistics/loadIPAddresses.php" afterPath="$PROJECT_DIR$/modules/statistics/loadIPAddresses.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student.php" afterPath="$PROJECT_DIR$/student.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="htdocs.iws" />
@@ -51,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="student.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="student.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/student.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-149.70833" vertical-offset="412" max-vertical-offset="4560">
-              <caret line="272" column="2" selection-start-line="272" selection-start-column="2" selection-end-line="272" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.5642738" vertical-offset="1537" max-vertical-offset="4620">
+              <caret line="130" column="126" selection-start-line="130" selection-start-column="126" selection-end-line="130" selection-end-column="126" />
               <folding />
             </state>
           </provider>
@@ -103,19 +105,34 @@
       <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-46.208332" vertical-offset="1081" max-vertical-offset="2400">
-              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+            <state vertical-scroll-proportion="-50.625" vertical-offset="0" max-vertical-offset="2370">
+              <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loadIPAddresses.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="loadIPAddresses.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/statistics/loadIPAddresses.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30050084" vertical-offset="0" max-vertical-offset="599">
-              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="375">
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+              <folding>
+                <element signature="e#6#41#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsClass.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/statistics/StatisticsClass.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="615">
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+              <folding>
+                <marker date="1445882478000" expanded="true" signature="181:199" placeholder="SELECT * FRO..IPDB..." />
+                <marker date="1445882478000" expanded="true" signature="241:281" placeholder="SELECT * FRO..user..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -184,7 +201,6 @@
         <option value="$PROJECT_DIR$/framework/js/material.js" />
         <option value="$PROJECT_DIR$/modules/statistics/StatisticsClass.php" />
         <option value="$PROJECT_DIR$/modules/statistics/loadActiveUsers.php" />
-        <option value="$PROJECT_DIR$/admin.php" />
         <option value="$PROJECT_DIR$/login.php" />
         <option value="$PROJECT_DIR$/template/scripts/waterfall.js" />
         <option value="$PROJECT_DIR$/modules/common/downloader.php" />
@@ -193,12 +209,13 @@
         <option value="$PROJECT_DIR$/teacher.php" />
         <option value="$PROJECT_DIR$/template/scripts/assignment.js" />
         <option value="$PROJECT_DIR$/template/scripts/class.js" />
-        <option value="$PROJECT_DIR$/student.php" />
         <option value="$PROJECT_DIR$/modules/activity/UnitActivity.php" />
         <option value="$PROJECT_DIR$/modules/activity/UnitActivityComment.php" />
         <option value="$PROJECT_DIR$/modules/activity/ManageActivityClass.php" />
         <option value="$PROJECT_DIR$/modules/user/ManipulateUserClass.php" />
         <option value="$PROJECT_DIR$/modules/statistics/loadIPAddresses.php" />
+        <option value="$PROJECT_DIR$/admin.php" />
+        <option value="$PROJECT_DIR$/student.php" />
       </list>
     </option>
   </component>
@@ -901,12 +918,12 @@
       <workItem from="1448620899226" duration="292000" />
       <workItem from="1448707128450" duration="821000" />
       <workItem from="1448893099315" duration="45000" />
-      <workItem from="1449834394172" duration="3364000" />
+      <workItem from="1449834394172" duration="3766000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313488000" />
+    <option name="totallyTimeSpent" value="313890000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="741" extended-state="6" />
@@ -1189,13 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/statistics/StatisticsClass.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="615">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/user/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.23115578" vertical-offset="273" max-vertical-offset="870">
@@ -1360,14 +1370,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/student.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-149.70833" vertical-offset="412" max-vertical-offset="4560">
-          <caret line="272" column="2" selection-start-line="272" selection-start-column="2" selection-end-line="272" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/user/ManipulateUserClass.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.708333" vertical-offset="3391" max-vertical-offset="7200">
@@ -1405,18 +1407,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin.php">
+    <entry file="file://$PROJECT_DIR$/modules/statistics/StatisticsClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.208332" vertical-offset="1081" max-vertical-offset="2400">
-          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="615">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <marker date="1445882478000" expanded="true" signature="181:199" placeholder="SELECT * FRO..IPDB..." />
+            <marker date="1445882478000" expanded="true" signature="241:281" placeholder="SELECT * FRO..user..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/statistics/loadIPAddresses.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30050084" vertical-offset="0" max-vertical-offset="599">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        <state vertical-scroll-proportion="-2.5" vertical-offset="0" max-vertical-offset="375">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding>
+            <element signature="e#6#41#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-50.625" vertical-offset="0" max-vertical-offset="2370">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/student.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5642738" vertical-offset="1537" max-vertical-offset="4620">
+          <caret line="130" column="126" selection-start-line="130" selection-start-column="126" selection-end-line="130" selection-end-column="126" />
           <folding />
         </state>
       </provider>
