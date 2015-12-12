@@ -6,7 +6,7 @@
  * Time: 18:47
  */
 
-class ManageActivityClass {
+class ManipulateActivityClass {
 
     var $user;
 
