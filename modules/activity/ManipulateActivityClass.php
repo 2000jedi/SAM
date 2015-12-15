@@ -122,8 +122,9 @@ class ManipulateActivityClass {
         $name = $this->name;
         $description = $this->description;
         $deal = $this->deal;
-
-        // @Jedi, add your code here.
+        $sql = "INSERT INTO activity (organizer, time, description, deal, members,likes) VALUES ('$organizer', now(), '$description', '$deal', ';$organizer', '')";
+        $result = $conn->query($sql);
+        echo $result;
     }
     // Part III ends
 
