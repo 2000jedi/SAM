@@ -118,11 +118,13 @@ class ManipulateActivityClass {
      *
      */
     function addActivity(){
+        global $conn;
+
         $organizer = $this->organizer;
         $name = $this->name;
         $description = $this->description;
         $deal = $this->deal;
-        $sql = "INSERT INTO activity (organizer, time, description, deal, members,likes) VALUES ('$organizer', now(), '$description', '$deal', ';$organizer', '')";
+        $sql = "INSERT INTO activity (organizer, name, time, description, deal, members,likes) VALUES ('$organizer', '$name', now(), '$description', '$deal', ';$organizer', '')";
         $result = $conn->query($sql);
         echo $result;
     }
@@ -212,10 +214,39 @@ class ManipulateActivityClass {
                 return "Unexpected error.";
             }
         }
-
     }
 
-    function deleteActivity(){
+    function deleteActivity($operator){
+        global $conn;
+
+        $sql0 = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result0 = $conn->query($sql0);
+
+        while($row = $result0->fetch_assoc()) {
+            $organizer = $row['organizer'];
+            if($operator == $organizer){
+                $sql1 = "DELETE FROM activity WHERE id = '$this->id'";
+
+                if ($conn->query($sql1) === TRUE){
+                    return "Success! You now leave this activity.";
+                }else{
+                    return "Unexpected error.";
+                }
+
+                $sql2 = "DELETE FROM activityComment WHERE aid = '$this->id'";
+
+                if ($conn->query($sql2) === TRUE){
+                    return "Comment has been deleted.";
+                }else{
+                    return "Unexpected error.";
+                }
+
+
+            }else{
+                return "You are not the organizer of this activity.";
+            }
+        }
+
 
     }
 
@@ -224,7 +255,19 @@ class ManipulateActivityClass {
     }
 
     function removeParticipant($operator, $participant){
+        global $conn;
+        $sql = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result = $conn->query($sql);
 
+        while($row = $result->fetch_assoc()) {
+            $organizer = $row['organizer'];
+
+            if ($operator != $organizer){
+                return "You are not the organizer. ";
+            }
+
+            $this->leaveActivity($participant);
+        }
     }
 
     function addComment($comment){

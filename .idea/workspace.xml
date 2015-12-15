@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c083adbc-b77c-4c51-82c6-4f96c56e3b64" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/scripts/activity.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/joinActivity.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/leaveActivity.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/like.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/loadActivityComments.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/modules/activity/unlike.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/activity/ManipulateActivityClass.php" afterPath="$PROJECT_DIR$/modules/activity/ManipulateActivityClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/assignment/ManipulateAssignmentClass.php" afterPath="$PROJECT_DIR$/modules/assignment/ManipulateAssignmentClass.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/assignment.js" afterPath="$PROJECT_DIR$/template/scripts/assignment.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/geodesic/base.css" afterPath="$PROJECT_DIR$/framework/geodesic/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/class.js" afterPath="$PROJECT_DIR$/template/scripts/class.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/activity/loadActivity.php" afterPath="$PROJECT_DIR$/modules/activity/loadActivity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login.php" afterPath="$PROJECT_DIR$/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/student.php" afterPath="$PROJECT_DIR$/student.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teacher.php" afterPath="$PROJECT_DIR$/teacher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/scripts/waterfall.js" afterPath="$PROJECT_DIR$/template/scripts/waterfall.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="htdocs.iws" />
@@ -47,30 +32,35 @@
       <file leaf-file-name="ManipulateActivityClass.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/activity/ManipulateActivityClass.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0301508" vertical-offset="2790" max-vertical-offset="4530">
-              <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.46688208" vertical-offset="3641" max-vertical-offset="5190">
+              <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
               <folding>
-                <marker date="1450172936000" expanded="true" signature="1207:1246" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="1922:1951" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="1922:2029" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="1922:2031" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="2444:2485" placeholder="SELECT * FRO..activityComments..." />
-                <marker date="1450172936000" expanded="true" signature="2444:2486" placeholder="SELECT * FRO..activityComments..." />
-                <marker date="1450172936000" expanded="true" signature="2444:2498" placeholder="SELECT * FRO..activityComments..." />
-                <marker date="1450172936000" expanded="true" signature="4050:4095" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="4639:4693" placeholder="UPDATE membe..." />
-                <marker date="1450172936000" expanded="true" signature="4639:4694" placeholder="UPDATE membe..." />
-                <marker date="1450172936000" expanded="true" signature="4639:4704" placeholder="UPDATE membe..." />
-                <marker date="1450172936000" expanded="true" signature="5006:5051" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="5535:5599" placeholder="UPDATE membe..." />
-                <marker date="1450172936000" expanded="true" signature="6048:6120" placeholder="INSERT INTO ..." />
-                <marker date="1450172936000" expanded="true" signature="6048:6154" placeholder="INSERT INTO ..." />
-                <marker date="1450172936000" expanded="true" signature="6377:6422" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="7007:7058" placeholder="UPDATE stude..." />
-                <marker date="1450172936000" expanded="true" signature="7007:7069" placeholder="UPDATE stude..." />
-                <marker date="1450172936000" expanded="true" signature="7355:7400" placeholder="SELECT * FRO..activity..." />
-                <marker date="1450172936000" expanded="true" signature="7935:7990" placeholder="UPDATE stude..." />
-                <marker date="1450172936000" expanded="true" signature="7935:8001" placeholder="UPDATE stude..." />
+                <marker date="1450177306000" expanded="true" signature="1207:1246" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="1922:1951" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="1922:2029" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="1922:2031" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="2444:2485" placeholder="SELECT * FRO..activityComments..." />
+                <marker date="1450177306000" expanded="true" signature="2444:2486" placeholder="SELECT * FRO..activityComments..." />
+                <marker date="1450177306000" expanded="true" signature="2444:2498" placeholder="SELECT * FRO..activityComments..." />
+                <marker date="1450177306000" expanded="true" signature="3217:3377" placeholder="INSERT INTO ..." />
+                <marker date="1450177306000" expanded="true" signature="4273:4318" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="4862:4916" placeholder="UPDATE membe..." />
+                <marker date="1450177306000" expanded="true" signature="4862:4917" placeholder="UPDATE membe..." />
+                <marker date="1450177306000" expanded="true" signature="4862:4927" placeholder="UPDATE membe..." />
+                <marker date="1450177306000" expanded="true" signature="5229:5274" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="5758:5822" placeholder="UPDATE membe..." />
+                <marker date="1450177306000" expanded="true" signature="6121:6166" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="6368:6411" placeholder="DELETE FROM ..." />
+                <marker date="1450177306000" expanded="true" signature="6649:6700" placeholder="DELETE FROM ..." />
+                <marker date="1450177306000" expanded="true" signature="7171:7216" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="7599:7671" placeholder="INSERT INTO ..." />
+                <marker date="1450177306000" expanded="true" signature="7599:7705" placeholder="INSERT INTO ..." />
+                <marker date="1450177306000" expanded="true" signature="7928:7973" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="8558:8609" placeholder="UPDATE stude..." />
+                <marker date="1450177306000" expanded="true" signature="8558:8620" placeholder="UPDATE stude..." />
+                <marker date="1450177306000" expanded="true" signature="8906:8951" placeholder="SELECT * FRO..activity..." />
+                <marker date="1450177306000" expanded="true" signature="9486:9541" placeholder="UPDATE stude..." />
+                <marker date="1450177306000" expanded="true" signature="9486:9552" placeholder="UPDATE stude..." />
               </folding>
             </state>
           </provider>
@@ -962,12 +952,12 @@
       <workItem from="1449834394172" duration="3894000" />
       <workItem from="1449916957950" duration="2622000" />
       <workItem from="1450000195519" duration="493000" />
-      <workItem from="1450099567617" duration="7620000" />
+      <workItem from="1450099567617" duration="9726000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324753000" />
+    <option name="totallyTimeSpent" value="326859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="741" extended-state="0" />
@@ -1477,30 +1467,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/activity/ManipulateActivityClass.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0301508" vertical-offset="2790" max-vertical-offset="4530">
-          <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.46688208" vertical-offset="3641" max-vertical-offset="5190">
+          <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
           <folding>
-            <marker date="1450172936000" expanded="true" signature="1207:1246" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="1922:1951" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="1922:2029" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="1922:2031" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="2444:2485" placeholder="SELECT * FRO..activityComments..." />
-            <marker date="1450172936000" expanded="true" signature="2444:2486" placeholder="SELECT * FRO..activityComments..." />
-            <marker date="1450172936000" expanded="true" signature="2444:2498" placeholder="SELECT * FRO..activityComments..." />
-            <marker date="1450172936000" expanded="true" signature="4050:4095" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="4639:4693" placeholder="UPDATE membe..." />
-            <marker date="1450172936000" expanded="true" signature="4639:4694" placeholder="UPDATE membe..." />
-            <marker date="1450172936000" expanded="true" signature="4639:4704" placeholder="UPDATE membe..." />
-            <marker date="1450172936000" expanded="true" signature="5006:5051" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="5535:5599" placeholder="UPDATE membe..." />
-            <marker date="1450172936000" expanded="true" signature="6048:6120" placeholder="INSERT INTO ..." />
-            <marker date="1450172936000" expanded="true" signature="6048:6154" placeholder="INSERT INTO ..." />
-            <marker date="1450172936000" expanded="true" signature="6377:6422" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="7007:7058" placeholder="UPDATE stude..." />
-            <marker date="1450172936000" expanded="true" signature="7007:7069" placeholder="UPDATE stude..." />
-            <marker date="1450172936000" expanded="true" signature="7355:7400" placeholder="SELECT * FRO..activity..." />
-            <marker date="1450172936000" expanded="true" signature="7935:7990" placeholder="UPDATE stude..." />
-            <marker date="1450172936000" expanded="true" signature="7935:8001" placeholder="UPDATE stude..." />
+            <marker date="1450177306000" expanded="true" signature="1207:1246" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="1922:1951" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="1922:2029" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="1922:2031" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="2444:2485" placeholder="SELECT * FRO..activityComments..." />
+            <marker date="1450177306000" expanded="true" signature="2444:2486" placeholder="SELECT * FRO..activityComments..." />
+            <marker date="1450177306000" expanded="true" signature="2444:2498" placeholder="SELECT * FRO..activityComments..." />
+            <marker date="1450177306000" expanded="true" signature="3217:3377" placeholder="INSERT INTO ..." />
+            <marker date="1450177306000" expanded="true" signature="4273:4318" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="4862:4916" placeholder="UPDATE membe..." />
+            <marker date="1450177306000" expanded="true" signature="4862:4917" placeholder="UPDATE membe..." />
+            <marker date="1450177306000" expanded="true" signature="4862:4927" placeholder="UPDATE membe..." />
+            <marker date="1450177306000" expanded="true" signature="5229:5274" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="5758:5822" placeholder="UPDATE membe..." />
+            <marker date="1450177306000" expanded="true" signature="6121:6166" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="6368:6411" placeholder="DELETE FROM ..." />
+            <marker date="1450177306000" expanded="true" signature="6649:6700" placeholder="DELETE FROM ..." />
+            <marker date="1450177306000" expanded="true" signature="7171:7216" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="7599:7671" placeholder="INSERT INTO ..." />
+            <marker date="1450177306000" expanded="true" signature="7599:7705" placeholder="INSERT INTO ..." />
+            <marker date="1450177306000" expanded="true" signature="7928:7973" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="8558:8609" placeholder="UPDATE stude..." />
+            <marker date="1450177306000" expanded="true" signature="8558:8620" placeholder="UPDATE stude..." />
+            <marker date="1450177306000" expanded="true" signature="8906:8951" placeholder="SELECT * FRO..activity..." />
+            <marker date="1450177306000" expanded="true" signature="9486:9541" placeholder="UPDATE stude..." />
+            <marker date="1450177306000" expanded="true" signature="9486:9552" placeholder="UPDATE stude..." />
           </folding>
         </state>
       </provider>
