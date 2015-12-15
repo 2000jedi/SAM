@@ -1,7 +1,7 @@
 var masonryOpt = function(prefix){
     return {
         itemSelector: '.' + prefix,
-            columnWidth: 300,
+        columnWidth: 300,
         isFitWidth: true,
         "gutter": 20
     }

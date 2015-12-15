@@ -19,14 +19,14 @@ function ClassAdmin(id, teacher, name, subject){
         html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
         html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
-        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__actions mdl-card--border'>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(1)'>Students</a>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(2)'>Edit</a>";
-        html += "   </div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__actions mdl-card--border'>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(1)'>Students</a>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(2)'>Edit</a>";
+        html += "       </div>";
         html += "</div>";
         return html;
     }
@@ -44,15 +44,15 @@ function ClassTeacher(id, teacher, name, subject){
         html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
         html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
-        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__actions mdl-card--border'>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openManageClassPanel()'>Manage</a>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openAddCardBox()'>New</a>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(0)'>Students</a>";
-        html += "   </div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__actions mdl-card--border'>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openManageClassPanel()'>Manage</a>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openAddCardBox()'>New</a>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").viewMembers(0)'>Students</a>";
+        html += "       </div>";
         html += "</div>";
         return html;
     }
@@ -70,13 +70,13 @@ function ClassStudent(id, teacher, name, subject){
         html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
         html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
-        html += "       <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "   </div>";
-        html += "   <div class='mdl-card__actions mdl-card--border'>";
-        html += "       <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
-        html += "   </div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__actions mdl-card--border'>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
+        html += "       </div>";
         html += "</div>";
         return html;
     }
@@ -136,13 +136,13 @@ function Class(id, name){
             data = JSON.parse(data);
 
             if (type == 0){
-                var html = "<div class='card' style='width: calc(100%-2em);box-sizing: border-box;'>Total Number: " + data.length + "</div>";
+                var html = "<div class='card' style='width: calc(100%);box-sizing: border-box;'>Total Number: " + data.length + "</div>";
                 for (var i = 0; i < data.length; i++){
                     var userInfo = data[i];
                     var username = userInfo.username;
                     var ChineseName = userInfo.ChineseName;
                     var EnglishName = userInfo.EnglishName;
-                    html += "<div class='card' style='display:table; width: calc(100%-2em);box-sizing: border-box;'>";
+                    html += "<div class='card' style='display:table; width: calc(100%);box-sizing: border-box;'>";
                     html += "   <div style='display: table-cell; width: 65%'>Name: "+ ChineseName + " ("+ EnglishName + ")</div><div style='display: table-cell; width: 30%'>ID:"+username+"</div>";
                     html += "</div>";
                 }

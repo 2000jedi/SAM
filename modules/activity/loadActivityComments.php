@@ -3,8 +3,9 @@
  * Created by IntelliJ IDEA.
  * User: Sam
  * Date: 12/12/15
- * Time: 18:43
+ * Time: 21:05
  */
+
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/activity/ManipulateActivityClass.php";
@@ -12,11 +13,12 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/activity/UnitActivity.php";
 
 $result = checkForceQuit();
 
-$userID = $result->uid;
+$aid = $_GET["id"];
 
 $manipulation = new ManipulateActivityClass();
-$manipulation->constructInLoad($userID);
-echo $manipulation->loadAllActivities();
+$manipulation->constructByID($aid);
+echo $manipulation->loadComments();
+
 
 
 ?>

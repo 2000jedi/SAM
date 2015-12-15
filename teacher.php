@@ -125,10 +125,10 @@ if (!function_exists('checkForceQuit')){
     <div id="shadow" style="display: none;">
         <div style="display:table-cell;vertical-align: middle">
             <div style="display:table;margin-left:auto;margin-right: auto;">
-                <div id="floatBox">
+                <div id="floatBox" class="demo-updates mdl-card mdl-shadow--16dp mdl-cell">
                     <div id="floatBox-close" onclick="$('#shadow').hide()">Close</div>
-                    <div class="settings_title_bar" style="padding: 0;">
-                        <div id="floatBox-title" style="margin: 0.3em"></div>
+                    <div class="mdl-card__title mdl-card--expand mdl-color--blue-grey-300" style="padding: 0;">
+                        <h5 id="floatBox-title" style="margin: 0.3em; font-size: 1.2em; color: white" class="mdl-card__title-text"></h5>
                     </div>
                     <div id="floatBox-content">
                         <div id="floatBox-update-card">

@@ -72,7 +72,7 @@ class ManipulateActivityClass {
     function loadAllActivities(){
         global $conn;
 
-        $sql = "SELECT * FROM activity WHERE members LIKE '%;$this->user;%' OR class LIKE '%;$this->user' ORDER BY id ASC";
+        $sql = "SELECT * FROM activity WHERE members LIKE '%;$this->user;%' OR members LIKE '%;$this->user' ORDER BY id ASC";
         $result = $conn->query($sql);
 
         $activities = array();
@@ -81,6 +81,7 @@ class ManipulateActivityClass {
             $uA = new UnitActivity();
             $uA->constructFromDBRow($row);
             $activities[$counter] = $uA;
+            $counter++;
         }
 
         return json_encode($activities);
@@ -157,10 +158,59 @@ class ManipulateActivityClass {
     }
 
     function joinActivity($participant){
+        global $conn;
+
+        $sql = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+            $membersStr = $row['members'];
+            $membersIDs = explode(";", $membersStr);
+
+            if (count($membersIDs) > 0) {
+                for ($i = 1; $i < count($membersIDs); $i++) {
+                    if ($membersIDs[$i] == $participant) {
+                        return "the student is already in this class";
+                    }
+                }
+            }
+
+            $membersStr .= ";" . $participant;
+
+            $sql1 = "UPDATE members SET members = '$membersStr' WHERE id = '$this->id'";
+            if ($conn->query($sql1) === TRUE){
+                return "Success! $this->user has now joined this $this->id";
+            }else{
+                return "Unexpected error.";
+            }
+        }
 
     }
 
     function leaveActivity($participant){
+        global $conn;
+        $sql = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+            $membersStr = $row['members'];
+            $membersIDs = explode(";", $membersStr);
+
+            if (count($membersIDs) > 0){
+                for ($i = 0; $i < count($membersIDs); $i++){
+                    if ($membersIDs[$i] != $participant){
+                        $membersStr .= ";" . $membersIDs[$i];
+                    }
+                }
+            }
+
+            $sql1 = "UPDATE members SET members = 'membersStr' WHERE id = '$this->id'";
+            if ($conn->query($sql1) === TRUE){
+                return "Success! $this->user has now left this $this->id";
+            }else{
+                return "Unexpected error.";
+            }
+        }
 
     }
 
@@ -176,16 +226,75 @@ class ManipulateActivityClass {
 
     }
 
-    function addComment($participant, $user){
-
+    function addComment($comment){
+        global $conn;
+        $sql = "INSERT INTO activityComment (aid, uid, time, comment) INTO ('$this->id', '$this->user', now(), '$comment')";
+        if ($conn->query($sql) === TRUE){
+            return "Success! Comment added.";
+        }else{
+            return "Unexpected error.";
+        }
     }
 
-    function like($user){
+    function like(){
+        global $conn;
 
+        $sql = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+            $likesStr = $row['likes'];
+
+            $likesIDs = explode(";", $likesStr);
+
+
+            if (count($likesIDs) > 0) {
+                for ($i = 1; $i < count($likesIDs); $i++) {
+                    $likeID = $likesIDs[$i];
+                    if ($likeID == $this->user) {
+                        return "$this->user has already liked this $this->id";
+                    }
+                }
+            }
+
+            $newLikes = $likesStr . ";" . $this->user;
+            $sql1 = "UPDATE activity SET likes = '$newLikes' WHERE id = '$this->id'";
+            if ($conn->query($sql1) === TRUE) {
+                return "Success! $this->user has now liked this $this->id";
+            } else {
+                return "Unexpected error.";
+            }
+        }
     }
 
-    function unLike($user){
+    function unLike(){
+        global $conn;
 
+        $sql1 = "SELECT * FROM activity WHERE id = '$this->id'";
+        $result1 = $conn->query($sql1);
+
+        while($row = $result1->fetch_assoc()) {
+            $likesIDs = explode(";", $row['likes']);
+            $newLikesList = "";
+
+            if (count($likesIDs) > 0) {
+                for ($i = 1; $i < count($likesIDs); $i++) {
+                    $likeID = $likesIDs[$i];
+                    if ($likeID == $this->user) {
+
+                    } else {
+                        $newLikesList .= ";" . $likeID;
+                    }
+                }
+            }
+
+            $sql2 = "UPDATE activity SET likes = '$newLikesList' WHERE id = '$this->id'";
+            if ($conn->query($sql2) === TRUE) {
+                return "Success! $this->user has now unliked this $this->id";
+            } else {
+                return "Unexpected error.";
+            }
+        }
     }
     // Part IV Ends.
 

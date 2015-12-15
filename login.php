@@ -78,6 +78,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
                         <input class="mdl-textfield__input" name="password" type="password" id="pswdInput"/>
                         <label class="mdl-textfield__label" for="pswdInput">Your password</label>
                     </div>
+                    <input type="submit" style="display: none">
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="$('#form').submit()">
@@ -92,3 +93,6 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     </form>
 </body>
 </html>
+<script>
+
+</script>

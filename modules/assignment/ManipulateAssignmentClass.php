@@ -89,7 +89,7 @@ class ManipulateAssignmentClass {
     function classLoadAssignment($class){
         global $conn;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 180) ORDER BY type ASC, dueday ASC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 180) ORDER BY type ASC, dueday DESC";
         $result = $conn->query($sql);
 
         $arr = array();

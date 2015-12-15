@@ -78,11 +78,11 @@ if (!function_exists('checkForceQuit')){
                 width: 120px;
                 height: 120px;
             }
-            #assignment-list-wrapper{
+            #assignment-list-wrapper, #activity-list-wrapper{
                 width: 100%;
             }
         }
-        #assignment-list, #assignment-list-class{
+        #assignment-list, #assignment-list-class, #activity-list{
             margin: 0 auto;
         }
     </style>
@@ -121,7 +121,7 @@ if (!function_exists('checkForceQuit')){
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Classes</a>
-            <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">group</i>Activities</a>
+            <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -157,7 +157,11 @@ if (!function_exists('checkForceQuit')){
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
         </div>
-        <div id="mActivities"></div>
+        <div id="mActivities">
+            <div id="activity-list-wrapper">
+                <div id="activity-list" class="mdl-grid demo-content"></div>
+            </div>
+        </div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
         ?>
@@ -199,9 +203,11 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
     ?>
 
     updateMasonry('assignment-list');
+    updateMasonry('activity-list');
 
     function loadAssignment(func){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
@@ -234,7 +240,7 @@ if (!function_exists('checkForceQuit')){
                     totalTotalTime += singleTime;
                     totalTotalItems++;
                 }
-                var assignment = new Assignment("student",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
+                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
                 $('#assignment-list').append(assignment.getHTML()).masonry().masonry('appended', $("#assignment-list-"+row.id));
             }
 
@@ -292,15 +298,20 @@ if (!function_exists('checkForceQuit')){
     loadAssignment(function(){
         $('#assignment-list').html("");
     });
-
+    new ManipulateActivity().loadActivities(function(){
+        $('#activity-list').html("");
+    });
     new Class('', '').loadClass(1, function(){
         $('#classList').html("");
     });
 
-    $('#assignment-list').on( 'click', '.assignment-list', function() {
+    $('#assignment-list').on( 'mouseover', '.assignment-list', function() {
         updateMasonry('assignment-list');
     });
-    $('#assignment-list-class').on( 'click', '.assignment-list-class', function() {
+    $('#activity-list').on( 'mouseover', '.activity-list', function() {
+        updateMasonry('activity-list');
+    });
+    $('#assignment-list-class').on( 'mouseover', '.assignment-list-class', function() {
         $('#assignment-list-class').masonry('layout');
     });
 
