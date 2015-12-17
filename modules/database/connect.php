@@ -7,7 +7,7 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/config.php";
-
+error_reporting(E_ERROR | E_PARSE);
 $conn;
 
 if ($mode == "local"){

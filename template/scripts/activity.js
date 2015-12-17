@@ -19,6 +19,7 @@ function ManipulateActivity(){
     this.loadInvitation = function(){
 
     };
+    // postponed due to the absence of lazy Tim
 
     this.addActivity = function(){
 
@@ -37,6 +38,35 @@ function Activity(id, name, description, time, deal, members, likes){
     function count(arr){
         return arr.length;
     }
+
+    this.join = function(){
+
+    };
+
+    this.leave = function(){
+
+    };
+
+    this.sendInvitation = function(user){
+
+    };
+
+    this.removeParticipant = function(user){
+
+    };
+
+    this.addComment = function(content){
+
+    };
+
+    this.like = function(){
+
+    };
+
+    this.unLike = function(){
+
+    };
+
 
     this.getHTML = function(){
         var html = "";

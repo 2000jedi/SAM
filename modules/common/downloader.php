@@ -26,7 +26,7 @@ header("Content-Disposition: inline; filename=$name");
 header('Pragma: no-cache');
 
 if ($mode == "local"){
-    readfile($path);
+    readfile($_SERVER['DOCUMENT_ROOT'].$path);
 }else if ($mode == "SAE"){
     $s = new SaeStorage();
 

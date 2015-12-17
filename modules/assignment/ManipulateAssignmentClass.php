@@ -344,29 +344,21 @@ class ManipulateAssignmentClass {
             $attachment = "";
 
             for ($i = 0; $i < count($_FILES["attachment"]['name']); $i++ ){
+                $originalName = $_FILES["attachment"]['name'][$i];
+                $realNameArr = explode(".",$originalName);
+                $realName = "";
+                for ($ii = 0; $ii < count($realNameArr)-1; $ii++){
+                    $realName .= $realNameArr[$ii];
+                }
+                $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
+                $final_filename = $realName."_".time().".".$fileType;
                 if ($mode == "local"){
-                    $originalName = $_FILES["attachment"]['name'][$i];
-                    $realNameArr = explode(".",$originalName);
-                    $realName = $realNameArr[0];
-                    $rand = genRandomString();
-                    $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
-                    $final_filename = $realName."_".time().".".$fileType;
                     $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
 
                     $attachment .= ";".$target_dir.$final_filename.";".$originalName;
 
                     move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $target_file);
                 }else if ($mode == "SAE"){
-                    $originalName = $_FILES["attachment"]['name'][$i];
-
-                    $realNameArr = explode(".",$originalName);
-                    $realName = $realNameArr[0];
-                    $rand = genRandomString();
-                    $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
-                    $final_filename = $realName."_".time().".".$fileType;
-                    $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
-
-
                     $fileContent=file_get_contents($_FILES["attachment"]["tmp_name"][$i]);
                     $temp=new SaeStorage();
                     $temp->write("wflmssam",$final_filename,$fileContent);//写入文件

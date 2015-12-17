@@ -177,6 +177,41 @@ if (!function_exists('checkForceQuit')){
         </header>
         <div id="assignment-list-class"></div>
     </div>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperStart.html";
+    ?>
+    <div id="floatBox-content">
+        <div id="floatBox-add-activity">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <form id="submit_form_node" action='/modules/assignment/addActivity.php' method="post" enctype="multipart/form-data">
+                    <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                        <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Name</div>
+                        <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-name" name="name" />
+                            <label class="mdl-textfield__label" for="add-card-form-duration">Name your activity</label>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #CCC">Description</div>
+                    <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                        <textarea class="mdl-textfield__input" style="background: white" type="text" rows="4" id="add-card-form-description" name="description" ></textarea>
+                        <label class="mdl-textfield__label" for="add-card-form-content">Input the description for the activity</label>
+                    </div>
+                    <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                        <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Deal</div>
+                        <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-deal" name="deal" />
+                            <label class="mdl-textfield__label" for="add-card-form-duration">What can others get?</label>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1em">
+                        <input type="submit" value="Submit" id="submit_btn_add_card" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+        </div>
+    </div>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperEnd.html";
+    ?>
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
     <defs>
@@ -199,6 +234,7 @@ if (!function_exists('checkForceQuit')){
 <script>
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
@@ -206,8 +242,21 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
     ?>
 
+    var featureList = new Array("add-activity");
+    var floatBox = new FloatBox(featureList);
+
     updateMasonry('assignment-list');
     updateMasonry('activity-list');
+
+    setInterval(function(){
+        updateMasonry('assignment-list');
+        updateMasonry('activity-list');
+        try{
+            $('#assignment-list-class').masonry().masonry('layout');
+        }catch (e){
+            // Do nothing
+        }
+    }, 200);
 
     function loadAssignment(func){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
@@ -303,16 +352,6 @@ if (!function_exists('checkForceQuit')){
     });
     new Class('', '').loadClass(1, function(){
         $('#classList').html("");
-    });
-
-    $('#assignment-list').on( 'mouseover', '.assignment-list', function() {
-        updateMasonry('assignment-list');
-    });
-    $('#activity-list').on( 'mouseover', '.activity-list', function() {
-        updateMasonry('activity-list');
-    });
-    $('#assignment-list-class').on( 'mouseover', '.assignment-list-class', function() {
-        $('#assignment-list-class').masonry('layout');
     });
 
 

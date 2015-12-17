@@ -429,7 +429,7 @@ textarea, input{
     position: relative;
     overflow: auto;
     background: white;
-    min-width: 400px;
+    min-width: 450px;
     margin: 0;
 }
 #floatBox-close{
@@ -439,6 +439,7 @@ textarea, input{
     color: #0078e7;
     background: rgba(207, 207, 207, 0.8);
     padding: 0.5em;
+    cursor: pointer;
 }
 #floatBox-content{
     background: #DDD;

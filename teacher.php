@@ -71,6 +71,7 @@ if (!function_exists('checkForceQuit')){
 
     <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
@@ -122,110 +123,117 @@ if (!function_exists('checkForceQuit')){
         </header>
         <div id="assignment-list"></div>
     </div>
-    <div id="shadow" style="display: none;">
-        <div style="display:table-cell;vertical-align: middle">
-            <div style="display:table;margin-left:auto;margin-right: auto;">
-                <div id="floatBox" class="demo-updates mdl-card mdl-shadow--16dp mdl-cell">
-                    <div id="floatBox-close" onclick="$('#shadow').hide()">Close</div>
-                    <div class="mdl-card__title mdl-card--expand mdl-color--blue-grey-300" style="padding: 0;">
-                        <h5 id="floatBox-title" style="margin: 0.3em; font-size: 1.2em; color: white" class="mdl-card__title-text"></h5>
-                    </div>
-                    <div id="floatBox-content">
-                        <div id="floatBox-update-card">
-                            <div>
-                                <div>Content:</div>
-                                <div style="display: none" id="update-card-content-id"></div>
-                                <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
-                                    <textarea class="mdl-textfield__input" style="background: white" type="text" name="content" rows="5" id="update-card-content-ta" ></textarea>
-                                    <label class="mdl-textfield__label" for="update-card-content-ta"></label>
-                                </div>
-                            </div>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new ManipulateAssignment('').sendUpdateAssignment()">
-                                Update
-                            </button>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperStart.html";
+    ?>
+    <div id="floatBox-content">
+        <div id="floatBox-update-card">
+            <div>
+                <div>Content:</div>
+                <div style="display: none" id="update-card-content-id"></div>
+                <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                    <textarea class="mdl-textfield__input" style="background: white" type="text" name="content" rows="5" id="update-card-content-ta" ></textarea>
+                    <label class="mdl-textfield__label" for="update-card-content-ta"></label>
+                </div>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new ManipulateAssignment('').sendUpdateAssignment()">
+                Update
+            </button>
+        </div>
+        <div id="floatBox-view-members">
+            <div id="floatBox-view-members-list"></div>
+        </div>
+        <div id="floatBox-add-card">
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                <div class="mdl-tabs__tab-bar">
+                    <a href="#add-panel-1" class="mdl-tabs__tab is-active"><span class='material-icons'>assignment</span> Assignment</a>
+                    <a href="#add-panel-2" class="mdl-tabs__tab"><span class='material-icons'>book</span> Information</a>
+                </div>
+                <div class="mdl-tabs__panel is-active" id="add-panel-1">
+                    <form id="submit_form_node" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
+                        <input id="add-card-class-id" type="hidden" name="class" />
+                        <input type="hidden" name="type" value="1" />
+                        <div style="border-top: 1px solid #CCC">Content</div>
+                        <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                            <textarea class="mdl-textfield__input" style="background: white" type="text" rows="4" id="add-card-form-content" name="content" ></textarea>
+                            <label class="mdl-textfield__label" for="add-card-form-content">Input the illustration for the assignment</label>
                         </div>
-                        <div id="floatBox-view-members">
-                            <div id="floatBox-view-members-list"></div>
-                        </div>
-                        <div id="floatBox-add-card">
-                            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                                <div class="mdl-tabs__tab-bar">
-                                    <a href="#add-panel-1" class="mdl-tabs__tab is-active"><span class='material-icons'>assignment</span> Assignment</a>
-                                    <a href="#add-panel-2" class="mdl-tabs__tab"><span class='material-icons'>book</span> Information</a>
-                                </div>
-
-                                <div class="mdl-tabs__panel is-active" id="add-panel-1">
-                                    <form id="submit_form_node" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
-                                        <input id="add-card-class-id" type="hidden" name="class" />
-                                        <input type="hidden" name="type" value="1" />
-                                        <div>Content:</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                            <textarea class="mdl-textfield__input" style="background: white" type="text" rows="5" id="add-card-form-content" name="content" ></textarea>
-                                            <label class="mdl-textfield__label" for="add-card-form-content">Input the illustration for the assignment</label>
-                                        </div>
-                                        <div>Estimated Duration (in minutes):</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-duration" name="duration" />
-                                            <label class="mdl-textfield__label" for="add-card-form-duration">Estimated Duration (in minutes)</label>
-                                        </div>
-                                        <div>Due:</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-dueday" name="dueday" data-format="yyyy-MM-dd" />
-                                            <label class="mdl-textfield__label" for="add-card-form-dueday"></label>
-                                        </div>
-                                        <div>Add attachment (optional):</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
-                                            <input class="mdl-textfield__input uploadfile1" style="background: white" id="add-card-form-file" name="attachment[]" type="file" multiple />
-                                            <label class="mdl-textfield__label" for="add-card-form-file"></label>
-                                        </div>
-                                        <button id="add-card-form-file-button-1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5; display: block" >Add More Files</button>
-                                        <progress id='progress1' value="0" max='100' style="width: 100%; display: none"></progress>
-                                        <div style="text-align: center; margin-top: 1em">
-                                            <input type="submit" value="Submit" id="submit_btn_add_card" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="mdl-tabs__panel" id="add-panel-2">
-                                    <form id="submit_form_node_2" class="dropzone" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
-                                        <input id="add-card-class-id-2" type="hidden" name="class" />
-                                        <input type="hidden" name="type" value="2" />
-                                        <div>Content:</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                            <textarea class="mdl-textfield__input" style="background: white" type="text" rows="5" id="add-card-form-content-2" name="content" ></textarea>
-                                            <label class="mdl-textfield__label" for="add-card-form-content-2">Input the illustration for the assignment</label>
-                                        </div>
-                                        <div>Expire (leave it blank to keep it permanently):</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-dueday-2" name="dueday" data-format="yyyy-MM-dd" />
-                                            <label class="mdl-textfield__label" for="add-card-form-dueday-2"></label>
-                                        </div>
-                                        <div>Add attachment (optional):</div>
-                                        <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
-                                            <input class="mdl-textfield__input uploadfile2" style="background: white" id="add-card-form-file-2" name="attachment[]" type="file" multiple />
-                                            <label class="mdl-textfield__label" for="add-card-form-file-2"></label>
-                                        </div>
-                                        <button id="add-card-form-file-button-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5; display: block" >Add More Files</button>
-                                        <progress id='progress2' value="0" max='100' style="width: 100%; display: none"></progress>
-                                        <div style="text-align: center">
-                                            <input type="submit" value="Submit" id="submit_btn_add_card-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
-                                        </div>
-                                    </form>
-                                </div>
+                        <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                            <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Duration</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-duration" name="duration" />
+                                <label class="mdl-textfield__label" for="add-card-form-duration">Estimated Duration</label>
                             </div>
                         </div>
-                        <div id="floatBox-update-scores">
-                            <div id="floatBox-update-scores-assignment-id" style="display: none"></div>
-                            <div id="floatBox-update-scores-assignment-num" style="display: none"></div>
-                            <div id="floatBox-update-scores-dynamic-inputs"></div>
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new ManipulateAssignment($('#floatBox-update-scores-assignment-id').html()).updateScores( parseInt($('#floatBox-update-scores-assignment-num').html()))">
-                                Update Score
-                            </button>
+                        <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                            <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Due</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-dueday" name="dueday" data-format="yyyy-MM-dd" />
+                                <label class="mdl-textfield__label" for="add-card-form-dueday"></label>
+                            </div>
                         </div>
-                    </div>
+                        <div style="border-top: 1px solid #CCC">
+                            <div style="display:inline-block">Add attachment (optional)</div>
+                            <button id="add-card-form-file-button-1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5">Add More Files</button>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
+                            <div id="add-card-form-file-input-list">
+                                <input class="mdl-textfield__input uploadfile1" style="background: white" id="add-card-form-file" name="attachment[]" type="file" multiple />
+                            </div>
+                            <label class="mdl-textfield__label" for="add-card-form-file"></label>
+                        </div>
+                        <progress id='progress1' value="0" max='100' style="width: 100%; display: none"></progress>
+                        <div style="text-align: center; margin-top: 1em">
+                            <input type="submit" value="Submit" id="submit_btn_add_card" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-tabs__panel" id="add-panel-2">
+                    <form id="submit_form_node_2" class="dropzone" action='/modules/assignment/addAssignment.php' method="post" enctype="multipart/form-data">
+                        <input id="add-card-class-id-2" type="hidden" name="class" />
+                        <input type="hidden" name="type" value="2" />
+                        <div style="border-top: 1px solid #CCC">Content</div>
+                        <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                            <textarea class="mdl-textfield__input" style="background: white" type="text" rows="5" id="add-card-form-content-2" name="content" ></textarea>
+                            <label class="mdl-textfield__label" for="add-card-form-content-2">Input the illustration for the assignment</label>
+                        </div>
+                        <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                            <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Expire</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-dueday-2" name="dueday" data-format="yyyy-MM-dd" />
+                                <label class="mdl-textfield__label" for="add-card-form-dueday-2"></label>
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid #CCC">
+                            <div style="display:inline-block">Add attachment (optional)</div>
+                            <button id="add-card-form-file-button-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5">Add More Files</button>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
+                            <div id="add-card-form-file-input-list-2">
+                                <input class="mdl-textfield__input uploadfile2" style="background: white" id="add-card-form-file-2" name="attachment[]" type="file" multiple />
+                            </div>
+                            <label class="mdl-textfield__label" for="add-card-form-file-2"></label>
+                        </div>
+                        <progress id='progress2' value="0" max='100' style="width: 100%; display: none"></progress>
+                        <div style="text-align: center">
+                            <input type="submit" value="Submit" id="submit_btn_add_card-2" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <div id="floatBox-update-scores">
+            <div id="floatBox-update-scores-assignment-id" style="display: none"></div>
+            <div id="floatBox-update-scores-assignment-num" style="display: none"></div>
+            <div id="floatBox-update-scores-dynamic-inputs"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new ManipulateAssignment($('#floatBox-update-scores-assignment-id').html()).updateScores( parseInt($('#floatBox-update-scores-assignment-num').html()))">
+                Update Score
+            </button>
+        </div>
     </div>
+    <?php
+    require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperEnd.html";
+    ?>
 </div>
 </body>
 <script>
@@ -234,6 +242,9 @@ if (!function_exists('checkForceQuit')){
         $('#add-card-form-dueday').datepick();
         $('#add-card-form-dueday-2').datepick();
     });
+
+    var featureList = new Array("update-card", "view-members", "add-card", "update-scores");
+    var floatBox = new FloatBox(featureList);
 
     function isNull(t){
         if (t == null || t == ""){return true}
@@ -379,12 +390,12 @@ if (!function_exists('checkForceQuit')){
     $('#add-card-form-file-button-1').click(function(e){
         e.preventDefault();
         var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
-        $(this).before(html);
+        $("#add-card-form-file-input-list").append(html);
     });
     $('#add-card-form-file-button-2').click(function(e){
         e.preventDefault();
         var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile2' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
-        $(this).before(html);
+        $("#add-card-form-file-input-list-2").append(html);
     });
     $('.uploadfile1').bind('change', function() {
         var temp = 0;
@@ -406,8 +417,8 @@ if (!function_exists('checkForceQuit')){
     toggleModules("Classes");
     new Class('', '').loadClass(2, function(){});
 
-    $('#assignment-list').on( 'click', '.assignment-list', function() {
-        $('#assignment-list').masonry('layout');
-    });
+    setInterval(function(){
+        $('#assignment-list').masonry().masonry('layout');
+    }, 200);
 
 </script>

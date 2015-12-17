@@ -146,14 +146,9 @@ function Class(id, name){
                     html += "   <div style='display: table-cell; width: 65%'>Name: "+ ChineseName + " ("+ EnglishName + ")</div><div style='display: table-cell; width: 30%'>ID:"+username+"</div>";
                     html += "</div>";
                 }
-                $('#floatBox-view-members-list').html(html);
-                $('#floatBox-title').html("Members in my class");
-
-                $('#floatBox-update-card').hide();
-                $('#floatBox-add-card').hide();
-                $('#floatBox-update-scores').hide();
-                $('#floatBox-view-members').show();
-                $('#shadow').css("display","table");
+                floatBox.showFeature("Members in my class", "view-members", function(){
+                    $('#floatBox-view-members-list').html(html);
+                });
             }else if (type == 1){
                 var html = "Total Number: " + data.length + "\n";
                 for (var i = 0; i < data.length; i++) {
@@ -203,14 +198,11 @@ function Class(id, name){
     };
 
     this.openAddCardBox = function(){
-        $('#floatBox-update-card').hide();
-        $('#floatBox-view-members').hide();
-        $('#floatBox-update-scores').hide();
-        $('#floatBox-add-card').show();
-        $('#floatBox-title').html("Add Assignment/Information: " + this.name);
-        $('#add-card-class-id').val(this.id);
-        $('#add-card-class-id-2').val(this.id);
-        $('#shadow').css("display","table");
+        var id = this.id;
+        floatBox.showFeature("Add Assignment/Information: " + this.name, "add-card", function(){
+            $('#add-card-class-id').val(id);
+            $('#add-card-class-id-2').val(id);
+        });
     };
 
     this.deleteClass = function(){
@@ -246,12 +238,7 @@ function Class(id, name){
     };
 
     this.openUpdateCardBox = function(){
-        $('#floatBox-add-card').hide();
-        $('#floatBox-view-members').hide();
-        $('#floatBox-update-scores').hide();
-        $('#floatBox-update-card').show();
-        $('#floatBox-title').html("Update Assignment");
-        $('#shadow').css("display","table");
+        floatBox.showFeature("Update Assignment", "update-card", function(){});
     };
 
     this.loadClass = function(type, func){

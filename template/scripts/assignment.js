@@ -115,16 +115,10 @@ function ManipulateAssignment(id){
                 html += "</div>"
             }
 
-            $('#floatBox-update-scores-dynamic-inputs').append(html);
 
-            $('#floatBox-update-card').hide();
-            $('#floatBox-view-members').hide();
-            $('#floatBox-add-card').hide();
-            $('#floatBox-update-scores').show();
-            $('#floatBox-title').html("Update Score");
-            $('#add-card-class-id').val(this.id);
-            $('#add-card-class-id-2').val(this.id);
-            $('#shadow').css("display","table");
+            floatBox.showFeature("Update Score", "update-scores", function(){
+                $('#floatBox-update-scores-dynamic-inputs').append(html);
+            });
         });
     };
 

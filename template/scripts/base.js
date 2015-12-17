@@ -61,8 +61,8 @@ var Utils = {
             }
         },
         formattedPostContent:function(str){
-            str = this.line.RegexFormat(str);
             str = this.url.RegexFormat(str);
+            str = this.line.RegexFormat(str);
             return str;
         }
     }
