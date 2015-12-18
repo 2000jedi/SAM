@@ -113,7 +113,7 @@ if (!function_exists('checkForceQuit')){
             <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list').empty();$('#right-part').hide()">
                     <span class="mdl-layout-title" style="display: flex; flex-direction: row">
                         <span class="material-icons" style="display: flex">close</span>
-                        <span id="right-part-title" style="display: flex">Manage Class</span>
+                        <span style="display: flex">Manage Class</span>
                     </span>
                     <span class="mdl-layout-title" style="display: flex; flex-direction: row; text-indent: 5em" onclick="new Class('', '').deleteClass()">
                         <span class="material-icons"style="display: flex">delete</span>

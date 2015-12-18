@@ -62,15 +62,16 @@ if (!function_exists('checkForceQuit')){
                 height: -moz-calc(100% - 56px);
                 height: -webkit-calc(100% - 56px);
                 width: 200px;
+                margin: 0;
             }
             #todaySVG, #totalSVG{
                 display: block;
                 width: 100%;
             }
             #assignment-list-wrapper{
-                width: calc(100% - 240px);
-                width: -moz-calc(100% - 240px);
-                width: -webkit-calc(100% - 240px);
+                width: calc(100% - 200px);
+                width: -moz-calc(100% - 200px);
+                width: -webkit-calc(100% - 200px);
             }
         }
         @media (max-width: 840px){
@@ -167,15 +168,28 @@ if (!function_exists('checkForceQuit')){
         ?>
     </main>
     <div id="right-part" class="mdl-layout--fixed-header" style="display:none">
-        <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
-            <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
-                    <span class="mdl-layout-title" style="display: flex; flex-direction: row">
-                        <span class="material-icons"style="display: flex">close</span>
-                        <span id="right-part-title" style="display: flex">Manage Class</span>
-                    </span>
-            </div>
-        </header>
-        <div id="assignment-list-class"></div>
+        <div id="right-part-view-class">
+            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
+                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
+                        <span class="mdl-layout-title" style="display: flex; flex-direction: row">
+                            <span class="material-icons"style="display: flex">close</span>
+                            <span id="right-part-title" style="display: flex">Manage Class</span>
+                        </span>
+                </div>
+            </header>
+            <div id="assignment-list-class"></div>
+        </div>
+        <div id="right-part-view-activity" style="display: none">
+            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
+                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
+                        <span class="mdl-layout-title" style="display: flex; flex-direction: row">
+                            <span class="material-icons"style="display: flex">close</span>
+                            <span style="display: flex">Manage Class</span>
+                        </span>
+                </div>
+            </header>
+            <div id="assignment-list-class"></div>
+        </div>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperStart.html";
@@ -221,11 +235,11 @@ if (!function_exists('checkForceQuit')){
         </mask>
         <g id="todayCircleChart">
             <circle cx=0.5 cy=0.5 r=0.5 />
-            <path id="todayCircle" d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 1 1 0.4996858407553117 9.869604078449612e-8 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+            <path id="todayCircle" d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 1 1 0.5 0 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
         </g>
         <g id="totalCircleChart">
             <circle cx=0.5 cy=0.5 r=0.5 />
-            <path id="totalCircle" d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 1 1 0.4996858407553117 9.869604078449612e-8 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
+            <path id="totalCircle" d="M 0.5 0.5 0.5 0 A 0.5 0.5 0 1 1 0.5 0 z" stroke="none" fill="rgba(255, 255, 255, 0.75)" />
         </g>
     </defs>
 </svg>
@@ -304,7 +318,7 @@ if (!function_exists('checkForceQuit')){
 
             function ProcessPercentage(percentage){
                 if (percentage < 0.01){
-                    return 0.01;
+                    return 0.001;
                 }
                 return percentage;
             }

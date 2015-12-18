@@ -193,7 +193,6 @@ function Class(id, name){
             $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
         });
         $('#right-part-class-id').html(this.id);
-        $('#right-part-title').html("View " + this.name);
         $('#right-part').show();
     };
 
