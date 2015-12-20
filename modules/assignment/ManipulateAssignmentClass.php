@@ -303,7 +303,6 @@ class ManipulateAssignmentClass {
      */
     function addAssignment(){
         global $conn;
-        global $mode;
 
         $result = checkForceQuit();
 
@@ -324,21 +323,7 @@ class ManipulateAssignmentClass {
         $dueday = date("Y-m-d", strtotime($dueday));
 
         if ($_POST['hasAttachment'] == "true"){
-            function genRandomString(){
-                $length = 5;
-                $characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWZYZ";
-
-                $real_string_length = strlen($characters) ;
-                $string="id";
-
-                for ($p = 0; $p < $length; $p++)
-                {
-                    $string .= $characters[mt_rand(0, $real_string_length-1)];
-                }
-
-                return strtolower($string);
-            }
-
+            /*
             $target_dir = "/files/attachments/";
 
             $attachment = "";
@@ -361,15 +346,14 @@ class ManipulateAssignmentClass {
                 }else if ($mode == "SAE"){
                     $fileContent=file_get_contents($_FILES["attachment"]["tmp_name"][$i]);
                     $temp=new SaeStorage();
-                    $temp->write("wflmssam",$final_filename,$fileContent);//写入文件
-                    $url=$temp->getUrl($domain,$final_filename);//获取地址
-
+                    $temp->write("wflmssam",$final_filename,$fileContent);
+                    $url=$temp->getUrl($domain,$final_filename);
 
                     $attachment .= ";".$url.";".$originalName;
                 }
-
             }
-
+            */
+            $attachment = processAttachment();
 
         }
         $content = $_POST['content'];

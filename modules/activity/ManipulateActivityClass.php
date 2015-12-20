@@ -15,6 +15,7 @@ class ManipulateActivityClass {
     var $name;
     var $time;
     var $description;
+    var $attachment;
     var $deal;
     var $members;
     var $likes;
@@ -38,10 +39,11 @@ class ManipulateActivityClass {
     function constructInLoad($user){
         $this->user = $user;
     }
-    function constructForAddAndProcessActivity($organizer, $name, $description, $deal){
+    function constructForAddAndProcessActivity($organizer, $name, $description, $attachment, $deal){
         $this->organizer = $organizer;
         $this->name = $name;
         $this->description = $description;
+        $this->attachment = $attachment;
         $this->deal = $deal;
     }
     function constructByID($id){
@@ -53,7 +55,7 @@ class ManipulateActivityClass {
         $this->id = $id;
 
         while($row = $result->fetch_assoc()) {
-            $this->constructForAddAndProcessActivity($row["organizer"], $row["name"], $row["description"], $row["deal"]);
+            $this->constructForAddAndProcessActivity($row["organizer"], $row["name"], $row["description"], $row["attachment"], $row["deal"]);
             $this->time = $row["time"];
             $this->members = $this->processMembersFromDBStringToArray($row["members"]);
             $this->likes = $this->processLikesFromDBString($row["likes"]);
@@ -72,7 +74,8 @@ class ManipulateActivityClass {
     function loadAllActivities(){
         global $conn;
 
-        $sql = "SELECT * FROM activity WHERE members LIKE '%;$this->user;%' OR members LIKE '%;$this->user' ORDER BY id ASC";
+        $sql = "SELECT * FROM activity ORDER BY id ASC";
+        // $sql = "SELECT * FROM activity WHERE members LIKE '%;$this->user;%' OR members LIKE '%;$this->user' ORDER BY id ASC";
         $result = $conn->query($sql);
 
         $activities = array();
@@ -123,10 +126,11 @@ class ManipulateActivityClass {
         $organizer = $this->organizer;
         $name = $this->name;
         $description = $this->description;
+        $attachment = $this->attachment;
         $deal = $this->deal;
-        $sql = "INSERT INTO activity (organizer, name, time, description, deal, members,likes) VALUES ('$organizer', '$name', now(), '$description', '$deal', ';$organizer', '')";
-        $result = $conn->query($sql);
-        echo $result;
+        $sql = "INSERT INTO activity (organizer, name, time, description, attachment, deal, members,likes) VALUES ('$organizer', '$name', now(), '$description', '$attachment', '$deal', ';$organizer', '')";
+        $conn->query($sql);
+        echo "Success";
     }
     // Part III ends
 
@@ -180,14 +184,13 @@ class ManipulateActivityClass {
 
             $membersStr .= ";" . $participant;
 
-            $sql1 = "UPDATE members SET members = '$membersStr' WHERE id = '$this->id'";
+            $sql1 = "UPDATE activity SET members = '$membersStr' WHERE id = '$this->id'";
             if ($conn->query($sql1) === TRUE){
-                return "Success! $this->user has now joined this $this->id";
+                return "Success!";
             }else{
                 return "Unexpected error.";
             }
         }
-
     }
 
     function leaveActivity($participant){
@@ -198,18 +201,19 @@ class ManipulateActivityClass {
         while($row = $result->fetch_assoc()) {
             $membersStr = $row['members'];
             $membersIDs = explode(";", $membersStr);
+            $membersStr = "";
 
             if (count($membersIDs) > 0){
-                for ($i = 0; $i < count($membersIDs); $i++){
+                for ($i = 1; $i < count($membersIDs); $i++){
                     if ($membersIDs[$i] != $participant){
                         $membersStr .= ";" . $membersIDs[$i];
                     }
                 }
             }
 
-            $sql1 = "UPDATE members SET members = 'membersStr' WHERE id = '$this->id'";
+            $sql1 = "UPDATE activity SET members = '$membersStr' WHERE id = '$this->id'";
             if ($conn->query($sql1) === TRUE){
-                return "Success! $this->user has now left this $this->id";
+                return "Success!";
             }else{
                 return "Unexpected error.";
             }
@@ -228,26 +232,19 @@ class ManipulateActivityClass {
                 $sql1 = "DELETE FROM activity WHERE id = '$this->id'";
 
                 if ($conn->query($sql1) === TRUE){
-                    return "Success! You now leave this activity.";
+                    $sql2 = "DELETE FROM activityComments WHERE aid = '$this->id'";
+                    if ($conn->query($sql2) === TRUE){
+                        return "Success";
+                    }else{
+                        return "Unexpected error 2.";
+                    }
                 }else{
-                    return "Unexpected error.";
+                    return "Unexpected error 1.";
                 }
-
-                $sql2 = "DELETE FROM activityComment WHERE aid = '$this->id'";
-
-                if ($conn->query($sql2) === TRUE){
-                    return "Comment has been deleted.";
-                }else{
-                    return "Unexpected error.";
-                }
-
-
             }else{
                 return "You are not the organizer of this activity.";
             }
         }
-
-
     }
 
     function sendInvitation($participants){
@@ -304,7 +301,7 @@ class ManipulateActivityClass {
             $newLikes = $likesStr . ";" . $this->user;
             $sql1 = "UPDATE activity SET likes = '$newLikes' WHERE id = '$this->id'";
             if ($conn->query($sql1) === TRUE) {
-                return "Success! $this->user has now liked this $this->id";
+                return "Success!";
             } else {
                 return "Unexpected error.";
             }
@@ -334,13 +331,12 @@ class ManipulateActivityClass {
 
             $sql2 = "UPDATE activity SET likes = '$newLikesList' WHERE id = '$this->id'";
             if ($conn->query($sql2) === TRUE) {
-                return "Success! $this->user has now unliked this $this->id";
+                return "Success!";
             } else {
                 return "Unexpected error.";
             }
         }
     }
     // Part IV Ends.
-
 
 }

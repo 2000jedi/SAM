@@ -75,6 +75,10 @@ if (!function_exists('checkForceQuit')){
             }
         }
         @media (max-width: 840px){
+            #percentageRings{
+                width: 100%;
+                margin: 0;
+            }
             #todaySVG, #totalSVG{
                 width: 120px;
                 height: 120px;
@@ -104,6 +108,19 @@ if (!function_exists('checkForceQuit')){
         $('#title').html(id);
         $('.demo-drawer').removeClass("is-visible");
     }
+    <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/UID.php";
+    ?>
+
+    <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
+    ?>
 </script>
 <body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -159,6 +176,9 @@ if (!function_exists('checkForceQuit')){
             <div id="classList" class="mdl-grid demo-content"></div>
         </div>
         <div id="mActivities">
+            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em;" onclick="new ManipulateActivity().addActivityButtonClick()">
+                <i class="material-icons">add</i>
+            </button>
             <div id="activity-list-wrapper">
                 <div id="activity-list" class="mdl-grid demo-content"></div>
             </div>
@@ -180,15 +200,16 @@ if (!function_exists('checkForceQuit')){
             <div id="assignment-list-class"></div>
         </div>
         <div id="right-part-view-activity" style="display: none">
+            <div style="display: none;" id="right-part-activity-id"></div>
             <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
                 <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
                         <span class="mdl-layout-title" style="display: flex; flex-direction: row">
                             <span class="material-icons"style="display: flex">close</span>
-                            <span style="display: flex">Manage Class</span>
+                            <span style="display: flex">View Activity</span>
                         </span>
                 </div>
             </header>
-            <div id="assignment-list-class"></div>
+            <div id="assignment-comment-list"></div>
         </div>
     </div>
     <?php
@@ -196,32 +217,41 @@ if (!function_exists('checkForceQuit')){
     ?>
     <div id="floatBox-content">
         <div id="floatBox-add-activity">
-            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                <form id="submit_form_node" action='/modules/assignment/addActivity.php' method="post" enctype="multipart/form-data">
-                    <div style="display: table; width: 100%; border-top: 1px solid #CCC">
-                        <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Name</div>
-                        <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
-                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-name" name="name" />
-                            <label class="mdl-textfield__label" for="add-card-form-duration">Name your activity</label>
-                        </div>
+            <form id="submit_form_add_activity" action='/modules/activity/addActivity.php' method="post" enctype="multipart/form-data">
+                <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                    <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Name</div>
+                    <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                        <input class="mdl-textfield__input" style="background: white" type="text" id="add-activity-form-name" name="name" />
+                        <label class="mdl-textfield__label" for="add-activity-form-name">Name your activity</label>
                     </div>
-                    <div style="border-top: 1px solid #CCC">Description</div>
-                    <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
-                        <textarea class="mdl-textfield__input" style="background: white" type="text" rows="4" id="add-card-form-description" name="description" ></textarea>
-                        <label class="mdl-textfield__label" for="add-card-form-content">Input the description for the activity</label>
+                </div>
+                <div style="display: table; width: 100%; border-top: 1px solid #CCC">
+                    <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Deal</div>
+                    <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                        <input class="mdl-textfield__input" style="background: white" type="text" id="add-activity-form-deal" name="deal" />
+                        <label class="mdl-textfield__label" for="add-activity-form-deal">What can others get?</label>
                     </div>
-                    <div style="display: table; width: 100%; border-top: 1px solid #CCC">
-                        <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Deal</div>
-                        <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
-                            <input class="mdl-textfield__input" style="background: white" type="text" id="add-card-form-deal" name="deal" />
-                            <label class="mdl-textfield__label" for="add-card-form-duration">What can others get?</label>
-                        </div>
+                </div>
+                <div style="border-top: 1px solid #CCC">Description</div>
+                <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                    <textarea class="mdl-textfield__input" style="background: white" type="text" rows="4" id="add-activity-form-description" name="description" ></textarea>
+                    <label class="mdl-textfield__label" for="add-activity-form-description">Input the description for the activity</label>
+                </div>
+                <div style="border-top: 1px solid #CCC">
+                    <div style="display:inline-block">Add attachment (optional)</div>
+                    <button id="add-activity-form-file-button-1" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5">Add More Files</button>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
+                    <div id="add-activity-form-file-input-list">
+                        <input class="mdl-textfield__input" style="background: white" id="add-activity-form-file" name="attachment[]" type="file" multiple />
                     </div>
-                    <div style="text-align: center; margin-top: 1em">
-                        <input type="submit" value="Submit" id="submit_btn_add_card" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
-                    </div>
-                </form>
-        </div>
+                    <label class="mdl-textfield__label" for="add-activity-form-file"></label>
+                </div>
+                <progress id='progress_activity_1' value="0" max='100' style="width: 100%; display: none"></progress>
+                <div style="text-align: center; margin-top: 1em">
+                    <input type="submit" value="Submit" id="submit_btn_add_activity" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                </div>
+            </form>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperEnd.html";
@@ -246,16 +276,6 @@ if (!function_exists('checkForceQuit')){
 </body>
 </html>
 <script>
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
-    ?>
-
     var featureList = new Array("add-activity");
     var floatBox = new FloatBox(featureList);
 
@@ -355,6 +375,55 @@ if (!function_exists('checkForceQuit')){
             updateMasonry('assignment-list');
         });
     }
+
+    function isNull(t){
+        return (t == null || t == "");
+    }
+    function hasFile(id){
+        //if there is a value, return true, else: false;
+        return $('#'+id).val() ? true: false;
+    }
+
+    $('#submit_form_add_activity').submit(function(){
+        $(this).ajaxSubmit({
+            beforeSubmit: function(){
+                if (isNull($("#add-activity-form-name").val())){
+                    alert("Name of the activity cannot be empty!");
+                    return false;
+                }
+                if (isNull($("#add-activity-form-description").val())){
+                    alert("Description of the activity cannot be empty!");
+                    return false;
+                }
+
+                $('#submit_btn_add_activity').prop('disabled',true).val("Sending...");
+                $("#progress_activity_1").show();
+                return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress_activity_1').attr("value", percentComplete);
+            },
+            clearForm: true,
+            data:{hasAttachment: hasFile('add-activity-form-file')},
+            success: function(content,textStatus,xhr,$form){
+                if (content == "Success"){
+                    alert(content);
+                }
+                $('#submit_btn_add_activity').prop('disabled',false).val("Submit");
+                $('#shadow').hide();
+                $("#progress_activity_1").hide();
+                new ManipulateActivity().loadActivities(function(){
+                    $('#activity-list').html("");
+                })
+            }
+        });
+        return false;
+    });
+    $('#add-activity-form-file-button-1').click(function(e){
+        e.preventDefault();
+        var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
+        $("#add-activity-form-file-input-list").append(html);
+    });
 
     toggleModules('Home');
 

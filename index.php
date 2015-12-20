@@ -24,6 +24,7 @@ if ( isset($_COOKIE['username']) and isset($_COOKIE['password']) ) {
     if ( $check == false) {
         Redirect("/login.php");
     }else{
+        $uid = $check->uid;
         $username = $_COOKIE['username'];
         $userType = substr($username, 0, 1);
 

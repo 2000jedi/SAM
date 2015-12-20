@@ -10,7 +10,9 @@ class UnitActivity {
 
     var $id;
     var $name;
+    var $organizer;
     var $description;
+    var $attachment;
     var $time;
     var $deal;
     var $members;
@@ -18,10 +20,12 @@ class UnitActivity {
 
     function __construct(){}
 
-    function construct($id, $name, $description, $time, $deal, $members, $likes){
+    function construct($id, $name, $organizer, $description, $attachment, $time, $deal, $members, $likes){
         $this->id = $id;
         $this->name = $name;
+        $this->organizer = $organizer;
         $this->description = $description;
+        $this->attachment = $attachment;
         $this->time = $time;
         $this->deal = $deal;
         $this->members = $members;
@@ -56,7 +60,7 @@ class UnitActivity {
         $members = $this->processMembersFromDBStringToArray($row["members"]);
         $likes = $this->processLikesFromDBString($row["likes"]);
 
-        $this->construct($row["id"], $row["name"], $row["description"], $row["time"], $row["deal"], $members, $likes);
+        $this->construct($row["id"], $row["name"], $row["organizer"], $row["description"], $row["attachment"], $row["time"], $row["deal"], $members, $likes);
 
     }
 }

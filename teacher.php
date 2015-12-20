@@ -73,9 +73,9 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
     ?>
 
 </script>
@@ -344,11 +344,10 @@ if (!function_exists('checkForceQuit')){
             success: function(content,textStatus,xhr,$form){
                 if (content == "Success"){
                     alert(content);
-                    localStorage.filesize1 = 0;
                 }
                 $('#submit_btn_add_card').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
-                $("#progress2").hide();
+                $("#progress1").hide();
                 new Class($('#add-card-class-id').val(), '').loadAssignment(1, function(){
                     $('#assignment-list').html("");
                 })
@@ -374,7 +373,6 @@ if (!function_exists('checkForceQuit')){
             success: function(content,textStatus,xhr,$form){
                 if (content == "Success"){
                     alert(content);
-                    localStorage.filesize2 = 0;
                 }
                 $('#submit_btn_add_card-2').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
@@ -397,22 +395,6 @@ if (!function_exists('checkForceQuit')){
         var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile2' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
         $("#add-card-form-file-input-list-2").append(html);
     });
-    $('.uploadfile1').bind('change', function() {
-        var temp = 0;
-        for (var i = 0; i < this.files.length; i++){
-            temp += this.files[i].size/1024/1024;
-        }
-        localStorage.filesize1 = parseInt(localStorage.filesize1) + temp;
-    });
-    $('.uploadfile2').bind('change', function() {
-        var temp = 0;
-        for (var i = 0; i < this.files.length; i++){
-            temp += this.files[i].size/1024/1024;
-        }
-        localStorage.filesize2 = parseInt(localStorage.filesize2) + temp;
-    });
-    localStorage.filesize1 = 0;
-    localStorage.filesize2 = 0;
 
     toggleModules("Classes");
     new Class('', '').loadClass(2, function(){});

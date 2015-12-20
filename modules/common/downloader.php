@@ -16,7 +16,7 @@ $realPath = $pathArr[count($pathArr)-1];
 $names = explode(".",$realPath);
 $type = $names[count($names)-1];
 
-if ( $type == "png" || $type == "jpg" || $type == "gif" ){
+if ( $type == "png" || $type == "jpg" || $type == "jpeg" || $type == "gif" ){
     header("Content-Type: image/$type");
 }else{
     header("Content-Type: application/$type");

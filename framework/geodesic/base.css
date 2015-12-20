@@ -446,46 +446,6 @@ textarea, input{
     padding:1.2em;
 }
 
-/* This part is added to the hamburger css so they have the same height and positioning. */
-#actionBar{
-    background: #2196F3;
-    padding: 0.5em 0 0 0;
-    position: fixed;
-    top:0px;
-    right:0px;
-    z-index: 300;
-}
-.arrow span {
-    height: 3px;
-    -webkit-transform: translateY(29px);
-}
-.material-icon span{
-    background-color: #fff;
-    display: block;
-    position: absolute;
-    top: -17px;
-    left: 10px;
-    width: 30px;
-    z-index: 1;
-}
-.arrow {
-    -webkit-transform: rotate(180deg) translateX(-3px);
-}
-.arrow .second, .arrow .third {
-    -webkit-transform: rotate(-45deg) translateY(47px);
-    left: -5px;
-    width: 15px;
-}
-.arrow .second {
-    -webkit-transform: rotate(45deg) translateY(-6px) translateX(40px)
-}
-.pinterestStyleWrapper{
-    display: flex;
-    flex-flow: column wrap;
-    align-content: center;
-    height: 1000px;
-}
-
 @media (min-width: 840px) {
 
     ::-webkit-scrollbar {

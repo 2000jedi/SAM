@@ -20,7 +20,7 @@
 
     .initialization(func)
         func is the code used to initialize the feature (usually used to clear previously written data)
-   
+
 */
 function FloatBox(featureList){
     this.featureList = featureList;
