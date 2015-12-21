@@ -9,22 +9,24 @@
 class UnitActivityComment {
 
     var $id;
-    var $aid;
-    var $uid;
+    var $username;
     var $time;
     var $comment;
+    var $attachment;
 
     function __construct(){}
 
-    function construct($id, $aid, $uid, $time, $comment){
+    function construct($id, $username, $time, $comment, $attachment){
         $this->id = $id;
-        $this->aid = $aid;
-        $this->uid = $uid;
+        $this->username = $username;
         $this->time = $time;
         $this->comment = $comment;
+        $this->attachment = $attachment;
     }
 
     function constructFromDBRow($row){
-        $this->construct($row["id"], $row["aid"], $row["uid"], $row["time"], $row["comment"]);
+        $uid = $row["uid"];
+        $username = userVariableConversion($uid, "uid", "username");
+        $this->construct($row["id"], $username, $row["time"], $row["comment"], $row["attachment"]);
     }
 }

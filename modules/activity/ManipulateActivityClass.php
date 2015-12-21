@@ -99,9 +99,10 @@ class ManipulateActivityClass {
         $comments = array();
         $counter = 0;
         while($row = $result->fetch_assoc()) {
-            $uAC = new UnitActivityComment($row);
+            $uAC = new UnitActivityComment();
             $uAC->constructFromDBRow($row);
             $comments[$counter] = $uAC;
+            $counter++;
         }
 
         return json_encode($comments);
@@ -267,13 +268,27 @@ class ManipulateActivityClass {
         }
     }
 
-    function addComment($comment){
+    function addComment($comment, $attachment){
         global $conn;
-        $sql = "INSERT INTO activityComment (aid, uid, time, comment) INTO ('$this->id', '$this->user', now(), '$comment')";
-        if ($conn->query($sql) === TRUE){
-            return "Success! Comment added.";
+
+        $members = $this->members;
+
+        $bool = false;
+        for ($i = 0; $i < count($members); $i++) {
+            if ($members[$i] == $this->user ){
+                $bool = true;
+            }
+        }
+
+        if ($bool){
+            $sql = "INSERT INTO activityComments (aid, uid, time, comment, attachment) VALUES ('$this->id', '$this->user', now(), '$comment', '$attachment')";
+            if ($conn->query($sql) === TRUE){
+                return "Success! Comment added.";
+            }else{
+                return "Unexpected error.";
+            }
         }else{
-            return "Unexpected error.";
+            return "Permission Denied.";
         }
     }
 

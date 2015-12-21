@@ -178,7 +178,6 @@ function Class(id, name){
     };
 
     this.openManageClassPanel = function(){
-        updateMasonry('assignment-list');
         new Class(this.id, this.name).loadAssignment(1, function(){
             $('#assignment-list').masonry().masonry("remove", $('#assignment-list').children()).html("");
         });
@@ -188,7 +187,6 @@ function Class(id, name){
     };
 
     this.openViewClassPanel = function(){
-        updateMasonry('assignment-list-in-class');
         new Class(this.id, this.name).loadAssignment(0, function(){
             $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
         });
@@ -221,7 +219,6 @@ function Class(id, name){
         var app = new Array(); app[0] = "student-in-class"; app[1] = "teacher";
         var appendID = new Array(); appendID[0] = "#assignment-list-class"; appendID[1] = "#assignment-list";
 
-
         $.get("/modules/assignment/classLoadAssignment.php",{class: id},function(data){
             func();
             data = JSON.parse(data);
@@ -234,7 +231,6 @@ function Class(id, name){
                 $(appendID[type]).append(assignment.getHTML()).masonry().masonry('appended', $(appendID[type]+"-"+row.id));
             }
             updateMasonry(appendID[type].substr(1));
-
         });
     };
 

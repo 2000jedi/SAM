@@ -9,7 +9,7 @@
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/activity/ManipulateActivityClass.php";
-require $_SERVER['DOCUMENT_ROOT']."/modules/activity/UnitActivity.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/activity/UnitActivityComment.php";
 
 $result = checkForceQuit();
 
@@ -18,7 +18,6 @@ $aid = $_GET["id"];
 $manipulation = new ManipulateActivityClass();
 $manipulation->constructByID($aid);
 echo $manipulation->loadComments();
-
 
 
 ?>

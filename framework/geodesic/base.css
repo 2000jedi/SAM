@@ -379,7 +379,7 @@ textarea, input{
     line-height:1.5;
     padding: 0.25em;
 }
-.assignment-list,.assignment-list-class{
+.assignment-list,.assignment-list-class,.activity-list,.activity-comment-list{
     min-width: 300px;
     width: 300px;
     margin: 10px 0;

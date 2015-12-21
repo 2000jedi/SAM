@@ -87,7 +87,7 @@ if (!function_exists('checkForceQuit')){
                 width: 100%;
             }
         }
-        #assignment-list, #assignment-list-class, #activity-list{
+        #assignment-list, #assignment-list-class, #activity-list, #activity-comment-list{
             margin: 0 auto;
         }
     </style>
@@ -188,9 +188,9 @@ if (!function_exists('checkForceQuit')){
         ?>
     </main>
     <div id="right-part" class="mdl-layout--fixed-header" style="display:none">
-        <div id="right-part-view-class">
-            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
-                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
+        <div id="right-part-view-class" style="display: none;">
+            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600" style="display: flex">
+                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
                         <span class="mdl-layout-title" style="display: flex; flex-direction: row">
                             <span class="material-icons"style="display: flex">close</span>
                             <span id="right-part-title" style="display: flex">Manage Class</span>
@@ -200,16 +200,19 @@ if (!function_exists('checkForceQuit')){
             <div id="assignment-list-class"></div>
         </div>
         <div id="right-part-view-activity" style="display: none">
-            <div style="display: none;" id="right-part-activity-id"></div>
-            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
-                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-in-class').empty();$('#right-part').hide()">
+            <div id="right-part-view-activity-id" style="display: none;"></div>
+            <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600" style="display: flex">
+                <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
                         <span class="mdl-layout-title" style="display: flex; flex-direction: row">
                             <span class="material-icons"style="display: flex">close</span>
                             <span style="display: flex">View Activity</span>
                         </span>
                 </div>
             </header>
-            <div id="assignment-comment-list"></div>
+            <button id="add-activity-comment-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em;" onclick="new ManipulateActivity().addActivityCommentButtonClick()">
+                <i class="material-icons">add</i>
+            </button>
+            <div id="activity-comment-list"></div>
         </div>
     </div>
     <?php
@@ -252,6 +255,30 @@ if (!function_exists('checkForceQuit')){
                     <input type="submit" value="Submit" id="submit_btn_add_activity" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
                 </div>
             </form>
+        </div>
+        <div id="floatBox-add-activity-comment">
+            <form id="submit_form_add_activityComment" action='/modules/activity/addActivityComment.php' method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="add-activityComment-form-id" />
+                <div class="mdl-textfield mdl-js-textfield" style="width: 100%">
+                    <textarea class="mdl-textfield__input" style="background: white" type="text" rows="4" id="add-activityComment-form-comment" name="comment" ></textarea>
+                    <label class="mdl-textfield__label" for="add-activityComment-form-comment">Input your comment</label>
+                </div>
+                <div style="border-top: 1px solid #CCC">
+                    <div style="display:inline-block">Add attachment (optional)</div>
+                    <button id="add-activityComment-form-file-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5">Add More Files</button>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield" style='display: block; padding: 10px 0; width: 100%'>
+                    <div id="add-activityComment-form-file-input-list">
+                        <input class="mdl-textfield__input" style="background: white" id="add-activityComment-form-file" name="attachment[]" type="file" multiple />
+                    </div>
+                    <label class="mdl-textfield__label" for="add-activity-form-file"></label>
+                </div>
+                <progress id='progress_activity_2' value="0" max='100' style="width: 100%; display: none"></progress>
+                <div style="text-align: center; margin-top: 1em">
+                    <input type="submit" value="Submit" id="submit_btn_add_activityComment" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                </div>
+            </form>
+        </div>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperEnd.html";
@@ -276,7 +303,7 @@ if (!function_exists('checkForceQuit')){
 </body>
 </html>
 <script>
-    var featureList = new Array("add-activity");
+    var featureList = new Array("add-activity", "add-activity-comment");
     var floatBox = new FloatBox(featureList);
 
     updateMasonry('assignment-list');
@@ -285,11 +312,8 @@ if (!function_exists('checkForceQuit')){
     setInterval(function(){
         updateMasonry('assignment-list');
         updateMasonry('activity-list');
-        try{
-            $('#assignment-list-class').masonry().masonry('layout');
-        }catch (e){
-            // Do nothing
-        }
+        $('#assignment-list-class').masonry().masonry('layout');
+        $('#activity-comment-list').masonry().masonry('layout');
     }, 200);
 
     function loadAssignment(func){
@@ -419,10 +443,48 @@ if (!function_exists('checkForceQuit')){
         });
         return false;
     });
+    $('#submit_form_add_activityComment').submit(function(){
+        $(this).ajaxSubmit({
+            beforeSubmit: function(){
+                if (isNull($("#add-activityComment-form-comment").val())){
+                    alert("Comment cannot be empty!");
+                    return false;
+                }
+
+                $('#submit_btn_add_activityComment').prop('disabled',true).val("Sending...");
+                $("#progress_activity_2").show();
+                return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress_activity_2').attr("value", percentComplete);
+            },
+            clearForm: true,
+            data:{hasAttachment: hasFile('add-activityComment-form-file')},
+            success: function(content,textStatus,xhr,$form){
+                if (content == "Success"){
+                    alert(content);
+                }
+                $('#submit_btn_add_activityComment').prop('disabled',false).val("Submit");
+                $('#shadow').hide();
+                $("#progress_activity_2").hide();
+
+                var id = $('#right-part-view-activity-id').html();
+                new Activity(id, "", "", "", "", "", "", "", "").loadComments(function(){
+                    $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list').children()).html("");
+                });
+            }
+        });
+        return false;
+    });
     $('#add-activity-form-file-button-1').click(function(e){
         e.preventDefault();
         var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
         $("#add-activity-form-file-input-list").append(html);
+    });
+    $('#add-activityComment-form-file-button').click(function(e){
+        e.preventDefault();
+        var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
+        $("#add-activityComment-form-file-input-list").append(html);
     });
 
     toggleModules('Home');

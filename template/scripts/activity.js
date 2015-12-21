@@ -25,9 +25,24 @@ function ManipulateActivity(){
         floatBox.showFeature("Create a new activity", "add-activity", function(){});
     };
 
-    this.addActivity = function(){
-
+    this.addActivityCommentButtonClick = function(){
+        floatBox.showFeature("Add a comment", "add-activity-comment", function(){});
     };
+}
+function dealWithAttachment(attachment) {
+    if (attachment == "null"){
+        return "";
+    }else{
+        var arr = attachment.split(";"), html = "<div style='margin-top: 1em; border-top: 1px solid #CCC; padding-top: .5em'>";
+        for (var i = 1; i < arr.length-1; i = i+2){
+            var url = arr[i];
+            var name = arr[i+1];
+            var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
+            html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
+        }
+        html += "</div>";
+        return html;
+    }
 }
 
 function Activity(id, name, organizer, description, attachment, time, deal, members, likes){
@@ -75,42 +90,27 @@ function Activity(id, name, organizer, description, attachment, time, deal, memb
 
     this.updateStatus();
 
-    function dealWithAttachment(attachment) {
-        if (attachment == "null"){
-            return "";
-        }else{
-            var arr = attachment.split(";"), html = "<div style='margin-top: 1em; border-top: 1px solid #CCC; padding-top: .5em'>";
-            for (var i = 1; i < arr.length-1; i = i+2){
-                var url = arr[i];
-                var name = arr[i+1];
-                var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
-                html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
-            }
-            html += "</div>";
-            return html;
-        }
-    }
-
     this.loadComments = function(func){
         $.get("/modules/activity/loadActivityComments.php", {id: this.id}, function(data){
             func();
-            alert(data);
+            data = JSON.parse(data);
+            for (var i = 0; i < data.length; i++) {
+                var row = data[i];
+                var activityComment = new ActivityComment(row.id, row.username, row.time, row.comment, row.attachment);
+                $('#activity-comment-list').append(activityComment.getHTML()).masonry().masonry('appended', $("#activity-comment-list-"+row.id));
+            }
+            updateMasonry('activity-comment-list');
         });
     };
 
     this.openViewActivityPanel = function(){
-        this.loadComments(function(){
-
+        new Activity(id, name, organizer, description, attachment, time, deal, members, likes).loadComments(function(){
+            $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list').children()).html("");
         });
-        /*
-         updateMasonry('assignment-list-in-class');
-         new Class(this.id, this.name).loadAssignment(0, function(){
-         $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
-         });
-         */
-        $('#right-part-activity-id').html(this.id);
-        $('#right-part-view-class').show();
-        $('#right-part-view-activity').hide();
+        $('#right-part-view-activity-id').html(this.id);
+        $('#add-activityComment-form-id').val(this.id);
+        $('#right-part-view-class').hide();
+        $('#right-part-view-activity').show();
         $('#right-part').show();
     };
 
@@ -204,7 +204,7 @@ function Activity(id, name, organizer, description, attachment, time, deal, memb
         html += "               <div style='right: 3px; top: 89px; font-size: 10px; position: absolute'>likes</div>";
         html += "           </div>";
         html += "       </div>";
-        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-ttext--grey-600' style='border-bottom: 1px solid #CCC'>";
         html += "           <div>Published: " + this.time + "</div>";
         html += "       </div>";
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
@@ -216,7 +216,36 @@ function Activity(id, name, organizer, description, attachment, time, deal, memb
         html += "       <div class='mdl-card__actions mdl-card--border'>";
         html += "           <a id='activity-list-" + this.id + "-join-leave-delete-button' href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Activity(\"" + this.id + "\", \"" + this.name + "\", \"" + this.organizer + "\", \"" + this.description + "\", \"" + attachment + "\", \"" + this.time + "\", \"" + this.deal + "\", [" + this.members + "], [" + this.likes + "]).toggleJoinLeaveDelete()'>"+this.status.textOfJoinLeaveDeleteButton+"</a>";
         html += "           <a id='activity-list-" + this.id + "-like-unlike-button' href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Activity(\"" + this.id + "\", \"" + this.name + "\", \"" + this.organizer + "\", \"" + this.description + "\", \"" + attachment + "\", \"" + this.time + "\", \"" + this.deal + "\", [" + this.members + "], [" + this.likes + "]).toggleLikeUnlike()'>"+this.status.textOfLikeUnlikeButton+"</a>";
-        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Activity(\"" + this.id + "\", \"" + this.name + "\", \"\", \"\", \"\", \"\", \"\", \"\", \"\").openViewActivityPanel()'>View</a>";
+        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Activity(\"" + this.id + "\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\").openViewActivityPanel()'>View</a>";
+        html += "       </div>";
+        html += "   </div>";
+        html += "</div>";
+        return html;
+    }
+}
+
+function ActivityComment(id, username, time, comment, attachment){
+    this.id = id;
+    this.username = username;
+    this.time = time;
+    this.comment = comment;
+    this.attachment = dealWithAttachment(attachment);
+
+    this.getHTML = function(){
+        var html = "";
+        html += "<div id='activity-comment-list-"+ this.id +"' class='activity-comment-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--indigo-300' style='position: relative'>";
+        html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>assignment</span> Comment</h2>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-ttext--grey-600' style='border-bottom: 1px solid #CCC'>";
+        html += "           <div>Author: " + this.username + "</div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-ttext--grey-600' style='border-bottom: 1px solid #CCC'>";
+        html += "           <div>Published: " + this.time + "</div>";
+        html += "       </div>";
+        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "           <div>" + this.comment+ "</div>" + this.attachment;
         html += "       </div>";
         html += "   </div>";
         html += "</div>";
