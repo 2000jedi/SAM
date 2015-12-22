@@ -194,21 +194,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.finished = finished;
 
 
-    this.whetherExpandCSS = function() {
-        if (this.content.length > 100){
-            return "height: 3.7em; overflow: hidden; box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);";
-        }else{
-            return "";
-        }
-    };
-    this.whetherExpandHTML = function(){
-        if (this.content.length > 100){
-            return "           <div style='margin:0.5em; font-size:16px' onclick='new ManipulateAssignment(\""+this.id+"\").contentExpanding(\""+this.diff("prefix-content-id", this)+"\")'><a href='#'>Click to display/hide.</a></div>";
-        }else{
-            return "           ";
-        }
-    };
-
     this.diff = function(where){
         var assignment = this;
         if (where == "prefix"){
@@ -240,14 +225,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 return " style='opacity:0.6'";
             }else{
                 return "";
-            }
-        }else if (where == "expand-content"){
-            if (assignment.app == "teacher"){
-                return this.whetherExpandHTML();
-            }else if (assignment.app == "student"){
-                return this.whetherExpandHTML();
-            }else if (assignment.app == "student-in-class"){
-                return this.whetherExpandHTML();
             }
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
@@ -337,12 +314,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             html += "       </div>";
         }
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='overflow: visible'>";
-        html += "           <div style='line-height: 1.5; "+this.whetherExpandCSS()+"' id='" + this.diff("prefix-content-id", this) + "'>";
+        html += "           <div style='line-height: 1.5;' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
         html += "           </div>";
-        html += this.diff("expand-content", this);
         html += "       </div>";
-
         html += "       <div class='mdl-card__actions mdl-card--border'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);

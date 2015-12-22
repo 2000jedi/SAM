@@ -238,7 +238,7 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
         html += "           <div style='display: inline-block; width: 100%; overflow: hidden'>Benefit: " + this.deal+ "</div>";
         html += "       </div>";
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
-        html += "           <div>" + this.description+ "</div>" + this.attachment;
+        html += "           <div>" + Utils.string.formattedPostContent(this.description) + "</div>" + this.attachment;
         html += "       </div>";
         html += "       <div class='mdl-card__actions mdl-card--border'>";
         html += "           <a id='activity-list-" + this.id + "-join-leave-delete-button' href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0; min-width: 100px' onclick='new Activity(\"" + this.id + "\", \"" + this.name + "\", \"" + this.organizer + "\", \"" + this.nameOfOrganizer + "\", \"" + this.description + "\", \"" + attachment + "\", \"" + this.time + "\", \"" + this.deal + "\", [" + this.members + "], [" + this.likes + "]).toggleJoinLeaveDelete()'>"+this.status.textOfJoinLeaveDeleteButton+"</a>";
@@ -270,7 +270,6 @@ function ActivityComment(id, uid, username, time, comment, attachment){
             });
         }
     };
-
     this.getHTML = function(){
         var html = "";
         html += "<div id='activity-comment-list-"+ this.id +"' class='activity-comment-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
@@ -285,7 +284,7 @@ function ActivityComment(id, uid, username, time, comment, attachment){
         html += "           <div>Published: " + this.time + "</div>";
         html += "       </div>";
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
-        html += "           <div>" + this.comment+ "</div>" + this.attachment;
+        html += "           <div>" + Utils.string.formattedPostContent(this.comment) + "</div>" + this.attachment;
         html += "       </div>";
         if (this.uid == UID) {
             html += "       <div class='mdl-card__actions mdl-card--border'>";
