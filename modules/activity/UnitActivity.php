@@ -11,6 +11,7 @@ class UnitActivity {
     var $id;
     var $name;
     var $organizer;
+    var $nameOfOrganizer;
     var $description;
     var $attachment;
     var $time;
@@ -24,6 +25,7 @@ class UnitActivity {
         $this->id = $id;
         $this->name = $name;
         $this->organizer = $organizer;
+        $this->nameOfOrganizer = $this->nameOfPerson($organizer);
         $this->description = $description;
         $this->attachment = $attachment;
         $this->time = $time;
@@ -54,6 +56,22 @@ class UnitActivity {
         }
 
         return $likes;
+    }
+
+    function nameOfPerson($uid){
+        global $conn;
+        $sql = "SELECT * FROM userInfo WHERE uid = '$uid'";
+        $result = $conn->query($sql);
+
+        $name = "";
+
+        while($row = $result->fetch_assoc()) {
+            $ChineseName = $row["ChineseName"];
+            $EnglishName = $row["EnglishName"];
+            $name = "$ChineseName ($EnglishName)";
+        }
+
+        return $name;
     }
 
     function constructFromDBRow($row){

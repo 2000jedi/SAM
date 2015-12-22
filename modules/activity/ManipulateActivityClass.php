@@ -248,6 +248,32 @@ class ManipulateActivityClass {
         }
     }
 
+    function nameOfPerson($uid){
+        global $conn;
+        $sql = "SELECT * FROM userInfo WHERE uid = '$uid'";
+        $result = $conn->query($sql);
+
+        $name = "";
+
+        while($row = $result->fetch_assoc()) {
+            $ChineseName = $row["ChineseName"];
+            $EnglishName = $row["EnglishName"];
+            $name = "$ChineseName ($EnglishName)";
+        }
+
+        return $name;
+    }
+
+    function loadMembersName(){
+        $members = $this->members;
+        $arr = array();
+        for ($i = 0; $i < count($members); $i++) {
+            $name = $this->nameOfPerson($members[$i]);
+            $arr[$i] = $name;
+        }
+        return json_encode($arr);
+    }
+
     function sendInvitation($participants){
 
     }

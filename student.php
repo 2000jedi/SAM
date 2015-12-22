@@ -229,7 +229,7 @@ if (!function_exists('checkForceQuit')){
                     </div>
                 </div>
                 <div style="display: table; width: 100%; border-top: 1px solid #CCC">
-                    <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Deal</div>
+                    <div style="display: table-cell; min-width: 70px; max-width: 70px; vertical-align: middle">Benefit</div>
                     <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
                         <input class="mdl-textfield__input" style="background: white" type="text" id="add-activity-form-deal" name="deal" />
                         <label class="mdl-textfield__label" for="add-activity-form-deal">What can others get?</label>
@@ -279,6 +279,9 @@ if (!function_exists('checkForceQuit')){
                 </div>
             </form>
         </div>
+        <div id="floatBox-view-activity-members">
+            <div id="floatBox-view-activity-members-list"></div>
+        </div>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperEnd.html";
@@ -303,7 +306,7 @@ if (!function_exists('checkForceQuit')){
 </body>
 </html>
 <script>
-    var featureList = new Array("add-activity", "add-activity-comment");
+    var featureList = new Array("add-activity", "add-activity-comment", "view-activity-members");
     var floatBox = new FloatBox(featureList);
 
     updateMasonry('assignment-list');

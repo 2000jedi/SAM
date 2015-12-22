@@ -16,17 +16,31 @@ class UnitActivityComment {
 
     function __construct(){}
 
-    function construct($id, $username, $time, $comment, $attachment){
+    function construct($id, $uid, $time, $comment, $attachment){
         $this->id = $id;
-        $this->username = $username;
+        $this->username = $this->nameOfPerson($uid);
         $this->time = $time;
         $this->comment = $comment;
         $this->attachment = $attachment;
     }
 
     function constructFromDBRow($row){
-        $uid = $row["uid"];
-        $username = userVariableConversion($uid, "uid", "username");
-        $this->construct($row["id"], $username, $row["time"], $row["comment"], $row["attachment"]);
+        $this->construct($row["id"], $row["uid"], $row["time"], $row["comment"], $row["attachment"]);
+    }
+
+    function nameOfPerson($uid){
+        global $conn;
+        $sql = "SELECT * FROM userInfo WHERE uid = '$uid'";
+        $result = $conn->query($sql);
+
+        $name = "";
+
+        while($row = $result->fetch_assoc()) {
+            $ChineseName = $row["ChineseName"];
+            $EnglishName = $row["EnglishName"];
+            $name = "$ChineseName ($EnglishName)";
+        }
+
+        return $name;
     }
 }
