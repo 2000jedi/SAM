@@ -53,11 +53,36 @@ class ManipulateAssignmentClass {
             $sqlForClass = "1 = 0";
         }
 
-        $sql = "SELECT * from assignment WHERE dueday > curdate() AND ( $sqlForClass OR class = '39' ) ORDER BY type ASC, dueday ASC";
-        $result = $conn->query($sql);
-
         $arr = array();
         $counter = 0;
+
+        $sql0 = "SELECT * from assignment WHERE dueday > curdate() AND class = '39' ORDER BY type ASC, dueday ASC";
+        $result = $conn->query($sql0); // class = 39 ==> ad class
+        // Exclude the archived ad
+        while($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $class = $row['class'];
+
+            $finished = false;
+
+            $sql2 = "SELECT * FROM personalassignment WHERE assignment = '$id' AND uid = '$student' AND actual >= 0";
+            $result2 = $conn->query($sql2);
+            if ($result2->num_rows > 0) {
+                $finished = true;
+            }
+
+            if ($finished == true && $row['type'] == "2"){
+                // Do nothing
+            }else{
+                $unitAssignment = new UnitAssignment();
+                $unitAssignment->constructFromDBRow($row, $class, $finished);
+                $arr[$counter] = $unitAssignment;
+                $counter++;
+            }
+        }
+
+        $sql1 = "SELECT * from assignment WHERE dueday > curdate() AND ($sqlForClass) ORDER BY type ASC, dueday ASC";
+        $result = $conn->query($sql1);
 
         // Exclude the finished assignments
         while($row = $result->fetch_assoc()) {
@@ -80,7 +105,6 @@ class ManipulateAssignmentClass {
                 $arr[$counter] = $unitAssignment;
                 $counter++;
             }
-
         }
 
         return json_encode($arr);
@@ -89,7 +113,7 @@ class ManipulateAssignmentClass {
     function classLoadAssignment($class){
         global $conn;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > (curdate() - 180) ORDER BY type ASC, dueday DESC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' ORDER BY type ASC, dueday DESC";
         $result = $conn->query($sql);
 
         $arr = array();
@@ -323,38 +347,7 @@ class ManipulateAssignmentClass {
         $dueday = date("Y-m-d", strtotime($dueday));
 
         if ($_POST['hasAttachment'] == "true"){
-            /*
-            $target_dir = "/files/attachments/";
-
-            $attachment = "";
-
-            for ($i = 0; $i < count($_FILES["attachment"]['name']); $i++ ){
-                $originalName = $_FILES["attachment"]['name'][$i];
-                $realNameArr = explode(".",$originalName);
-                $realName = "";
-                for ($ii = 0; $ii < count($realNameArr)-1; $ii++){
-                    $realName .= $realNameArr[$ii];
-                }
-                $fileType = pathinfo($originalName, PATHINFO_EXTENSION);
-                $final_filename = $realName."_".time().".".$fileType;
-                if ($mode == "local"){
-                    $target_file = $_SERVER['DOCUMENT_ROOT'].$target_dir .$final_filename;
-
-                    $attachment .= ";".$target_dir.$final_filename.";".$originalName;
-
-                    move_uploaded_file($_FILES["attachment"]["tmp_name"][$i], $target_file);
-                }else if ($mode == "SAE"){
-                    $fileContent=file_get_contents($_FILES["attachment"]["tmp_name"][$i]);
-                    $temp=new SaeStorage();
-                    $temp->write("wflmssam",$final_filename,$fileContent);
-                    $url=$temp->getUrl($domain,$final_filename);
-
-                    $attachment .= ";".$url.";".$originalName;
-                }
-            }
-            */
             $attachment = processAttachment();
-
         }
         $content = $_POST['content'];
         $class = $_POST['class'];

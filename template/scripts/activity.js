@@ -139,12 +139,15 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
     };
 
     this.deleteActivity = function(){
-        $.get("/modules/activity/deleteActivity.php", {id: this.id}, function(data){
-            new ManipulateActivity().loadActivities(function(){
-                $('#activity-list').html("");
+        var conf = confirm("DO YOU REALLY want to delete the activity?");
+        if (conf == true) {
+            $.get("/modules/activity/deleteActivity.php", {id: this.id}, function (data) {
+                new ManipulateActivity().loadActivities(function () {
+                    $('#activity-list').html("");
+                });
+                alert(data);
             });
-            alert(data);
-        });
+        }
     };
 
     this.toggleJoinLeaveDelete = function(){
@@ -258,13 +261,14 @@ function ActivityComment(id, uid, username, time, comment, attachment){
     this.attachment = dealWithAttachment(attachment);
 
     this.delete = function(){
-        var id = $('#right-part-view-activity-id').html();
-        $.get("/modules/activity/deleteActivityComment.php", {id: this.id}, function(data){
-            new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
-                $('#activity-comment-list').html("");
+        var conf = confirm("DO YOU REALLY want to delete the comment?");
+        if (conf == true) {
+            var id = $('#right-part-view-activity-id').html();
+            var cid = this.id;
+            $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list-' + cid));
+            $.get("/modules/activity/deleteActivityComment.php", {id: this.id}, function (data) {
             });
-            alert(data);
-        });
+        }
     };
 
     this.getHTML = function(){

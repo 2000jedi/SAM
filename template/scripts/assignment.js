@@ -56,10 +56,7 @@ function ManipulateAssignment(id){
     };
 
      this.markCompletion = function(){
-        var actual = prompt("You may tell us how much time you actually spent on the assignment (in minutes). (You can leave it blank.)");
-        if (actual == null){
-            return;
-        }
+        var actual = 0;
         $.post("/modules/assignment/markCompletion.php",{id: this.id, actual: actual}, function(data){
             loadAssignment(function(){
                 $('#assignment-list').html("");
@@ -68,14 +65,9 @@ function ManipulateAssignment(id){
     };
 
     this.markInfoAsRead = function(){
-        var conf = confirm("DO YOU REALLY read the information?");
-        if (conf == true) {
-            $.post("/modules/assignment/markCompletion.php", {id: this.id, actual: 0}, function (data) {
-                loadAssignment(function() {
-                    $('#assignment-list').html("");
-                });
-            });
-        }
+        var id = this.id;
+        $('#assignment-list').masonry().masonry("remove", $('#assignment-list-'+id));
+        $.post("/modules/assignment/markCompletion.php", {id: id, actual: 0}, function (data) {});
     };
     this.markUnCompletion = function(){
         $.post("/modules/assignment/markUnCompletion.php",{id: this.id}, function(data){
