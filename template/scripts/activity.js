@@ -97,7 +97,7 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++) {
                 var row = data[i];
-                var activityComment = new ActivityComment(row.id, row.username, row.time, row.comment, row.attachment);
+                var activityComment = new ActivityComment(row.id, row.uid, row.username, row.time, row.comment, row.attachment);
                 $('#activity-comment-list').append(activityComment.getHTML()).masonry().masonry('appended', $("#activity-comment-list-"+row.id));
             }
             updateMasonry('activity-comment-list');
@@ -249,12 +249,23 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
     }
 }
 
-function ActivityComment(id, user, time, comment, attachment){
+function ActivityComment(id, uid, username, time, comment, attachment){
     this.id = id;
-    this.user = user;
+    this.uid = uid;
+    this.username = username;
     this.time = time;
     this.comment = comment;
     this.attachment = dealWithAttachment(attachment);
+
+    this.delete = function(){
+        var id = $('#right-part-view-activity-id').html();
+        $.get("/modules/activity/deleteActivityComment.php", {id: this.id}, function(data){
+            new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
+                $('#activity-comment-list').html("");
+            });
+            alert(data);
+        });
+    };
 
     this.getHTML = function(){
         var html = "";
@@ -264,7 +275,7 @@ function ActivityComment(id, user, time, comment, attachment){
         html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>assignment</span> Comment</h2>";
         html += "       </div>";
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
-        html += "           <div>Author: " + this.user + "</div>";
+        html += "           <div>Author: " + this.username + "</div>";
         html += "       </div>";
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
         html += "           <div>Published: " + this.time + "</div>";
@@ -272,6 +283,11 @@ function ActivityComment(id, user, time, comment, attachment){
         html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
         html += "           <div>" + this.comment+ "</div>" + this.attachment;
         html += "       </div>";
+        if (this.uid == UID) {
+            html += "       <div class='mdl-card__actions mdl-card--border'>";
+            html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0; min-width: 100px' onclick='new ActivityComment(\"" + this.id + "\", \"" + this.uid + "\", \"" + this.user + "\", \"" + this.time + "\", \"" + this.comment + "\", \"" + attachment + "\").delete()'>Delete</a>";
+            html += "       </div>";
+        }
         html += "   </div>";
         html += "</div>";
         return html;

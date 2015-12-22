@@ -248,6 +248,28 @@ class ManipulateActivityClass {
         }
     }
 
+    function deleteActivityComment($cid, $operator){
+        global $conn;
+
+        $sql0 = "SELECT * FROM activityComments WHERE id = '$cid'";
+        $result0 = $conn->query($sql0);
+
+        while($row = $result0->fetch_assoc()) {
+            $author = $row['uid'];
+            if($operator == $author){
+                $sql1 = "DELETE FROM activityComments WHERE id = '$cid'";
+
+                if ($conn->query($sql1) === TRUE){
+                    return "Success";
+                }else{
+                    return "Unexpected error.";
+                }
+            }else{
+                return "You are not the author of this activity comment.";
+            }
+        }
+    }
+
     function nameOfPerson($uid){
         global $conn;
         $sql = "SELECT * FROM userInfo WHERE uid = '$uid'";

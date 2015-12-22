@@ -176,7 +176,7 @@ if (!function_exists('checkForceQuit')){
             <div id="classList" class="mdl-grid demo-content"></div>
         </div>
         <div id="mActivities">
-            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em;" onclick="new ManipulateActivity().addActivityButtonClick()">
+            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityButtonClick()">
                 <i class="material-icons">add</i>
             </button>
             <div id="activity-list-wrapper">
@@ -192,7 +192,7 @@ if (!function_exists('checkForceQuit')){
             <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600" style="display: flex">
                 <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
                         <span class="mdl-layout-title" style="display: flex; flex-direction: row">
-                            <span class="material-icons"style="display: flex">close</span>
+                            <span class="material-icons" style="display: flex">close</span>
                             <span id="right-part-title" style="display: flex">Manage Class</span>
                         </span>
                 </div>
@@ -204,12 +204,12 @@ if (!function_exists('checkForceQuit')){
             <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600" style="display: flex">
                 <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
                         <span class="mdl-layout-title" style="display: flex; flex-direction: row">
-                            <span class="material-icons"style="display: flex">close</span>
-                            <span style="display: flex">View Activity</span>
+                            <span class="material-icons" style="display: flex">close</span>
+                            <span style="display: flex">Discussion</span>
                         </span>
                 </div>
             </header>
-            <button id="add-activity-comment-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em;" onclick="new ManipulateActivity().addActivityCommentButtonClick()">
+            <button id="add-activity-comment-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityCommentButtonClick()">
                 <i class="material-icons">add</i>
             </button>
             <div id="activity-comment-list"></div>
@@ -472,7 +472,7 @@ if (!function_exists('checkForceQuit')){
                 $("#progress_activity_2").hide();
 
                 var id = $('#right-part-view-activity-id').html();
-                new Activity(id, "", "", "", "", "", "", "", "").loadComments(function(){
+                new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
                     $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list').children()).html("");
                 });
             }

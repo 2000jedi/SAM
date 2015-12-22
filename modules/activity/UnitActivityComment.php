@@ -9,6 +9,7 @@
 class UnitActivityComment {
 
     var $id;
+    var $uid;
     var $username;
     var $time;
     var $comment;
@@ -18,6 +19,7 @@ class UnitActivityComment {
 
     function construct($id, $uid, $time, $comment, $attachment){
         $this->id = $id;
+        $this->uid = $uid;
         $this->username = $this->nameOfPerson($uid);
         $this->time = $time;
         $this->comment = $comment;

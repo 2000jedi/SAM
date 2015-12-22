@@ -429,7 +429,9 @@ textarea, input{
     position: relative;
     overflow: auto;
     background: white;
-    min-width: 450px;
+    min-width: 320px;
+    width: 100%;
+    max-width: 450px;
     margin: 0;
 }
 #floatBox-close{
