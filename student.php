@@ -56,13 +56,24 @@ if (!function_exists('checkForceQuit')){
         @media (min-width: 840px){
             #percentageRings{
                 position: fixed;
-                top: 56px;
+                top: 64px;
                 right: 0px;
-                height: calc(100% - 56px);
-                height: -moz-calc(100% - 56px);
-                height: -webkit-calc(100% - 56px);
+                height: calc(100% - 48px);
+                height: -moz-calc(100% - 48px);
+                height: -webkit-calc(100% - 48px);
                 width: 200px;
                 margin: 0;
+            }
+            #personalInfoPanel{
+                position: fixed;
+                top: 64px;
+                right: 0px;
+                height: calc(100% - 48px);
+                height: -moz-calc(100% - 48px);
+                height: -webkit-calc(100% - 48px);
+                width: 500px;
+                margin: 0;
+                overflow: scroll;
             }
             #todaySVG, #totalSVG{
                 display: block;
@@ -73,17 +84,26 @@ if (!function_exists('checkForceQuit')){
                 width: -moz-calc(100% - 200px);
                 width: -webkit-calc(100% - 200px);
             }
+            #college-list{
+                width: calc(100% - 500px);
+                width: -moz-calc(100% - 500px);
+                width: -webkit-calc(100% - 500px);
+            }
         }
         @media (max-width: 840px){
-            #percentageRings{
-                width: 100%;
+            #percentageRings, #personalInfoPanel{
+                width: calc(100% - 0.1px);
+                width: -moz-calc(100% - 0.1px);
+                width: -webkit-calc(100% - 0.1px);
                 margin: 0;
+                height: auto;
+                position: static;
             }
             #todaySVG, #totalSVG{
                 width: 120px;
                 height: 120px;
             }
-            #assignment-list-wrapper, #activity-list-wrapper{
+            #assignment-list-wrapper, #activity-list-wrapper, #college-list{
                 width: 100%;
             }
         }
@@ -101,6 +121,8 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-Classes').css("background","").css("color","#eceff1");
         $('#mActivities').hide();
         $('#left-tab-Activities').css("background","").css("color","#eceff1");
+        $('#mColleges').hide();
+        $('#left-tab-Colleges').css("background","").css("color","#eceff1");
         $('#mSettings').hide();
         $('#left-tab-Settings').css("background","").css("color","#eceff1");
         $('#m'+id).show();
@@ -138,8 +160,9 @@ if (!function_exists('checkForceQuit')){
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-            <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Classes</a>
+            <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>Classes</a>
             <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
+            <a id="left-tab-Colleges" onclick="toggleModules('Colleges')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Colleges</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -181,6 +204,87 @@ if (!function_exists('checkForceQuit')){
             </button>
             <div id="activity-list-wrapper">
                 <div id="activity-list" class="mdl-grid demo-content"></div>
+            </div>
+        </div>
+        <div id="mColleges">
+            <div id="personalInfoPanel" class="mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="background: #EAEAEA">
+                <div class="demo-cards" style="width: 100%; margin: 0px; position: relative">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp" style="margin: 0; width: 100%">
+                        <div class="mdl-card__title mdl-card--expand mdl-color--green-300" style="position: relative">
+                            <h2 class="mdl-card__title-text"><span class="material-icons">help</span> About Scores</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
+                                <div style="line-height: 1.5;" id="assignment-list-content-744">
+                                <div>
+                                    You may choose to report your scores here. It is not mandatory. <br>
+                                    You can leave it to be zero if you do not want to get any information about the competition of college admission.<br>
+                                    Once you enter a positive numerical value for your score, we assume you want to participate the program.<br>
+                                    If you do not want to share a score any more, you can reset it to zero. Previous record will be removed from database immediately.<br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
+                            <div>IB Score (in 42)</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ibScore" name="ibScore"/>
+                                <label class="mdl-textfield__label" for="personal-info-ibScore">Your IB Score</label>
+                            </div>
+                            <div>SAT (in 2400)</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-satScore" name="satScore"/>
+                                <label class="mdl-textfield__label" for="personal-info-satScore">Your SAT Score</label>
+                            </div>
+                            <div>ACT (in 36)</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-actScore" name="actScore"/>
+                                <label class="mdl-textfield__label" for="personal-info-actScore">Your ACT Score</label>
+                            </div>
+                            <div>TOEFL (in 120)</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-toeflScore" name="toeflScore"/>
+                                <label class="mdl-textfield__label" for="personal-info-toeflScore">Your TOEFL Score</label>
+                            </div>
+                            <div>IELTS (in 8)</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ieltsScore" name="ieltsScore"/>
+                                <label class="mdl-textfield__label" for="personal-info-ieltsScore">Your IETLS Score</label>
+                            </div>
+                            <div>Number of awards</div>
+                            <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-numberOfAwards" name="numberOfAwards"/>
+                                <label class="mdl-textfield__label" for="personal-info-numberOfAwards">Number of awards you received</label>
+                            </div>
+                            <div style="text-align: center">
+                                <input type="submit" value="Submit" id="submit_btn_personal_info" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="college-list">
+                <div class="demo-cards mdl-cell mdl-grid mdl-grid--no-spacing" style="width: calc(100% - 32px);width: -webkit-calc(100% - 32px); width:-moz-calc(100% - 32px);">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300" style="position: relative">
+                            <h2 class="mdl-card__title-text"><span class="material-icons">school</span> MIT</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="border-bottom: 1px solid #CCC">
+                            <div>Number of selection: 12</div>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="border-bottom: 1px solid #CCC">
+                            <div>Number of students better than you: 2</div>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
+                            <div style="line-height: 1.5;" id="assignment-list-content-744">
+                                <div>This is a good college.<br></div>
+                            </div>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">1st Choice</a>
+                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">2nd Choice</a>
+                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">Backup</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php
@@ -306,7 +410,7 @@ if (!function_exists('checkForceQuit')){
 </body>
 </html>
 <script>
-    var featureList = new Array("add-activity", "add-activity-comment", "view-activity-members");
+    var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];
     var floatBox = new FloatBox(featureList);
 
     updateMasonry('assignment-list');
