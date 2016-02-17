@@ -7,6 +7,7 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/college/UnitStudent.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/college/Student.php";
 
 $result = checkForceQuit();
@@ -14,6 +15,5 @@ $result = checkForceQuit();
 $studentID = $result->uid;
 $student = new Student($studentID);
 
-echo $student->toUnitStudent();
-
+echo json_encode($student->toUnitStudent());
 ?>

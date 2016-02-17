@@ -11,13 +11,14 @@ class ManipulateCollegeClass {
     function loadColleges($student){
         global $conn;
 
-        $sql = "SELECT * FROM college by name";
+        $sql = "SELECT * FROM college ORDER BY name ASC";
         $result = $conn->query($sql);
 
         $colleges = array();
         $counter = 0;
         while($row = $result->fetch_assoc()) {
             $college = new College();
+            $college->constructByRow($row);
             $uCollege = $college->convertIntoUnitCollege($student);
             $colleges[$counter] = $uCollege;
             $counter++;

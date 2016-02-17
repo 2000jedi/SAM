@@ -142,6 +142,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
     ?>
 </script>
 <body>
@@ -226,66 +227,42 @@ if (!function_exists('checkForceQuit')){
                         <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
                             <div>IB Score (in 42)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ibScore" name="ibScore"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ibScore" name="ibScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-ibScore">Your IB Score</label>
                             </div>
                             <div>SAT (in 2400)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-satScore" name="satScore"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-satScore" name="satScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-satScore">Your SAT Score</label>
                             </div>
                             <div>ACT (in 36)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-actScore" name="actScore"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-actScore" name="actScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-actScore">Your ACT Score</label>
                             </div>
                             <div>TOEFL (in 120)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-toeflScore" name="toeflScore"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-toeflScore" name="toeflScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-toeflScore">Your TOEFL Score</label>
                             </div>
                             <div>IELTS (in 8)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ieltsScore" name="ieltsScore"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ieltsScore" name="ieltsScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-ieltsScore">Your IETLS Score</label>
                             </div>
                             <div>Number of awards</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
-                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-numberOfAwards" name="numberOfAwards"/>
+                                <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-numberOfAwards" name="numberOfAwards" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-numberOfAwards">Number of awards you received</label>
                             </div>
                             <div style="text-align: center">
-                                <input type="submit" value="Submit" id="submit_btn_personal_info" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                                <input type="submit" value="Submit" id="submit_btn_personal_info" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new ManipulateCollege().updateScores()"/>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="college-list">
-                <div class="demo-cards mdl-cell mdl-grid mdl-grid--no-spacing" style="width: calc(100% - 32px);width: -webkit-calc(100% - 32px); width:-moz-calc(100% - 32px);">
-                    <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
-                        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300" style="position: relative">
-                            <h2 class="mdl-card__title-text"><span class="material-icons">school</span> MIT</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="border-bottom: 1px solid #CCC">
-                            <div>Number of selection: 12</div>
-                        </div>
-                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="border-bottom: 1px solid #CCC">
-                            <div>Number of students better than you: 2</div>
-                        </div>
-                        <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
-                            <div style="line-height: 1.5;" id="assignment-list-content-744">
-                                <div>This is a good college.<br></div>
-                            </div>
-                        </div>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">1st Choice</a>
-                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">2nd Choice</a>
-                            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" style="color: #3f51b5; padding: 0 3px" onclick="">Backup</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="college-list"></div>
         </div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
@@ -601,6 +578,9 @@ if (!function_exists('checkForceQuit')){
     });
     new ManipulateActivity().loadActivities(function(){
         $('#activity-list').html("");
+    });
+    new ManipulateCollege().loadColleges(function(){
+        $('#college-list').html("");
     });
     new Class('', '').loadClass(1, function(){
         $('#classList').html("");
