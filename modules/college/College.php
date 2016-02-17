@@ -8,11 +8,16 @@
 
 class College {
     var $id;
+    var $name;
     var $description;
     var $EDEAChoice;
     var $RDRAChoice;
 
-    function __construct($id){
+    function __construct(){
+        // Do nothing
+    }
+
+    function constructByID($id){
         global $conn;
 
         $sql = "SELECT * FROM college WHERE id = '$id'";
@@ -21,10 +26,16 @@ class College {
         $this->id = $id;
 
         while($row = $result->fetch_assoc()) {
-            $this->description = $row["description"];
-            $this->EDEAChoice = $row["EDEAChoice"];
-            $this->RDRAChoice = $row["RDRAChoice"];
+            $this->constructByRow($row);
         }
+    }
+
+    function constructByRow($row){
+        $this->id = $row["id"];
+        $this->name = $row["name"];
+        $this->description = $row["description"];
+        $this->EDEAChoice = $row["EDEAChoice"];
+        $this->RDRAChoice = $row["RDRAChoice"];
     }
 
     function inList($item, $listStr){
@@ -132,6 +143,10 @@ class College {
     function convertIntoUnitCollege($student){
         $numberOfEDEACompetitor = $this->findBetterCompetitorNumber("EDEAChoice", $student);
         $numberOfRDRACompetitor = $this->findBetterCompetitorNumber("RDRAChoice", $student);
+        $totalNumberOfEDEAChoice = count(explode(";", $this->EDEAChoice)) - 1;
+        $totalNumberOfRDRAChoice = count(explode(";", $this->RDRAChoice)) - 1;
+        $uCollege = new UnitCollege($this->id, $this->name, $this->description, $totalNumberOfEDEAChoice, $totalNumberOfRDRAChoice, $numberOfEDEACompetitor, $numberOfRDRACompetitor);
 
+        return $uCollege;
     }
 }

@@ -51,6 +51,18 @@ class Student {
         $this->numberOfAwards = $row["numberOfAwards"];
     }
 
+    function updateScore($ibScore, $satScore, $actScore, $toeflScore, $ieltsScore, $numberOfAwards){
+        global $conn;
+
+        $sql = "UPDATE student SET ibScore = '$ibScore', satScore = '$satScore', actScore = '$actScore', toeflScore = '$toeflScore', ieltsScore = '$ieltsScore', numberOfAwards = '$numberOfAwards' WHERE id = '$this->id'";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Success!";
+        } else {
+            echo "Unexpected error.";
+        }
+    }
+
     function calculateScore(){
         $score = 0;
         $score += $this->ibScore / $this->ibScoreScaling * $this->ibScoreCoefficient;
@@ -60,5 +72,10 @@ class Student {
         $score += $this->ieltsScore / $this->ieltsScoreScaling * $this->ieltsScoreCoefficient;
         $score += $this->numberOfAwards * $this->numberOfAwardsCoefficient;
         return $score;
+    }
+
+    function toUnitStudent(){
+        $uStd = new UnitStudent($this->id, $this->ibScore, $this->satScore, $this->actScore, $this->toeflScore, $this->ieltsScore, $this->numberOfAwards);
+        return $uStd;
     }
 }
