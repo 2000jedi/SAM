@@ -81,8 +81,34 @@ class ManipulateAssignmentClass {
             }
         }
 
-        $sql1 = "SELECT * from assignment WHERE dueday > curdate() AND ($sqlForClass) ORDER BY type ASC, dueday ASC";
+        $sql1 = "SELECT * from assignment WHERE dueday > curdate() AND dueday < '20300101' AND ($sqlForClass) ORDER BY dueday ASC";
         $result = $conn->query($sql1);
+
+        // Exclude the finished assignments
+        while($row = $result->fetch_assoc()) {
+            $id = $row['id'];
+            $class = $row['class'];
+
+            $finished = false;
+
+            $sql2 = "SELECT * FROM personalassignment WHERE assignment = '$id' AND uid = '$student' AND actual >= 0";
+            $result2 = $conn->query($sql2);
+            if ($result2->num_rows > 0) {
+                $finished = true;
+            }
+
+            if ($finished == true && $row['type'] == "2"){
+                // Do nothing
+            }else{
+                $unitAssignment = new UnitAssignment();
+                $unitAssignment->constructFromDBRow($row, $class, $finished);
+                $arr[$counter] = $unitAssignment;
+                $counter++;
+            }
+        }
+
+        $sql3 = "SELECT * from assignment WHERE dueday > curdate() AND dueday > '20300101' AND ($sqlForClass) ORDER BY type ASC, dueday ASC";
+        $result = $conn->query($sql3);
 
         // Exclude the finished assignments
         while($row = $result->fetch_assoc()) {
@@ -113,11 +139,23 @@ class ManipulateAssignmentClass {
     function classLoadAssignment($class){
         global $conn;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' ORDER BY type ASC, dueday DESC";
-        $result = $conn->query($sql);
 
         $arr = array();
         $counter = 0;
+
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday < '20300101' ORDER BY dueday DESC";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+
+            $unitAssignment = new UnitAssignment();
+            $unitAssignment->constructFromDBRow($row, $class, false);
+            $arr[$counter] = $unitAssignment;
+            $counter++;
+        }
+
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > '20300101' ORDER BY type ASC, dueday DESC";
+        $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()) {
 
