@@ -10,9 +10,8 @@ function ManipulateActivity(){
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 var activity = new Activity(row.id, row.name, row.organizer, row.nameOfOrganizer, row.description, row.attachment, row.time, row.deal, row.members, row.likes);
-                $('#activity-list').append(activity.getHTML()).masonry().masonry('appended', $("#activity-list-"+row.id));
+                $('#activity-list').append(activity.getHTML());
             }
-            updateMasonry('activity-list');
         });
     };
 
@@ -98,7 +97,7 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
             for (var i = 0; i < data.length; i++) {
                 var row = data[i];
                 var activityComment = new ActivityComment(row.id, row.uid, row.username, row.time, row.comment, row.attachment);
-                $('#activity-comment-list').append(activityComment.getHTML()).masonry().masonry('appended', $("#activity-comment-list-"+row.id));
+                $('#activity-comment-list').append(activityComment.getHTML());
             }
             updateMasonry('activity-comment-list');
         });
@@ -106,7 +105,7 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
 
     this.openViewActivityPanel = function(){
         new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
-            $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list').children()).html("");
+            $('#activity-comment-list').html("");
         });
         if (this.status.stateOfMember){
             $("#add-activity-comment-button").show();
@@ -217,10 +216,10 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='activity-list-"+ this.id +"' class='activity-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "<div id='activity-list-"+ this.id +"' class='activity-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing' style='width: 70%; margin: 1em auto'>";
         html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>"
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--indigo-300' style='position: relative'>";
-        html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>people</span>&nbsp;<span style='width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis'>" + this.name + "</span></h2>";
+        html += "           <h2 class='mdl-card__title-text' style='width: 100%'><span class='material-icons'>people</span>&nbsp;<span style='width: calc(100% - 100px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis'>" + this.name + "</span></h2>";
         html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
         html += "               <div style='line-height: 50px; position: absolute; width:50px; top:0; right: 0; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2)'>" + count(members) + "</div>";
         html += "               <div style='line-height: 50px; position: absolute; width:50px; top:50px; right: 0; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2); border-top:1px solid rgba(255,255,255,0.5)'>" + count(likes)+ "</div>";
@@ -272,7 +271,7 @@ function ActivityComment(id, uid, username, time, comment, attachment){
     };
     this.getHTML = function(){
         var html = "";
-        html += "<div id='activity-comment-list-"+ this.id +"' class='activity-comment-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
+        html += "<div id='activity-comment-list-"+ this.id +"' class='activity-comment-list demo-cards mdl-cell mdl-grid mdl-grid--no-spacing' style='width: 70%; margin: 1em auto'>";
         html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--indigo-300' style='position: relative'>";
         html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>assignment</span> Comment</h2>";

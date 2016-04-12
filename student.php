@@ -168,7 +168,7 @@ if (!function_exists('checkForceQuit')){
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-        <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
+        <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="left: 240px;top: 30px;width: 100%;height: auto;"></div>
         <div id="mHome">
             <div id="percentageRings" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                 <svg id="todaySVG" fill="currentColor" width="150px" height="150px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop" style="margin: 1em auto; position: relative">
@@ -390,16 +390,6 @@ if (!function_exists('checkForceQuit')){
     var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];
     var floatBox = new FloatBox(featureList);
 
-    updateMasonry('assignment-list');
-    updateMasonry('activity-list');
-
-    setInterval(function(){
-        updateMasonry('assignment-list');
-        updateMasonry('activity-list');
-        $('#assignment-list-class').masonry().masonry('layout');
-        $('#activity-comment-list').masonry().masonry('layout');
-    }, 200);
-
     function loadAssignment(func){
         $.get("/modules/assignment/studentLoadAssignment.php",function(data){
             func();
@@ -432,7 +422,7 @@ if (!function_exists('checkForceQuit')){
                     totalTotalItems++;
                 }
                 var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
-                $('#assignment-list').append(assignment.getHTML()).masonry().masonry('appended', $("#assignment-list-"+row.id));
+                $('#assignment-list').append(assignment.getHTML());
             }
 
             if (todayTotalTime == 0){
@@ -480,7 +470,6 @@ if (!function_exists('checkForceQuit')){
 
             changeCircle("today", todayPercentage, todayDoneItems, todayTotalItems);
             changeCircle("total", totalPercentage, totalDoneItems, totalTotalItems);
-            updateMasonry('assignment-list');
         });
     }
 

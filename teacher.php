@@ -76,6 +76,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/search.js";
     ?>
 
 </script>
@@ -83,6 +84,12 @@ if (!function_exists('checkForceQuit')){
     <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
         <div class="mdl-layout__header-row">
             <span id="title" class="mdl-layout-title">Home</span>
+            <div style="position: absolute;right: 1em">
+                <div class="mdl-textfield mdl-js-textfield" style="display: table-cell; vertical-align: middle">
+                    <input class="mdl-textfield__input" style="background: white" type="text" id="search-on-teacher" name="search" onkeypress="if (event.keyCode == 13) { new Search($('#search-on-teacher').val()).loadResultFromTeacherSide()} "/>
+                    <label class="mdl-textfield__label" for="search-on-teacher">Search for Assignment</label>
+                </div>
+            </div>
         </div>
     </header>
     <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
@@ -98,10 +105,14 @@ if (!function_exists('checkForceQuit')){
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
-        <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: auto;"></div>
+        <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="left: 240px;top: 30px;width: 100%;height: auto;"></div>
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
-            <div class="card" style="text-align:center" onclick="new Class('', '').addClass()">Add Class</div>
+            <div class="card" style="text-align:center; cursor: pointer" onclick="new Class('', '').addClass()">Add Class</div>
+        </div>
+        <div id="mSearch" style="display: none;">
+            <div class="card" style="text-align:center; cursor: pointer" onclick="new Search('').hideSearchResult()">Close Search Results</div>
+            <div id="search-result-list" class="mdl-grid demo-content"></div>
         </div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";

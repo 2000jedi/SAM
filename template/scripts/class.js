@@ -228,9 +228,8 @@ function Class(id, name){
                 var row = data[i];
                 idList += ";" + row.id;
                 var assignment = new Assignment(app[type],row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
-                $(appendID[type]).append(assignment.getHTML()).masonry().masonry('appended', $(appendID[type]+"-"+row.id));
+                $(appendID[type]).append(assignment.getHTML())
             }
-            updateMasonry(appendID[type].substr(1));
         });
     };
 
