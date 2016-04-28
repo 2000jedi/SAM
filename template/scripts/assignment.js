@@ -279,7 +279,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
         var iconTextBeforeSubject = this.type == 2 ? "assignment" : "book";
 
-        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards mdl-cell mdl-grid mdl-grid--no-spacing' style='width: 70%; margin: 1em auto'>";
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards mdl-cell mdl-grid mdl-grid--no-spacing' style='width: 55%; margin: 1em auto'>";
         html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'" + finishedCSS + ">";
 
         html += "       <div class='mdl-card__title mdl-card--expand mdl-color--" + typeColorBackground(this.type) + "-300' style='position: relative'>";
@@ -303,7 +303,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "           </div>";
         html += "       </div>";
         if ( !(this.type == 2 && daysLeft > 1000) ) {
-            html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC'>";
+            html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC; width: 100%'>";
             if (app == "teacher") {
                 html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
             }

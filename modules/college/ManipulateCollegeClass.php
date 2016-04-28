@@ -26,4 +26,19 @@ class ManipulateCollegeClass {
 
         return json_encode($colleges);
     }
+
+    function updateChoice($student, $collegeID, $newChoice){
+        $college = new College();
+        $college->constructByID($collegeID);
+        $college->removeFromList("EDEAChoice", $student);
+        $college->removeFromList("RDRAChoice", $student);
+
+        if ($newChoice == "N/A"){
+            return "Success";
+        }else{
+            $listName = $newChoice."Choice";
+            // Example: EDEA ==> EDEAChoice
+            return $college->addToList($listName, $student);
+        }
+    }
 }

@@ -66,11 +66,9 @@ if (!function_exists('checkForceQuit')){
             }
             #personalInfoPanel{
                 position: fixed;
-                top: 64px;
+                top: 56px;
                 right: 0px;
-                height: calc(100% - 48px);
-                height: -moz-calc(100% - 48px);
-                height: -webkit-calc(100% - 48px);
+                height: calc(100% - 40px);
                 width: 500px;
                 margin: 0;
                 overflow: scroll;
@@ -85,19 +83,28 @@ if (!function_exists('checkForceQuit')){
                 width: -webkit-calc(100% - 200px);
             }
             #college-list{
-                width: calc(100% - 500px);
-                width: -moz-calc(100% - 500px);
-                width: -webkit-calc(100% - 500px);
+                width: 100%;
             }
         }
         @media (max-width: 840px){
-            #percentageRings, #personalInfoPanel{
+            #percentageRings{
                 width: calc(100% - 0.1px);
                 width: -moz-calc(100% - 0.1px);
                 width: -webkit-calc(100% - 0.1px);
                 margin: 0;
                 height: auto;
                 position: static;
+            }
+            #personalInfoPanel{
+                position: fixed;
+                top: 56px;
+                right: 0px;
+                height: calc(100% - 40px);
+                width: calc(100% - 0.1px);
+                width: -moz-calc(100% - 0.1px);
+                width: -webkit-calc(100% - 0.1px);
+                margin: 0;
+                overflow: scroll;
             }
             #todaySVG, #totalSVG{
                 width: 120px;
@@ -162,8 +169,8 @@ if (!function_exists('checkForceQuit')){
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>Classes</a>
-            <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
             <a id="left-tab-Colleges" onclick="toggleModules('Colleges')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Colleges</a>
+            <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -199,28 +206,17 @@ if (!function_exists('checkForceQuit')){
         <div id="mClasses">
             <div id="classList" class="mdl-grid demo-content"></div>
         </div>
-        <div id="mActivities">
-            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityButtonClick()">
-                <i class="material-icons">add</i>
-            </button>
-            <div id="activity-list-wrapper">
-                <div id="activity-list" class="mdl-grid demo-content"></div>
-            </div>
-        </div>
-        <div id="mColleges">
-            <div id="personalInfoPanel" class="mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="background: #EAEAEA">
+        <div id="mColleges" style="position: relative;">
+            <div id="personalInfoPanel" class="mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="background: #EAEAEA; display: none; z-index: 5000; box-shadow: -3px 0px 3px rgba(40,40,40,0.3);">
                 <div class="demo-cards" style="width: 100%; margin: 0px; position: relative">
-                    <div class="demo-updates mdl-card mdl-shadow--2dp" style="margin: 0; width: 100%">
+                    <div class="demo-updates mdl-card mdl-shadow--2dp" style="margin: 0; width: 100%; position: absolute;">
                         <div class="mdl-card__title mdl-card--expand mdl-color--green-300" style="position: relative">
                             <h2 class="mdl-card__title-text"><span class="material-icons">help</span> About Scores</h2>
                         </div>
                         <div class="mdl-card__supporting-text mdl-color-text--grey-600" style="overflow: visible">
                                 <div style="line-height: 1.5;" id="assignment-list-content-744">
                                 <div>
-                                    You may choose to report your scores here. It is not mandatory. <br>
-                                    You can leave it to be zero if you do not want to get any information about the competition of college admission.<br>
-                                    Once you enter a positive numerical value for your score, we assume you want to participate the program.<br>
-                                    If you do not want to share a score any more, you can reset it to zero. Previous record will be removed from database immediately.<br>
+                                    You may choose to report your scores here. It is not mandatory.
                                 </div>
                             </div>
                         </div>
@@ -263,6 +259,17 @@ if (!function_exists('checkForceQuit')){
                 </div>
             </div>
             <div id="college-list"></div>
+            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:5001" onclick="new ManipulateCollege().togglePersonalInfoPanel()">
+                <i class="material-icons" id="personalInfoPanelTogglerButton">add</i>
+            </button>
+        </div>
+        <div id="mActivities">
+            <button id="add-activity-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityButtonClick()">
+                <i class="material-icons">add</i>
+            </button>
+            <div id="activity-list-wrapper">
+                <div id="activity-list" class="mdl-grid demo-content"></div>
+            </div>
         </div>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";

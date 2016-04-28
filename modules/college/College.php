@@ -43,7 +43,7 @@ class College {
 
         $bool = false;
         for ($i = 1; $i < count($list) ; $i++){
-            if ($list[$i] = $item){
+            if ($list[$i] == $item){
                 $bool = true;
             }
         }
@@ -73,7 +73,7 @@ class College {
         $listStr = $this->convertListNameToList($list);
 
         if ( $this->inList($student, $this->EDEAChoice) || $this->inList($student, $this->RDRAChoice) ) {
-            return "the student is already in this class";
+            return "the student is already in this college";
         }
 
         $listStr .= ";" . $student;
@@ -105,7 +105,7 @@ class College {
 
         $this->updateListFromNameAndValue($list, $listStr);
 
-        $sql1 = "UPDATE college SET members = '$listStr' WHERE id = '$this->id'";
+        $sql1 = "UPDATE college SET $list = '$listStr' WHERE id = '$this->id'";
         if ($conn->query($sql1) === TRUE){
             return "Success!";
         }else{
@@ -145,7 +145,15 @@ class College {
         $numberOfRDRACompetitor = $this->findBetterCompetitorNumber("RDRAChoice", $student);
         $totalNumberOfEDEAChoice = count(explode(";", $this->EDEAChoice)) - 1;
         $totalNumberOfRDRAChoice = count(explode(";", $this->RDRAChoice)) - 1;
-        $uCollege = new UnitCollege($this->id, $this->name, $this->description, $totalNumberOfEDEAChoice, $totalNumberOfRDRAChoice, $numberOfEDEACompetitor, $numberOfRDRACompetitor);
+
+        $studentStatus = "N/A";
+        if ($this->inList($student, $this->EDEAChoice)){
+            $studentStatus = "EDEA";
+        }
+        if ($this->inList($student, $this->RDRAChoice)){
+            $studentStatus = "RDRA";
+        }
+        $uCollege = new UnitCollege($this->id, $this->name, $this->description, $studentStatus, $totalNumberOfEDEAChoice, $totalNumberOfRDRAChoice, $numberOfEDEACompetitor, $numberOfRDRACompetitor);
 
         return $uCollege;
     }
