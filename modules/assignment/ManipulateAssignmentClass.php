@@ -393,7 +393,7 @@ class ManipulateAssignmentClass {
         $sql2 = "INSERT INTO assignment (type, content, attachment, publish, dueday, duration, class, teacher) VALUES ($type, '$content', '$attachment', now(), '$dueday', $duration, '$class', '$teacher')";
         $conn->query($sql2);
 
-
+        /*
         $sql3 = "SELECT * from student WHERE class LIKE '%;$class;%' OR class LIKE '%;$class' ORDER BY id ASC";
         $result = $conn->query($sql3);
 
@@ -403,6 +403,10 @@ class ManipulateAssignmentClass {
             $device = new Device($id);
             $device->push('[{"version": "1","title": "NEW!", "msg": "Your teacher assigned new homework."}]');
         }
+
+        This code is commented because there is no activated client now.
+
+        */
 
         echo "Success";
     }
