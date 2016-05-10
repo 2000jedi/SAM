@@ -143,7 +143,7 @@ class ManipulateAssignmentClass {
         $arr = array();
         $counter = 0;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday < '20300101' ORDER BY dueday DESC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND type = '1' ORDER BY publish DESC";
         $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()) {
@@ -154,7 +154,7 @@ class ManipulateAssignmentClass {
             $counter++;
         }
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND dueday > '20300101' ORDER BY type ASC, dueday DESC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' AND type = '2' ORDER BY publish DESC";
         $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()) {

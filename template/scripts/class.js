@@ -179,7 +179,8 @@ function Class(id, name){
 
     this.openManageClassPanel = function(){
         new Class(this.id, this.name).loadAssignment(1, function(){
-            $('#assignment-list').masonry().masonry("remove", $('#assignment-list').children()).html("");
+            $('#assignment-list-assignment-pile').html("");
+            $('#assignment-list-information-pile').html("");
         });
         $('#right-part-class-id').html(this.id);
         $('#right-part-title').html("Manage " + this.name);
@@ -188,7 +189,8 @@ function Class(id, name){
 
     this.openViewClassPanel = function(){
         new Class(this.id, this.name).loadAssignment(0, function(){
-            $('#assignment-list-class').masonry().masonry("remove", $('#assignment-list-class').children()).html("");
+            $('#assignment-list-class-assignment-pile').html("");
+            $('#assignment-list-class-information-pile').html("");
         });
         $('#right-part-class-id').html(this.id);
         $('#right-part-view-class').show();
@@ -228,7 +230,13 @@ function Class(id, name){
                 var row = data[i];
                 idList += ";" + row.id;
                 var assignment = new Assignment(app[type],row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
-                $(appendID[type]).append(assignment.getHTML())
+                var suffixOfContainer = ""; // It is used to add assignment into different piles.
+                if (row.type == 1){
+                    suffixOfContainer = "-assignment-pile";
+                }else{
+                    suffixOfContainer = "-information-pile";
+                }
+                $(appendID[type]+suffixOfContainer).append(assignment.getHTML());
             }
         });
     };

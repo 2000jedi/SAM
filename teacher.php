@@ -52,6 +52,14 @@ if (!function_exists('checkForceQuit')){
         #assignment-list{
             margin: 0 auto;
         }
+        @media (min-width: 700px){
+            .two-adjacent-pile{
+                display: table-cell; width: 48%
+            }
+            #assignment-list{
+                display: table; width: 100%
+            }
+        }
     </style>
 </head>
 <body>
@@ -121,7 +129,7 @@ if (!function_exists('checkForceQuit')){
     <div id="right-part" class="mdl-layout--fixed-header" style="display:none">
         <div style="display: none;" id="right-part-class-id"></div>
         <header class="demo-header mdl-layout__header mdl-color--white mdl-color--grey-100 mdl-color-text--grey-600">
-            <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list').empty();$('#right-part').hide()">
+            <div class="mdl-layout__header-row" style="padding-left: 1em; cursor: pointer" onclick="$('#assignment-list-assignment-pile').empty();$('#assignment-list-information-pile').empty();$('#right-part').hide()">
                     <span class="mdl-layout-title" style="display: flex; flex-direction: row">
                         <span class="material-icons" style="display: flex">close</span>
                         <span style="display: flex">Manage Class</span>
@@ -132,7 +140,10 @@ if (!function_exists('checkForceQuit')){
                     </span>
             </div>
         </header>
-        <div id="assignment-list"></div>
+        <div id="assignment-list">
+            <div id="assignment-list-assignment-pile" class="two-adjacent-pile"></div>
+            <div id="assignment-list-information-pile" class="two-adjacent-pile"></div>
+        </div>
     </div>
     <?php
     require $_SERVER['DOCUMENT_ROOT']."/template/pages/floatBoxWrapperStart.html";

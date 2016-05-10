@@ -114,6 +114,14 @@ if (!function_exists('checkForceQuit')){
                 width: 100%;
             }
         }
+        @media (min-width: 700px){
+            .two-adjacent-pile{
+                display: table-cell; width: 48%
+            }
+            #assignment-list-class{
+                display: table; width: 100%
+            }
+        }
         #assignment-list, #assignment-list-class, #activity-list, #activity-comment-list{
             margin: 0 auto;
         }
@@ -285,7 +293,10 @@ if (!function_exists('checkForceQuit')){
                         </span>
                 </div>
             </header>
-            <div id="assignment-list-class"></div>
+            <div id="assignment-list-class">
+                <div id="assignment-list-class-assignment-pile" class="two-adjacent-pile"></div>
+                <div id="assignment-list-class-information-pile" class="two-adjacent-pile"></div>
+            </div>
         </div>
         <div id="right-part-view-activity" style="display: none">
             <div id="right-part-view-activity-id" style="display: none;"></div>
@@ -550,7 +561,7 @@ if (!function_exists('checkForceQuit')){
 
                 var id = $('#right-part-view-activity-id').html();
                 new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
-                    $('#activity-comment-list').masonry().masonry("remove", $('#activity-comment-list').children()).html("");
+                    $('#activity-comment-list').html("");
                 });
             }
         });
