@@ -18,7 +18,7 @@ $student = $result->uid;
 $manipulation = new ManipulateAssignmentClass();
 $newNotificationRaw = $manipulation->studentLoadAssignment($student);
 
-updateNotificationRaw($student, $newNotificationRaw);
+// updateNotificationRaw($student, $newNotificationRaw);
 
 echo $newNotificationRaw;
 

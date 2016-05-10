@@ -7,6 +7,7 @@
  */
 
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/user/UserInfo.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/statistics/StatisticsClass.php";
 
 $result = checkForceQuit();

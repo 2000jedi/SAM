@@ -19,7 +19,7 @@ class Student {
     var $satScoreScaling = 2400;
     var $actScoreScaling = 36;
     var $toeflScoreScaling = 120;
-    var $ieltsScoreScaling = 8;
+    var $ieltsScoreScaling = 9;
 
     var $ibScoreCoefficient = 4;
     var $satScoreCoefficient = 4;

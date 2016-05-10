@@ -306,7 +306,6 @@ class ManipulateUserClass {
             $this->processUserFromAClass("201485");
             $this->processUserFromAClass("201486");
             $this->processUserFromAClass("201581");
-            $this->processUserFromAClass("201581");
             $this->processUserFromAClass("201582");
             $this->processUserFromAClass("201583");
             $this->processUserFromAClass("201584");
@@ -336,7 +335,7 @@ class ManipulateUserClass {
         global $conn;
         $password = openssl_digest($username, 'sha512');
 
-        $resultOfCheck = checkValid($username, $username);
+        $resultOfCheck = checkValidWithOutLog($username, $username);
         if ($resultOfCheck == false) {
 
         } else {

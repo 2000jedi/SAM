@@ -241,7 +241,7 @@ if (!function_exists('checkForceQuit')){
                                 <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-toeflScore" name="toeflScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-toeflScore">Your TOEFL Score</label>
                             </div>
-                            <div>IELTS (in 8)</div>
+                            <div>IELTS (in 9)</div>
                             <div class="mdl-textfield mdl-js-textfield" style="padding: 15px 0; width: 100%">
                                 <input class="mdl-textfield__input" style="background: white" type="text" id="personal-info-ieltsScore" name="ieltsScore" value="0"/>
                                 <label class="mdl-textfield__label" for="personal-info-ieltsScore">Your IETLS Score</label>

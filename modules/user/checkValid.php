@@ -32,6 +32,22 @@ function checkValid($_username, $_password){
     }
 }
 
+function checkValidWithOutLog($_username, $_password){
+    $password = openssl_digest($_password, 'sha512');
+    $sql = "SELECT * from user WHERE username = '$_username' AND password = '$password'";
+
+    global $conn;
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $user = new User($row["uid"]);
+            return $user;
+        }
+    } else {
+        return false;
+    }
+}
+
 function get_client_ip() {
     if ( function_exists( 'apache_request_headers' ) ) {
         $headers = apache_request_headers();
