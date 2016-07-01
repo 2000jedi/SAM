@@ -173,7 +173,7 @@ function Class(id, name){
                             var gHTML = "";
                             gHTML += "   <label class='mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect' for='chkbox-" + uid + "'>";
                             gHTML += "       <input type='checkbox' id='chkbox-" + uid + "' username='" + username +"' class='mdl-checkbox__input' " + isCheckedString + ">";
-                            gHTML += "       <span class='mdl-checkbox__label'>Name: "+ ChineseName + " ("+ EnglishName + ")</span>";
+                            gHTML += "       <span class='mdl-checkbox__label'>Name: "+ ChineseName + " ("+ EnglishName + ") ID: " + username +"</span>";
                             gHTML += "   </label>";
                             return gHTML;
                         }
