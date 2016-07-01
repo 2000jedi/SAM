@@ -433,6 +433,7 @@ textarea, input{
     width: 100%;
     max-width: 450px;
     margin: 0;
+    max-height: 100vh;
 }
 #floatBox-close{
     position: absolute;

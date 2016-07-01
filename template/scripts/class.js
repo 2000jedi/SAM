@@ -132,23 +132,68 @@ function Class(id, name){
 
     this.viewMembers = function(type){
         var usedID = this.id;
+
+
         $.get('/modules/class/loadClassMembers.php', {class: usedID}, function (data) {
             data = JSON.parse(data);
+            $('#floatBox-view-members-class-id').html(usedID);
 
             if (type == 0){
-                var html = "<div class='card' style='width: calc(100%);box-sizing: border-box;'>Total Number: " + data.length + "</div>";
-                for (var i = 0; i < data.length; i++){
-                    var userInfo = data[i];
-                    var username = userInfo.username;
-                    var ChineseName = userInfo.ChineseName;
-                    var EnglishName = userInfo.EnglishName;
-                    html += "<div class='card' style='display:table; width: calc(100%);box-sizing: border-box;'>";
-                    html += "   <div style='display: table-cell; width: 65%'>Name: "+ ChineseName + " ("+ EnglishName + ")</div><div style='display: table-cell; width: 30%'>ID:"+username+"</div>";
-                    html += "</div>";
-                }
-                floatBox.showFeature("Members in my class", "view-members", function(){
-                    $('#floatBox-view-members-list').html(html);
-                });
+                $.get("/modules/user/listUserInfoJSON.php", function(data2){
+                    data2 = JSON.parse(data2);
+
+                    function inListCheck(userInfo, users){
+                        for (var i = 0; i < users.length; i++){
+                            var onePieceOfUserInfoInList = users[i];
+                            if (userInfo.uid == onePieceOfUserInfoInList.uid){
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+
+                    var html = "";
+                    var htmlForChecked = "";
+                    // var html = "<div class='card' style='width: calc(100%);box-sizing: border-box;'>Total Number: " + data.length + "</div>";
+                    for (var i = 0; i < data2.length; i++){
+                        var userInfo = data2[i];
+                        var uid = userInfo.uid;
+                        var username = userInfo.username;
+                        var ChineseName = userInfo.ChineseName;
+                        var EnglishName = userInfo.EnglishName;
+
+                        var isCheckedString = "checked";
+                        var isInList = inListCheck(userInfo, data);
+
+                        if (isInList == false) {
+                            isCheckedString = "";
+                        }
+
+                        function generateHTML(uid, username, isCheckedString, ChineseName, EnglishName){
+                            var gHTML = "";
+                            gHTML += "   <label class='mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect' for='chkbox-" + uid + "'>";
+                            gHTML += "       <input type='checkbox' id='chkbox-" + uid + "' username='" + username +"' class='mdl-checkbox__input' " + isCheckedString + ">";
+                            gHTML += "       <span class='mdl-checkbox__label'>Name: "+ ChineseName + " ("+ EnglishName + ")</span>";
+                            gHTML += "   </label>";
+                            return gHTML;
+                        }
+
+                        if (isInList){
+                            htmlForChecked += generateHTML(uid, username, isCheckedString, ChineseName, EnglishName);
+                        }else {
+                            html += generateHTML(uid, username, isCheckedString, ChineseName, EnglishName);
+                        }
+
+                    }
+                    floatBox.showFeature("Members in my class", "view-members", function(){
+                        $('#floatBox-view-members-list').html(htmlForChecked + html);
+                        var elementList = $('#floatBox-view-members-list>label.mdl-checkbox').get();
+                        for (i in elementList){
+                            var element = elementList[i];
+                            componentHandler.upgradeElement(element);
+                        }
+                    });
+                })
             }else if (type == 1){
                 var html = "Total Number: " + data.length + "\n";
                 for (var i = 0; i < data.length; i++) {
@@ -175,6 +220,22 @@ function Class(id, name){
                 });
             }
         })
+    };
+
+    this.updateMembersList = function(){
+        var usedID = this.id;
+
+        var IDs = "";
+        $('#floatBox-view-members-list>label>.mdl-checkbox__input').each(function() {
+            var id = $(this).attr('username');
+            if ($(this).is(':checked')) {
+                IDs += ";" + id;
+            }
+        });
+        $.post('/modules/class/changeClassMembers.php', {class: usedID, studentList: IDs}, function (data) {
+            $('#shadow').css("display","none");
+            alert("You have successfully updated the members list for your class!");
+        });
     };
 
     this.openManageClassPanel = function(){

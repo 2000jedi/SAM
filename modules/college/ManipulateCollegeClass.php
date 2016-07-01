@@ -11,7 +11,7 @@ class ManipulateCollegeClass {
     function loadColleges($student){
         global $conn;
 
-        $sql = "SELECT * FROM college ORDER BY name ASC";
+        $sql = "SELECT * FROM college ORDER BY LENGTH(EDEAChoice)+LENGTH(RDRAChoice) DESC, name ASC ";
         $result = $conn->query($sql);
 
         $colleges = array();

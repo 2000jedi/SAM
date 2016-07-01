@@ -163,6 +163,10 @@ if (!function_exists('checkForceQuit')){
             </button>
         </div>
         <div id="floatBox-view-members">
+            <div id="floatBox-view-members-class-id" style="display: none;"></div>
+            <div style="text-align: center; margin: 1em">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" onclick="new Class($('#floatBox-view-members-class-id').html(),'').updateMembersList()">Update Members List</button>
+            </div>
             <div id="floatBox-view-members-list"></div>
         </div>
         <div id="floatBox-add-card">

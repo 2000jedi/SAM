@@ -122,6 +122,34 @@ if ($admin != "t001"){
                     </div>
                 </form>
             </div>
+            <div class="card">
+                <div style="text-align: center">Destroy A User</div>
+                <form action='/modules/user/destroy.php' method="post" style="margin: 0.5em">
+                    <div>
+                        <label>username</label>
+                        <input name="username" />
+                    </div>
+                    <div>
+                        <label>type</label>
+                        <input name="type" />
+                    </div>
+                    <div style="text-align: center; margin: 1em">
+                        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+            </div>
+            <div class="card">
+                <div style="text-align: center">Users Massacre</div>
+                <form action='/modules/user/massiveDestroyUser.php' method="post" style="margin: 0.5em">
+                    <div>
+                        <label>classprefix</label>
+                        <input name="classprefix" />
+                    </div>
+                    <div style="text-align: center; margin: 1em">
+                        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+            </div>
         </div>
         <div id="mClasses" class="mdl-grid demo-content"></div>
     </main>

@@ -20,7 +20,7 @@ class ManipulateUserClass {
 
     /*
      *
-     * Part I: Create User
+     * Part I: Create And Destroy User
      * This part of code is used by the admin panel developed by Sam Chou.
      * They can be called only with t001, which is verified in the function create()
      *
@@ -29,6 +29,9 @@ class ManipulateUserClass {
      *
      * massiveCreateUser($classprefix) is used to generate a class of students
      * $classprefix has the form of 201X0X, when one student in the class may have username like 's201X0XAA'
+     *
+     * destroy($username, $type) is used to destroy a single user,
+     * where $username is like 's20148123' and type is either 's' or 't'
      *
      */
     function create($username, $type){
@@ -94,6 +97,104 @@ class ManipulateUserClass {
             $username = $type.$classprefix.$i;
             echo $username." is created.<br>";
             $this->create($username, $type);
+        }
+    }
+
+    function destroy($username, $type){
+        $result = checkForceQuit();
+
+        $admin = $result->username;
+
+        if ($admin != "t001"){
+            die("Permission Denied!");
+        }else {
+            global $conn;
+
+            if ($type == "s"){
+                $sql = "SELECT * FROM user WHERE username = '$username'";
+                $result = $conn->query($sql);
+
+                $id = "";
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row['uid'];
+                }
+                echo "0. Convert username to uid.<br />";
+
+                $sql = "DELETE FROM user WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "1. Clear its record in user.<br />";
+
+                $sql = "DELETE FROM userInfo WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "2. Clear its record in userInfo.<br />";
+
+                $sql = "DELETE FROM activityComments WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "3. Clear its record in activityComments.<br />";
+
+                $sql = "DELETE FROM device WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "4. Clear its record in device.<br />";
+
+                $sql = "DELETE FROM IPDB WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "5. Clear its record in IPDB.<br />";
+
+                $sql = "DELETE FROM OperationLog WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "6. Clear its record in OperationLog.<br />";
+
+                $sql = "DELETE FROM personalassignment WHERE uid = '$id'";
+                $conn->query($sql);
+                echo "7. Clear its record in personalassignment.<br />";
+
+                $sql = "DELETE FROM student WHERE id = '$id'";
+                $conn->query($sql);
+                echo "8. Clear its record in student.<br />";
+
+                $sql = "SELECT * FROM activity";
+                $result = $conn->query($sql);
+
+                while ($row = $result->fetch_assoc()) {
+                    $activity = $row['id'];
+                    $manipulateActivity = new ManipulateActivityClass();
+                    $manipulateActivity->constructByID($activity);
+                    $manipulateActivity->constructInLoad($id);
+                    $manipulateActivity->unLike();
+                    $manipulateActivity->leaveActivity($id);
+                }
+                echo "9. Clear its record in activity.<br />";
+
+                $sql = "SELECT * FROM college";
+                $result = $conn->query($sql);
+
+                while ($row = $result->fetch_assoc()) {
+                    $college = $row['id'];
+                    $manipulateCollege = new ManipulateCollegeClass();
+                    $manipulateCollege->updateChoice($id, $college, "N/A");
+                }
+                echo "10. Clear its record in college.<br />";
+
+                echo "$username is destroyed!";
+            }else{
+                echo $type;
+            }
+
+        }
+    }
+
+    function massiveDestroyUser($classprefix){
+        $type = "s";
+
+        for ($i = 1; $i < 36; $i++) {
+
+            if ($i < 10) {
+                $i = "0" . $i;
+            }
+
+            $username = $type . $classprefix . $i;
+            echo $username . " is destroyed.<br>";
+            $this->destroy($username, $type);
         }
     }
     // Part I ends
@@ -280,6 +381,32 @@ class ManipulateUserClass {
 
                 echo $html;
             }
+        }
+    }
+
+    function listUserInfoJSON(){
+        global $conn;
+
+        $result = checkForceQuit();
+
+        $userName = $result->username;
+
+        if (substr($userName, 0,1) != "t"){
+            die("Permission Denied!");
+        }else {
+            $arr = array();
+            $counter = 0;
+
+            $sql = "SELECT * FROM userInfo";
+            $result = $conn->query($sql);
+            while($row = $result->fetch_assoc()) {
+                $userInfo = new UserInfo();
+                $userInfo->constructByDBRow($row);
+                $arr[$counter] = $userInfo;
+                $counter += 1;
+            }
+
+            echo json_encode($arr);
         }
     }
 
