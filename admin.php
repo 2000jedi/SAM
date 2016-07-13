@@ -45,6 +45,8 @@ if ($admin != "t001"){
         $('#left-tab-CreateUsers').css("background","").css("color","#eceff1");
         $('#mClasses').hide();
         $('#left-tab-Classes').css("background","").css("color","#eceff1");
+        $('#mPresentations').hide();
+        $('#left-tab-Presentations').css("background","").css("color","#eceff1");
         $('#m' + id).css("display", "");
         $('#left-tab-' + id).css("background","#00BCD4").css("color","#37474F");
         $('#title').html(id);
@@ -68,6 +70,7 @@ if ($admin != "t001"){
             <a id="left-tab-Statistics" onclick="toggleModules('Statistics')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Statistics</a>
             <a id="left-tab-CreateUsers" onclick="toggleModules('CreateUsers')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Create Users</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Classes</a>
+            <a id="left-tab-Presentations" onclick="toggleModules('Presentations')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">message</i>Presentations</a>
         </nav>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
@@ -152,6 +155,25 @@ if ($admin != "t001"){
             </div>
         </div>
         <div id="mClasses" class="mdl-grid demo-content"></div>
+        <div id="mPresentations">
+            <div class="card">
+                <div style="text-align: center">Add Presentation</div>
+                <form action='/modules/presentation/addPresentation.php' method="post" enctype="multipart/form-data" style="margin: 0.5em">
+                    <div>
+                        <label>Name</label>
+                        <input name="name" />
+                    </div>
+                    <div>
+                        <label>Attachment</label>
+                        <input name="attachment[]" type="file" multiple />
+                    </div>
+                    <div style="text-align: center; margin: 1em">
+                        <input type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="background: #3f51b5" />
+                    </div>
+                </form>
+            </div>
+            <div id="presentationList" class="mdl-grid demo-content"></div>
+        </div>
     </main>
 </div>
 </body>
@@ -160,6 +182,7 @@ if ($admin != "t001"){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
     ?>
     toggleModules("Statistics");
 
@@ -179,6 +202,8 @@ if ($admin != "t001"){
         })
     }
     loadClass(function(){});
+
+    new ManipulatePresentation().loadPresentations(2);
 
 </script>
 <?php

@@ -68,6 +68,8 @@ if (!function_exists('checkForceQuit')){
         $('#right-part').hide();
         $('#mClasses').hide();
         $('#left-tab-Classes').css("background","").css("color","#eceff1");
+        $('#mPresentations').hide();
+        $('#left-tab-Presentations').css("background","").css("color","#eceff1");
         $('#mSettings').hide();
         $('#left-tab-Settings').css("background","").css("color","#eceff1");
         $('#m'+id).show();
@@ -85,6 +87,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/search.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
     ?>
 
 </script>
@@ -109,6 +112,7 @@ if (!function_exists('checkForceQuit')){
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>Classes</a>
+            <a id="left-tab-Presentations" onclick="toggleModules('Presentations')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">message</i>Presentations</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -118,6 +122,9 @@ if (!function_exists('checkForceQuit')){
             <div id="classList" class="mdl-grid demo-content"></div>
             <div class="card" style="text-align:center; cursor: pointer" onclick="new Class('', '').addClass()">Add Class</div>
         </div>
+        <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/pages/presentations.html";
+        ?>
         <div id="mSearch" style="display: none;">
             <div class="card" style="text-align:center; cursor: pointer" onclick="new Search('').hideSearchResult()">Close Search Results</div>
             <div id="search-result-list" class="mdl-grid demo-content"></div>
@@ -428,5 +435,7 @@ if (!function_exists('checkForceQuit')){
     setInterval(function(){
         $('#assignment-list').masonry().masonry('layout');
     }, 200);
+
+    new ManipulatePresentation().loadPresentations(1);
 
 </script>

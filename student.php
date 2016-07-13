@@ -138,6 +138,8 @@ if (!function_exists('checkForceQuit')){
         $('#left-tab-Activities').css("background","").css("color","#eceff1");
         $('#mColleges').hide();
         $('#left-tab-Colleges').css("background","").css("color","#eceff1");
+        $('#mPresentations').hide();
+        $('#left-tab-Presentations').css("background","").css("color","#eceff1");
         $('#mSettings').hide();
         $('#left-tab-Settings').css("background","").css("color","#eceff1");
         $('#m'+id).show();
@@ -158,6 +160,7 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
     ?>
 </script>
 <body>
@@ -175,10 +178,11 @@ if (!function_exists('checkForceQuit')){
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-            <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+            <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Assignments</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>Classes</a>
             <a id="left-tab-Colleges" onclick="toggleModules('Colleges')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>CollegeChoice</a>
             <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
+            <a id="left-tab-Presentations" onclick="toggleModules('Presentations')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">message</i>Presentations</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
     </div>
@@ -279,6 +283,9 @@ if (!function_exists('checkForceQuit')){
                 <div id="activity-list" class="mdl-grid demo-content"></div>
             </div>
         </div>
+        <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/pages/presentations.html";
+        ?>
         <?php
         require $_SERVER['DOCUMENT_ROOT']."/template/pages/settings.html";
         ?>
@@ -592,6 +599,7 @@ if (!function_exists('checkForceQuit')){
     new Class('', '').loadClass(1, function(){
         $('#classList').html("");
     });
+    new ManipulatePresentation().loadPresentations(1);
 
 
 </script>
