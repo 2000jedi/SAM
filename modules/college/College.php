@@ -140,7 +140,46 @@ class College {
         return $counter;
     }
 
+    // Ensure that the number is the number of competitors in the same grade.
+    function filterChoiceList($choiceString, $student){
+        global $conn;
+
+        $explodedList = explode(";",$choiceString);
+
+        $newString = "";
+
+        $studentGrade = "";
+
+        $sql = "SELECT * FROM user WHERE uid = '$student'";
+
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+            $studentID = $row["username"];
+            $studentGrade = substr($studentID, 0, 5);
+        }
+
+        for ($i = 1; $i < count($explodedList); $i++) {
+            $uid = $explodedList[$i];
+            $sql1 = "SELECT * FROM user WHERE uid = '$uid'";
+            $result = $conn->query($sql1);
+
+            while($row = $result->fetch_assoc()) {
+                $usnm = $row["username"];
+                $grade = substr($usnm, 0, 5);
+                if ($grade == $studentGrade) {
+                    $newString .= ";" . $uid;
+                }
+            }
+        }
+        return $newString;
+    }
+
     function convertIntoUnitCollege($student){
+
+        $this->EDEAChoice = $this->filterChoiceList($this->EDEAChoice, $student);
+        $this->RDRAChoice = $this->filterChoiceList($this->RDRAChoice, $student);
+
         $numberOfEDEACompetitor = $this->findBetterCompetitorNumber("EDEAChoice", $student);
         $numberOfRDRACompetitor = $this->findBetterCompetitorNumber("RDRAChoice", $student);
         $totalNumberOfEDEAChoice = count(explode(";", $this->EDEAChoice)) - 1;
