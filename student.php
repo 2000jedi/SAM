@@ -181,7 +181,9 @@ if (!function_exists('checkForceQuit')){
             <a id="left-tab-Home" onclick="toggleModules('Home')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">dashboard</i>Assignments</a>
             <a id="left-tab-Classes" onclick="toggleModules('Classes')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">folder</i>Classes</a>
             <a id="left-tab-Colleges" onclick="toggleModules('Colleges')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">school</i>CollegeChoice</a>
+            <!--
             <a id="left-tab-Activities" onclick="toggleModules('Activities')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Activities</a>
+            -->
             <a id="left-tab-Presentations" onclick="toggleModules('Presentations')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">message</i>Presentations</a>
             <a id="left-tab-Settings" onclick="toggleModules('Settings')" class="mdl-navigation__link" href="#"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
         </nav>
