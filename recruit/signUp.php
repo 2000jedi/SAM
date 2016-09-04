@@ -12,6 +12,6 @@ $name = $_POST["name"];
 $sid = $_POST["studentID"];
 $sql = "INSERT INTO recruit (name, sid) VALUES ('$name', '$sid')";
 $conn->query($sql);
-echo "Success! You can close the window now.";
+echo "Success! <a href='/'>Go to SAM</a>";
 
 ?>

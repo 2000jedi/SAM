@@ -382,7 +382,8 @@ if (!function_exists('checkForceQuit')){
                 $('#shadow').hide();
                 $("#progress1").hide();
                 new Class($('#add-card-class-id').val(), '').loadAssignment(1, function(){
-                    $('#assignment-list').html("");
+                    $('#assignment-list-assignment-pile').html("");
+                    $('#assignment-list-information-pile').html("");
                 })
             }
         });

@@ -91,6 +91,9 @@ if ($admin != "t001"){
             <div class="card">
                 <a href="/modules/statistics/loadIPAddresses.php" target="_blank">IP Address List</a>
             </div>
+            <div class="card">
+                <a href="/recruit/listSignedUpMembers.php" target="_blank">List Signed Up Members</a>
+            </div>
         </div>
         <div id="mCreateUsers">
             <div class="card">

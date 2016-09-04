@@ -22,33 +22,33 @@
     <style rel="stylesheet">
         /* TEMPLATE STYLES */
         /* Necessary for full page carousel*/
-        
+
         html,
         body,
         .view {
             height: 100%;
         }
         /* Navigation*/
-        
+
         .navbar {
             background-color: transparent;
         }
-        
+
         .scrolling-navbar {
             -webkit-transition: background .25s ease-in-out, padding .25s ease-in-out;
             -moz-transition: background .25s ease-in-out, padding .25s ease-in-out;
             transition: background .25s ease-in-out, padding .25s ease-in-out;
         }
-        
+
         .top-nav-collapse {
             background-color: #1C2331;
         }
-        
+
         footer.page-footer {
             background-color: #1C2331;
             margin-top: 0;
         }
-        
+
         @media only screen and (max-width: 768px) {
             .navbar {
                 /* background-color: #1C2331; */
@@ -59,38 +59,38 @@
             }
         }
         /* Carousel*/
-        
+
         .carousel,
         .carousel-item,
         .active {
             height: 100%;
         }
-        
+
         .carousel-inner {
             height: 100%;
         }
-        
+
         .carousel-item:nth-child(1) {
             background-image: url("img/1.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
-        
+
         .carousel-item:nth-child(2) {
             background-image: url("img/2.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
-        
+
         .carousel-item:nth-child(3) {
             background-image: url("img/3.png");
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
         }
-        
+
         .carousel-item:nth-child(4) {
             background-image: url("img/4.png");
             background-repeat: no-repeat;
@@ -98,11 +98,11 @@
             background-position: center;
         }
         /*Caption*/
-        
+
         .flex-center {
             color: #fff;
         }
-        
+
         @media (min-width: 776px) {
             .carousel .view ul li {
                 display: inline;
@@ -166,178 +166,180 @@
 </head>
 
 <body>
+<div style='overflow:hidden; width:0px; height:0; margin:0 auto; position:absolute; top:-800px;'>
+    <img src="img/icon.png" />
+</div>
 
+<!--Navbar-->
+<nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar">
 
-    <!--Navbar-->
-    <nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar">
+    <!-- Collapse button-->
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
+        <i class="fa fa-bars"></i>
+    </button>
 
-        <!-- Collapse button-->
-        <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
-            <i class="fa fa-bars"></i>
-        </button>
+    <div class="container">
 
-        <div class="container">
-
-            <!--Collapse content-->
-            <div class="navbar-toggleable-xs" id="collapseEx">
-                <!--Navbar Brand-->
-                <a class="navbar-brand" href="http://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">Computerization</a>
-            </div>
-            <!--/.Collapse content-->
-
+        <!--Collapse content-->
+        <div class="navbar-toggleable-xs" id="collapseEx">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="http://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">Computerization</a>
         </div>
+        <!--/.Collapse content-->
 
-    </nav>
-    <!--/.Navbar-->
-
-    <!--Carousel Wrapper-->
-    <div id="carousel-example-1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
-        <!--Indicators-->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-1" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-1" data-slide-to="1"></li>
-            <li data-target="#carousel-example-1" data-slide-to="2"></li>
-            <li data-target="#carousel-example-1" data-slide-to="3"></li>
-        </ol>
-        <!--/.Indicators-->
-
-        <!--Slides-->
-        <div class="carousel-inner" role="listbox">
-
-            <!--First slide-->
-            <div class="carousel-item active">
-                <!--Mask-->
-                <div class="view hm-black-light">
-                    <div class="full-bg-img flex-center">
-                        <ul class="animated fadeInUp col-md-12">
-                            <li>
-                                <h1 class="h1-responsive flex-item">We are pioneers and trailblazers.</h1>
-                            </li>
-                            <li>
-                                <p class="flex-item">We want innovators who are unsatisfied with the present.</p>
-                            </li>
-                            <li>
-                                <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an innovator!</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--/.Mask-->
-            </div>
-            <!--/.First slide-->
-
-            <!--Second slide -->
-            <div class="carousel-item">
-                <!--Mask-->
-                <div class="view hm-black-light">
-                    <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                        <ul class="animated fadeInUp col-md-12">
-                            <li>
-                                <h1 class="h1-responsive flex-item">We will solve your problems.</h1>
-                            </li>
-                            <li>
-                                <p class="flex-item">We want scientists who solve the problem of next generation.</p>
-                            </li>
-                            <li>
-                                <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be a scientist!</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--/.Mask-->
-            </div>
-            <!--/.Second slide -->
-
-            <!--Third slide-->
-            <div class="carousel-item">
-                <!--Mask-->
-                <div class="view hm-black-light">
-                    <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                        <ul class="animated fadeInUp col-md-12">
-                            <li>
-                                <h1 class="h1-responsive flex-item">We transform inspirations into workable code.</h1>
-                            </li>
-                            <li>
-                                <p class="flex-item">We want engineers who turn word into code.</p>
-                            </li>
-                            <li>
-                                <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to an engineer!</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--/.Mask-->
-            </div>
-            <!--/.Third slide-->
-
-            <!--Fourth slide-->
-            <div class="carousel-item">
-                <!--Mask-->
-                <div class="view hm-black-light">
-                    <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                        <ul class="animated fadeInUp col-md-12">
-                            <li>
-                                <h1 class="h1-responsive flex-item">Our struggle finally becomes the platform SAM. </h1>
-                            </li>
-                            <li>
-                                <p class="flex-item">We want artists who define everything we see.</p>
-                            </li>
-                            <li>
-                                <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an artist!</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--/.Mask-->
-            </div>
-            <!--/.Fourth slide-->
-        </div>
-        <!--/.Slides-->
-
-        <!--Controls-->
-        <a class="left carousel-control" href="#carousel-example-1" role="button" data-slide="prev">
-            <span class="icon-prev" aria-hidden="true" style="font-size: 3em;"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-1" role="button" data-slide="next">
-            <span class="icon-next" aria-hidden="true" style="font-size: 3em;"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        <!--/.Controls-->
     </div>
-    <!--/.Carousel Wrapper-->
-    <!--/.Main layout-->
 
+</nav>
+<!--/.Navbar-->
 
+<!--Carousel Wrapper-->
+<div id="carousel-example-1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-1" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-1" data-slide-to="1"></li>
+        <li data-target="#carousel-example-1" data-slide-to="2"></li>
+        <li data-target="#carousel-example-1" data-slide-to="3"></li>
+    </ol>
+    <!--/.Indicators-->
 
-    <!--Footer-->
-    <footer class="page-footer center-on-small-only">
-        <!--Copyright-->
-        <div class="footer-copyright">
-            <div class="container-fluid">
-                Using Material Design from © 2015 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
 
+        <!--First slide-->
+        <div class="carousel-item active">
+            <!--Mask-->
+            <div class="view hm-black-light">
+                <div class="full-bg-img flex-center">
+                    <ul class="animated fadeInUp col-md-12">
+                        <li>
+                            <h1 class="h1-responsive flex-item">We are pioneers and trailblazers.</h1>
+                        </li>
+                        <li>
+                            <p class="flex-item">We want innovators who are unsatisfied with the present.</p>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an innovator!</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <!--/.Mask-->
         </div>
-        <!--/.Copyright-->
+        <!--/.First slide-->
 
-    </footer>
-    <!--/.Footer-->
+        <!--Second slide -->
+        <div class="carousel-item">
+            <!--Mask-->
+            <div class="view hm-black-light">
+                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
+                    <ul class="animated fadeInUp col-md-12">
+                        <li>
+                            <h1 class="h1-responsive flex-item">We will solve your problems.</h1>
+                        </li>
+                        <li>
+                            <p class="flex-item">We want scientists who solve the problem of next generation.</p>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be a scientist!</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.Mask-->
+        </div>
+        <!--/.Second slide -->
+
+        <!--Third slide-->
+        <div class="carousel-item">
+            <!--Mask-->
+            <div class="view hm-black-light">
+                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
+                    <ul class="animated fadeInUp col-md-12">
+                        <li>
+                            <h1 class="h1-responsive flex-item">We transform inspirations into workable code.</h1>
+                        </li>
+                        <li>
+                            <p class="flex-item">We want engineers who turn word into code.</p>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to an engineer!</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.Mask-->
+        </div>
+        <!--/.Third slide-->
+
+        <!--Fourth slide-->
+        <div class="carousel-item">
+            <!--Mask-->
+            <div class="view hm-black-light">
+                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
+                    <ul class="animated fadeInUp col-md-12">
+                        <li>
+                            <h1 class="h1-responsive flex-item">Our struggle finally becomes the platform SAM. </h1>
+                        </li>
+                        <li>
+                            <p class="flex-item">We want artists who define everything we see.</p>
+                        </li>
+                        <li>
+                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an artist!</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--/.Mask-->
+        </div>
+        <!--/.Fourth slide-->
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="left carousel-control" href="#carousel-example-1" role="button" data-slide="prev">
+        <span class="icon-prev" aria-hidden="true" style="font-size: 3em;"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-1" role="button" data-slide="next">
+        <span class="icon-next" aria-hidden="true" style="font-size: 3em;"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+<!--/.Main layout-->
 
 
-    <!-- SCRIPTS -->
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<!--Footer-->
+<footer class="page-footer center-on-small-only">
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            Using Material Design from © 2015 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
 
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="js/tether.min.js"></script>
+        </div>
+    </div>
+    <!--/.Copyright-->
 
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</footer>
+<!--/.Footer-->
 
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+<!-- SCRIPTS -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="js/tether.min.js"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="js/mdb.min.js"></script>
 
 
 </body>
