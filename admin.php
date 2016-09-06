@@ -116,6 +116,7 @@ if ($admin != "t001"){
                     </div>
                 </form>
             </div>
+            <!--
             <div class="card">
                 <div style="text-align: center">Mass-produce Users</div>
                 <form action='/modules/user/massiveCreateUser.php' method="post" style="margin: 0.5em">
@@ -156,6 +157,7 @@ if ($admin != "t001"){
                     </div>
                 </form>
             </div>
+            -->
         </div>
         <div id="mClasses" class="mdl-grid demo-content"></div>
         <div id="mPresentations">
