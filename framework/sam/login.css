@@ -1,3 +1,56 @@
+#hint {
+    text-align: center;
+    color: #F1F1F1;
+}
+
+.input-box {
+    margin: 2em 10% 0 10%;
+    background-color: #FFFFFF
+}
+
+.func {
+    position: absolute;
+    height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+}
+
+.buttons {
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+
+.button {
+    padding: 1em;
+    background-color: #AFAFAF;
+    color: #F1F1F1;
+}
+
+.button:hover {
+    background-color: #CACACA;
+    color: #F1F1F1;
+    cursor: pointer;
+}
+
+#title {
+    padding-top: 2em;
+    overflow: hidden;
+    text-align: center;
+    font-size: 30px;
+    color: #F1F1F1;
+}
+
+input {
+    width: 97%;
+    font-size: 16px;
+    background: 0 0;
+    text-align: left;
+    color: inherit;
+    margin: 0;
+    border: none;
+}
+
 @media (min-width: 1080px){
     #request {
         display: block;
@@ -9,14 +62,9 @@
 
     #title {
         padding-top: 2em;
-        overflow: auto;
+        overflow: hidden;
         text-align: center;
         font-size: 30px;
-        color: #F1F1F1;
-    }
-
-    #hint {
-        text-align: center;
         color: #F1F1F1;
     }
 
@@ -26,46 +74,6 @@
         box-sizing: border-box;
         margin: 1em auto;
         background-color: rgba(192,192,192,0.3);
-    }
-
-    .input-box {
-        margin: 2em 10% 0 10%;
-        background-color: #FFFFFF
-    }
-
-    input {
-        width: 97%;
-        font-size: 16px;
-        background: 0 0;
-        text-align: left;
-        color: inherit;
-        margin: 0;
-        border: none;
-    }
-
-    .func {
-        position: absolute;
-        height: 32px;
-        line-height: 32px;
-        overflow: hidden;
-    }
-
-    .buttons {
-        display: block;
-        padding-top: 1em;
-        padding-bottom: 2em;
-    }
-
-    .button {
-        padding: 1em;
-        background-color: #AFAFAF;
-        color: #F1F1F1;
-    }
-
-    .button:hover {
-        background-color: #CACACA;
-        color: #F1F1F1;
-        cursor: pointer;
     }
 }
 
@@ -78,66 +86,12 @@
         background-color: rgba(192,192,192,0.3);
     }
 
-    #title {
-        padding-top: 2em;
-        overflow: auto;
-        text-align: center;
-        font-size: 30px;
-        color: #F1F1F1;
-    }
-
-    #hint {
-        text-align: center;
-        color: #F1F1F1;
-    }
-
     #hint-box {
         display: block;
-        width: calc(33.3333333333% - 32px);
+        width: calc(50% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
         background-color: rgba(192,192,192,0.3);
-    }
-
-    .input-box {
-        margin: 2em 10% 0 10%;
-        background-color: #FFFFFF
-    }
-
-    input {
-        width: 97%;
-        font-size: 16px;
-        background: 0 0;
-        text-align: left;
-        color: inherit;
-        margin: 0;
-        border: none;
-    }
-
-    .func {
-        position: absolute;
-        height: 32px;
-        line-height: 32px;
-        overflow: hidden;
-    }
-
-    .buttons {
-        display: block;
-        margin-left: 10%;
-        padding: calc(16px + 2em) 0;
-    }
-
-    .button {
-        margin-left: 1em;
-        padding: 1em;
-        background-color: #AAAAAA;
-        color: #F1F1F1;
-    }
-
-    .button:hover {
-        background-color: #CACACA;
-        color: #F1F1F1;
-        cursor: pointer;
     }
 }
 
@@ -152,7 +106,7 @@
     }
 
     #title {
-        overflow: auto;
+        overflow: hidden;
         text-align: center;
         font-size: 30px;
         color: #F1F1F1;
