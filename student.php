@@ -16,6 +16,7 @@ if (!function_exists('checkForceQuit')){
 <html lang="en">
 <head>
     <script src="/framework/js/material.js"></script>
+    <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
         <?php
@@ -25,17 +26,21 @@ if (!function_exists('checkForceQuit')){
         ?>
         body {
             background-color:#FFFFFF;
-        }/*Overwrite in MDL*/
+        } /*Overwrite in MDL*/
     </style>
     <script>
         var flag_showApps = false;
         function showApps(){
             flag_showApps = !flag_showApps;
             if (flag_showApps){
-
+                $('#apps-menu-detail').css('display','block');
+                $('#apps-menu-arrow-front').css('display','block');
+                $('#apps-menu-arrow-back').css('display','block');
             }
             else{
-
+                $('#apps-menu-detail').css('display','none');
+                $('#apps-menu-arrow-front').css('display','none');
+                $('#apps-menu-arrow-back').css('display','none');
             }
         }
 
@@ -65,6 +70,11 @@ if (!function_exists('checkForceQuit')){
                 <?= $username ?>
         </p>
     </div>
+    <div id="apps-menu-arrow-back" style="display: none;"></div>
+    <div id="apps-menu-arrow-front" style="display: none;"></div>
+    <div id="apps-menu-detail" style="display: none;">
+
+    </div>
     <!--
     <ul id="apps-menu-detail" style="display: none;" aria-dropeffect="none">
         <li class="app">
@@ -75,6 +85,5 @@ if (!function_exists('checkForceQuit')){
         </li>
     </ul>
     -->
-
 </body>
 </html>
