@@ -33,7 +33,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
 
 ?>
 <!DOCTYPE html>
-<html>
+<html style="background: url('/framework/sam/login-bg.png') no-repeat center center fixed;">
 <head>
     <title><?= $appName ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     <link rel="stylesheet" href="/framework/geodesic/base.css">
     <link rel="stylesheet" href="/framework/sam/login.css">
 </head>
-<body>
+<body style="background-color: transparent;">
 <script src="/framework/js/jq.js"></script>
 <script src="/framework/js/material.js"></script>
 <script>
@@ -63,7 +63,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
             <div id="title">
                 Welcome
             </div>
-            <div class="mdl-card__supporting-text">
+            <div class="inputs">
                 <div class="input-box">
                     <label class="func" id="user" for="usnmInput">Your username</label>
                     <input name="username" type="text" id="usnmInput" onfocus="$('#user.func').css('display','none')"/>
@@ -93,6 +93,3 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     </form>
 </body>
 </html>
-<script>
-
-</script>

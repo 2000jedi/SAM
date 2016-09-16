@@ -3,6 +3,15 @@
     color: #F1F1F1;
 }
 
+.inputs {
+    /*color: rgba(0,0,0,.54);*/
+    font-size: 13px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 16px;
+    width: 90%;
+}
+
 .input-box {
     margin: 2em 10% 0 10%;
     background-color: #FFFFFF
@@ -57,7 +66,7 @@ input {
         width: calc(33.3333333333% - 32px);
         box-sizing: border-box;
         margin: 10em auto 0 auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4);
     }
 
     #title {
@@ -73,7 +82,7 @@ input {
         width: calc(33.3333333333% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4);
     }
 }
 
@@ -83,7 +92,7 @@ input {
         width: calc(50% - 32px);
         box-sizing: border-box;
         margin: 10em auto 0 auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4);
     }
 
     #hint-box {
@@ -91,7 +100,7 @@ input {
         width: calc(50% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4)
     }
 }
 
@@ -102,7 +111,7 @@ input {
         width: calc(100% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4);
     }
 
     #title {
@@ -122,7 +131,7 @@ input {
         width: calc(100% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(192,192,192,0.3);
+        background-color: rgba(152,152,152,0.4);
     }
 }
 
