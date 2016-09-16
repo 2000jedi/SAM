@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('http://wflmssam.sinaapp.com/framework/googlefont/MaterialIcons-Regular.eot'); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('http://wflmssam.sinaapp.com/framework/googlefont/MaterialIcons-Regular.woff2') format('woff2'),
+    url('http://wflmssam.sinaapp.com/framework/googlefont/MaterialIcons-Regular.woff') format('woff'),
+    url('http://wflmssam.sinaapp.com/framework/googlefont/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+/* MDL Fonts*/
+
+.banner {
+    display: block;
+    width: 100%;
+    height: 40px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+#left-banner {
+    font-size: 20px;
+    color: #AAAAAA;
+    position: absolute;
+    margin: 0 0 0 2em;
+    height: 40px;
+    line-height: 40px;
+}
+
+#right-banner {
+    font-size: small;
+    color: #000000;
+    position: absolute;
+    right: 0;
+    margin: 0 2em 0 0;
+    height: 40px;
+    line-height: 40px;
+}
+
+#right-banner:hover {
+    color: #666666;
+    cursor: pointer;
+}
+
+#avatar {
+    position: absolute;
+    right: 100px;
+}
+
+#apps-menu {
+    position: absolute;
+    right: 150px;
+    color: #AAAAAA;
+    height: 40px;
+    line-height: 40px;
+}
+
+#apps-menu:hover {
+    color: #666666;
+    cursor: default;
+}
+
+#apps-menu-detail {
+
+}

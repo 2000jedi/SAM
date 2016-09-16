@@ -66,12 +66,12 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
             <div class="mdl-card__supporting-text">
                 <div class="input-box">
                     <label class="func" id="user" for="usnmInput">Your username</label>
-                    <input name="username" type="text" id="usnmInput" onfocus="$('#user.func').css('display','none')" onblur="$('#user.func').css('display','inherit')"/>
+                    <input name="username" type="text" id="usnmInput" onfocus="$('#user.func').css('display','none')"/>
 
                 </div>
                 <div class="input-box">
                     <label class="func" id="pass" for="pswdInput">Your password</label>
-                    <input name="password" type="password" id="pswdInput" onfocus="$('#pass.func').css('display','none')" onblur="$('#pass.func').css('display','inherit')"/>
+                    <input name="password" type="password" id="pswdInput" onfocus="$('#pass.func').css('display','none')"/>
                 </div>
                 <input type="submit" style="display: none">
             </div>
