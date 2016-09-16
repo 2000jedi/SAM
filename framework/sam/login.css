@@ -5,15 +5,22 @@
 
 .inputs {
     /*color: rgba(0,0,0,.54);*/
-    font-size: 13px;
-    line-height: 18px;
+    line-height: 40px;
     overflow: hidden;
     padding: 16px;
     width: 90%;
+    text-indent: 14px;
+    color: grey;
+}
+
+#errormsg {
+  color: red;
 }
 
 .input-box {
-    margin: 2em 10% 0 10%;
+    height: 40px;
+    border-radius: 4px;
+    margin: 30px 10px;
     background-color: #FFFFFF
 }
 
@@ -34,6 +41,7 @@
     padding: 1em;
     background-color: #AFAFAF;
     color: #F1F1F1;
+    border-radius: 4px;
 }
 
 .button:hover {
@@ -51,13 +59,25 @@
 }
 
 input {
+  padding: 4px;
     width: 97%;
-    font-size: 16px;
+    font-size: 18px;
     background: 0 0;
     text-align: left;
     color: inherit;
     margin: 0;
     border: none;
+}
+
+#hint-box {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: rgba(152,152,152,0.5);
+}
+
+#request {
+  border-radius: 5px;
+  background-color: rgba(152,152,152,0.5);
 }
 
 @media (min-width: 1080px){
@@ -66,7 +86,6 @@ input {
         width: calc(33.3333333333% - 32px);
         box-sizing: border-box;
         margin: 10em auto 0 auto;
-        background-color: rgba(152,152,152,0.4);
     }
 
     #title {
@@ -82,7 +101,6 @@ input {
         width: calc(33.3333333333% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(152,152,152,0.4);
     }
 }
 
@@ -92,7 +110,6 @@ input {
         width: calc(50% - 32px);
         box-sizing: border-box;
         margin: 10em auto 0 auto;
-        background-color: rgba(152,152,152,0.4);
     }
 
     #hint-box {
@@ -100,7 +117,6 @@ input {
         width: calc(50% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(152,152,152,0.4)
     }
 }
 
@@ -111,7 +127,6 @@ input {
         width: calc(100% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(152,152,152,0.4);
     }
 
     #title {
@@ -131,7 +146,5 @@ input {
         width: calc(100% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
-        background-color: rgba(152,152,152,0.4);
     }
 }
-

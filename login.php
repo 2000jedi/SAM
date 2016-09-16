@@ -23,7 +23,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
 
     $result = checkValid($username, $password);
     if ($result == false){
-        $msg = "Your username and password do not match.";
+        $msg = "<span id='errormsg'>Your username and password do not match.<span>";
     }else{
         setcookie("username", $username, time() + (86400 * 365), "/"); // 365 days
         setcookie("password", $password, time() + (86400 * 365), "/");
@@ -65,13 +65,13 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
             </div>
             <div class="inputs">
                 <div class="input-box">
-                    <label class="func" id="user" for="usnmInput">Your username</label>
-                    <input name="username" type="text" id="usnmInput" onfocus="$('#user.func').css('display','none')"/>
+                    <label class="func" id="user" for="usnmInput"></label>
+                    <input name="username" type="text" id="usnmInput" placeholder="Your Username"/>
 
                 </div>
                 <div class="input-box">
-                    <label class="func" id="pass" for="pswdInput">Your password</label>
-                    <input name="password" type="password" id="pswdInput" onfocus="$('#pass.func').css('display','none')"/>
+                    <label class="func" id="pass" for="pswdInput"></label>
+                    <input name="password" type="password" id="pswdInput" placeholder="Your Password"/>
                 </div>
                 <input type="submit" style="display: none">
             </div>
