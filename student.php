@@ -19,8 +19,33 @@ if (!function_exists('checkForceQuit')){
     <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
+
+      .assignment-list {
+          width : 100%;
+          padding: 20px;
+          border-radius: 5px;
+          border: 8px lightgrey solid;
+
+      }
+
+      .mdl-card__title-text{
+        color: lightblue;
+      }
+
+      .mdl-card__actions {
+          margin-top: 20px !important;
+      }
+
+      .mdl-button {
+        padding:10px !important;
+        background-color: lightgrey !important;
+        color:white !important;
+      }
+
+    </style>
+    <style>
         <?php
-            require $_SERVER['DOCUMENT_ROOT']."/framework/material/material.min.css";
+            //require $_SERVER['DOCUMENT_ROOT']."/framework/material/material.min.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
@@ -55,6 +80,46 @@ if (!function_exists('checkForceQuit')){
             }
         }
     </script>
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
+    <script src="/framework/js/material.js"></script>
+    <script>
+    function toggleModules(id){
+        $('#right-part').hide();
+        $('#mHome').hide();
+        $('#left-tab-Home').css("background","").css("color","#eceff1");
+        $('#mClasses').hide();
+        $('#left-tab-Classes').css("background","").css("color","#eceff1");
+        $('#mActivities').hide();
+        $('#left-tab-Activities').css("background","").css("color","#eceff1");
+        $('#mColleges').hide();
+        $('#left-tab-Colleges').css("background","").css("color","#eceff1");
+        $('#mPresentations').hide();
+        $('#left-tab-Presentations').css("background","").css("color","#eceff1");
+        $('#mSettings').hide();
+        $('#left-tab-Settings').css("background","").css("color","#eceff1");
+        $('#m'+id).show();
+        $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
+        $('#title').html(id);
+        $('.demo-drawer').removeClass("is-visible");
+    }
+    <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/UID.php";
+    ?>
+    <?php
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
+        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
+    ?>
+</script>
 </head>
 
 <body>
@@ -75,8 +140,8 @@ if (!function_exists('checkForceQuit')){
     <div id="apps-menu-detail" style="display: none;">
 
     </div>
-    <!--
-    <ul id="apps-menu-detail" style="display: none;" aria-dropeffect="none">
+
+<!---    <ul id="apps-menu-detail" style="" aria-dropeffect="none">
         <li class="app">
             <a class="app-link" href="/">
                 <i class="material-icons">assignments</i>
@@ -84,6 +149,185 @@ if (!function_exists('checkForceQuit')){
             </a>
         </li>
     </ul>
-    -->
+    --->
+
+    <div id="assignment-list-wrapper">
+                <div id="assignment-list"></div>
+    </div>
+
 </body>
+<script>
+    var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];
+    var floatBox = new FloatBox(featureList);
+    function loadAssignment(func){
+        $.get("/modules/assignment/studentLoadAssignment.php",function(data){
+            func();
+            data = JSON.parse(data);
+            var todayDoneTime = 0, todayTotalTime = 0, totalDoneTime = 0, totalTotalTime = 0;
+            var todayDoneItems = 0, todayTotalItems = 0, totalDoneItems = 0, totalTotalItems = 0;
+            for (var i = 0; i < data.length; i++){
+                var row = data[i];
+                var subject = convertSubject(row.subject);
+                if (row.type == "1"){
+                    var date = row.dueday;
+                    var daysLeft = DateDiff.inDays(new Date(), new Date(date));
+                    var singleTime = parseFloat(parseFloat(row.duration).toFixed(1));
+                    if (daysLeft == 1){
+                        if (row.finished == true){
+                            todayDoneTime += singleTime;
+                            todayDoneItems++;
+                        }
+                        todayTotalTime += singleTime;
+                        todayTotalItems++;
+                    }
+                    if (row.finished == true){
+                        totalDoneTime += singleTime;
+                        totalDoneItems++;
+                    }
+                    totalTotalTime += singleTime;
+                    totalTotalItems++;
+                }
+                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
+                $('#assignment-list').append(assignment.getHTML());
+            }
+            if (todayTotalTime == 0){
+                todayDoneTime = 1;
+                todayTotalTime = 1;
+            }
+            if (totalTotalTime == 0){
+                totalDoneTime = 1;
+                totalTotalTime = 1;
+            }
+            function ProcessPercentage(percentage){
+                if (percentage < 0.01){
+                    return 0.001;
+                }
+                return percentage;
+            }
+            var todayPercentage = ProcessPercentage(parseFloat(parseFloat(todayDoneTime / todayTotalTime)).toFixed(2));
+            var totalPercentage = ProcessPercentage(parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2));
+            function changeCircle(id, percentage, itemDone, itemTotal){
+                var deg = (1 - percentage) * 360;
+                function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+                    var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+                    return {
+                        x: centerX + (radius * Math.cos(angleInRadians)),
+                        y: centerY + (radius * Math.sin(angleInRadians))
+                    };
+                }
+                function describeArc(x, y, radius, endAngle){
+                    var end = polarToCartesian(x, y, radius, endAngle), val = endAngle < 180 ? 0: 1;
+                    var d = ["M", 0.5, 0.5, 0.5, 0, "A", 0.5, 0.5, 0, val, 1, end.x, end.y, "z"].join(" ");
+                    return d;
+                }
+                $('#' + id + 'Circle').attr("d", describeArc(0.5, 0.5, 0.5, deg));
+                if (percentage == 0.01){
+                    percentage = 0;
+                }
+                var updatedText = parseInt(percentage * 100).toString();
+                $('#' + id + 'Percentage').html(updatedText);
+                $('#' + id + 'ItemsDone').html(itemDone.toString());
+                $('#' + id + 'TotalItems').html(itemTotal.toString());
+            }
+            changeCircle("today", todayPercentage, todayDoneItems, todayTotalItems);
+            changeCircle("total", totalPercentage, totalDoneItems, totalTotalItems);
+        });
+    }
+    function isNull(t){
+        return (t == null || t == "");
+    }
+    function hasFile(id){
+        //if there is a value, return true, else: false;
+        return $('#'+id).val() ? true: false;
+    }
+    $('#submit_form_add_activity').submit(function(){
+        $(this).ajaxSubmit({
+            beforeSubmit: function(){
+                if (isNull($("#add-activity-form-name").val())){
+                    alert("Name of the activity cannot be empty!");
+                    return false;
+                }
+                if (isNull($("#add-activity-form-description").val())){
+                    alert("Description of the activity cannot be empty!");
+                    return false;
+                }
+                $('#submit_btn_add_activity').prop('disabled',true).val("Sending...");
+                $("#progress_activity_1").show();
+                return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress_activity_1').attr("value", percentComplete);
+            },
+            clearForm: true,
+            data:{hasAttachment: hasFile('add-activity-form-file')},
+            success: function(content,textStatus,xhr,$form){
+                if (content == "Success"){
+                    alert(content);
+                }
+                $('#submit_btn_add_activity').prop('disabled',false).val("Submit");
+                $('#shadow').hide();
+                $("#progress_activity_1").hide();
+                new ManipulateActivity().loadActivities(function(){
+                    $('#activity-list').html("");
+                })
+            }
+        });
+        return false;
+    });
+    $('#submit_form_add_activityComment').submit(function(){
+        $(this).ajaxSubmit({
+            beforeSubmit: function(){
+                if (isNull($("#add-activityComment-form-comment").val())){
+                    alert("Comment cannot be empty!");
+                    return false;
+                }
+                $('#submit_btn_add_activityComment').prop('disabled',true).val("Sending...");
+                $("#progress_activity_2").show();
+                return true;
+            },
+            uploadProgress: function(event, position, total, percentComplete) {
+                $('#progress_activity_2').attr("value", percentComplete);
+            },
+            clearForm: true,
+            data:{hasAttachment: hasFile('add-activityComment-form-file')},
+            success: function(content,textStatus,xhr,$form){
+                if (content == "Success"){
+                    alert(content);
+                }
+                $('#submit_btn_add_activityComment').prop('disabled',false).val("Submit");
+                $('#shadow').hide();
+                $("#progress_activity_2").hide();
+                var id = $('#right-part-view-activity-id').html();
+                new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
+                    $('#activity-comment-list').html("");
+                });
+            }
+        });
+        return false;
+    });
+    $('#add-activity-form-file-button-1').click(function(e){
+        e.preventDefault();
+        var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
+        $("#add-activity-form-file-input-list").append(html);
+    });
+    $('#add-activityComment-form-file-button').click(function(e){
+        e.preventDefault();
+        var html = "<div class='mdl-textfield mdl-js-textfield' style='display: block; padding: 10px 0; width: 100%'><input class='mdl-textfield__input uploadfile1' style='margin-top: 0.5em; background: white' name='attachment[]' type='file' multiple /></div>";
+        $("#add-activityComment-form-file-input-list").append(html);
+    });
+    toggleModules('Home');
+    loadAssignment(function(){
+        $('#assignment-list').html("");
+    });
+    new ManipulateActivity().loadActivities(function(){
+        $('#activity-list').html("");
+    });
+    new ManipulateCollege().loadColleges(function(){
+        $('#college-list').html("");
+    });
+    new Class('', '').loadClass(1, function(){
+        $('#classList').html("");
+    });
+    new ManipulatePresentation().loadPresentations(1);
+</script>
 </html>
