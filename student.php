@@ -20,11 +20,18 @@ if (!function_exists('checkForceQuit')){
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
 
+
+        body, #assignment-list-wrapper, #assignment-list {
+            background-color: #edeff1; !important;
+        }
+
+        div {
+            background-color: white;
+        }
+
       .assignment-list {
           width : 100%;
           padding: 20px;
-          border-radius: 5px;
-          border: 8px lightgrey solid;
 
       }
 
@@ -49,9 +56,6 @@ if (!function_exists('checkForceQuit')){
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
-        body {
-            background-color:#FFFFFF;
-        } /*Overwrite in MDL*/
     </style>
     <script>
         var flag_showApps = false;
@@ -125,7 +129,8 @@ if (!function_exists('checkForceQuit')){
 <body>
     <div class="banner">
         <p id="left-banner">
-            SAM
+            <img src="/framework/sam/SAM_logo.svg" />
+            <span><lead>S</lead>AM <small>by Computerization</small></span>
         </p>
         <a id="apps-menu" onclick="showApps();">
             <i style="height: 40px;line-height: 40px;" class="material-icons">apps</i>

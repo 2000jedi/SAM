@@ -12,20 +12,45 @@
 
 /* MDL Fonts*/
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 .banner {
     display: block;
     width: 100%;
-    height: 40px;
+    height: 50px;
+    padding-top: 10px;
+    margin: 0; !important;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
 }
 
 #left-banner {
-    font-size: 20px;
-    color: #AAAAAA;
     position: absolute;
-    margin: 0 0 0 2em;
+    margin: 0 0 0 1em;
     height: 40px;
-    line-height: 40px;
+}
+#left-banner>img {
+    height: 40px;
+}
+
+#left-banner>span {
+    color: #d1d1d1;
+    font-size: 28px;
+    font-weight: lighter;
+    position: relative;
+    top: -9px;
+    left: 8px;
+}
+
+#left-banner>span>lead {
+    color: #519dd9;
+}
+
+#left-banner>span>small {
+    margin-left: 4px;
+    font-size: 14px;
 }
 
 #right-banner {
