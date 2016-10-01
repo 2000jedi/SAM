@@ -125,3 +125,22 @@ body {
     width: 320px;
     transition: height .2s ease-in-out;
 }
+
+.assignment-list {
+    width : 100%;
+    padding: 20px;
+
+}
+
+#assignment-stats {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+#percentage {
+    margin: 1em calc(50% - 5em);
+}

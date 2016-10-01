@@ -13,14 +13,12 @@ if (!function_exists('checkForceQuit')){
 
 ?>
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" >
 <head>
     <script src="/framework/js/material.js"></script>
     <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
-
-
         body, #assignment-list-wrapper, #assignment-list {
             background-color: #edeff1; !important;
         }
@@ -29,30 +27,21 @@ if (!function_exists('checkForceQuit')){
             background-color: white;
         }
 
-      .assignment-list {
-          width : 100%;
-          padding: 20px;
+        .mdl-card__title-text{
+            color: lightblue;
+        }
 
-      }
+        .mdl-card__actions {
+            margin-top: 20px !important;
+        }
 
-      .mdl-card__title-text{
-        color: lightblue;
-      }
+        .mdl-button {
+            padding:10px !important;
+            background-color: lightgrey !important;
+            color:white !important;
+        }
 
-      .mdl-card__actions {
-          margin-top: 20px !important;
-      }
-
-      .mdl-button {
-        padding:10px !important;
-        background-color: lightgrey !important;
-        color:white !important;
-      }
-
-    </style>
-    <style>
         <?php
-            //require $_SERVER['DOCUMENT_ROOT']."/framework/material/material.min.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
         ?>
@@ -146,22 +135,43 @@ if (!function_exists('checkForceQuit')){
 
     </div>
 
-<!---    <ul id="apps-menu-detail" style="" aria-dropeffect="none">
-        <li class="app">
-            <a class="app-link" href="/">
-                <i class="material-icons">assignments</i>
-                <span class="app-desc">Assignments</span>
-            </a>
-        </li>
-    </ul>
-    --->
-
     <div id="assignment-list-wrapper">
-                <div id="assignment-list"></div>
+        <div id="assignment-stats">
+            <canvas id="percentage"></canvas>
+        </div>
+        <div id="assignment-list"></div>
     </div>
 
 </body>
 <script>
+    // draw assignment percentage canvas
+
+    em = Number(getComputedStyle(document.body,null).fontSize.replace(/[^\d]/g, ''));
+
+    var canvas = document.getElementById("percentage");
+    var ctx = canvas.getContext("2d");
+
+    var perc = 0.75;
+
+    canvas.width = 10*em;
+    canvas.height = 10*em;
+
+    ctx.lineWidth = 10;
+
+    ctx.beginPath();
+    ctx.arc(5*em, 5*em, 3*em, (1-perc)*2*Math.PI, 2*Math.PI);
+    ctx.strokeStyle = 'rgba(0,0,255,1)';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(255,0,0,1)';
+    ctx.arc(5*em, 5*em, 3*em, -0.975*2*Math.PI, -(perc+0.025)*2*Math.PI);
+    ctx.stroke();
+
+    ctx.font = 2* em + "px Arial";
+    ctx.fillText(parseInt(perc*100) + '%',3.3*em,5.5*em);
+
+    // other functions
     var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];
     var floatBox = new FloatBox(featureList);
     function loadAssignment(func){
