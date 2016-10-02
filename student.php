@@ -135,10 +135,12 @@ if (!function_exists('checkForceQuit')){
 
     </div>
 
+    <div id="assignment-stats" style="background-color: transparent;">
+        <canvas id="percentage" style="width: 10em;height: 10em;"></canvas>
+    </div>
+    <div id="greeting" style="background-color: transparent;">Morning, Welcome</div>
+
     <div id="assignment-list-wrapper">
-        <div id="assignment-stats">
-            <canvas id="percentage"></canvas>
-        </div>
         <div id="assignment-list"></div>
     </div>
 
@@ -153,23 +155,24 @@ if (!function_exists('checkForceQuit')){
 
     var perc = 0.75;
 
-    canvas.width = 10*em;
-    canvas.height = 10*em;
+    canvas.width = 40*em;
+    canvas.height = 40*em;
 
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 25;
 
     ctx.beginPath();
-    ctx.arc(5*em, 5*em, 3*em, (1-perc)*2*Math.PI, 2*Math.PI);
-    ctx.strokeStyle = 'rgba(0,0,255,1)';
+    ctx.arc(20*em, 20*em, 12*em, (1.0125-perc)*2*Math.PI, 2*Math.PI-0.075);
+    ctx.strokeStyle = 'rgba(81,157,217,1)';
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.strokeStyle = 'rgba(255,0,0,1)';
-    ctx.arc(5*em, 5*em, 3*em, -0.975*2*Math.PI, -(perc+0.025)*2*Math.PI);
+    ctx.strokeStyle = 'rgba(240,124,120,1)';
+    ctx.arc(20*em, 20*em, 12*em, -0.9875*2*Math.PI, -(perc+0.0125)*2*Math.PI);
     ctx.stroke();
 
-    ctx.font = 2* em + "px Arial";
-    ctx.fillText(parseInt(perc*100) + '%',3.3*em,5.5*em);
+    ctx.font = 8* em + "px Arial";
+    ctx.fillStyle = 'rgba(133,189,234,1)';
+    ctx.fillText(parseInt(perc*100) + '%',13*em,22*em);
 
     // other functions
     var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];

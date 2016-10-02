@@ -43,10 +43,10 @@ body {
     top: -9px;
     left: 8px;
 }
-
+/*
 #left-banner>span>lead {
     color: #519dd9;
-}
+}*/
 
 #left-banner>span>small {
     margin-left: 4px;
@@ -129,7 +129,10 @@ body {
 .assignment-list {
     width : 100%;
     padding: 20px;
+}
 
+#assignment-list {
+    margin-top: 7em;
 }
 
 #assignment-stats {
@@ -138,9 +141,24 @@ body {
     height: 100%;
     display: block;
     box-sizing: border-box;
-    background-color: white;
 }
 
 #percentage {
-    margin: 1em calc(50% - 5em);
+    margin: 0 calc(50% - 5em);
+}
+
+#greeting {
+    position: absolute;
+    width: 40%;
+    min-width: 300px;
+    top: 4.5em;
+    left: 40%;
+    display: block;
+    color: rgba(133,189,234,1);
+    font-size: 38px;
+    font-family: sans-serif;
+}
+
+#assignment-list-wrapper {
+    margin-top: 10.5em;
 }
