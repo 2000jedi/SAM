@@ -15,7 +15,7 @@ if (!function_exists('checkForceQuit')){
 <!DOCTYPE HTML>
 <html lang="en" >
 <head>
-    <script src="/framework/js/material.js"></script>
+<!--    <script src="/framework/js/material.js"></script>-->
     <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
@@ -27,20 +27,69 @@ if (!function_exists('checkForceQuit')){
             background-color: white;
         }
 
-        .mdl-card__title-text{
-            color: lightblue;
+        /*.mdl-card__title-text{*/
+            /*color: lightblue;*/
+        /*}*/
+
+        /*.mdl-card__actions {*/
+            /*margin-top: 20px !important;*/
+        /*}*/
+
+        /*.mdl-button {*/
+            /*padding:10px !important;*/
+            /*background-color: lightgrey !important;*/
+            /*color:white !important;*/
+        /*}*/
+        @media (min-width: 1000px) {
+            .title, .content, .action {
+                /*background-color: red;*/
+                padding: 10px;
+                margin: 0;
+                width: 40%;
+                height: auto;
+
+                float: left;
+            !important;
+            }
+
+             .title {
+                width: 20%;
+            }
+            .action {
+                width: 180px;
+                padding-top: 15px;
+                padding-left: -20px;
+            }
+
+            .content {
+                border-right: 3px solid #edeff1;
+                border-left: 3px solid #edeff1;
+            }
         }
 
-        .mdl-card__actions {
-            margin-top: 20px !important;
-        }
+        @media (max-width: 999px) {
+            .title, .content, .action {
+                /*background-color: red;*/
+                padding: 10px;
+                margin: 0;
+                height: auto;
+            }
 
-        .mdl-button {
-            padding:10px !important;
-            background-color: lightgrey !important;
-            color:white !important;
-        }
+            .content, .title {
+                border-bottom: 3px solid #edeff1;
+            }
 
+            .action {
+                height: 30px;
+            }
+
+            .btn-action {
+                position: relative;
+                top:5px;
+                left:-20px;
+            }
+
+        }
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
@@ -77,7 +126,7 @@ if (!function_exists('checkForceQuit')){
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
     <script src="/framework/js/masonry.js"></script>
-    <script src="/framework/js/material.js"></script>
+<!--    <script src="/framework/js/material.js"></script>-->
     <script>
     function toggleModules(id){
         $('#right-part').hide();

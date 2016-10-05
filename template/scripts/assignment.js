@@ -229,9 +229,9 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
                 var html = "";
-                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
+                html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
                 if (assignment.type != 2){
-                    html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
+                    html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
                 }
                 return html;
             }else if (assignment.app == "student"){
@@ -257,7 +257,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }else{
                 return "";
             }
-            html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName +"'>" + methodText + "</a>";
+            html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName +"'>" + methodText + "</a>";
             return html;
         }
     };
@@ -279,31 +279,32 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
         var iconTextBeforeSubject = this.type == 2 ? "assignment" : "book";
 
-        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards mdl-cell mdl-grid mdl-grid--no-spacing' style='width: 55%; margin: 1em auto'>";
-        html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'" + finishedCSS + ">";
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards ' style='width: 65%; margin: 1em auto'>";
+        // html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates'" + finishedCSS + ">";
 
-        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--" + typeColorBackground(this.type) + "-300' style='position: relative'>";
+        html += "       <div class='title'>";
 
-        html += "           <h2 class='mdl-card__title-text'><span class='material-icons'>" + iconTextBeforeSubject + "</span> " + this.subject + "</h2>";
-        html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
-        if (this.type != 2) {
-            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 90px; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2)'>" + daysLeft + "</div>";
-        }
-        if (this.type != 2) {
-            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>" + this.duration + "</div>";
-        } else {
-            html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>Info</div>";
-        }
-        if ( this.type != 2 ) {
-            html += "               <div style='right: 93px; bottom: -9px; font-size: 11px; position: absolute'>days left</div>";
-        }
-        if (this.type != 2){
-            html += "               <div style='right: 13px; bottom: -9px; font-size: 11px; position: absolute'>min needed</div>";
-        }
-        html += "           </div>";
+
+        // html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
+        // if (this.type != 2) {
+        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 90px; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2)'>" + daysLeft + "</div>";
+        // }
+        // if (this.type != 2) {
+        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>" + this.duration + "</div>";
+        // } else {
+        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>Info</div>";
+        // }
+        // if ( this.type != 2 ) {
+        //     html += "               <div style='right: 93px; bottom: -9px; font-size: 11px; position: absolute'>days left</div>";
+        // }
+        // if (this.type != 2){
+        //     html += "               <div style='right: 13px; bottom: -9px; font-size: 11px; position: absolute'>min needed</div>";
+        // }
+        // html += "           </div>";
+        html += "           <h2 class='subject'> " + this.subject + "</h2>";
         html += "       </div>";
         if ( !(this.type == 2 && daysLeft > 1000) ) {
-            html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='border-bottom: 1px solid #CCC; width: 100%'>";
+            html += "       <div class='content' style='border-bottom: 1px solid #CCC; width: 100%'>";
             if (app == "teacher") {
                 html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
             }
@@ -313,16 +314,16 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
             html += "       </div>";
         }
-        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600' style='overflow: visible'>";
+        html += "       <div class='content' style='overflow: visible'>";
         html += "           <div style='line-height: 1.5;' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
         html += "           </div>";
         html += "       </div>";
-        html += "       <div class='mdl-card__actions mdl-card--border'>";
+        html += "       <div class='action'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
         html += "       </div>";
-        html += "   </div>";
+        html += "   <div class='footer'></div>";
         html += "</div>";
         return html;
     }
