@@ -196,32 +196,49 @@ if (!function_exists('checkForceQuit')){
 </body>
 <script>
     // draw assignment percentage canvas
+    function updatePercentage(perc) {
+        perc = parseInt(perc);
+        em = Number(getComputedStyle(document.body, null).fontSize.replace(/[^\d]/g, ''));
 
-    em = Number(getComputedStyle(document.body,null).fontSize.replace(/[^\d]/g, ''));
+        var canvas = document.getElementById("percentage");
+        var ctx = canvas.getContext("2d");
+        var text = parseInt(perc * 100) + '%';
 
-    var canvas = document.getElementById("percentage");
-    var ctx = canvas.getContext("2d");
+        canvas.width = 40 * em;
+        canvas.height = 40 * em;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.lineWidth = 25;
 
-    var perc = 0.75;
+        if (perc == 1.0) {
+            ctx.beginPath();
+            ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'rgba(81,157,217,1)';
+            ctx.stroke();
+        }
 
-    canvas.width = 40*em;
-    canvas.height = 40*em;
+        if (perc == 0.0) {
+            ctx.beginPath();
+            ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
+            ctx.strokeStyle = 'rgba(240,124,120,1)';
+            ctx.stroke();
+        }
 
-    ctx.lineWidth = 25;
+        if ((perc < 1) && (perc > 0)) {
+            ctx.beginPath();
+            ctx.arc(20 * em, 20 * em, 12 * em, (1.0125 - perc) * 2 * Math.PI, 2 * Math.PI - 0.075);
+            ctx.strokeStyle = 'rgba(81,157,217,1)';
+            ctx.stroke();
 
-    ctx.beginPath();
-    ctx.arc(20*em, 20*em, 12*em, (1.0125-perc)*2*Math.PI, 2*Math.PI-0.075);
-    ctx.strokeStyle = 'rgba(81,157,217,1)';
-    ctx.stroke();
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(240,124,120,1)';
+            ctx.arc(20 * em, 20 * em, 12 * em, -0.9875 * 2 * Math.PI, -(perc + 0.0125) * 2 * Math.PI);
+            ctx.stroke();
+        }
 
-    ctx.beginPath();
-    ctx.strokeStyle = 'rgba(240,124,120,1)';
-    ctx.arc(20*em, 20*em, 12*em, -0.9875*2*Math.PI, -(perc+0.0125)*2*Math.PI);
-    ctx.stroke();
-
-    ctx.font = 8* em + "px Arial";
-    ctx.fillStyle = 'rgba(133,189,234,1)';
-    ctx.fillText(parseInt(perc*100) + '%',13*em,22*em);
+        ctx.font = 8 * em + "px Arial";
+        ctx.fillStyle = 'rgba(133,189,234,1)';
+        ctx.fillText(text, (canvas.width - text.length*em*4)/2 - 25, (canvas.height + 4*em)/2);
+    }
 
     // other functions
     var featureList = ["add-activity", "add-activity-comment", "view-activity-members"];
@@ -271,33 +288,8 @@ if (!function_exists('checkForceQuit')){
                 }
                 return percentage;
             }
-            var todayPercentage = ProcessPercentage(parseFloat(parseFloat(todayDoneTime / todayTotalTime)).toFixed(2));
             var totalPercentage = ProcessPercentage(parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2));
-            function changeCircle(id, percentage, itemDone, itemTotal){
-                var deg = (1 - percentage) * 360;
-                function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-                    var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-                    return {
-                        x: centerX + (radius * Math.cos(angleInRadians)),
-                        y: centerY + (radius * Math.sin(angleInRadians))
-                    };
-                }
-                function describeArc(x, y, radius, endAngle){
-                    var end = polarToCartesian(x, y, radius, endAngle), val = endAngle < 180 ? 0: 1;
-                    var d = ["M", 0.5, 0.5, 0.5, 0, "A", 0.5, 0.5, 0, val, 1, end.x, end.y, "z"].join(" ");
-                    return d;
-                }
-                $('#' + id + 'Circle').attr("d", describeArc(0.5, 0.5, 0.5, deg));
-                if (percentage == 0.01){
-                    percentage = 0;
-                }
-                var updatedText = parseInt(percentage * 100).toString();
-                $('#' + id + 'Percentage').html(updatedText);
-                $('#' + id + 'ItemsDone').html(itemDone.toString());
-                $('#' + id + 'TotalItems').html(itemTotal.toString());
-            }
-            changeCircle("today", todayPercentage, todayDoneItems, todayTotalItems);
-            changeCircle("total", totalPercentage, totalDoneItems, totalTotalItems);
+            updatePercentage(totalPercentage);
         });
     }
     function isNull(t){
