@@ -166,9 +166,14 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             var arr = attachment.split(";"), html = "<div style='margin-top: 1em; border-top: 1px solid #CCC; padding-top: .5em'>";
             for (var i = 1; i < arr.length-1; i = i+2){
                 var url = arr[i];
-                var name = arr[i+1];
-                var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
-                html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
+                var urlSplit = url.split(".");
+                if ( urlSplit[urlSplit.length-1].toLowerCase() == "jpg" || urlSplit[urlSplit.length-1].toLowerCase() == "png" ) {
+                    html += "<img src='/modules/common/downloader.php?path=" + encodeURIComponent(url) + "' style='width: 100%' />";
+                }else{
+                    var name = arr[i+1];
+                    var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
+                    html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
+                }
             }
             html += "</div>";
             return html;

@@ -56,28 +56,32 @@ class ManipulateAssignmentClass {
         $arr = array();
         $counter = 0;
 
-        $sql0 = "SELECT * from assignment WHERE dueday > curdate() AND class = '39' ORDER BY type ASC, dueday ASC";
-        $result = $conn->query($sql0); // class = 39 ==> ad class
-        // Exclude the archived ad
-        while($row = $result->fetch_assoc()) {
-            $id = $row['id'];
-            $class = $row['class'];
+        $sid = userVariableConversion($student, "uid", "username");
 
-            $finished = false;
+        if (substr($sid, 0, 5) == "s2015" or substr($sid, 0, 5) == "s2016"){
+            $sql0 = "SELECT * from assignment WHERE dueday > curdate() AND class = '39' ORDER BY type ASC, dueday ASC";
+            $result = $conn->query($sql0); // class = 39 ==> ad class
+            // Exclude the archived ad
+            while($row = $result->fetch_assoc()) {
+                $id = $row['id'];
+                $class = $row['class'];
 
-            $sql2 = "SELECT * FROM personalassignment WHERE assignment = '$id' AND uid = '$student' AND actual >= 0";
-            $result2 = $conn->query($sql2);
-            if ($result2->num_rows > 0) {
-                $finished = true;
-            }
+                $finished = false;
 
-            if ($finished == true && $row['type'] == "2"){
-                // Do nothing
-            }else{
-                $unitAssignment = new UnitAssignment();
-                $unitAssignment->constructFromDBRow($row, $class, $finished);
-                $arr[$counter] = $unitAssignment;
-                $counter++;
+                $sql2 = "SELECT * FROM personalassignment WHERE assignment = '$id' AND uid = '$student' AND actual >= 0";
+                $result2 = $conn->query($sql2);
+                if ($result2->num_rows > 0) {
+                    $finished = true;
+                }
+
+                if ($finished == true && $row['type'] == "2"){
+                    // Do nothing
+                }else{
+                    $unitAssignment = new UnitAssignment();
+                    $unitAssignment->constructFromDBRow($row, $class, $finished);
+                    $arr[$counter] = $unitAssignment;
+                    $counter++;
+                }
             }
         }
 
