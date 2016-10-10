@@ -197,7 +197,7 @@ if (!function_exists('checkForceQuit')){
 <script>
     // draw assignment percentage canvas
     function updatePercentage(perc) {
-        perc = parseInt(perc);
+        perc = parseFloat(perc);
         em = Number(getComputedStyle(document.body, null).fontSize.replace(/[^\d]/g, ''));
 
         var canvas = document.getElementById("percentage");
