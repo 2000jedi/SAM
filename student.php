@@ -27,6 +27,7 @@ if (!function_exists('checkForceQuit')){
             background-color: white;
         }
 
+
         /*.mdl-card__title-text{*/
             /*color: lightblue;*/
         /*}*/
@@ -53,18 +54,29 @@ if (!function_exists('checkForceQuit')){
             }
 
              .title {
-                width: 20%;
+                width: 200px;
             }
             .action {
-                width: 180px;
+                width: 200px;
                 padding-top: 15px;
                 padding-left: -20px;
+                line-height: 30px;
             }
 
             .content {
+                position: relative;
+                height: 100%;
+                top: 0px;
+                bottom: 0px;
+                width: calc(100% - 470px);
                 border-right: 3px solid #edeff1;
                 border-left: 3px solid #edeff1;
             }
+
+            .time {
+                line-height: 30px;
+            }
+
         }
 
         @media (max-width: 999px) {
