@@ -42,7 +42,6 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
     <link rel="stylesheet" href="/framework/material/material-dashboard-styles.css">
     <link rel="stylesheet" href="/framework/geodesic/base.css">
     <link rel="stylesheet" href="/framework/sam/login.css">
-    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
 </head>
 <body style="background-color: transparent;">
 <script src="/framework/js/jq.js"></script>
