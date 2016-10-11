@@ -283,7 +283,7 @@ if (!function_exists('checkForceQuit')){
                     totalTotalTime += singleTime;
                     totalTotalItems++;
                 }
-                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished);
+                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
                 $('#assignment-list').append(assignment.getHTML());
             }
             if (todayTotalTime == 0){

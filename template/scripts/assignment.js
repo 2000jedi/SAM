@@ -145,7 +145,7 @@ function ManipulateAssignment(id){
         'student in class' - Student Class View
         'teacher' - Teacher Class View
  */
-function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration, finished){
+function Assignment(app, id, type, content, attachment, publish, dueday, subject, duration, finished, _class){
     function dealWithType(type, dueday){
         var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
         if (type == "2"){
@@ -197,6 +197,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
     this.subject = subject;
     this.duration = duration;
     this.finished = finished;
+    this._class = _class;
 
 
     this.diff = function(where){
@@ -282,15 +283,15 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         }
         var daysLeft = calculateDaysLeft(this.dueday);
 
-        var iconTextBeforeSubject = this.type == 2 ? "assignment" : "book";
+        var type = this.type == 2 ? "Information" : "Assignment";
 
         html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards ' style='width: 65%; margin: 1em auto'>";
         // html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates'" + finishedCSS + ">";
 
         html += "       <div class='title'>" +
-            "<div style='color: #5b5b5b;font-size: 18px;font-weight: bold'>DP 2015 SL</div>" +
+            "<div style='color: #5b5b5b;font-size: 18px;font-weight: bold'>" + this._class + "</div>" +
             "<hr style='margin-top: 10px;margin-bottom: 10px;color:#edeff1;position:relative;left: -10px;width: 225px;height:3px;border:none;border-top:3px solid #edeff1;'>" +
-            "<div style='color: bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>Assignment From</div>";
+            "<div style='color: bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
 
         // html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
         // if (this.type != 2) {
@@ -329,11 +330,13 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "       <div class='action'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
-        html += "       <hr style='margin-top: 20px;color:#edeff1;position:relative;left: -10px;width: 225px;height:3px;border:none;border-top:3px solid #edeff1;'>" +
-            "<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
-            "<div class='time'><span style='float: left'>End Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
-            "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>5d 10h</span></div>" +
-            "</div>";
+        html += "       <hr style='margin-top: 20px;color:#edeff1;position:relative;left: -10px;width: 225px;height:3px;border:none;border-top:3px solid #edeff1;'>";
+            //"<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
+        if (! (this.type == 2)) {
+            html += "<div class='time'><span style='float: left'>Due Date</span><span style='float: right;color: #519dd9'>" + this.dueday + "</span></div>";
+            html += "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>" + this.duration + "</span></div>";
+        }
+        html += "</div>";
         html += "   <div class='footer'></div>";
         html += "</div>";
         return html;
