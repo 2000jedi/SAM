@@ -34,6 +34,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
 ?>
 <!DOCTYPE html>
 <html style="background: url('/framework/sam/login-bg.png') no-repeat center center fixed;">
+<meta name="viewport" content="width=device-width" />
 <head>
     <title><?= $appName ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,4 +93,8 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
         </div>
     </form>
 </body>
+
+
+
+
 </html>

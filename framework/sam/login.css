@@ -1,4 +1,14 @@
 /* latin */
+input {
+    padding: 5px;
+    width: 97%;
+    font-size: 21px;
+    background: 0 0;
+    text-align: left;
+    color: inherit;
+    margin: 0;
+    border: none;
+}
 @font-face {
     font-family: 'Questrial';
     font-style: normal;
@@ -114,12 +124,18 @@ input {
         box-sizing: border-box;
         margin: 1em auto;
     }
+    html, body {
+        font-family: "Helvetica","Arial",sans-serif;
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 27px;
+    }
 }
 
 @media (max-width: 1079px){
     #request {
         display: block;
-        width: calc(50% - 32px);
+        width: calc(64% - 32px);
         box-sizing: border-box;
         margin: 10em auto 0 auto;
     }
@@ -130,13 +146,19 @@ input {
         box-sizing: border-box;
         margin: 1em auto;
     }
+    html, body {
+        font-family: "Helvetica","Arial",sans-serif;
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 27px;
+    }
 }
 
 
 @media (max-width: 479px){
     #request {
         display: block;
-        width: calc(100% - 32px);
+        width: calc(107% - 32px);
         box-sizing: border-box;
         margin: 1em auto;
     }
@@ -150,6 +172,16 @@ input {
         color: #F1F1F1;
     }
 
+    element.style {
+        margin-right: 0.4em;
+    }
+    .button {
+        padding: 0.4em;
+        background-color: #AFAFAF;
+        color: #F1F1F1;
+        border-radius: 4px;
+    }
+    
     #hint {
         text-align: center;
         color: #F1F1F1;
@@ -161,4 +193,29 @@ input {
         box-sizing: border-box;
         margin: 1em auto;
     }
+    html, body {
+        font-family: "Helvetica","Arial",sans-serif;
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 27px;
+    }
+}
+
+@media (min-width: 319px) and (max-width: 374px) {
+    element.style {
+        margin-right: 0.4em;
+    }
+    .button {
+        padding: 0.4em;
+        background-color: #AFAFAF;
+        color: #F1F1F1;
+        border-radius: 4px;
+    }
+    html, body {
+        font-family: "Helvetica","Arial",sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 27px;
+    }
+    
 }

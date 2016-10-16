@@ -27,6 +27,30 @@ if (!function_exists('checkForceQuit')){
             background-color: white;
         }
 
+        #greeting {
+            position: absolute;
+            width: 85%;
+            min-width: 300px;
+            top: 2.4em;
+            left: 21%;
+            display: block;
+            color: rgba(133,189,234,1);
+            font-size: 50px;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        #apps-menu {
+            position: absolute;
+            right: 87px;
+            color: #AAAAAA;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #avatar {
+            position: absolute;
+            right: 28px;
+        }
 
         /*.mdl-card__title-text{*/
             /*color: lightblue;*/
@@ -187,8 +211,6 @@ if (!function_exists('checkForceQuit')){
         </a>
         <img id="avatar" src="/framework/material-images/user.png" height="40px">
         <p id="right-banner" onclick="showUserPanel()">
-                <?= $username ?>
-        </p>
     </div>
     <div id="apps-menu-arrow-back" style="display: none;"></div>
     <div id="apps-menu-arrow-front" style="display: none;"></div>
@@ -197,9 +219,9 @@ if (!function_exists('checkForceQuit')){
     </div>
 
     <div id="assignment-stats" style="background-color: transparent;">
-        <canvas id="percentage" style="width: 10em;height: 10em;"></canvas>
+        <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
     </div>
-    <div id="greeting" style="background-color: transparent;">Morning, Welcome</div>
+    <div id="greeting" style="background-color: transparent;">These are the assignments for today.</div>
 
     <div id="assignment-list-wrapper">
         <div id="assignment-list"></div>
