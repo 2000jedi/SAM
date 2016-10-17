@@ -163,7 +163,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         if (attachment == "null"){
             return "";
         }else{
-            var arr = attachment.split(";"), html = "<div style='margin-top: 1em; border-top: 1px solid #CCC; padding-top: .5em'>";
+            var arr = attachment.split(";"), html = "<hr class='attachment-divider' style='bottom: calc(0.5em + 1.5em * " + (arr.length - 1) / 2+ ")'><div class='attachment-holder'>";
             for (var i = 1; i < arr.length-1; i = i+2){
                 var url = arr[i];
                 var urlSplit = url.split(".");
@@ -182,7 +182,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
     function typeColorBackground(type){
         type = type - 1;
-        var color = new Array("red", "green", "deep-orange", "teal");
+        var color = ["red", "green", "deep-orange", "teal"];
         return color[type];
     }
 
@@ -202,6 +202,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
     this.diff = function(where){
         var assignment = this;
+        var html = "";
         if (where == "prefix"){
             if (assignment.app == "teacher"){
                 return "assignment-list";
@@ -234,7 +235,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
-                var html = "";
                 html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
                 if (assignment.type != 2){
                     html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
@@ -246,7 +246,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 return "";
             }
         }else if (where == "iconButton"){
-            var html = "";
             if (assignment.app == "student") {
                 var methodName, methodText;
                 if (assignment.type != 2 && !assignment.finished) {
@@ -270,10 +269,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
     this.getHTML = function() {
         var html = "";
-        var finishedCSS = "";
-        if (this.finished) {
-            finishedCSS = this.diff("finished-css", this);
-        }
         function calculateDaysLeft(dueday) {
             var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
             if (daysLeft < 0) {
@@ -286,29 +281,11 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         var type = this.type == 2 ? "Information" : "Assignment";
 
         html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards ' style='width: 65%; margin: 1em auto'>";
-        // html += "   <div id='"+this.diff("prefix", this)+"-first-child' class='demo-updates'" + finishedCSS + ">";
 
         html += "       <div class='title'>" +
             "<div style='color: #5b5b5b;font-size: 18px;font-weight: bold'>" + this._class + "</div>" +
-            "<hr style='margin-top: 10px;margin-bottom: 10px;color:#edeff1;position:relative;left: -10px;width: 225px;height:3px;border:none;border-top:3px solid #edeff1;'>" +
-            "<div style='color: bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
-
-        // html += "           <div style='position: absolute; right: 0; top: 0; width: 150px; height: 83px; color: white'>";
-        // if (this.type != 2) {
-        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 90px; font-size: 1.1em; text-align: center; background: rgba(255, 255,255,0.2)'>" + daysLeft + "</div>";
-        // }
-        // if (this.type != 2) {
-        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>" + this.duration + "</div>";
-        // } else {
-        //     html += "               <div style='line-height: 70px; position: absolute; width:70px; bottom:-10px; right: 10px; font-size: 1.1em; background: rgba(255, 255,255,0.2); text-align: center;'>Info</div>";
-        // }
-        // if ( this.type != 2 ) {
-        //     html += "               <div style='right: 93px; bottom: -9px; font-size: 11px; position: absolute'>days left</div>";
-        // }
-        // if (this.type != 2){
-        //     html += "               <div style='right: 13px; bottom: -9px; font-size: 11px; position: absolute'>min needed</div>";
-        // }
-        // html += "           </div>";
+            "<hr>" +
+            "<div style='color: #bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
         html += "           <h2 class='subject'> " + this.subject + "</h2>";
         html += "       </div>";
         if ( !(this.type == 2 && daysLeft > 1000) ) {
@@ -322,15 +299,15 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
             html += "       </div>";
         }
-        html += "       <div class='content' style='overflow: visible'>";
-        html += "           <div style='line-height: 1.5;' id='" + this.diff("prefix-content-id", this) + "'>";
-        html += "               <div>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
+        html += "       <div class='content'>";
+        html += "           <div class='content-text' id='" + this.diff("prefix-content-id", this) + "'>";
+        html += "               <div class='content-holder'>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
         html += "           </div>";
         html += "       </div>";
         html += "       <div class='action'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
-        html += "       <hr style='margin-top: 20px;color:#edeff1;position:relative;left: -10px;width: 225px;height:3px;border:none;border-top:3px solid #edeff1;'>";
+        html += "       <hr>";
             //"<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
         if (! (this.type == 2)) {
             html += "<div class='time'><span style='float: left'>Due Date</span><span style='float: right;color: #519dd9'>" + this.dueday + "</span></div>";

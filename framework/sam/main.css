@@ -188,7 +188,36 @@ body {
     text-decoration: none;
     background-color: #519dd9;
     padding: 15px;
-    margin: 10px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.content{
+    height: 128px;
+    overflow: visible;
+}
+
+.content-text{
+    line-height: 1.5;
+    height: 100%;
+}
+
+.content-holder{
+    max-height: 130px;
+    overflow: scroll;
+}
+
+.attachment-holder{
+    line-height: 1;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.attachment-divider {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border: none;
+    border-top: 3px solid #edeff1;
 }

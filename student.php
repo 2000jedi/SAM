@@ -19,6 +19,12 @@ if (!function_exists('checkForceQuit')){
     <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
+
+        <?php
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
+        ?>
+
         body, #assignment-list-wrapper, #assignment-list {
             background-color: #edeff1; !important;
         }
@@ -66,33 +72,30 @@ if (!function_exists('checkForceQuit')){
             /*color:white !important;*/
         /*}*/
         @media (min-width: 1000px) {
-            .title, .content, .action {
-                /*background-color: red;*/
+            .title, .content {
                 padding: 10px;
                 margin: 0;
-                width: 40%;
-                height: auto;
-
                 float: left;
             !important;
             }
 
-             .title {
+            .title {
                 width: 200px;
             }
+
             .action {
-                width: 200px;
+                width: 155px;
                 padding-top: 15px;
-                padding-left: -20px;
-                line-height: 30px;
+                margin: 0;
+                float: left;
+                /* line-height: 30px; */
             }
 
             .content {
                 position: relative;
-                height: 100%;
                 top: 0px;
                 bottom: 0px;
-                width: calc(100% - 470px);
+                width: calc(100% - 401px);
                 border-right: 3px solid #edeff1;
                 border-left: 3px solid #edeff1;
             }
@@ -100,6 +103,31 @@ if (!function_exists('checkForceQuit')){
             .time {
                 line-height: 30px;
             }
+
+            .action > hr {
+                margin-top: 15px;
+                color: #edeff1;
+                position: relative;
+                /* left: -10px; */
+                width: 155px;
+                height: 3px;
+                border: none;
+                border-top: 3px solid #edeff1;
+            }
+
+            .title > hr {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                color: #edeff1;
+                position: relative;
+                left: -10px;
+                width: 225px;
+                height: 3px;
+                border: none;
+                border-top: 3px solid #edeff1;
+            }
+        }
+
 
         }
 
@@ -125,11 +153,27 @@ if (!function_exists('checkForceQuit')){
                 left:-20px;
             }
 
+            .title>hr {
+                width:calc(100% + 40px); !important;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                color:#edeff1;
+                position:relative;
+                left: -10px;
+                height:3px;
+                border:none;
+                border-top:3px solid #edeff1;
+            }
+
+            .action>hr {
+                display: none;
+            }
+
+
         }
-        <?php
-            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
-            require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
-        ?>
+
+
+
     </style>
     <script>
         var flag_showApps = false;
