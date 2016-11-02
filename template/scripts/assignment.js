@@ -249,10 +249,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             if (assignment.app == "student") {
                 var methodName, methodText;
                 if (assignment.type != 2 && !assignment.finished) {
-                    methodName = "markCompletion()"; methodText = "Mark as completed";
+                    methodName = "markCompletion()"; methodText = "Mark as done";
                 }
                 if (assignment.type != 2 && assignment.finished) {
-                    methodName = "markUnCompletion()"; methodText = "Mark as uncompleted";
+                    methodName = "markUnCompletion()"; methodText = "Mark as undone";
                 }
                 if (assignment.type == 2 && !assignment.finished) {
                     methodName = "markInfoAsRead()"; methodText = "Mark as read";
@@ -288,17 +288,17 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             "<div style='color: #bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
         html += "           <h2 class='subject'> " + this.subject + "</h2>";
         html += "       </div>";
-        if ( !(this.type == 2 && daysLeft > 1000) ) {
-            html += "       <div class='content' style='border-bottom: 1px solid #CCC; width: 100%'>";
-            if (app == "teacher") {
-                html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
-            }
-            if (!( this.type == 2 && daysLeft > 1000)) {
-                var dueDayLabel = new Array("Due", "Expire");
-                html += "           <div>" + dueDayLabel[parseInt(type) - 1] + ": " + this.dueday + "</div>";
-            }
-            html += "       </div>";
-        }
+        // if ( !(this.type == 2 && daysLeft > 1000) ) {
+        //     html += "       <div class='content' style='border-bottom: 1px solid #CCC; width: 100%'>";
+        //     if (app == "teacher") {
+        //         html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
+        //     }
+        //     if (!( this.type == 2 && daysLeft > 1000)) {
+        //         var dueDayLabel = new Array("Due", "Expire");
+        //         html += "           <div>" + dueDayLabel[parseInt(type) - 1] + ": " + this.dueday + "</div>";
+        //     }
+        //     html += "       </div>";
+        // }
         html += "       <div class='content'>";
         html += "           <div class='content-text' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div class='content-holder'>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
@@ -314,6 +314,15 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             html += "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>" + this.duration + "</span></div>";
         }
         html += "</div>";
+        if (! (this.type == 2)) {
+            if(this.finished){
+                html += "   <div class='bar-finished'></div>" +
+                    "<div class='connector'></div> ";
+            }else{
+                html += "   <div class='bar-unfinished'></div>" +
+                    "<div class='connector'></div> ";
+            }
+        }
         html += "   <div class='footer'></div>";
         html += "</div>";
         return html;

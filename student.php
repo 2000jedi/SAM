@@ -16,6 +16,7 @@ if (!function_exists('checkForceQuit')){
 <html lang="en" >
 <head>
 <!--    <script src="/framework/js/material.js"></script>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
     <script src="/framework/js/jq.js"></script>
     <link rel="stylesheet" href="/framework/sam/main.css">
     <style>
@@ -71,6 +72,8 @@ if (!function_exists('checkForceQuit')){
             /*background-color: lightgrey !important;*/
             /*color:white !important;*/
         /*}*/
+
+
         @media (min-width: 1000px) {
             .title, .content {
                 padding: 10px;
@@ -84,8 +87,7 @@ if (!function_exists('checkForceQuit')){
             }
 
             .action {
-                width: 155px;
-                padding-top: 15px;
+                width: 220px;
                 margin: 0;
                 float: left;
                 /* line-height: 30px; */
@@ -95,21 +97,21 @@ if (!function_exists('checkForceQuit')){
                 position: relative;
                 top: 0px;
                 bottom: 0px;
-                width: calc(100% - 401px);
+                width: calc(100% - 466px);
                 border-right: 3px solid #edeff1;
                 border-left: 3px solid #edeff1;
             }
 
             .time {
+                margin: 10px;
                 line-height: 30px;
             }
 
             .action > hr {
-                margin-top: 15px;
                 color: #edeff1;
                 position: relative;
                 /* left: -10px; */
-                width: 155px;
+                width: 220px;
                 height: 3px;
                 border: none;
                 border-top: 3px solid #edeff1;
@@ -126,6 +128,49 @@ if (!function_exists('checkForceQuit')){
                 border: none;
                 border-top: 3px solid #edeff1;
             }
+            .bar-finished, .bar-unfinished {
+                position: relative;
+                left: -75px;
+                background-color: white;
+                width:50px;
+                height:50px;
+                -webkit-border-radius:25px;
+                -moz-border-radius:25px;
+                border-radius:25px;
+                background-repeat: no-repeat;
+                background-position: center;
+                z-index: 1;
+            }
+
+            .bar-finished {
+                background-image: url("framework/sam/check.png");
+            }
+            .bar-unfinished {
+                background-image: url("framework/sam/x.png");
+            }
+
+            .connector {
+                position: relative;
+                left: -95px;
+                top:-30px;
+                border: none;
+                width:20px;
+                border: 4px solid #d8dbe0;
+                z-index: 0;
+            }
+
+            .vertical {
+                width: 0px;
+                border: 4px solid #d8dbe0;
+                position: relative;
+                left: calc(87% - 100px);
+                height: 100%;
+            }
+
+            #percentage {
+                margin: 0 calc(50% - 5em);
+            }
+
         }
 
 
@@ -169,6 +214,9 @@ if (!function_exists('checkForceQuit')){
                 display: none;
             }
 
+            #percentage {
+                margin: 0 calc(50% + 5em); !important;
+            }
 
         }
 
@@ -264,6 +312,7 @@ if (!function_exists('checkForceQuit')){
 
     <div id="assignment-stats" style="background-color: transparent;">
         <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
+        <div class="vertical"></div>
     </div>
     <div id="greeting" style="background-color: transparent;">These are the assignments for today.</div>
 

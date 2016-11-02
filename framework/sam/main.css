@@ -139,7 +139,7 @@ body {
 }
 
 #assignment-list {
-    margin-top: 7em;
+    margin-top: 14em;
 }
 
 #assignment-stats {
@@ -150,9 +150,7 @@ body {
     box-sizing: border-box;
 }
 
-#percentage {
-    margin: 0 calc(50% - 5em);
-}
+
 
 #greeting {
     position: absolute;
@@ -183,13 +181,15 @@ body {
 }
 
 .btn-action {
-    width: 100%;
+    display: block;
+    width: calc(100% - 30px);
     color: white; !important;
     text-decoration: none;
     background-color: #519dd9;
     padding: 15px;
     text-transform: uppercase;
     font-weight: bold;
+    text-align: center;
 }
 
 .content{
