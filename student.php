@@ -102,7 +102,30 @@ if (!function_exists('checkForceQuit')){
     </div>
     <div id="apps-menu-arrow-back" style="display: none;"></div>
     <div id="apps-menu-arrow-front" style="display: none;"></div>
-    <div id="apps-menu-detail" style="display: none;"></div>
+    <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
+        <ul class="list-apps" aria-dropeffect="move">
+            <li class="drag" style="display: none;">
+                <a class="app" onclick="showAssignment()">
+                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -552px;background-size: 64px 2065px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
+                </a>
+            </li>
+
+            <li class="drag" style="display: inline-block;">
+                <a class="app" onclick="showClasses()">
+                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -483px;background-size: 64px 2065px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Classes</div></span>
+                </a>
+            </li>
+
+            <li class="drag" style="display: inline-block;">
+                <a class="app" onclick="showSettings()">
+                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -1449px;background-size: 64px 2065px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <div id="assignment-stats" style="background-color: transparent;">
         <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
@@ -314,5 +337,18 @@ if (!function_exists('checkForceQuit')){
     $(window).load(function() {
         $('.vertical').css('height', $('#assignment-list-wrapper').height());
     });
+
+    // set app state change
+    function showAssignments(){
+
+    }
+
+    function showClasses(){
+        alert('classes')
+    }
+
+    function showSettings(){
+        alert('settings')
+    }
 </script>
 </html>

@@ -21,109 +21,6 @@ body {
     margin: 0;
 }
 
-.banner {
-    display: block;
-    width: 100%;
-    height: 50px;
-    padding-top: 10px;
-    margin: 0; !important;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-}
-
-#left-banner {
-    position: absolute;
-    margin: 0 0 0 1em;
-    height: 40px;
-}
-
-#left-banner>img {
-    height: 40px;
-}
-
-#left-banner>span {
-    color: #d1d1d1;
-    font-size: 28px;
-    font-weight: lighter;
-    position: relative;
-    top: -9px;
-    left: 8px;
-}
-
-#left-banner>span>lead {
-    color: #519dd9;
-}
-
-#left-banner>span>small {
-    margin-left: 4px;
-    font-size: 14px;
-}
-
-#right-banner {
-    font-size: small;
-    color: #000000;
-    position: absolute;
-    right: 0;
-    margin: 0 2em 0 0;
-    height: 40px;
-    line-height: 40px;
-}
-
-#right-banner:hover {
-    color: #666666;
-    cursor: pointer;
-}
-
-#avatar {
-    position: absolute;
-    right: 100px;
-}
-
-#apps-menu:hover {
-    color: #666666;
-    cursor: default;
-}
-
-#apps-menu-arrow-back {
-    border-color: transparent;
-    border-style: dashed dashed solid;
-    border-width: 0 8.5px 8.5px;
-    position: absolute;
-    z-index: 1;
-    height: 0;
-    width: 0;
-    border-bottom-color: #ccc;
-    border-bottom-color: rgba(0,0,0,.2);
-    right: 92px;
-    top: 39px;
-}
-
-#apps-menu-arrow-front {
-    border-color: transparent;
-    border-bottom-color: #fff;
-    border-style: dashed dashed solid;
-    border-width: 0 8.5px 8.5px;
-    position: absolute;
-    z-index: 1;
-    height: 0;
-    width: 0;
-    right: 92px;
-    top: 40px;
-}
-
-#apps-menu-detail {
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: absolute;
-    right: 1em;
-    top: 47px;
-    border: 1px solid #ccc;
-    background: #FFFFFF;
-    min-height: 196px;
-    width: 320px;
-    transition: height .2s ease-in-out;
-}
-
 .footer {
     clear: both;
 }
@@ -150,6 +47,175 @@ div {
 }
 
 @media (min-width: 1000px) {
+    .banner {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 50px;
+        padding-top: 10px;
+        margin: 0;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    #left-banner {
+        position: absolute;
+        margin: 0 0 0 1em;
+        height: 40px;
+    }
+
+    #left-banner>img {
+        height: 40px;
+    }
+
+    #left-banner>span {
+        color: #d1d1d1;
+        font-size: 28px;
+        font-weight: lighter;
+        position: relative;
+        top: -9px;
+        left: 8px;
+    }
+
+    #left-banner>span>lead {
+        color: #519dd9;
+    }
+
+    #left-banner>span>small {
+        margin-left: 4px;
+        font-size: 14px;
+    }
+
+    #right-banner {
+        font-size: small;
+        color: #000000;
+        position: absolute;
+        right: 0;
+        margin: 0 2em 0 0;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    #right-banner:hover {
+        color: #666666;
+        cursor: pointer;
+    }
+
+    #avatar {
+        position: absolute;
+        right: 30px;
+    }
+
+    #apps-menu:hover {
+        color: #666666;
+        cursor: default;
+    }
+
+    #apps-menu-arrow-back {
+        border-color: transparent;
+        border-style: dashed dashed solid;
+        border-width: 0 8.5px 8.5px;
+        position: absolute;
+        z-index: 1;
+        height: 0;
+        width: 0;
+        border-bottom-color: #ccc;
+        border-bottom-color: rgba(0,0,0,.2);
+        right: 92px;
+        top: 39px;
+    }
+
+    #apps-menu-arrow-front {
+        border-color: transparent;
+        border-bottom-color: #fff;
+        border-style: dashed dashed solid;
+        border-width: 0 8.5px 8.5px;
+        position: absolute;
+        z-index: 1;
+        height: 0;
+        width: 0;
+        right: 92px;
+        top: 40px;
+    }
+
+    #apps-menu-detail {
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: absolute;
+        right: 1em;
+        top: 47px;
+        border: 1px solid #ccc;
+        background: #FFFFFF;
+        min-height: 196px;
+        width: 320px;
+        z-index: 1;
+    }
+
+    .list-apps {
+        position: relative;
+        display: block;
+        background: #fff;
+        margin: 0;
+        min-height: 100px;
+        padding: 0;
+        text-align: left;
+        white-space: normal;
+        width: 100%;
+        list-style-type: disc;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+        -webkit-user-select: text;
+        font-size: 13px;
+        font-family: arial,sans-serif;
+        z-index: 996;
+    }
+
+    .drag {
+        padding: 1px;
+        display: inline-block;
+        vertical-align: top;
+        color: black;
+        z-index: 997;
+        width: 86px;
+        height: 98px;
+        border: 0;
+        margin: 0;
+        text-align: -webkit-match-parent;
+    }
+
+    .app {
+        color: #404040;
+        text-decoration: none;
+        transform: translate(88px, 0px);
+        transition: transform 0.2s cubic-bezier(0.333, 0, 0, 1);
+        position: relative;
+        cursor: pointer;
+        font-size: 13px;
+        margin: 8px 2px;
+        text-align: center;
+        outline: none;
+        z-index: 998;
+        width: 100%;
+    }
+
+    .app-img {
+        display: block;
+        width: 64px;
+        height: 64px;
+        z-index: 999;
+        margin: 0 auto;
+    }
+
+    .app-desc {
+        z-index: 999;
+        width: 90px;
+        display: flex;
+        text-align: center;
+    }
+
     .title, .content {
         padding: 10px;
         float: left;
@@ -173,6 +239,7 @@ div {
         color: rgba(133,189,234,1);
         font-size: 50px;
         font-family: Tahoma, Geneva, sans-serif;
+        z-index: 0;
     }
 
     #assignment-stats {
@@ -345,6 +412,109 @@ div {
 }
 
 @media (max-width: 999px) {
+    .banner {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        margin: 0;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+
+    #left-banner {
+        position: absolute;
+        margin: 0 0 0 1em;
+        height: 40px;
+    }
+
+    #left-banner>img {
+        height: 40px;
+    }
+
+    #left-banner>span {
+        color: #d1d1d1;
+        font-size: 28px;
+        font-weight: lighter;
+        position: relative;
+        top: -9px;
+        left: 8px;
+    }
+
+    #left-banner>span>lead {
+        color: #519dd9;
+    }
+
+    #left-banner>span>small {
+        margin-left: 4px;
+        font-size: 14px;
+    }
+
+    #right-banner {
+        font-size: small;
+        color: #000000;
+        position: absolute;
+        right: 0;
+        margin: 0 2em 0 0;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    #right-banner:hover {
+        color: #666666;
+        cursor: pointer;
+    }
+
+    #avatar {
+        position: absolute;
+        right: 100px;
+    }
+
+    #apps-menu:hover {
+        color: #666666;
+        cursor: default;
+    }
+
+    #apps-menu-arrow-back {
+        border-color: transparent;
+        border-style: dashed dashed solid;
+        border-width: 0 8.5px 8.5px;
+        position: absolute;
+        z-index: 1;
+        height: 0;
+        width: 0;
+        border-bottom-color: #ccc;
+        border-bottom-color: rgba(0,0,0,.2);
+        right: 92px;
+        top: 39px;
+    }
+
+    #apps-menu-arrow-front {
+        border-color: transparent;
+        border-bottom-color: #fff;
+        border-style: dashed dashed solid;
+        border-width: 0 8.5px 8.5px;
+        position: absolute;
+        z-index: 1;
+        height: 0;
+        width: 0;
+        right: 92px;
+        top: 40px;
+    }
+
+    #apps-menu-detail {
+        display: block;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: absolute;
+        right: 1em;
+        top: 47px;
+        border: 1px solid #ccc;
+        background: #FFFFFF;
+        min-height: 196px;
+        width: 320px;
+        transition: height .2s ease-in-out;
+    }
+
     #greeting {
         color: rgba(133,189,234,1);
         font-family: Tahoma, Geneva, sans-serif;
