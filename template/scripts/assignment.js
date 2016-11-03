@@ -251,20 +251,20 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             if (assignment.app == "student") {
                 var methodName, methodText;
                 if (assignment.type != 2 && !assignment.finished) {
-                    methodName = "markCompletion()"; methodText = "Mark as done";
+                    methodName = "markCompletion()"; methodText = "' style='top: 20px;'> Mark as done";
                 }
                 if (assignment.type != 2 && assignment.finished) {
-                    methodName = "markUnCompletion()"; methodText = "Mark as undone";
+                    methodName = "markUnCompletion()"; methodText = "' style='top: 20px;'> Mark as undone";
                 }
                 if (assignment.type == 2 && !assignment.finished) {
-                    methodName = "markInfoAsRead()"; methodText = "Mark as read";
+                    methodName = "markInfoAsRead()"; methodText = "'> Mark as read";
                 }
             }else if ( assignment.app == "teacher"){
                 methodName = "deleteAssignment()"; methodText = "Delete";
             }else{
                 return "";
             }
-            html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName +"'>" + methodText + "</a>";
+            html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
             return html;
         }
     };
@@ -298,10 +298,9 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "       <div class='action'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
-        //html += "       <hr>";
         if (! (this.type == 2)) {
             html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
-            html += "<div class='time'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
+            html += "<div class='time' style='padding: 0 10px;margin: 0;'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
         }
         html += "</div>";
         if (! (this.type == 2)) {
