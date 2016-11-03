@@ -17,7 +17,6 @@ if (!function_exists('checkForceQuit')){
 <head>
     <title>SAM by Computerization</title>
     <script src="/framework/js/jq.js"></script>
-    <!--<link rel="stylesheet" href=>-->
     <style>
 
         <?php
@@ -322,6 +321,7 @@ if (!function_exists('checkForceQuit')){
 
     // set the height of the device bar
     $(window).load(function() {
+        $('.vertical').css('left', $('#assignment-list-wrapper').width() * 0.175 - 95 + 'px');
         $('.vertical').css('height', $('#assignment-list-wrapper').height());
     });
 </script>
