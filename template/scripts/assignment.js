@@ -280,10 +280,10 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
         var type = this.type == 2 ? "Information" : "Assignment";
 
-        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards ' style='width: 65%; margin: 1em auto'>";
+        html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + "'>";
         html += "<div class='connector'></div> ";
         html += "       <div class='title'>" +
-            "<div style='color: #5b5b5b;font-size: 18px;font-weight: bold'>" + this._class + "</div>" +
+            "<div class='title-text'>" + this._class + "</div>" +
             "<hr>" +
             "<div style='color: #bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
         html += "           <h2 class='subject'> " + this.subject + "</h2>";
@@ -310,8 +310,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "       <hr>";
             //"<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
         if (! (this.type == 2)) {
-            html += "<div class='time'><span style='float: left'>Due Date</span><span style='float: right;color: #519dd9'>" + this.dueday + "</span></div>";
-            html += "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>" + this.duration + " mins</span></div>";
+            html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
+            html += "<div class='time'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
         }
         html += "</div>";
         if (! (this.type == 2)) {

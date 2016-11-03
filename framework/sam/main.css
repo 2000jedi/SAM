@@ -48,10 +48,10 @@ body {
     top: -9px;
     left: 8px;
 }
-/*
+
 #left-banner>span>lead {
     color: #519dd9;
-}*/
+}
 
 #left-banner>span>small {
     margin-left: 4px;
@@ -131,43 +131,6 @@ body {
     transition: height .2s ease-in-out;
 }
 
-.assignment-list {
-    /*width : 960px; !important;*/
-    clear: both;
-    background-color: white; !important;
-    margin: 0 auto;
-}
-
-#assignment-list {
-    margin-top: 14em;
-}
-
-#assignment-stats {
-    position: absolute;
-    width: 20%;
-    height: 100%;
-    display: block;
-    box-sizing: border-box;
-}
-
-
-
-#greeting {
-    position: absolute;
-    width: 40%;
-    min-width: 300px;
-    top: 4.5em;
-    left: 40%;
-    display: block;
-    color: rgba(133,189,234,1);
-    font-size: 38px;
-    font-family: sans-serif;
-}
-
-#assignment-list-wrapper {
-    margin-top: 10.5em;
-}
-
 .subject {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
@@ -192,54 +155,12 @@ body {
     text-align: center;
 }
 
-.content{
-    height: 128px;
-    overflow: visible;
-}
-
-.content-text{
-    line-height: 1.5;
-    height: 100%;
-}
-
-.content-holder{
-    max-height: 130px;
-    overflow: scroll;
-}
-
-.attachment-holder{
-    line-height: 1;
-    margin-top: 10px;
-    position: absolute;
-    bottom: 0px;
-}
-
-.attachment-divider {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    border: none;
-    border-top: 3px solid #edeff1;
-}
-
 body, #assignment-list-wrapper, #assignment-list {
     background-color: #edeff1; !important;
 }
 
 div {
     background-color: white;
-}
-
-#greeting {
-    position: absolute;
-    width: 85%;
-    min-width: 300px;
-    top: 2.4em;
-    left: 21%;
-    display: block;
-    color: rgba(133,189,234,1);
-    font-size: 50px;
-    font-family: Tahoma, Geneva, sans-serif;
 }
 
 #apps-menu {
@@ -274,6 +195,43 @@ div {
         /* line-height: 30px; */
     }
 
+    #greeting {
+        position: absolute;
+        width: 85%;
+        min-width: 300px;
+        top: 2.4em;
+        left: 21%;
+        display: block;
+        color: rgba(133,189,234,1);
+        font-size: 50px;
+        font-family: Tahoma, Geneva, sans-serif;
+    }
+
+    #assignment-stats {
+        position: absolute;
+        width: 20%;
+        height: 100%;
+        display: block;
+        box-sizing: border-box;
+    }
+
+    #assignment-list {
+        margin-top: 14em;
+    }
+
+    .assignment-list {
+        width: 65%;
+        margin: 1em auto;
+        clear: both;
+        background-color: white;
+    }
+
+    .title-text {
+        color: #5b5b5b;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
     .content {
         position: relative;
         top: 0px;
@@ -281,6 +239,18 @@ div {
         width: calc(100% - 466px);
         border-right: 3px solid #edeff1;
         border-left: 3px solid #edeff1;
+        height: 128px;
+        overflow: visible;
+    }
+
+    .content-text{
+        line-height: 1.5;
+        height: 100%;
+    }
+
+    .content-holder{
+        max-height: 130px;
+        overflow: scroll;
     }
 
     .time {
@@ -309,6 +279,22 @@ div {
         border: none;
         border-top: 3px solid #edeff1;
     }
+
+    .attachment-holder{
+        line-height: 1;
+        margin-top: 10px;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    .attachment-divider {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        border: none;
+        border-top: 3px solid #edeff1;
+    }
+
     .bar-finished, .bar-unfinished {
         position: relative;
         left: -75px;
@@ -334,7 +320,6 @@ div {
         position: relative;
         left: -95px;
         top:30px;
-        border: none;
         width:20px;
         border: 4px solid #d8dbe0;
         z-index: 0;
@@ -351,12 +336,34 @@ div {
         margin: 0 calc(50% - 5em);
     }
 
+    .due-left {
+        float: left;
+    }
+
+    .due-right {
+        float: right;
+        color: #519dd9;
+    }
 }
 
 @media (max-width: 999px) {
-    .title, .content, .action {
+    #greeting {
+        color: rgba(133,189,234,1);
+        font-family: Tahoma, Geneva, sans-serif;
+        font-size: 50px;
+        width: 100%;
+        text-align: center;
+        margin-top: 1em;
+    }
+
+    .title, .content {
         /*background-color: red;*/
         padding: 10px;
+        margin: 0;
+        height: auto;
+    }
+
+    .action {
         margin: 0;
         height: auto;
     }
@@ -371,8 +378,21 @@ div {
 
     .btn-action {
         position: relative;
-        top:5px;
-        left:-20px;
+    }
+
+    #assignment-list {
+        margin-top: 4em;
+    }
+
+    #assignment-stats {
+        display: none;
+    }
+
+    .assignment-list {
+        width: 95%;
+        margin: 1em auto;
+        clear: both;
+        background-color: white;
     }
 
     .title>hr {
@@ -391,9 +411,38 @@ div {
         display: none;
     }
 
-    #percentage {
-        /*margin: 0 calc(50% + 5em); !important;*/
+    .title-text {
+        color: #5b5b5b;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .attachment-holder {
+        line-height: 1;
+        margin-top: 10px;
+        position: relative;
+        bottom: 0px;
+    }
+
+    .attachment-divider {
         display: none;
     }
 
+    .connector, .bar-finished, .bar-unfinished, .vertical , #percentage {
+        display: none;
+    }
+
+    .time {
+        display: block;
+        margin: 10px;
+        line-height: 30px;
+    }
+
+    .due-left {
+    }
+
+    .due-right {
+        float: right;
+        color: #519dd9;
+    }
 }
