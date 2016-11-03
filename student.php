@@ -15,213 +15,16 @@ if (!function_exists('checkForceQuit')){
 <!DOCTYPE HTML>
 <html lang="en" >
 <head>
-<!--    <script src="/framework/js/material.js"></script>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>SAM by Computerization</title>
     <script src="/framework/js/jq.js"></script>
-    <link rel="stylesheet" href="/framework/sam/main.css">
+    <!--<link rel="stylesheet" href=>-->
     <style>
 
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
+            require $_SERVER['DOCUMENT_ROOT']."/framework/sam/main.css";
         ?>
-
-        body, #assignment-list-wrapper, #assignment-list {
-            background-color: #edeff1; !important;
-        }
-
-        div {
-            background-color: white;
-        }
-
-        #greeting {
-            position: absolute;
-            width: 85%;
-            min-width: 300px;
-            top: 2.4em;
-            left: 21%;
-            display: block;
-            color: rgba(133,189,234,1);
-            font-size: 50px;
-            font-family: Tahoma, Geneva, sans-serif;
-        }
-
-        #apps-menu {
-            position: absolute;
-            right: 87px;
-            color: #AAAAAA;
-            height: 40px;
-            line-height: 40px;
-        }
-
-        #avatar {
-            position: absolute;
-            right: 28px;
-        }
-
-        /*.mdl-card__title-text{*/
-            /*color: lightblue;*/
-        /*}*/
-
-        /*.mdl-card__actions {*/
-            /*margin-top: 20px !important;*/
-        /*}*/
-
-        /*.mdl-button {*/
-            /*padding:10px !important;*/
-            /*background-color: lightgrey !important;*/
-            /*color:white !important;*/
-        /*}*/
-
-
-        @media (min-width: 1000px) {
-            .title, .content {
-                padding: 10px;
-                margin: 0;
-                float: left;
-            !important;
-            }
-
-            .title {
-                width: 200px;
-            }
-
-            .action {
-                width: 220px;
-                margin: 0;
-                float: left;
-                /* line-height: 30px; */
-            }
-
-            .content {
-                position: relative;
-                top: 0px;
-                bottom: 0px;
-                width: calc(100% - 466px);
-                border-right: 3px solid #edeff1;
-                border-left: 3px solid #edeff1;
-            }
-
-            .time {
-                margin: 10px;
-                line-height: 30px;
-            }
-
-            .action > hr {
-                color: #edeff1;
-                position: relative;
-                /* left: -10px; */
-                width: 220px;
-                height: 3px;
-                border: none;
-                border-top: 3px solid #edeff1;
-            }
-
-            .title > hr {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                color: #edeff1;
-                position: relative;
-                left: -10px;
-                width: 225px;
-                height: 3px;
-                border: none;
-                border-top: 3px solid #edeff1;
-            }
-            .bar-finished, .bar-unfinished {
-                position: relative;
-                left: -75px;
-                background-color: white;
-                width:50px;
-                height:50px;
-                -webkit-border-radius:25px;
-                -moz-border-radius:25px;
-                border-radius:25px;
-                background-repeat: no-repeat;
-                background-position: center;
-                z-index: 1;
-            }
-
-            .bar-finished {
-                background-image: url("framework/sam/check.png");
-            }
-            .bar-unfinished {
-                background-image: url("framework/sam/x.png");
-            }
-
-            .connector {
-                position: relative;
-                left: -95px;
-                top:-30px;
-                border: none;
-                width:20px;
-                border: 4px solid #d8dbe0;
-                z-index: 0;
-            }
-
-            .vertical {
-                width: 0px;
-                border: 4px solid #d8dbe0;
-                position: relative;
-                left: calc(87% - 100px);
-                height: 100%;
-            }
-
-            #percentage {
-                margin: 0 calc(50% - 5em);
-            }
-
-        }
-
-
-        }
-
-        @media (max-width: 999px) {
-            .title, .content, .action {
-                /*background-color: red;*/
-                padding: 10px;
-                margin: 0;
-                height: auto;
-            }
-
-            .content, .title {
-                border-bottom: 3px solid #edeff1;
-            }
-
-            .action {
-                height: 30px;
-            }
-
-            .btn-action {
-                position: relative;
-                top:5px;
-                left:-20px;
-            }
-
-            .title>hr {
-                width:calc(100% + 40px); !important;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                color:#edeff1;
-                position:relative;
-                left: -10px;
-                height:3px;
-                border:none;
-                border-top:3px solid #edeff1;
-            }
-
-            .action>hr {
-                display: none;
-            }
-
-            #percentage {
-                margin: 0 calc(50% + 5em); !important;
-            }
-
-        }
-
-
-
     </style>
     <script>
         var flag_showApps = false;
@@ -238,7 +41,7 @@ if (!function_exists('checkForceQuit')){
                 $('#apps-menu-arrow-back').css('display','none');
             }
         }
-
+        /*
         var flag_userPanel = false;
         function showUserPanel(){
             flag_userPanel = !flag_userPanel;
@@ -249,6 +52,7 @@ if (!function_exists('checkForceQuit')){
 
             }
         }
+        */
     </script>
 
     <script src="/framework/js/jq.js"></script>
@@ -312,11 +116,11 @@ if (!function_exists('checkForceQuit')){
 
     <div id="assignment-stats" style="background-color: transparent;">
         <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
-        <div class="vertical"></div>
     </div>
     <div id="greeting" style="background-color: transparent;">These are the assignments for today.</div>
 
     <div id="assignment-list-wrapper">
+        <div class="vertical"></div>
         <div id="assignment-list"></div>
     </div>
 
@@ -515,5 +319,10 @@ if (!function_exists('checkForceQuit')){
         $('#classList').html("");
     });
     new ManipulatePresentation().loadPresentations(1);
+
+    // set the height of the device bar
+    $(window).load(function() {
+        $('.vertical').css('height', $('#assignment-list-wrapper').height());
+    });
 </script>
 </html>

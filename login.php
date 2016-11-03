@@ -82,7 +82,7 @@ if ( isset($_POST['username']) and isset($_POST['password']) ){
                     SIGN IN
                 </a>
                 <a class="button" id="forget-password" onclick="forgotPassword()">
-                    FORGOT PASSWORD
+                    FORGOT
                 </a>
             </div>
         </div>

@@ -281,7 +281,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         var type = this.type == 2 ? "Information" : "Assignment";
 
         html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + " demo-cards ' style='width: 65%; margin: 1em auto'>";
-
+        html += "<div class='connector'></div> ";
         html += "       <div class='title'>" +
             "<div style='color: #5b5b5b;font-size: 18px;font-weight: bold'>" + this._class + "</div>" +
             "<hr>" +
@@ -311,16 +311,14 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             //"<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
         if (! (this.type == 2)) {
             html += "<div class='time'><span style='float: left'>Due Date</span><span style='float: right;color: #519dd9'>" + this.dueday + "</span></div>";
-            html += "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>" + this.duration + "</span></div>";
+            html += "<div class='time'><span style='float: left'>Duration</span><span style='float: right;color: #519dd9'>" + this.duration + " mins</span></div>";
         }
         html += "</div>";
         if (! (this.type == 2)) {
             if(this.finished){
-                html += "   <div class='bar-finished'></div>" +
-                    "<div class='connector'></div> ";
-            }else{
-                html += "   <div class='bar-unfinished'></div>" +
-                    "<div class='connector'></div> ";
+                html += "   <div class='bar-finished'></div>";
+            }else {
+                html += "   <div class='bar-unfinished'></div>";
             }
         }
         html += "   <div class='footer'></div>";
