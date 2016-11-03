@@ -13,19 +13,52 @@ if (!function_exists('checkForceQuit')){
 
 ?>
 <!DOCTYPE HTML>
-<html lang="en" >
+<html lang="en">
 <head>
     <title>SAM by Computerization</title>
-    <script src="/framework/js/jq.js"></script>
     <style>
-
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/sam/main.css";
         ?>
     </style>
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
     <script>
+        function toggleModules(id){
+            $('#right-part').hide();
+            $('#mHome').hide();
+            $('#left-tab-Home').css("background","").css("color","#eceff1");
+            $('#mClasses').hide();
+            $('#left-tab-Classes').css("background","").css("color","#eceff1");
+            $('#mActivities').hide();
+            $('#left-tab-Activities').css("background","").css("color","#eceff1");
+            $('#mColleges').hide();
+            $('#left-tab-Colleges').css("background","").css("color","#eceff1");
+            $('#mPresentations').hide();
+            $('#left-tab-Presentations').css("background","").css("color","#eceff1");
+            $('#mSettings').hide();
+            $('#left-tab-Settings').css("background","").css("color","#eceff1");
+            $('#m'+id).show();
+            $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
+            $('#title').html(id);
+            $('.demo-drawer').removeClass("is-visible");
+        }
+        <?php
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/UID.php";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
+            require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
+        ?>
         var flag_showApps = false;
         function showApps(){
             flag_showApps = !flag_showApps;
@@ -41,57 +74,17 @@ if (!function_exists('checkForceQuit')){
             }
         }
         /*
-        var flag_userPanel = false;
-        function showUserPanel(){
-            flag_userPanel = !flag_userPanel;
-            if (flag_userPanel){
+         var flag_userPanel = false;
+         function showUserPanel(){
+         flag_userPanel = !flag_userPanel;
+         if (flag_userPanel){
 
-            }
-            else{
+         }
+         else{
 
-            }
-        }
-        */
-    </script>
-
-    <script src="/framework/js/jq.js"></script>
-    <script src="/framework/js/form.js"></script>
-    <script src="/framework/js/masonry.js"></script>
-<!--    <script src="/framework/js/material.js"></script>-->
-    <script>
-    function toggleModules(id){
-        $('#right-part').hide();
-        $('#mHome').hide();
-        $('#left-tab-Home').css("background","").css("color","#eceff1");
-        $('#mClasses').hide();
-        $('#left-tab-Classes').css("background","").css("color","#eceff1");
-        $('#mActivities').hide();
-        $('#left-tab-Activities').css("background","").css("color","#eceff1");
-        $('#mColleges').hide();
-        $('#left-tab-Colleges').css("background","").css("color","#eceff1");
-        $('#mPresentations').hide();
-        $('#left-tab-Presentations').css("background","").css("color","#eceff1");
-        $('#mSettings').hide();
-        $('#left-tab-Settings').css("background","").css("color","#eceff1");
-        $('#m'+id).show();
-        $('#left-tab-'+id).css("background","#00BCD4").css("color","#37474F");
-        $('#title').html(id);
-        $('.demo-drawer').removeClass("is-visible");
-    }
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/UID.php";
-    ?>
-    <?php
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
-    ?>
+         }
+         }
+         */
 </script>
 </head>
 
@@ -114,7 +107,7 @@ if (!function_exists('checkForceQuit')){
     <div id="assignment-stats" style="background-color: transparent;">
         <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
     </div>
-    <div id="greeting" style="background-color: transparent;">These are the assignments for today.</div>
+    <div id="greeting" style="background-color: transparent;"><?php require $_SERVER['DOCUMENT_ROOT']."/framework/sam/greeting";?></div>
 
     <div id="assignment-list-wrapper">
         <div class="vertical"></div>

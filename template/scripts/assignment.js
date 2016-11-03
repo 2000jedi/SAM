@@ -167,13 +167,15 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             for (var i = 1; i < arr.length-1; i = i+2){
                 var url = arr[i];
                 var urlSplit = url.split(".");
+                /*
                 if ( urlSplit[urlSplit.length-1].toLowerCase() == "jpg" || urlSplit[urlSplit.length-1].toLowerCase() == "png" ) {
                     html += "<img src='/modules/common/downloader.php?path=" + encodeURIComponent(url) + "' style='width: 100%' />";
                 }else{
+                */ // We don't need to show pics.
                     var name = arr[i+1];
                     var hrefText = "/modules/common/downloader.php?path=" + encodeURIComponent(url) + "&name=" + encodeURIComponent(name);
                     html += "<div style='display: flex; flex-direction: row;'><span class='material-icons'>attachment</span><a target=_blank style='text-indent: 5px' href='" + hrefText +"'>" + name + "</a></div>";
-                }
+                //}
             }
             html += "</div>";
             return html;
@@ -288,17 +290,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             "<div class='assignment-info'>" + type + " From</div>";
         html += "           <h2 class='subject'> " + this.subject + "</h2>";
         html += "       </div>";
-        // if ( !(this.type == 2 && daysLeft > 1000) ) {
-        //     html += "       <div class='content' style='border-bottom: 1px solid #CCC; width: 100%'>";
-        //     if (app == "teacher") {
-        //         html += "           <div style='margin-bottom: 0.5em'><span>Pub: " + this.publish + "</span></div>";
-        //     }
-        //     if (!( this.type == 2 && daysLeft > 1000)) {
-        //         var dueDayLabel = new Array("Due", "Expire");
-        //         html += "           <div>" + dueDayLabel[parseInt(type) - 1] + ": " + this.dueday + "</div>";
-        //     }
-        //     html += "       </div>";
-        // }
         html += "       <div class='content'>";
         html += "           <div class='content-text' id='" + this.diff("prefix-content-id", this) + "'>";
         html += "               <div class='content-holder'>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
@@ -308,7 +299,6 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
         html += "       <hr>";
-            //"<div class='time'><span style='float: left'>Start Time</span><span style='float: right;color: #519dd9'>2016/10/10</span></div>" +
         if (! (this.type == 2)) {
             html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
             html += "<div class='time'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
