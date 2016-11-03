@@ -109,9 +109,7 @@ if (!function_exists('checkForceQuit')){
     </div>
     <div id="apps-menu-arrow-back" style="display: none;"></div>
     <div id="apps-menu-arrow-front" style="display: none;"></div>
-    <div id="apps-menu-detail" style="display: none;">
-
-    </div>
+    <div id="apps-menu-detail" style="display: none;"></div>
 
     <div id="assignment-stats" style="background-color: transparent;">
         <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>

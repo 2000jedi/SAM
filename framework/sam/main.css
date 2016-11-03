@@ -396,7 +396,7 @@ div {
     }
 
     .title>hr {
-        width:calc(100% + 40px); !important;
+        width:calc(100% + 40px);
         margin-top: 10px;
         margin-bottom: 10px;
         color:#edeff1;
@@ -413,8 +413,12 @@ div {
 
     .title-text {
         color: #5b5b5b;
-        font-size: 30px;
+        font-size: 50px;
         font-weight: bold;
+    }
+
+    .content-holder{
+        font-size: 40px;
     }
 
     .attachment-holder {
@@ -428,17 +432,22 @@ div {
         display: none;
     }
 
+    .attachment-holder > div > a {
+        font-size: 40px;
+    }
+
     .connector, .bar-finished, .bar-unfinished, .vertical , #percentage {
         display: none;
+    }
+
+    .btn-action {
+        font-size: 30px;
     }
 
     .time {
         display: block;
         margin: 10px;
         line-height: 30px;
-    }
-
-    .due-left {
     }
 
     .due-right {
