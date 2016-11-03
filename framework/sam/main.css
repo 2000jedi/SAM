@@ -131,28 +131,8 @@ body {
     transition: height .2s ease-in-out;
 }
 
-.subject {
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    font-size: 32px;
-    font-weight: lighter;
-    color: #85bdea;
-}
-
 .footer {
     clear: both;
-}
-
-.btn-action {
-    display: block;
-    width: calc(100% - 30px);
-    color: white; !important;
-    text-decoration: none;
-    background-color: #519dd9;
-    padding: 15px;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
 }
 
 body, #assignment-list-wrapper, #assignment-list {
@@ -230,6 +210,21 @@ div {
         color: #5b5b5b;
         font-size: 18px;
         font-weight: bold;
+    }
+
+    .assignment-info {
+        color: #bfbfbf;
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .subject {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        font-size: 32px;
+        font-weight: lighter;
+        color: #85bdea;
     }
 
     .content {
@@ -344,6 +339,18 @@ div {
         float: right;
         color: #519dd9;
     }
+
+    .btn-action {
+        display: block;
+        width: calc(100% - 30px);
+        color: white; !important;
+        text-decoration: none;
+        background-color: #519dd9;
+        padding: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+    }
 }
 
 @media (max-width: 999px) {
@@ -368,7 +375,7 @@ div {
         height: auto;
     }
 
-    .content, .title {
+    .title {
         border-bottom: 3px solid #edeff1;
     }
 
@@ -396,15 +403,7 @@ div {
     }
 
     .title>hr {
-        width:calc(100% + 40px);
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color:#edeff1;
-        position:relative;
-        left: -10px;
-        height:3px;
-        border:none;
-        border-top:3px solid #edeff1;
+        display: none;
     }
 
     .action>hr {
@@ -415,6 +414,23 @@ div {
         color: #5b5b5b;
         font-size: 50px;
         font-weight: bold;
+    }
+
+    .assignment-info {
+        color: #bfbfbf;
+        font-size: 32px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        float: left
+    }
+
+    .subject {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        font-size: 32px;
+        font-weight: lighter;
+        color: #85bdea;
+        text-align: right;
     }
 
     .content-holder{
@@ -441,7 +457,19 @@ div {
     }
 
     .btn-action {
+        display: block;
+        width: 30%;
+        color: white; !important;
+        text-decoration: none;
+        background-color: #519dd9;
+        padding: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
         font-size: 30px;
+        float: right;
+        margin-left: 10px;
+        height: 42px;
     }
 
     .time {
@@ -450,8 +478,14 @@ div {
         line-height: 30px;
     }
 
+    .due-left {
+        color: #bfbfbf;
+        font-size: 32px;
+    }
+
     .due-right {
         float: right;
         color: #519dd9;
+        font-size: 32px;
     }
 }

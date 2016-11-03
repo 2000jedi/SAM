@@ -285,7 +285,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "       <div class='title'>" +
             "<div class='title-text'>" + this._class + "</div>" +
             "<hr>" +
-            "<div style='color: #bfbfbf;font-size: 12px;margin-top: 10px;margin-bottom: 10px'>" + type + " From</div>";
+            "<div class='assignment-info'>" + type + " From</div>";
         html += "           <h2 class='subject'> " + this.subject + "</h2>";
         html += "       </div>";
         // if ( !(this.type == 2 && daysLeft > 1000) ) {
