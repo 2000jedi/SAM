@@ -152,20 +152,15 @@ div {
 @media (min-width: 1000px) {
     .title, .content {
         padding: 10px;
-        margin: 0;
         float: left;
-    !important;
+        margin: -8px 0 0;
+        height: 137px;
     }
 
     .title {
         width: 200px;
-    }
-
-    .action {
-        width: 220px;
-        margin: 0;
-        float: left;
-        /* line-height: 30px; */
+        margin: -8px 0 0;
+        height: 137px;
     }
 
     #greeting {
@@ -222,13 +217,16 @@ div {
 
     .content {
         position: relative;
-        top: 0px;
-        bottom: 0px;
         width: calc(100% - 466px);
         border-right: 3px solid #edeff1;
         border-left: 3px solid #edeff1;
-        height: 128px;
         overflow: visible;
+    }
+
+    .action {
+        width: 220px;
+        margin: -8px 0 0;
+        float: left;
     }
 
     .content-text{
@@ -242,7 +240,7 @@ div {
     }
 
     .time {
-        margin: 10px;
+        margin: 20px 10px 10px 10px;
         line-height: 30px;
     }
 

@@ -298,7 +298,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "       <div class='action'>";
         html += this.diff("iconButton", this);
         html += this.diff("additional-button", this);
-        html += "       <hr>";
+        //html += "       <hr>";
         if (! (this.type == 2)) {
             html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
             html += "<div class='time'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
