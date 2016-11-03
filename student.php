@@ -321,7 +321,6 @@ if (!function_exists('checkForceQuit')){
 
     // set the height of the device bar
     $(window).load(function() {
-        $('.vertical').css('left', $('#assignment-list-wrapper').width() * 0.175 - 95 + 'px');
         $('.vertical').css('height', $('#assignment-list-wrapper').height());
     });
 </script>
