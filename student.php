@@ -131,10 +131,10 @@ if (!function_exists('checkForceQuit')){
                 <div id="assignment-list"></div>
             </div>
         </div>
-        <div id="classes">
+        <div id="classes" style="display: none">
 
         </div>
-        <div id="settings" >
+        <div id="settings" style="display: none">
                 <div class="">
                             <h2 class="">Change Email</h2>
                             <div>
@@ -151,7 +151,7 @@ if (!function_exists('checkForceQuit')){
                             </a>
                         </div>
                 </div>
-                <div class="">
+                <div class="" >
                             <h2 class="mdl-card__title-text">Change Password</h2>
                             <div>Please set up a strong password for yourself.</div>
                             <div class="">
@@ -170,7 +170,7 @@ if (!function_exists('checkForceQuit')){
                                 Change Password
                             </a>
                 </div>
-                <div class="">
+                <div class="" >
                             <h2 class="mdl-card__title-text">More</h2>
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut()">
                                 Sign out
