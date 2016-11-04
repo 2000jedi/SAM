@@ -46,6 +46,10 @@ div {
     right: 28px;
 }
 
+#assignment, #classes, #settings {
+    background-color: transparent;
+}
+
 @media (min-width: 1000px) {
     .banner {
         display: block;
