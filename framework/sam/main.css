@@ -387,6 +387,9 @@ div {
 
     #percentage {
         margin: 0 calc(50% - 5em);
+        position: absolute;
+        top: -230px;
+        left: -36px;
     }
 
     .due-left {

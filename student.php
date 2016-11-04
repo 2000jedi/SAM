@@ -73,18 +73,6 @@ if (!function_exists('checkForceQuit')){
                 $('#apps-menu-arrow-back').css('display','none');
             }
         }
-        /*
-         var flag_userPanel = false;
-         function showUserPanel(){
-         flag_userPanel = !flag_userPanel;
-         if (flag_userPanel){
-
-         }
-         else{
-
-         }
-         }
-         */
 </script>
 </head>
 
@@ -104,21 +92,21 @@ if (!function_exists('checkForceQuit')){
     <div id="apps-menu-arrow-front" style="display: none;"></div>
     <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
         <ul class="list-apps" aria-dropeffect="move">
-            <li class="drag" style="display: none;">
+            <li class="drag" style="display: none;" id="app-assignment">
                 <a class="app" onclick="showAssignment()">
                     <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -552px;background-size: 64px 2065px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
                 </a>
             </li>
 
-            <li class="drag" style="display: inline-block;">
+            <li class="drag" style="display: inline-block;" id="app-classes">
                 <a class="app" onclick="showClasses()">
                     <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -483px;background-size: 64px 2065px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Classes</div></span>
                 </a>
             </li>
 
-            <li class="drag" style="display: inline-block;">
+            <li class="drag" style="display: inline-block;" id="app-settings">
                 <a class="app" onclick="showSettings()">
                     <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -1449px;background-size: 64px 2065px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
@@ -127,15 +115,25 @@ if (!function_exists('checkForceQuit')){
         </ul>
     </div>
 
-    <div id="assignment-stats" style="background-color: transparent;">
-        <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
-    </div>
-    <div id="greeting" style="background-color: transparent;"><?php require $_SERVER['DOCUMENT_ROOT']."/framework/sam/greeting";?></div>
+    <main id="main_drawer">
+        <div id="assignment">
+            <div id="assignment-stats" style="background-color: transparent;">
+                <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
+            </div>
+            <div id="greeting" style="background-color: transparent;"><?php require $_SERVER['DOCUMENT_ROOT']."/framework/sam/greeting";?></div>
 
-    <div id="assignment-list-wrapper">
-        <div class="vertical"></div>
-        <div id="assignment-list"></div>
-    </div>
+            <div id="assignment-list-wrapper">
+                <div class="vertical"></div>
+                <div id="assignment-list"></div>
+            </div>
+        </div>
+        <div id="classes">
+
+        </div>
+        <div id="settings">
+
+        </div>
+    </main>
 
 </body>
 <script>
@@ -339,16 +337,34 @@ if (!function_exists('checkForceQuit')){
     });
 
     // set app state change
-    function showAssignments(){
+    function showAssignment(){
+        $('#assignment').css('display','block');
+        $('#classes').css('display','none');
+        $('#settings').css('display','none');
 
+        $('#app-assignment').css('display','none');
+        $('#app-classes').css('display','inline-block');
+        $('#app-settings').css('display','inline-block');
     }
 
     function showClasses(){
-        alert('classes')
+        $('#assignment').css('display','none');
+        $('#classes').css('display','block');
+        $('#settings').css('display','none');
+
+        $('#app-assignment').css('display','inline-block');
+        $('#app-classes').css('display','none');
+        $('#app-settings').css('display','inline-block');
     }
 
     function showSettings(){
-        alert('settings')
+        $('#assignment').css('display','none');
+        $('#classes').css('display','none');
+        $('#settings').css('display','block');
+
+        $('#app-assignment').css('display','inline-block');
+        $('#app-classes').css('display','inline-block');
+        $('#app-settings').css('display','none');
     }
 </script>
 </html>
