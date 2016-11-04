@@ -17,6 +17,10 @@ if (!function_exists('checkForceQuit')){
 <head>
     <title>SAM by Computerization</title>
     <style>
+        div {
+            background-color: transparent;!important;
+        }
+
         <?php
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/base.css";
             require $_SERVER['DOCUMENT_ROOT']."/framework/geodesic/settings.css";
@@ -130,8 +134,51 @@ if (!function_exists('checkForceQuit')){
         <div id="classes">
 
         </div>
-        <div id="settings">
-
+        <div id="settings" >
+                <div class="">
+                            <h2 class="">Change Email</h2>
+                            <div>
+                                Set up your own email address. <br />
+                                You need your email address to receive your reset password email confirmation.
+                            </div>
+                            <div class="">
+                                <input class="" type="email" id="newEmail" placeholder="Your new email"/>
+                                <label class="" for="newEmail"></label>
+                            </div>
+                        <div class="">
+                            <a class="" onclick="changeEmail()">
+                                Change Email
+                            </a>
+                        </div>
+                </div>
+                <div class="">
+                            <h2 class="mdl-card__title-text">Change Password</h2>
+                            <div>Please set up a strong password for yourself.</div>
+                            <div class="">
+                                <input class="" type="password" id="oldPass" placeholder="Old Password"/>
+                                <label class="" for="oldPass">Old Password</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="password" id="newPass1" placeholder="Your new password"/>
+                                <label class="" for="newPass1">Your new password</label>
+                            </div>
+                            <div class="">
+                                <input class="" type="password" id="newPass2" placeholder="Retype your new password"/>
+                                <label class="" for="newPass2">Retype your new password</label>
+                            </div>
+                            <a class="" onclick="changePassword()">
+                                Change Password
+                            </a>
+                </div>
+                <div class="">
+                            <h2 class="mdl-card__title-text">More</h2>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut()">
+                                Sign out
+                            </a> -
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="window.location='mailto:sam@developersam.com'">
+                                Bug report
+                            </a>
+                </div>
         </div>
     </main>
 
@@ -366,5 +413,7 @@ if (!function_exists('checkForceQuit')){
         $('#app-classes').css('display','inline-block');
         $('#app-settings').css('display','none');
     }
+
+
 </script>
 </html>
