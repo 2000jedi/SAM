@@ -1,3 +1,7 @@
+div {
+    background-color: transparent; !important;
+}
+
 a {
     color: #85bdea;
 }
@@ -416,6 +420,28 @@ div {
         font-weight: bold;
         text-align: center;
     }
+
+    /* setting */
+
+    #settings {
+        width:100%;
+    }
+
+    #settings > div {
+        margin-left: 20px;
+        margin-top: 40px;
+        padding: 20px;
+        border-radius: 2px;
+        float: left;
+        width: 25%;
+        line-height:2em;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+
+    label {
+        display: none;
+    }
+
 }
 
 @media (max-width: 999px) {
@@ -656,4 +682,25 @@ div {
         color: #519dd9;
         font-size: 32px;
     }
+
+    /*settings*/
+
+    #settings {
+        width:100%;
+    }
+
+    #settings > div {
+        width: 100%;
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 2px;
+
+        line-height:2em;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+
+    label {
+        display: none;
+    }
+
 }
