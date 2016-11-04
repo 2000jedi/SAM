@@ -417,7 +417,7 @@ div {
 @media (max-width: 999px) {
     .banner {
         display: block;
-        position: fixed;
+        position: relative;
         width: 100%;
         height: 50px;
         margin: 0;
@@ -469,7 +469,7 @@ div {
 
     #avatar {
         position: absolute;
-        right: 100px;
+        right: 30px;
     }
 
     #apps-menu:hover {
