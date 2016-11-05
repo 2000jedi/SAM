@@ -37,6 +37,11 @@ div {
     background-color: white;
 }
 
+div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-assignment-pile, div#assignment-list-class-information-pile {
+    background-color: #edeff1;
+}
+
+
 #apps-menu {
     position: absolute;
     right: 87px;
@@ -52,10 +57,6 @@ div {
 
 #assignment, #classes, #settings {
     background-color: transparent;
-}
-
-.a-button:hover {
-    cursor: pointer;
 }
 
 @media (min-width: 1000px) {
@@ -446,6 +447,35 @@ div {
         display: none;
     }
 
+    /* class */
+
+    .class-list {
+        width: 30%;
+        margin: 10px;
+        padding: 10px;
+        background-color: white;
+        float: left;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px lightgrey;
+        line-height: 2em;
+    }
+
+    /*right part class linked to assignment*/
+
+    .assignment-list-class {
+        margin-left: 20px;
+        margin-top: 40px;
+        padding: 20px;
+        border-radius: 2px;
+        /*float: left;*/
+        width: 75%;
+        clear: both;
+        line-height:2em;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+    #assignment-list-class {
+        padding-left: 10%;
+    }
 }
 
 @media (max-width: 999px) {
@@ -470,7 +500,7 @@ div {
 
     #left-banner>span {
         color: #d1d1d1;
-        font-size: 28px;
+        /*font-size: 28px;*/
         font-weight: lighter;
         position: relative;
         top: -9px;
@@ -552,10 +582,76 @@ div {
         transition: height .2s ease-in-out;
     }
 
+
+    .list-apps {
+        position: relative;
+        display: block;
+        background: #fff;
+        margin: 0;
+        min-height: 100px;
+        padding: 0;
+        text-align: left;
+        white-space: normal;
+        width: 100%;
+        list-style-type: disc;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+        -webkit-user-select: text;
+        font-size: 13px;
+        font-family: arial,sans-serif;
+        z-index: 996;
+    }
+
+    .drag {
+        padding: 1px;
+        display: inline-block;
+        vertical-align: top;
+        color: black;
+        z-index: 997;
+        width: 86px;
+        height: 98px;
+        border: 0;
+        margin: 0;
+        text-align: -webkit-match-parent;
+    }
+
+    .app {
+        color: #404040;
+        text-decoration: none;
+        transform: translate(88px, 0px);
+        transition: transform 0.2s cubic-bezier(0.333, 0, 0, 1);
+        position: relative;
+        cursor: pointer;
+        font-size: 13px;
+        margin: 8px 2px;
+        text-align: center;
+        outline: none;
+        z-index: 998;
+        width: 100%;
+    }
+
+    .app-img {
+        display: block;
+        width: 64px;
+        height: 64px;
+        z-index: 999;
+        margin: 0 auto;
+    }
+
+    .app-desc {
+        z-index: 999;
+        width: 90px;
+        display: flex;
+        text-align: center;
+    }
+
     #greeting {
         color: rgba(133,189,234,1);
         font-family: Tahoma, Geneva, sans-serif;
-        font-size: 50px;
+        font-size: 20px;
         width: 100%;
         text-align: center;
         margin-top: 1em;
@@ -579,10 +675,6 @@ div {
 
     .action {
         height: 30px;
-    }
-
-    .btn-action {
-        position: relative;
     }
 
     #assignment-list {
@@ -610,13 +702,13 @@ div {
 
     .title-text {
         color: #5b5b5b;
-        font-size: 50px;
+        /*font-size: 50px;*/
         font-weight: bold;
     }
 
     .assignment-info {
         color: #bfbfbf;
-        font-size: 32px;
+        /*font-size: 32px;*/
         margin-top: 10px;
         margin-bottom: 10px;
         float: left
@@ -625,14 +717,14 @@ div {
     .subject {
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
-        font-size: 32px;
+        /*font-size: 32px;*/
         font-weight: lighter;
         color: #85bdea;
         text-align: right;
     }
 
     .content-holder{
-        font-size: 40px;
+        /*font-size: 40px;*/
     }
 
     .attachment-holder {
@@ -647,7 +739,7 @@ div {
     }
 
     .attachment-holder > div > a {
-        font-size: 40px;
+        /*font-size: 40px;*/
     }
 
     .connector, .bar-finished, .bar-unfinished, .vertical , #percentage {
@@ -656,7 +748,7 @@ div {
 
     .btn-action {
         display: block;
-        width: 30%;
+        width: calc(100% - 20px);
         color: white; !important;
         text-decoration: none;
         background-color: #519dd9;
@@ -664,10 +756,10 @@ div {
         text-transform: uppercase;
         font-weight: bold;
         text-align: center;
-        font-size: 25px;
+        /*font-size: 25px;*/
         float: right;
         margin-left: 10px;
-        height: 42px;
+        /*height: 42px;*/
     }
 
     .time {
@@ -678,13 +770,13 @@ div {
 
     .due-left {
         color: #bfbfbf;
-        font-size: 32px;
+        /*font-size: 32px;*/
     }
 
     .due-right {
         float: right;
         color: #519dd9;
-        font-size: 32px;
+        /*font-size: 32px;*/
     }
 
     /*settings*/
@@ -705,6 +797,39 @@ div {
 
     label {
         display: none;
+    }
+
+    /* class */
+
+    .class-list {
+        line-height: 2em;
+        width: 95%;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: white;
+        clear: both;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+
+    .class-list > div {
+        display: block;
+    }
+
+    /* right part class link to assignment*/
+
+    #right-part-view-class {
+        background-color: #edeff1; !important;
+    }
+
+    #assignment-list-class {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        padding: 10px;
+        background-color: white;
+        clear: both;
+        border-radius: 2px;
+        box-shadow: 2px 2px 2px lightgrey;
     }
 
 }
