@@ -526,9 +526,10 @@ textarea, input{
         position: fixed;
         top:0px;
         right: 0px;
-        width: -moz-calc(100% - 240px);
-        width: -webkit-calc(100% - 240px);
-        width: calc(100% - 240px);
+        width: 100%;
+        /*width: -moz-calc(100% - 240px);*/
+        /*width: -webkit-calc(100% - 240px);*/
+        /*width: calc(100% - 240px);*/
         overflow-y: auto;
         height: 100%;
         box-shadow: -3px 0px 3px #444;
