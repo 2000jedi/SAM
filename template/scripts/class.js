@@ -66,17 +66,11 @@ function ClassStudent(id, teacher, name, subject){
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='class-list-"+ this.id +"' class='demo-cards mdl-cell mdl-grid mdl-grid--no-spacing'>";
-        html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
-        html += "       <div class='mdl-card__title mdl-card--expand mdl-color--green-300' style='min-height: 0'>";
-        html += "         <h2 class='mdl-card__title-text'>" + this.subject + "</h2>";
-        html += "       </div>";
-        html += "       <div class='mdl-card__supporting-text mdl-color-text--grey-600'>";
+        html += "<div id='class-list-"+ this.id +"' class='class-list'>";
+        // html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
+        html += "         <h2 class=''>" + this.subject + "</h2>";
         html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "       </div>";
-        html += "       <div class='mdl-card__actions mdl-card--border'>";
-        html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
-        html += "       </div>";
+        html += "           <a href='#' class='btn-action' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
         html += "</div>";
         return html;
     }
