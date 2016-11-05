@@ -133,7 +133,7 @@ if (!function_exists('checkForceQuit')){
             </div>
         </div>
         <div id="classes" style="display: none">
-            <div id="classList" class="mdl-grid demo-content"></div>
+            <div id="classList" class="class-content"></div>
         </div>
         <div id="settings" style="display: none">
                 <div class="">
@@ -147,13 +147,13 @@ if (!function_exists('checkForceQuit')){
                                 <label class="" for="newEmail"></label>
                             </div>
                         <div class="">
-                            <a class="" onclick="changeEmail()">
+                            <a class="a-button" onclick="changeEmail()">
                                 Change Email
                             </a>
                         </div>
                 </div>
                 <div class="" >
-                            <h2 class="mdl-card__title-text">Change Password</h2>
+                            <h2 class="card-title-text">Change Password</h2>
                             <div>Please set up a strong password for yourself.</div>
                             <div class="">
                                 <input class="" type="password" id="oldPass" placeholder="Old Password"/>
@@ -167,16 +167,16 @@ if (!function_exists('checkForceQuit')){
                                 <input class="" type="password" id="newPass2" placeholder="Retype your new password"/>
                                 <label class="" for="newPass2">Retype your new password</label>
                             </div>
-                            <a class="" onclick="changePassword()">
+                            <a class="a-button" onclick="changePassword()">
                                 Change Password
                             </a>
                 </div>
                 <div class="" >
-                            <h2 class="mdl-card__title-text">More</h2>
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut()">
+                            <h2 class="card-title-text">More</h2>
+                            <a class="a-button" onclick="signOut()">
                                 Sign out
-                            </a> -
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="window.location='mailto:sam@developersam.com'">
+                            </a>
+                            <a class="a-button" onclick="window.location='mailto:sam@developersam.com'">
                                 Bug report
                             </a>
                 </div>
@@ -427,6 +427,8 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','none');
         $('#app-classes').css('display','inline-block');
         $('#app-settings').css('display','inline-block');
+
+        showApps();
     }
 
     function showClasses(){
@@ -437,6 +439,8 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','inline-block');
         $('#app-classes').css('display','none');
         $('#app-settings').css('display','inline-block');
+
+        showApps();
     }
 
     function showSettings(){
@@ -447,6 +451,8 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','inline-block');
         $('#app-classes').css('display','inline-block');
         $('#app-settings').css('display','none');
+
+        showApps();
     }
 
 

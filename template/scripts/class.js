@@ -70,7 +70,7 @@ function ClassStudent(id, teacher, name, subject){
         // html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "         <h2 class=''>" + this.subject + "</h2>";
         html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "           <a href='#' class='btn-action' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel()'>View</a>";
+        html += "           <a href='#' class='btn-action' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel();'>View</a>";
         html += "</div>";
         return html;
     }
@@ -251,6 +251,7 @@ function Class(id, name){
         $('#right-part-view-class').show();
         $('#right-part-view-activity').hide();
         $('#right-part').show();
+        $('.connector').each(function(){$(this).hide()});
     };
 
     this.openAddCardBox = function(){

@@ -59,6 +59,10 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     background-color: transparent;
 }
 
+.a-button:hover{
+    cursor: pointer;
+}
+
 @media (min-width: 1000px) {
     .banner {
         display: block;
