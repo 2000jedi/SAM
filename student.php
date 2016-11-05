@@ -16,6 +16,7 @@ if (!function_exists('checkForceQuit')){
 <html lang="en">
 <head>
     <title>SAM by Computerization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         div {
             background-color: transparent;!important;
@@ -132,7 +133,7 @@ if (!function_exists('checkForceQuit')){
             </div>
         </div>
         <div id="classes" style="display: none">
-
+            <div id="classList" class="mdl-grid demo-content"></div>
         </div>
         <div id="settings" style="display: none">
                 <div class="">
@@ -146,7 +147,7 @@ if (!function_exists('checkForceQuit')){
                                 <label class="" for="newEmail"></label>
                             </div>
                         <div class="">
-                            <a class="a-button" onclick="changeEmail()">
+                            <a class="" onclick="changeEmail()">
                                 Change Email
                             </a>
                         </div>
@@ -166,21 +167,55 @@ if (!function_exists('checkForceQuit')){
                                 <input class="" type="password" id="newPass2" placeholder="Retype your new password"/>
                                 <label class="" for="newPass2">Retype your new password</label>
                             </div>
-                            <a class="a-button" onclick="changePassword()">
+                            <a class="" onclick="changePassword()">
                                 Change Password
                             </a>
                 </div>
                 <div class="" >
                             <h2 class="mdl-card__title-text">More</h2>
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect a-button" onclick="signOut()">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="signOut()">
                                 Sign out
                             </a> -
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect a-button" onclick="window.location='mailto:jedi.primer@yandex.com'">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="window.location='mailto:sam@developersam.com'">
                                 Bug report
                             </a>
                 </div>
         </div>
     </main>
+
+    <div id="right-part" class="" style="display:none">
+
+        <div id="right-part-view-class" style="display: none;">
+            <header class="" style="display: flex">
+                <div class=""  onclick="$('#right-part').hide()">
+                        <span class="" style="display: flex; flex-direction: row">
+                            <span class="btn-action" style="display: flex">X</span>
+                            <span id="right-part-title" style="display: flex">Manage Class</span>
+                        </span>
+                </div>
+            </header>
+            <div id="assignment-list-class">
+                <div id="assignment-list-class-assignment-pile" class="two-adjacent-pile"></div>
+                <div id="assignment-list-class-information-pile" class="two-adjacent-pile"></div>
+            </div>
+        </div>
+
+        <div id="right-part-view-activity" style="display: none">
+            <div id="right-part-view-activity-id" style="display: none;"></div>
+            <header class="" style="display: flex">
+                <div class="" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
+                        <span class="m" style="display: flex; flex-direction: row">
+                            <span class="material-icons" style="display: flex">close</span>
+                            <span style="display: flex">Discussion</span>
+                        </span>
+                </div>
+            </header>
+            <button id="add-activity-comment-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityCommentButtonClick()">
+                <i class="material-icons">add</i>
+            </button>
+            <div id="activity-comment-list"></div>
+        </div>
+    </div>
 
 </body>
 <script>
@@ -392,8 +427,6 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','none');
         $('#app-classes').css('display','inline-block');
         $('#app-settings').css('display','inline-block');
-
-        showApps();
     }
 
     function showClasses(){
@@ -404,8 +437,6 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','inline-block');
         $('#app-classes').css('display','none');
         $('#app-settings').css('display','inline-block');
-
-        showApps();
     }
 
     function showSettings(){
@@ -416,8 +447,6 @@ if (!function_exists('checkForceQuit')){
         $('#app-assignment').css('display','inline-block');
         $('#app-classes').css('display','inline-block');
         $('#app-settings').css('display','none');
-
-        showApps();
     }
 
 
