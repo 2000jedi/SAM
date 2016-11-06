@@ -153,7 +153,7 @@ if (!function_exists('checkForceQuit')){
                         </div>
                 </div>
                 <div class="" >
-                            <h2 class="card-title-text">Change Password</h2>
+                            <h2 class="">Change Password</h2>
                             <div>Please set up a strong password for yourself.</div>
                             <div class="">
                                 <input class="" type="password" id="oldPass" placeholder="Old Password"/>
@@ -172,13 +172,15 @@ if (!function_exists('checkForceQuit')){
                             </a>
                 </div>
                 <div class="" >
-                            <h2 class="card-title-text">More</h2>
-                            <a class="a-button" onclick="signOut()">
-                                Sign out
-                            </a> -
-                            <a class="a-button" onclick="window.location='mailto:sam@developersam.com'">
-                                Bug report
-                            </a>
+                    <h2 class="c">More</h2>
+                    <div class="">Computerization Proudly Present</div>
+                    <div class="">Version                16.11.06</div>
+                    <a class="a-button" onclick="signOut()">
+                        Sign out
+                    </a> -
+                    <a class="a-button" onclick="window.location='mailto:sam@developersam.com'">
+                        Bug report
+                    </a>
                 </div>
         </div>
     </main>

@@ -472,6 +472,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         width: 25%;
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
+        height: 202px;
     }
 
     label {
@@ -525,6 +526,8 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .two-adjacent-pile > .assignment-list-class > .content{
         margin: 0;
+        width: calc(100% - 243px);
+        border-right: 0;
     }
 }
 
@@ -850,7 +853,6 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         margin-top: 20px;
         padding: 20px;
         border-radius: 2px;
-
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
     }
@@ -892,4 +894,12 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         box-shadow: 2px 2px 2px lightgrey;
     }
 
+
+    .assignment-list, .assignment-list-class, .activity-list, .activity-comment-list {
+        width: auto;
+    }
+
+    .two-adjacent-pile > .assignment-list-class > .action{
+        display: none;
+    }
 }
