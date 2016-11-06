@@ -233,7 +233,7 @@ function Class(id, name){
     };
 
     this.openManageClassPanel = function(){
-        new Class(this.id, this.name).loadAssignment(1, function(){
+        new Class(this.id, this.name).loadAssignment(1, true, function(){
             $('#assignment-list-assignment-pile').html("");
             $('#assignment-list-information-pile').html("");
         });
@@ -243,7 +243,7 @@ function Class(id, name){
     };
 
     this.openViewClassPanel = function(){
-        new Class(this.id, this.name).loadAssignment(0, function(){
+        new Class(this.id, this.name).loadAssignment(0, false, function(){
             $('#assignment-list-class-assignment-pile').html("");
             $('#assignment-list-class-information-pile').html("");
         });
@@ -273,7 +273,7 @@ function Class(id, name){
         }
     };
 
-    this.loadAssignment = function(type, func){
+    this.loadAssignment = function(type, isTeacher, func){
         var app = new Array(); app[0] = "student-in-class"; app[1] = "teacher";
         var appendID = new Array(); appendID[0] = "#assignment-list-class"; appendID[1] = "#assignment-list";
 
@@ -292,7 +292,10 @@ function Class(id, name){
                 }else{
                     suffixOfContainer = "-information-pile";
                 }
-                $(appendID[type]+suffixOfContainer).append(assignment.getHTML(false));
+                if (isTeacher)
+                    $(appendID[type]+suffixOfContainer).append(assignment.teacher_getHTML());
+                else
+                    $(appendID[type]+suffixOfContainer).append(assignment.getHTML(false));
             }
         });
     };

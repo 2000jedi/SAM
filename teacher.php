@@ -381,7 +381,7 @@ if (!function_exists('checkForceQuit')){
                 $('#submit_btn_add_card').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
                 $("#progress1").hide();
-                new Class($('#add-card-class-id').val(), '').loadAssignment(1, function(){
+                new Class($('#add-card-class-id').val(), '').loadAssignment(1, true, function(){
                     $('#assignment-list-assignment-pile').html("");
                     $('#assignment-list-information-pile').html("");
                 })
@@ -411,7 +411,7 @@ if (!function_exists('checkForceQuit')){
                 $('#submit_btn_add_card-2').prop('disabled',false).val("Submit");
                 $('#shadow').hide();
                 $("#progress2").hide();
-                new Class($('#add-card-class-id-2').val(), '').loadAssignment(1, function(){
+                new Class($('#add-card-class-id-2').val(), '').loadAssignment(1, true, function(){
                     $('#assignment-list').html("");
                 })
             }
