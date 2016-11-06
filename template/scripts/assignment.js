@@ -338,6 +338,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
 
     this.getHTML = function(hasConnector) {
         var html = "";
+
         function calculateDaysLeft(dueday) {
             var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
             if (daysLeft < 0) {
@@ -345,6 +346,7 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
             return daysLeft;
         }
+
         var daysLeft = calculateDaysLeft(this.dueday);
 
         var type = this.type == 2 ? "Information" : "Assignment";
@@ -363,21 +365,24 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         html += "               <div class='content-holder'>" + Utils.string.formattedPostContent(this.content) + "</div>" + this.attachment;
         html += "           </div>";
         html += "       </div>";
-        html += "       <div class='action'>";
-        html += this.diff("iconButton", this);
-        html += this.diff("additional-button", this);
-        if (! (this.type == 2)) {
-            html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
-            html += "<div class='time' style='padding: 0 10px;margin: 0;'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
-        }
-        html += "</div>";
-        if (! (this.type == 2)) {
-            if(this.finished){
-                html += "   <div class='bar-finished'></div>";
-            }else {
-                html += "   <div class='bar-unfinished'></div>";
+        if (hasConnector) {
+            html += "       <div class='action'>";
+            html += this.diff("iconButton", this);
+            html += this.diff("additional-button", this);
+            if (!(this.type == 2)) {
+                html += "<div class='time'><span class='due-left'>Due Date</span><span class='due-right'>" + this.dueday + "</span></div>";
+                html += "<div class='time' style='padding: 0 10px;margin: 0;'><span class='due-left'>Duration</span><span class='due-right'>" + this.duration + " mins</span></div>";
             }
+            html += "</div>";
         }
+        if (hasConnector)
+            if (! (this.type == 2)) {
+                if(this.finished){
+                    html += "   <div class='bar-finished'></div>";
+                }else {
+                    html += "   <div class='bar-unfinished'></div>";
+                }
+            }
         html += "   <div class='footer'></div>";
         html += "</div>";
         return html;
