@@ -19,7 +19,7 @@ function Search(searchTerm){
                     var row = data[i];
                     idList += ";" + row.id;
                     var assignment = new Assignment("teacher",row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
-                    $("#search-result-list").append(assignment.getHTML());
+                    $("#search-result-list").append(assignment.getHTML(false));
                 }
             }
             $("#mSearch").show();

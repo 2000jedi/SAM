@@ -175,7 +175,7 @@ if (!function_exists('checkForceQuit')){
                             <h2 class="card-title-text">More</h2>
                             <a class="a-button" onclick="signOut()">
                                 Sign out
-                            </a>
+                            </a> -
                             <a class="a-button" onclick="window.location='mailto:sam@developersam.com'">
                                 Bug report
                             </a>
@@ -186,11 +186,11 @@ if (!function_exists('checkForceQuit')){
     <div id="right-part" class="" style="display:none">
 
         <div id="right-part-view-class" style="display: none;">
-            <header class="" style="display: flex">
-                <div class=""  onclick="$('#right-part').hide()">
+            <header id="single-class-header">
+                <div id="single-class-compile"  onclick="$('#right-part').hide()">
                         <span class="" style="display: flex; flex-direction: row">
-                            <span class="btn-action" style="display: flex">X</span>
-                            <span id="right-part-title" style="display: flex">Manage Class</span>
+                            <span id="right-part-title">Manage Class</span>
+                            <span id="btn-action-cross">X</span>
                         </span>
                 </div>
             </header>
@@ -296,7 +296,7 @@ if (!function_exists('checkForceQuit')){
                     totalTotalItems++;
                 }
                 var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
-                $('#assignment-list').append(assignment.getHTML());
+                $('#assignment-list').append(assignment.getHTML(true));
             }
             if (todayTotalTime == 0){
                 todayDoneTime = 1;

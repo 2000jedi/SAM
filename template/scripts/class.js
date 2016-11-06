@@ -251,7 +251,7 @@ function Class(id, name){
         $('#right-part-view-class').show();
         $('#right-part-view-activity').hide();
         $('#right-part').show();
-        $('.connector').each(function(){$(this).hide()});
+        //$('.connector').each(function(){$(this).hide()});
     };
 
     this.openAddCardBox = function(){
@@ -285,14 +285,14 @@ function Class(id, name){
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
                 idList += ";" + row.id;
-                var assignment = new Assignment(app[type],row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished);
+                var assignment = new Assignment(app[type],row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished, row.class);
                 var suffixOfContainer = ""; // It is used to add assignment into different piles.
                 if (row.type == 1){
                     suffixOfContainer = "-assignment-pile";
                 }else{
                     suffixOfContainer = "-information-pile";
                 }
-                $(appendID[type]+suffixOfContainer).append(assignment.getHTML());
+                $(appendID[type]+suffixOfContainer).append(assignment.getHTML(false));
             }
         });
     };

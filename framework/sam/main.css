@@ -63,6 +63,35 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     cursor: pointer;
 }
 
+#single-class-header{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    height: 50px;
+}
+
+#single-class-compile{
+    width: 100%;
+}
+
+#right-part-title{
+    text-align: center;
+    width: 100%;
+    font-size: 32px;
+    line-height: 1em;
+    margin: auto;
+}
+
+#btn-action-cross{
+    display: block;
+    width: 50px;
+    color: white; !important;
+    text-decoration: none;
+    background-color: #519dd9;
+    padding: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media (min-width: 1000px) {
     .banner {
         display: block;
@@ -163,8 +192,6 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         top: 47px;
         border: 1px solid #ccc;
         background: #FFFFFF;
-        min-height: 196px;
-        width: 320px;
         z-index: 1;
     }
 
@@ -174,7 +201,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         background: #fff;
         margin: 0;
         min-height: 100px;
-        padding: 0;
+        padding: 0 40px;
         text-align: left;
         white-space: normal;
         width: 100%;
@@ -418,7 +445,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         color: #519dd9;
     }
 
-    .btn-action {
+    .btn-action, .btn-action-mark {
         display: block;
         width: calc(100% - 30px);
         color: white; !important;
@@ -479,6 +506,25 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     }
     #assignment-list-class {
         padding-left: 10%;
+    }
+
+    .two-adjacent-pile > .assignment-list-class{
+        margin-left: 20px;
+        margin-top: 40px;
+        border-radius: 2px;
+        padding: 0;
+        width: 75%;
+        clear: both;
+        line-height:2em;
+        box-shadow: 2px 2px 2px lightgrey;
+    }
+
+    .two-adjacent-pile > .assignment-list-class > .title{
+        margin: 0;
+    }
+
+    .two-adjacent-pile > .assignment-list-class > .content{
+        margin: 0;
     }
 }
 
@@ -750,6 +796,20 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         display: none;
     }
 
+    .btn-action-mark {
+        display: block;
+        width: calc(100% - 20px);
+        color: white; !important;
+        text-decoration: none;
+        background-color: #519dd9;
+        padding: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        float: right;
+        margin-left: 10px;
+    }
+
     .btn-action {
         display: block;
         width: calc(100% - 20px);
@@ -760,10 +820,6 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         text-transform: uppercase;
         font-weight: bold;
         text-align: center;
-        /*font-size: 25px;*/
-        float: right;
-        margin-left: 10px;
-        /*height: 42px;*/
     }
 
     .time {

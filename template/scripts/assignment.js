@@ -259,17 +259,19 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 if (assignment.type == 2 && !assignment.finished) {
                     methodName = "markInfoAsRead()"; methodText = "'> Mark as read";
                 }
+                html += "           <a href='#' class='btn-action-mark' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
             }else if ( assignment.app == "teacher"){
-                methodName = "deleteAssignment()"; methodText = "Delete";
+                methodName = "deleteAssignment()"; methodText = "> Delete";
+                html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
             }else{
                 return "";
             }
-            html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
+            //html += "           <a href='#' class='btn-action-mark' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
             return html;
         }
     };
 
-    this.getHTML = function() {
+    this.getHTML = function(hasConnector) {
         var html = "";
         function calculateDaysLeft(dueday) {
             var daysLeft = DateDiff.inDays(new Date(), new Date(dueday));
@@ -283,7 +285,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
         var type = this.type == 2 ? "Information" : "Assignment";
 
         html += "<div id='" + this.diff("prefix-id", this) + "' class='" + this.diff("prefix", this) + "'>";
-        html += "<div class='connector'></div> ";
+        if (hasConnector)
+            html += "<div class='connector'></div> ";
         html += "       <div class='title'>" +
             "<div class='title-text'>" + this._class + "</div>" +
             "<hr>" +
