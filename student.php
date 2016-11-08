@@ -143,8 +143,8 @@ if (!function_exists('checkForceQuit')){
                                 You need your email address to receive your reset password email confirmation.
                             </div>
                             <div class="">
-                                <input class="" type="email" id="newEmail" placeholder="Your new email"/>
-                                <label class="" for="newEmail"></label>
+                                <input class="input-text" type="email" id="newEmail" placeholder="Your new email"/>
+                                <label class="input-text" for="newEmail"></label>
                             </div>
                         <div class="">
                             <a class="a-button" onclick="changeEmail()">
@@ -156,15 +156,15 @@ if (!function_exists('checkForceQuit')){
                             <h2 class="">Change Password</h2>
                             <div>Please set up a strong password for yourself.</div>
                             <div class="">
-                                <input class="" type="password" id="oldPass" placeholder="Old Password"/>
+                                <input class="input-text" type="password" id="oldPass" placeholder="Old Password"/>
                                 <label class="" for="oldPass">Old Password</label>
                             </div>
                             <div class="">
-                                <input class="" type="password" id="newPass1" placeholder="Your new password"/>
+                                <input class="input-text" type="password" id="newPass1" placeholder="Your new password"/>
                                 <label class="" for="newPass1">Your new password</label>
                             </div>
                             <div class="">
-                                <input class="" type="password" id="newPass2" placeholder="Retype your new password"/>
+                                <input class="input-text" type="password" id="newPass2" placeholder="Retype your new password"/>
                                 <label class="" for="newPass2">Retype your new password</label>
                             </div>
                             <a class="a-button" onclick="changePassword()">
@@ -190,7 +190,7 @@ if (!function_exists('checkForceQuit')){
         <div id="right-part-view-class" style="display: none;">
             <header id="single-class-header">
                 <div id="single-class-compile"  onclick="$('#right-part').hide()">
-                        <span class="" style="display: flex; flex-direction: row">
+                        <span class="single-class-banner">
                             <span id="right-part-title">Manage Class</span>
                             <span id="btn-action-cross">X</span>
                         </span>

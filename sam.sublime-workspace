@@ -1,0 +1,523 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"alig",
+				"text-align"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"dic",
+				"dic_new"
+			],
+			[
+				"nu",
+				"num1"
+			],
+			[
+				"keyw",
+				"keyword_array"
+			],
+			[
+				"key",
+				"keyword_array"
+			],
+			[
+				"te",
+				"template"
+			],
+			[
+				"set",
+				"set_sensitive"
+			],
+			[
+				"thread",
+				"thread_update"
+			],
+			[
+				"start",
+				"start_timer"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"app",
+				"app_reminder"
+			],
+			[
+				"read",
+				"readlines"
+			],
+			[
+				"re",
+				"reminder"
+			],
+			[
+				"j",
+				"jpg"
+			],
+			[
+				"v",
+				"videoplayer"
+			],
+			[
+				"strut",
+				"struct_noform"
+			],
+			[
+				"musc",
+				"music_refresh"
+			],
+			[
+				"for",
+				"format_string"
+			],
+			[
+				"Stat",
+				"Statistics"
+			],
+			[
+				"Statis",
+				"StatisticsClass"
+			],
+			[
+				"struct_",
+				"struct_noform"
+			],
+			[
+				"array_key",
+				"array_key_exists"
+			],
+			[
+				"line",
+				"line_pos"
+			],
+			[
+				"chec",
+				"check_login"
+			],
+			[
+				"check",
+				"check_user"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				],
+				[
+					"Packages/User/java.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pc",
+		"selected_items":
+		[
+			[
+				"pc",
+				"Preferences: Key Bindings"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 385.0
+	},
+	"console":
+	{
+		"height": 120.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/2000jedi/SAM_sae/wflmssam/2/config.php",
+		"/Users/2000jedi/SAM_sae/wflmssam/2/framework/sam/main.css",
+		"/Users/2000jedi/CloudStation/Projects/SAM/config.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/config.php",
+		"/Users/2000jedi/SAM_sae/wflmssam/2/admin.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam/main.css",
+		"/Users/2000jedi/Downloads/sam/SAM_logo.svg",
+		"/Volumes/BOOTCAMP/Users/Jedi Yang/Desktop/isolinux.cfg",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/ManipulateAssignmentClass.php",
+		"/Users/2000jedi/Library/Application Support/Lantern/lantern-2.2.4.yaml",
+		"/Volumes/Main/Resources/Computerization/Recruitment Trial/main.css",
+		"/Users/2000jedi/Documents/programs/SAM/login.php",
+		"/Users/2000jedi/Documents/recruitment/main.css",
+		"/Users/2000jedi/Documents/recruitment/index.html",
+		"/Volumes/BOOTCAMP/Users/Jedi Yang/Documents/ken-new/gal/Data/scenario/startup.ks",
+		"/Volumes/BOOTCAMP/Users/Jedi Yang/Documents/ken-new/gal/Data/scenario/chapter1.ks",
+		"/Volumes/BOOTCAMP/Users/Jedi Yang/Downloads/gui-config.json",
+		"/Users/2000jedi/Documents/Processing/danmaku/Data/level1.xml",
+		"/Users/2000jedi/Desktop/jn.py",
+		"/Users/2000jedi/Desktop/t.py",
+		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/2000jedi/Documents/data.txt",
+		"/Users/2000jedi/Documents/neural_network.py",
+		"/Users/2000jedi/Desktop/tutorial.c",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/choice",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/timer.py",
+		"/Users/2000jedi/Desktop/rename.py",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/douban/theta-1.bin",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/douban/constant-1.bin",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/douban/beta-1.bin",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/calc.py",
+		"/Users/2000jedi/Documents/programs/PycharmProjects/scrap.py",
+		"/Users/2000jedi/Desktop/minecraft/launcher_profiles.json",
+		"/Users/2000jedi/Documents/untitled.py",
+		"/Users/2000jedi/Documents/untitled",
+		"/Users/2000jedi/Documents/temp.py",
+		"/Users/2000jedi/Documents/a.out",
+		"/Users/2000jedi/Downloads/cool-examples/hello-world.cl-asm",
+		"/Users/2000jedi/Downloads/cool-examples/arith.cl",
+		"/Users/2000jedi/PycharmProjects/calc.py",
+		"/Users/2000jedi/Documents/calc.py",
+		"/Users/2000jedi/IdeaProjects/fileProject/config.json",
+		"/Users/2000jedi/Downloads/old_bottle/index.py",
+		"/Users/2000jedi/Documents/blogsite/generation/site.yaml",
+		"/Users/2000jedi/Documents/blogsite/generation/content/advanced/firstpost.html",
+		"/Users/2000jedi/Documents/blogsite/generation/content/blogs.html",
+		"/Users/2000jedi/Documents/blogsite/generation/content/index.html",
+		"/Users/2000jedi/Documents/blogsite/generation/layout/macros.j2",
+		"/Users/2000jedi/Documents/blogsite/temp/content/advanced/overview.html",
+		"/Users/2000jedi/Documents/blogsite/temp/content/advanced/grouper.html",
+		"/Users/2000jedi/Documents/blogsite/generation/layout/base.j2",
+		"/Users/2000jedi/Documents/blogsite/generation/layout/ga.j2",
+		"/Users/2000jedi/Documents/blogsite/generation/content/advanced/firstpost",
+		"/Users/2000jedi/Documents/blogsite/generation/content/advanced/meta.yaml",
+		"/Users/2000jedi/Documents/generation-blogsample/content/index.html",
+		"/Users/2000jedi/Documents/generation-blogsample/content/blog/excerpts.xml",
+		"/Users/2000jedi/Documents/generation-blogsample/content/blog/atom.xml",
+		"/Users/2000jedi/Documents/blogsite/generation/content/about.html",
+		"/Users/2000jedi/Documents/blogsite/generation/content/meta.yaml",
+		"/Users/2000jedi/Documents/blogsite/generation/content/blog/index.html",
+		"/Users/2000jedi/Documents/blogsite/generation/content/blog/tags/angry.html",
+		"/Users/2000jedi/Documents/blogsite/generation/content/blog/angry-post.html",
+		"/Users/2000jedi/Documents/blogsite/generation/info.yaml",
+		"/Users/2000jedi/Documents/blogsite/index.html",
+		"/Users/2000jedi/Documents/main.o",
+		"/Users/2000jedi/PycharmProjects/fileServer/fileReceive.py",
+		"/Users/2000jedi/Documents/main.cpp",
+		"/Users/2000jedi/PycharmProjects/fileServer/main.cpp",
+		"/Users/2000jedi/Downloads/test_path.py",
+		"/Users/2000jedi/Downloads/pytest.ini",
+		"/Users/2000jedi/path/README.rst",
+		"/Users/2000jedi/IdeaProjects/uitrial/src/com/moscovin/jedi/UI.java",
+		"/Users/2000jedi/Documents/SAM/modules/assignment/ManipulateAssignmentClass.php",
+		"/Users/2000jedi/Library/Application Support/CrossOver/Bottles/issac afterbirth/drive_c/Rabi-Ribi/ALI213.ini",
+		"/Users/2000jedi/Downloads/forge-1.7.10-10.13.2.1230-src/gradlew.bat",
+		"/Users/2000jedi/Downloads/mcp/getchangedsrc.bat",
+		"/Users/2000jedi/Documents/[th14]东方辉针城/Main_gamex.ini",
+		"/Users/2000jedi/Downloads/hosts 2",
+		"/Users/2000jedi/Downloads/kag3-master/data/startup.tjs",
+		"/Users/2000jedi/Downloads/krkrz_20150817/krkrdebg_readme.txt",
+		"/Applications/MATLAB_R2014b.app/toolbox/bioinfo/graphtheory/private/graphalgs.mexmaci64",
+		"/Users/2000jedi/PycharmProjects/minesweeper/ui.py",
+		"/Users/2000jedi/PycharmProjects/timer.py",
+		"/Users/2000jedi/Downloads/Orpheus～君と奏でる明日へのうた～/自抓by最後的審判.txt",
+		"/Users/2000jedi/PycharmProjects/fact.py",
+		"/Users/2000jedi/PycharmProjects/floyd.py",
+		"/Users/2000jedi/Documents/minecraft/二次元整合/.minecraft/config/InfernalMobs.cfg",
+		"/Users/2000jedi/PycharmProjects/w2.py",
+		"/Users/2000jedi/PycharmProjects/w3.py",
+		"/Users/2000jedi/PycharmProjects/untitled/timer.py",
+		"/Users/2000jedi/w1.py",
+		"/Users/2000jedi/Documents/minecraft/minecraft-server/.minecraft/config/TofuCraft.cfg",
+		"/Users/2000jedi/Documents/minecraft/minecraft-server/.minecraft/config/CustomNpcs.cfg",
+		"/Users/2000jedi/Documents/minecraft/minecraft-server/.minecraft/config/BambooConfig.cfg",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/article_precise.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/articles-list.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/contact.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/faq.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/single_article.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/single.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/page.html",
+		"/Users/2000jedi/PycharmProjects/untitled/templates/index.html",
+		"/Users/2000jedi/Downloads/moban178/css/bootstrap.css",
+		"/Users/2000jedi/Documents/minecraft/1.7.10server/.minecraft/config/TofuCraft.cfg",
+		"/Users/2000jedi/Documents/minecraft/1.7.10server/config/InvTweaks.cfg",
+		"/Users/2000jedi/Downloads/forge-1.7.10-10.13.2.1291/gradlew.bat",
+		"/Users/2000jedi/Downloads/forge-1.7.10-10.13.2.1291/第二步点我搭建环境(IDEA).cmd",
+		"/Users/2000jedi/PycharmProjects/question/index.py",
+		"/Users/2000jedi/Documents/minecraft/1.7.10server/config/BambooConfig.cfg",
+		"/Users/2000jedi/Downloads/mdl-templates/templates/blog/styles.css",
+		"/Users/2000jedi/Downloads/mdl-templates/templates/blog/entry.html",
+		"/Users/2000jedi/PycharmProjects/status_bar.py",
+		"/Users/2000jedi/Downloads/mdl-templates/templates/blog/index.html",
+		"/Users/2000jedi/Downloads/mdl-templates/templates/index.html",
+		"/Users/2000jedi/Documents/minecraft/hmcl.json",
+		"/Users/2000jedi/PycharmProjects/try.py",
+		"/Users/2000jedi/Downloads/mcheli/readme.txt",
+		"/Users/2000jedi/Downloads/CYOA Jedi/8.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/style.css",
+		"/Users/2000jedi/Downloads/CYOA Jedi/4-1.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/1.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/5.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/6-1.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/2-2.html",
+		"/Users/2000jedi/Downloads/CYOA Jedi/7-1.html",
+		"/Users/2000jedi/Downloads/Lagrange_polynomial.py"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ctrl+p",
+			"pytest",
+			"warnFrame",
+			"12",
+			"minilogo",
+			"mi ni",
+			"img",
+			"..",
+			"../..",
+			"updateStatus",
+			"update",
+			"re",
+			"a r ti",
+			"fa-reminder",
+			"dir",
+			"###",
+			"post",
+			"/f/a",
+			"/static/yaaw/index.html",
+			"loadassi",
+			"percentage",
+			"unitassignment",
+			"load",
+			"information",
+			"hidden",
+			"ad d",
+			"this",
+			"server",
+			"dir+",
+			"'/media/jedi",
+			"from file"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"fa-sticky-note",
+			"/app_pool/yaaw"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 146.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sam.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
