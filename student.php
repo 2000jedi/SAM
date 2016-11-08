@@ -99,21 +99,21 @@ if (!function_exists('checkForceQuit')){
         <ul class="list-apps" aria-dropeffect="move">
             <li class="drag" style="display: none;" id="app-assignment">
                 <a class="app" onclick="showAssignment()">
-                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -552px;background-size: 64px 2065px;"></span>
+                    <span class="app-img" style="background-image: url('/files/icons/assignment.svg')background-size: 64px 64px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
                 </a>
             </li>
 
             <li class="drag" style="display: inline-block;" id="app-classes">
                 <a class="app" onclick="showClasses()">
-                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -483px;background-size: 64px 2065px;"></span>
+                    <span class="app-img" style="background-image: url('/files/icons/classes.svg');background-size: 64px 64px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Classes</div></span>
                 </a>
             </li>
 
             <li class="drag" style="display: inline-block;" id="app-settings">
                 <a class="app" onclick="showSettings()">
-                    <span class="app-img" style="background: url('/files/icons/icons-google.png') 0 -1449px;background-size: 64px 2065px;"></span>
+                    <span class="app-img" style="background-image: url('/files/icons/settings.svg');background-size: 64px 64px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
                 </a>
             </li>
