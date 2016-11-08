@@ -417,7 +417,10 @@ if (!function_exists('checkForceQuit')){
 
     // set the height of the device bar
     $(window).load(function() {
-        $('.vertical').css('height', $('#assignment-list-wrapper').height());
+        var height = $('#assignment-list-wrapper').height();
+        while (height == 0)
+            height = $('#assignment-list-wrapper').height();
+        $('.vertical').css('height', height);
     });
 
     // set app state change
