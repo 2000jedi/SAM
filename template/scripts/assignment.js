@@ -237,9 +237,9 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
             }
         }else if (where == "additional-button"){
             if (assignment.app == "teacher"){
-                html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
+                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + this.diff("prefix-content-id", assignment) + "\").updateAssignment(\""+Utils.string.line.RegexFormat(this.content)+"\")'>Update Content</a>";
                 if (assignment.type != 2){
-                    html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
+                    html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\").updateScoresPopUp()''>Update Scores</a>";
                 }
                 return html;
             }else if (assignment.app == "student"){
@@ -261,8 +261,8 @@ function Assignment(app, id, type, content, attachment, publish, dueday, subject
                 }
                 html += "           <a href='#' class='btn-action-mark' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
             }else if ( assignment.app == "teacher"){
-                methodName = "deleteAssignment()"; methodText = "> Delete";
-                html += "           <a href='#' class='btn-action' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName + methodText + "</a>";
+                methodName = "deleteAssignment()"; methodText = "Delete";
+                html += "           <a href='#' class='mdl-button mdl-js-button mdl-js-ripple-effect' style='color: #3f51b5; padding: 0 3px' onclick='new ManipulateAssignment(\"" + assignment.id + "\")."+ methodName +"'>" + methodText + "</a>";
             }else{
                 return "";
             }

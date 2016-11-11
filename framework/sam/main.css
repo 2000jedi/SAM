@@ -106,13 +106,11 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 }
 
 #main_drawer {
-    /*width: 80%;
-    margin-left: 8em;*/
-    width: 100%;
     height: calc(100% - 62px);
+    width: 100%;
     position: fixed;
     overflow: scroll;
-    z-index: 1;
+    z-index: 10;
 }
 
 .input-text {
@@ -228,10 +226,11 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         overflow-x: hidden;
         position: absolute;
         right: 1em;
-        top: 47px;
+        top: 57px;
         border: 1px solid #ccc;
         background: #FFFFFF;
-        z-index: 2;
+        z-index: 20;
+        box-shadow: 1px 1px 7px 0 rgba(0,0,0,0.44);
     }
 
     .list-apps {
@@ -270,7 +269,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     }
 
     .app {
-        color: #404040;
+        color: #999999;
         text-decoration: none;
         transform: translate(88px, 0px);
         transition: transform 0.2s cubic-bezier(0.333, 0, 0, 1);
@@ -386,8 +385,10 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     }
 
     .content-holder{
+        position: relative;
         max-height: 130px;
         overflow: scroll;
+        z-index: 0;
     }
 
     .time {
@@ -419,9 +420,12 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .attachment-holder{
         line-height: 1;
-        margin-top: 10px;
+        width: 100%;
+        padding-top: 10px;
         position: absolute;
         bottom: 0px;
+        left: 0px;
+        z-index: 1;
     }
 
     .attachment-divider {
@@ -504,12 +508,13 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     }
 
     #settings > div {
-        margin-left: 20px;
+        margin-left: 48px;
         margin-top: 40px;
-        padding: 20px;
-        border-radius: 2px;
+        padding: 22px;
+        border-radius: 3px;
         float: left;
-        width: 25%;
+        width: 26%;
+        color: #5E5E5E;
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
         height: 248px;
@@ -522,9 +527,9 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     /* class */
 
     .class-list {
-        width: 30%;
-        margin: 10px;
-        padding: 10px;
+        width: 28%;
+        margin: 24px;
+        padding: 11px;
         background-color: white;
         float: left;
         border-radius: 2px;
@@ -669,11 +674,12 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         position: absolute;
         right: 1em;
         top: 47px;
+        box-shadow: 1px 1px 7px 0 rgba(0,0,0,0.44);
         padding: 0 40px 0 0;;
         border: 1px solid #ccc;
         background: #FFFFFF;
         transition: height .2s ease-in-out;
-        z-index:2;
+        z-index:20;
     }
 
 
@@ -846,9 +852,10 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         color: white; !important;
         text-decoration: none;
         background-color: #519dd9;
-        padding: 10px;
+        padding: 14px;
         text-transform: uppercase;
         font-weight: bold;
+        font-size:larger;
         text-align: center;
         float: right;
         margin-left: 10px;
@@ -860,9 +867,10 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         color: white; !important;
         text-decoration: none;
         background-color: #519dd9;
-        padding: 10px;
+        padding: 14px;
         text-transform: uppercase;
         font-weight: bold;
+        font-size:larger;
         text-align: center;
     }
 
@@ -901,6 +909,16 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     label {
         display: none;
     }
+
+    .button{
+        width: 43%;
+        background-color: #2595E9;
+        -webkit-border-radius: 3px;
+        text-align: center;
+        margin-left: 7px;
+        margin-top: 19px;
+        padding: 4px
+     }
 
     /* class */
 

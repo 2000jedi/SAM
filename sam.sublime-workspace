@@ -119,6 +119,24 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "student.php",
+			"settings":
+			{
+				"buffer_size": 20307,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "framework/sam/main.css",
+			"settings":
+			{
+				"buffer_size": 19097,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -232,6 +250,12 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/Applications/XAMPP/xamppfiles/htdocs",
+		"/Applications/XAMPP/xamppfiles/htdocs/framework",
+		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam"
+	],
 	"file_history":
 	[
 		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
@@ -365,7 +389,7 @@
 	],
 	"find":
 	{
-		"height": 22.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -379,6 +403,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"main-drawer",
+			"main drawer",
+			"single-c",
+			"apps-menu-det",
+			"main-drawer",
+			"main-draw",
+			"apps-menu-detail",
+			"single-class-header",
 			"ctrl+p",
 			"pytest",
 			"warnFrame",
@@ -429,8 +461,75 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "student.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5985,
+								5985
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2757.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "framework/sam/main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19097,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								466,
+								466
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -451,11 +550,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -507,14 +613,14 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 150.0,
 	"status_bar_visible": true,
 	"template_settings":

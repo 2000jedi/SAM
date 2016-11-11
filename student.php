@@ -99,7 +99,7 @@ if (!function_exists('checkForceQuit')){
         <ul class="list-apps" aria-dropeffect="move">
             <li class="drag" style="display: none;" id="app-assignment">
                 <a class="app" onclick="showAssignment()">
-                    <span class="app-img" style="background-image: url('/files/icons/assignment.svg')background-size: 64px 64px;"></span>
+                    <span class="app-img" style="background-image: url('/files/icons/assignments.svg');background-size: 64px 64px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
                 </a>
             </li>
@@ -113,7 +113,7 @@ if (!function_exists('checkForceQuit')){
 
             <li class="drag" style="display: inline-block;" id="app-settings">
                 <a class="app" onclick="showSettings()">
-                    <span class="app-img" style="background-image: url('/files/icons/settings.svg');background-size: 64px 64px;"></span>
+                    <span class="app-img" style="background-image: url('/files/icons/setting.svg');background-size: 64px 64px;"></span>
                     <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
                 </a>
             </li>
@@ -146,7 +146,7 @@ if (!function_exists('checkForceQuit')){
                                 <input class="input-text" type="email" id="newEmail" placeholder="Your new email"/>
                                 <label class="input-text" for="newEmail"></label>
                             </div>
-                        <div class="">
+                        <div class="button">
                             <a class="a-button" onclick="changeEmail()">
                                 Change Email
                             </a>
@@ -167,9 +167,11 @@ if (!function_exists('checkForceQuit')){
                                 <input class="input-text" type="password" id="newPass2" placeholder="Retype your new password"/>
                                 <label class="" for="newPass2">Retype your new password</label>
                             </div>
+                            <div class="button">
                             <a class="a-button" onclick="changePassword()">
                                 Change Password
                             </a>
+                            </div>
                 </div>
                 <div class="" >
                     <h2 class="c">More</h2>
@@ -221,6 +223,7 @@ if (!function_exists('checkForceQuit')){
 
 </body>
 <script>
+    var VerticalHeight = -16;
     // draw assignment percentage canvas
     function updatePercentage(perc) {
         perc = parseFloat(perc);
@@ -299,6 +302,7 @@ if (!function_exists('checkForceQuit')){
                 }
                 var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
                 $('#assignment-list').append(assignment.getHTML(true));
+                VerticalHeight += 173;
             }
             if (todayTotalTime == 0){
                 todayDoneTime = 1;
@@ -316,6 +320,7 @@ if (!function_exists('checkForceQuit')){
             }
             var totalPercentage = ProcessPercentage(parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2));
             updatePercentage(totalPercentage);
+            $('.vertical').css('height', VerticalHeight);
         });
     }
     function isNull(t){
@@ -415,14 +420,6 @@ if (!function_exists('checkForceQuit')){
     });
     new ManipulatePresentation().loadPresentations(1);
 
-    // set the height of the device bar
-    $(window).load(function() {
-        var height = $('#assignment-list-wrapper').height();
-        while (height == 0)
-            height = $('#assignment-list-wrapper').height();
-        $('.vertical').css('height', height);
-    });
-
     // set app state change
     function showAssignment(){
         $('#assignment').css('display','block');
@@ -459,7 +456,5 @@ if (!function_exists('checkForceQuit')){
 
         showApps();
     }
-
-
 </script>
 </html>
