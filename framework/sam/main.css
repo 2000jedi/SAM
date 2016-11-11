@@ -387,8 +387,17 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     .content-holder{
         position: relative;
         max-height: 130px;
-        overflow: scroll;
+        overflow: hidden;
         z-index: 0;
+    }
+
+    .content-holder:hover{
+        z-index: 999;
+        overflow: visible;
+        background-color: white;
+        height: initial;
+        max-height: none;
+        padding-bottom: 2em;
     }
 
     .time {
