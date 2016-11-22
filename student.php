@@ -223,7 +223,7 @@ if (!function_exists('checkForceQuit')){
 
 </body>
 <script>
-    var VerticalHeight = -16;
+    var VerticalHeight = -40;
     // draw assignment percentage canvas
     function updatePercentage(perc) {
         perc = parseFloat(perc);
@@ -302,7 +302,7 @@ if (!function_exists('checkForceQuit')){
                 }
                 var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
                 $('#assignment-list').append(assignment.getHTML(true));
-                VerticalHeight += 173;
+                VerticalHeight += 189; // 173 is the height of the card.
             }
             if (todayTotalTime == 0){
                 todayDoneTime = 1;
