@@ -378,6 +378,15 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         overflow: visible;
     }
 
+    .class-content {
+        width: 80%;
+        min-width:1000px;
+        margin: 0 auto;
+        min-height: 100px;
+        background-color: #edeff1;
+        padding-top: 2em;
+    }
+
     .action {
         width: 220px;
         margin: -8px 0 0;
@@ -588,11 +597,11 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         margin-top: 40px;
         border-radius: 2px;
         padding: 0;
+        padding-top: 10px;
         width: 75%;
         clear: both;
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
-        padding-top: 10px;
     }
 
     .two-adjacent-pile > .assignment-list-class > .title{
@@ -961,6 +970,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         background-color: white;
         clear: both;
         border-radius: 2px;
+        border-top: 10px solid #edeff1;
     }
 
     .class-list > div {
