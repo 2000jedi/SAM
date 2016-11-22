@@ -110,11 +110,12 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 }
 
 #main_drawer {
-    height: calc(100% - 62px);
+    height: calc(100% - 46px);
     width: 100%;
     position: fixed;
     overflow: scroll;
     z-index: 10;
+    top: 62px;
 }
 
 .input-text {
@@ -317,13 +318,12 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     #greeting {
         position: absolute;
-        width: 85%;
         min-width: 300px;
         top: 2.4em;
         left: 21%;
         display: block;
         color: rgba(133,189,234,1);
-        font-size: 50px;
+        font-size: 2.5em;
         font-family: Tahoma, Geneva, sans-serif;
         z-index: 0;
     }
@@ -331,7 +331,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     #assignment-stats {
         position: absolute;
         width: 20%;
-        height: 100%;
+        height: calc(100% - 312px);
         display: block;
         box-sizing: border-box;
     }
@@ -342,7 +342,8 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .assignment-list {
         width: 65%;
-        margin: 1em auto;
+        margin: 0 auto;
+        margin-top: 2em;
         clear: both;
         background-color: white;
     }
@@ -591,6 +592,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         clear: both;
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
+        padding-top: 10px;
     }
 
     .two-adjacent-pile > .assignment-list-class > .title{
@@ -815,7 +817,8 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .assignment-list {
         width: 95%;
-        margin: 1em auto;
+        margin: 0em auto;
+        margin-top: 1em;
         clear: both;
         background-color: white;
     }
