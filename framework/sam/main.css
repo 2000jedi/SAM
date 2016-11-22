@@ -78,7 +78,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     text-align: center;
     width: 100%;
     font-size: 32px;
-    line-height: 1em;
+    line-height: 50px;
     margin: auto;
     position: absolute;
 }
@@ -97,6 +97,10 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     right: 0px;
 }
 
+#btn-action-cross:hover {
+    cursor: pointer;
+}
+
 #right-part{
     background-color: #edeff1;
 }
@@ -106,12 +110,11 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 }
 
 #main_drawer {
-    height: calc(100% - 46px);
+    height: calc(100% - 62px);
     width: 100%;
     position: fixed;
     overflow: scroll;
     z-index: 10;
-    top: 62px;
 }
 
 .input-text {
@@ -314,13 +317,13 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     #greeting {
         position: absolute;
-        /* width: 85%; */
+        width: 85%;
         min-width: 300px;
         top: 2.4em;
         left: 21%;
         display: block;
         color: rgba(133,189,234,1);
-        font-size: 2.5em;
+        font-size: 50px;
         font-family: Tahoma, Geneva, sans-serif;
         z-index: 0;
     }
@@ -328,9 +331,8 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     #assignment-stats {
         position: absolute;
         width: 20%;
-        height: calc(100% - 312px);
+        height: 100%;
         display: block;
-        top: 230px;
         box-sizing: border-box;
     }
 
@@ -340,8 +342,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .assignment-list {
         width: 65%;
-        margin: 0 auto;
-        margin-top: 2em;
+        margin: 1em auto;
         clear: both;
         background-color: white;
     }
@@ -539,14 +540,29 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
     /* class */
 
     .class-list {
-        width: 25%;
-        margin: 24px;
+        width: 240px;
+        height: 120px;
+        margin: 10px;
         padding: 11px;
         background-color: white;
         float: left;
         border-radius: 2px;
-        box-shadow: 2px 2px 2px lightgrey;
         line-height: 2em;
+    }
+
+    .class-list:hover{
+        cursor: pointer;
+        outline: lightgrey solid 4px;
+    }
+
+    .class-list > h2 {
+        font-size: 1.5em;
+        line-height: 3em;
+    }
+
+    .class-list > div {
+        font-size: 1em;
+        line-height: 1em
     }
 
     /*right part class linked to assignment*/
@@ -559,7 +575,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         /*float: left;*/
         width: 75%;
         clear: both;
-        line-height:2em;
+        /*line-height:2em;*/
         box-shadow: 2px 2px 2px lightgrey;
     }
     #assignment-list-class {
@@ -594,7 +610,6 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         position: relative;
         width: 100%;
         height: 50px;
-        padding-top: 10px;
         margin: 0;
         margin-bottom: 2px;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
@@ -800,8 +815,7 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
 
     .assignment-list {
         width: 95%;
-        margin: 0em auto;
-        margin-top: 1em;
+        margin: 1em auto;
         clear: both;
         background-color: white;
     }
@@ -944,7 +958,6 @@ div#right-part-view-class, div#assignment-list-class, div#assignment-list-class-
         background-color: white;
         clear: both;
         border-radius: 2px;
-        box-shadow: 2px 2px 2px lightgrey;
     }
 
     .class-list > div {

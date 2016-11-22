@@ -66,11 +66,10 @@ function ClassStudent(id, teacher, name, subject){
 
     this.getHTML = function(){
         var html = "";
-        html += "<div id='class-list-"+ this.id +"' class='class-list'>";
+        html += "<div id='class-list-"+ this.id +"' class='class-list' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel();'>";
         // html += "   <div class='demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop'>";
         html += "         <h2 class=''>" + this.subject + "</h2>";
         html += "           <div>" + this.name + " <i>(ID: " + this.id + ")</i></div>";
-        html += "           <a href='#' class='btn-action' onclick='new Class(\""+this.id+"\", \""+this.name+"\").openViewClassPanel();'>View</a>";
         html += "</div>";
         return html;
     }
