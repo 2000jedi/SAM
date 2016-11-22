@@ -123,7 +123,7 @@
 			"file": "student.php",
 			"settings":
 			{
-				"buffer_size": 20307,
+				"buffer_size": 20364,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -132,7 +132,7 @@
 			"file": "framework/sam/main.css",
 			"settings":
 			{
-				"buffer_size": 19097,
+				"buffer_size": 19771,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -254,10 +254,15 @@
 	[
 		"/Applications/XAMPP/xamppfiles/htdocs",
 		"/Applications/XAMPP/xamppfiles/htdocs/framework",
-		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam"
+		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam",
+		"/Applications/XAMPP/xamppfiles/htdocs/recruit"
 	],
 	"file_history":
 	[
+		"/Applications/XAMPP/xamppfiles/htdocs/student.php",
+		"/Users/2000jedi/CloudStation/Projects/PycharmProjects/calc.py",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/common/basic.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/sam.sublime-project",
 		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/2000jedi/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/2000jedi/SAM_sae/wflmssam/2/config.php",
@@ -381,11 +386,7 @@
 		"/Users/2000jedi/Downloads/CYOA Jedi/style.css",
 		"/Users/2000jedi/Downloads/CYOA Jedi/4-1.html",
 		"/Users/2000jedi/Downloads/CYOA Jedi/1.html",
-		"/Users/2000jedi/Downloads/CYOA Jedi/5.html",
-		"/Users/2000jedi/Downloads/CYOA Jedi/6-1.html",
-		"/Users/2000jedi/Downloads/CYOA Jedi/2-2.html",
-		"/Users/2000jedi/Downloads/CYOA Jedi/7-1.html",
-		"/Users/2000jedi/Downloads/Lagrange_polynomial.py"
+		"/Users/2000jedi/Downloads/CYOA Jedi/5.html"
 	],
 	"find":
 	{
@@ -393,9 +394,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"/Applications/XAMPP/xamppfiles/htdocs"
 		]
 	},
 	"find_state":
@@ -403,6 +405,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"SaeStorage",
 			"main-drawer",
 			"main drawer",
 			"single-c",
@@ -467,31 +470,29 @@
 				{
 					"buffer": 0,
 					"file": "student.php",
-					"semi_transient": false,
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 20307,
+						"buffer_size": 20364,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5985,
-								5985
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2757.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -506,15 +507,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19097,
+						"buffer_size": 19771,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								466,
-								466
+								12037,
+								12045
 							]
 						],
 						"settings":
@@ -524,10 +525,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 7967.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -613,7 +614,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
