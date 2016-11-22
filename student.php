@@ -321,6 +321,7 @@ if (!function_exists('checkForceQuit')){
             var totalPercentage = ProcessPercentage(parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2));
             updatePercentage(totalPercentage);
             $('.vertical').css('height', VerticalHeight);
+            VerticalHeight = -40;
         });
     }
     function isNull(t){
