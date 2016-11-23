@@ -245,6 +245,7 @@ function Class(id, name){
         new Class(this.id, this.name).loadAssignment(0, false, function(){
             $('#assignment-list-class-assignment-pile').html("");
             $('#assignment-list-class-information-pile').html("");
+            $('#assignment-list-class-pile').html("");
         });
         $('#right-part-class-id').html(this.id);
         $('#right-part-view-class').show();
