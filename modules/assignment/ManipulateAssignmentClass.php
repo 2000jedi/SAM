@@ -59,7 +59,7 @@ class ManipulateAssignmentClass {
         $sid = userVariableConversion($student, "uid", "username");
 
         if (substr($sid, 0, 5) == "s2015" or substr($sid, 0, 5) == "s2016"){
-            $sql0 = "SELECT * from assignment WHERE dueday > curdate() AND class = '39' ORDER BY type ASC, dueday ASC";
+            $sql0 = "SELECT * from assignment WHERE dueday > curdate() AND class = '39' ORDER BY type ASC, dueday ASC, publish DESC";
             $result = $conn->query($sql0); // class = 39 ==> ad class
             // Exclude the archived ad
             while($row = $result->fetch_assoc()) {
@@ -85,7 +85,7 @@ class ManipulateAssignmentClass {
             }
         }
 
-        $sql1 = "SELECT * from assignment WHERE dueday > curdate() AND dueday < '20300101' AND ($sqlForClass) ORDER BY dueday ASC";
+        $sql1 = "SELECT * from assignment WHERE dueday > curdate() AND dueday < '20300101' AND ($sqlForClass) ORDER BY dueday ASC, publish DESC";
         $result = $conn->query($sql1);
 
         // Exclude the finished assignments
@@ -111,7 +111,7 @@ class ManipulateAssignmentClass {
             }
         }
 
-        $sql3 = "SELECT * from assignment WHERE dueday > curdate() AND dueday > '20300101' AND ($sqlForClass) ORDER BY type ASC, dueday ASC";
+        $sql3 = "SELECT * from assignment WHERE dueday > curdate() AND dueday > '20300101' AND ($sqlForClass) ORDER BY type ASC, dueday ASC, publish DESC";
         $result = $conn->query($sql3);
 
         // Exclude the finished assignments
@@ -147,7 +147,7 @@ class ManipulateAssignmentClass {
         $arr = array();
         $counter = 0;
 
-        $sql = "SELECT * FROM assignment WHERE class = '$class' AND type = '1' ORDER BY publish DESC";
+        $sql = "SELECT * FROM assignment WHERE class = '$class' ORDER BY publish DESC";
         $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()) {
@@ -157,7 +157,7 @@ class ManipulateAssignmentClass {
             $arr[$counter] = $unitAssignment;
             $counter++;
         }
-
+        /*
         $sql = "SELECT * FROM assignment WHERE class = '$class' AND type = '2' ORDER BY publish DESC";
         $result = $conn->query($sql);
 
@@ -168,6 +168,7 @@ class ManipulateAssignmentClass {
             $arr[$counter] = $unitAssignment;
             $counter++;
         }
+        */
 
         return json_encode($arr);
     }

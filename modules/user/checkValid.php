@@ -65,6 +65,10 @@ function get_client_ip() {
     return $the_ip;
 }
 
+function checkEnroll(){
+    $username = $_COOKIE['username'];
+}
+
 function checkForceQuit(){
     if ( isset($_COOKIE['username']) and isset($_COOKIE['password'])){
         $username = $_COOKIE['username'];
