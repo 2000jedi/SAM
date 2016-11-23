@@ -199,8 +199,7 @@ if (!function_exists('checkForceQuit')){
                 </div>
             </header>
             <div id="assignment-list-class">
-                <div id="assignment-list-class-assignment-pile" class="two-adjacent-pile"></div>
-                <div id="assignment-list-class-information-pile" class="two-adjacent-pile"></div>
+                <div id="assignment-list-class-pile" class="pile"></div>
             </div>
         </div>
 

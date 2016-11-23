@@ -294,7 +294,7 @@ function Class(id, name){
                 if (isTeacher)
                     $(appendID[type]+suffixOfContainer).append(assignment.teacher_getHTML());
                 else
-                    $(appendID[type]+suffixOfContainer).append(assignment.getHTML(false));
+                    $(appendID[type] + "-pile").append(assignment.getHTML(false));
             }
         });
     };
