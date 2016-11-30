@@ -61,6 +61,10 @@ div#right-part-view-class, div#assignment-list-class{
 
 .a-button:hover{
     cursor: pointer;
+<<<<<<< HEAD
+=======
+    color: #2A579A;
+>>>>>>> main.css modification
 }
 
 #single-class-header{
@@ -77,6 +81,10 @@ div#right-part-view-class, div#assignment-list-class{
 #right-part-title{
     text-align: center;
     width: 100%;
+<<<<<<< HEAD
+=======
+    color: #5B5B5B;
+>>>>>>> main.css modification
     font-size: 32px;
     line-height: 50px;
     margin: auto;
@@ -99,6 +107,10 @@ div#right-part-view-class, div#assignment-list-class{
 
 #btn-action-cross:hover {
     cursor: pointer;
+<<<<<<< HEAD
+=======
+    color: #2A579A;
+>>>>>>> main.css modification
 }
 
 #right-part{
@@ -126,6 +138,12 @@ div#right-part-view-class, div#assignment-list-class{
 }
 
 @media (min-width: 1000px) {
+<<<<<<< HEAD
+=======
+    a:hover{
+        color: #2A579A;
+    }
+>>>>>>> main.css modification
     .banner {
         display: block;
         position: relative;
@@ -302,6 +320,10 @@ div#right-part-view-class, div#assignment-list-class{
         width: 90px;
         display: flex;
         text-align: center;
+<<<<<<< HEAD
+=======
+        font-weight: 900;
+>>>>>>> main.css modification
     }
 
     .title, .content {
@@ -367,7 +389,11 @@ div#right-part-view-class, div#assignment-list-class{
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
         font-size: 32px;
+<<<<<<< HEAD
         font-weight: lighter;
+=======
+        font-weight: 400;
+>>>>>>> main.css modification
         color: #85bdea;
     }
 
@@ -397,6 +423,11 @@ div#right-part-view-class, div#assignment-list-class{
     .content-text{
         line-height: 1.5;
         height: 100%;
+<<<<<<< HEAD
+=======
+        color: rgb(91,91,91);
+        font-weight: lighter;
+>>>>>>> main.css modification
     }
 
     .content-holder{
@@ -461,7 +492,11 @@ div#right-part-view-class, div#assignment-list-class{
         left: 0;
         width: 100%;
         border: none;
+<<<<<<< HEAD
         border-top: 3px solid #edeff1;
+=======
+        border-top: 5.5px solid #edeff1;
+>>>>>>> main.css modification
     }
 
     .bar-finished, .bar-unfinished {
@@ -573,11 +608,20 @@ div#right-part-view-class, div#assignment-list-class{
     .class-list > h2 {
         font-size: 1.5em;
         line-height: 3em;
+<<<<<<< HEAD
+=======
+        color: #555555;
+>>>>>>> main.css modification
     }
 
     .class-list > div {
         font-size: 1em;
+<<<<<<< HEAD
         line-height: 1em
+=======
+        line-height: 1em;
+        color: #7F7F7F;
+>>>>>>> main.css modification
     }
 
     /*right part class linked to assignment*/
