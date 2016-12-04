@@ -120,10 +120,19 @@
 	"buffers":
 	[
 		{
+			"file": "template/scripts/class.js",
+			"settings":
+			{
+				"buffer_size": 15445,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "student.php",
 			"settings":
 			{
-				"buffer_size": 20432,
+				"buffer_size": 20310,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -132,34 +141,8 @@
 			"file": "framework/sam/main.css",
 			"settings":
 			{
-				"buffer_size": 20444,
+				"buffer_size": 20322,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/assignment/ManipulateAssignmentClass.php",
-			"settings":
-			{
-				"buffer_size": 13297,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/user/checkValid.php",
-			"settings":
-			{
-				"buffer_size": 2755,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "modules/assignment/classLoadAssignment.php",
-			"settings":
-			{
-				"buffer_size": 501,
 				"line_ending": "Unix"
 			}
 		}
@@ -279,19 +262,21 @@
 	"expanded_folders":
 	[
 		"/Applications/XAMPP/xamppfiles/htdocs",
-		"/Applications/XAMPP/xamppfiles/htdocs/modules",
-		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment",
-		"/Applications/XAMPP/xamppfiles/htdocs/modules/user"
+		"/Applications/XAMPP/xamppfiles/htdocs/framework",
+		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam",
+		"/Applications/XAMPP/xamppfiles/htdocs/template"
 	],
 	"file_history":
 	[
-		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/studentLoadAssignment.php",
-		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/classLoadAssignment.php",
-		"/Users/2000jedi/CloudStation/Projects/SAM/framework/sam/main.css",
-		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam/main.css",
-		"/Applications/XAMPP/xamppfiles/htdocs/template/scripts/class.js",
 		"/Applications/XAMPP/xamppfiles/htdocs/template/scripts/assignment.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/classLoadAssignment.php",
 		"/Applications/XAMPP/xamppfiles/htdocs/student.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/framework/sam/main.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/user/checkValid.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/ManipulateAssignmentClass.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/studentLoadAssignment.php",
+		"/Users/2000jedi/CloudStation/Projects/SAM/framework/sam/main.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/template/scripts/class.js",
 		"/Users/2000jedi/CloudStation/Projects/PycharmProjects/calc.py",
 		"/Applications/XAMPP/xamppfiles/htdocs/modules/common/basic.php",
 		"/Applications/XAMPP/xamppfiles/htdocs/sam.sublime-project",
@@ -304,7 +289,6 @@
 		"/Users/2000jedi/SAM_sae/wflmssam/2/admin.php",
 		"/Users/2000jedi/Downloads/sam/SAM_logo.svg",
 		"/Volumes/BOOTCAMP/Users/Jedi Yang/Desktop/isolinux.cfg",
-		"/Applications/XAMPP/xamppfiles/htdocs/modules/assignment/ManipulateAssignmentClass.php",
 		"/Users/2000jedi/Library/Application Support/Lantern/lantern-2.2.4.yaml",
 		"/Volumes/Main/Resources/Computerization/Recruitment Trial/main.css",
 		"/Users/2000jedi/Documents/programs/SAM/login.php",
@@ -411,8 +395,7 @@
 		"/Users/2000jedi/Downloads/mdl-templates/templates/blog/index.html",
 		"/Users/2000jedi/Downloads/mdl-templates/templates/index.html",
 		"/Users/2000jedi/Documents/minecraft/hmcl.json",
-		"/Users/2000jedi/PycharmProjects/try.py",
-		"/Users/2000jedi/Downloads/mcheli/readme.txt"
+		"/Users/2000jedi/PycharmProjects/try.py"
 	],
 	"find":
 	{
@@ -431,6 +414,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"openViewClassPanel",
+			".pile",
+			"assignment-list-class-",
+			".pile",
+			"#pile",
+			"pile",
+			"two-ad",
 			"class-list",
 			"80%",
 			"content-holder",
@@ -500,24 +490,52 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "student.php",
+					"file": "template/scripts/class.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20432,
+						"buffer_size": 15445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4544,
-								4544
+								11286,
+								11286
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3136.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "student.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20310,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4093,
+								4096
 							]
 						],
 						"settings":
@@ -525,27 +543,27 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1364.0,
+						"translation.y": 1106.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "framework/sam/main.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20444,
+						"buffer_size": 20322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20230,
-								20230
+								1724,
+								1724
 							]
 						],
 						"settings":
@@ -553,91 +571,7 @@
 							"syntax": "Packages/CSS/CSS.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 13532.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "modules/assignment/ManipulateAssignmentClass.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13297,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4867,
-								4867
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1661.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "modules/user/checkValid.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2755,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2239,
-								2239
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 638.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "modules/assignment/classLoadAssignment.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 501,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5,
-								5
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1232.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
