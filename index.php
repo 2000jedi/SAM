@@ -25,7 +25,7 @@ if ( isset($_COOKIE['username']) and isset($_COOKIE['password']) ) {
         $username = $_COOKIE['username'];
         $userType = substr($username, 0, 1);
         if ($userType == "s"){
-            require "student.php";
+            Redirect("/student.html");
         }elseif ($userType == "t") {
             require "teacher.php";
         }
@@ -34,3 +34,14 @@ if ( isset($_COOKIE['username']) and isset($_COOKIE['password']) ) {
     Redirect("/login.php");
 }
 ?>
+
+<!--require $_SERVER['DOCUMENT_ROOT']."/template/scripts/UID.php";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/base.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/activity.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/college.js";
+require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";-->

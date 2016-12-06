@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SAM by Computerization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
+    <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/main.css" type="text/css">
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
+
+    <script src="/template/scripts/settings.js"></script>
+    <script src="/template/scripts/user.js"></script>
+    <script>
+        var flag_showApps = false;
+        function showApps() {
+            flag_showApps = !flag_showApps;
+            if (flag_showApps) {
+                $('#apps-menu-detail').css('display', 'block');
+            }
+            else {
+                $('#apps-menu-detail').css('display', 'none');
+            }
+        }
+        function showModule(id) {
+            window.location.href = "/" + id +'.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <p id="left-banner">
+            <img src="/framework/sam/SAM_logo.svg" />
+            <span><lead>S</lead>AM <small>by Computerization</small></span>
+        </p>
+        <a id="apps-menu" onclick="showApps();">
+            <i style="height: 40px;line-height: 40px;" class="material-icons">apps</i>
+        </a>
+        <img id="avatar" src="/framework/material-images/user.png" height="40px">
+        <p id="right-banner" onclick="showUserPanel()">
+    </div>
+    <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
+        <ul class="list-apps" aria-dropeffect="move">
+            <li class="drag" id="app-assignment">
+                <a class="app" onclick="showModule('student')">
+                    <span class="app-img" style="background-image: url('/files/icons/assignments.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
+                </a>
+            </li>
+
+            <li class="drag" id="app-classes">
+                <a class="app" onclick="showModule('classes')">
+                    <span class="app-img" style="background-image: url('/files/icons/classes.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Classes</div></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="settings">
+        <div class="">
+            <h2 class="">Change Email</h2>
+            <div>
+                Set up your own email address. <br />
+                You need your email address to receive your reset password email confirmation.
+            </div>
+            <div class="">
+                <input class="input-text" type="email" id="newEmail" placeholder="Your new email"/>
+                <label class="input-text" for="newEmail"></label>
+            </div>
+            <div class="button">
+                <a class="a-button" onclick="changeEmail()">
+                    Change Email
+                </a>
+            </div>
+        </div>
+        <div class="">
+            <h2 class="">Change Password</h2>
+            <div>Please set up a strong password for yourself.</div>
+            <div class="">
+                <input class="input-text" type="password" id="oldPass" placeholder="Old Password"/>
+                <label class="" for="oldPass">Old Password</label>
+            </div>
+            <div class="">
+                <input class="input-text" type="password" id="newPass1" placeholder="Your new password"/>
+                <label class="" for="newPass1">Your new password</label>
+            </div>
+            <div class="">
+                <input class="input-text" type="password" id="newPass2" placeholder="Retype your new password"/>
+                <label class="" for="newPass2">Retype your new password</label>
+            </div>
+            <div class="button">
+                <a class="a-button" onclick="changePassword()">
+                    Change Password
+                </a>
+            </div>
+        </div>
+        <div class="" >
+            <h2 class="c">More</h2>
+            <div class="">Computerization Proudly Present</div>
+            <div class="">Version 16.11.23</div>
+            <a class="a-button" onclick="signOut()">
+                Sign Out
+            </a> -
+            <a class="a-button" onclick="window.location='mailto:jedi.primer@yandex.com'">
+                Bug Report
+            </a>
+        </div>
+    </div>
+</body>
+</html>

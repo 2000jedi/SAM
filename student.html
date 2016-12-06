@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SAM by Computerization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
+    <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/main.css" type="text/css">
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
+
+    <script src="/template/scripts/base.js"></script>
+    <script src="/template/scripts/assignment.js"></script>
+    <script src="/template/scripts/user.js"></script>
+
+    <script>
+
+        function updatePercentage(perc) { // draw assignment percentage circle
+            perc = parseFloat(perc);
+            em = Number(getComputedStyle(document.body, null).fontSize.replace(/[^\d]/g, ''));
+
+            var canvas = document.getElementById("percentage");
+            var ctx = canvas.getContext("2d");
+            var text = parseInt(perc * 100) + '%';
+
+            canvas.width = 40 * em;
+            canvas.height = 40 * em;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.lineWidth = 25;
+
+            if (perc == 1.0) {
+                ctx.beginPath();
+                ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'rgba(81,157,217,1)';
+                ctx.stroke();
+            }
+
+            if (perc == 0.0) {
+                ctx.beginPath();
+                ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'rgba(240,124,120,1)';
+                ctx.stroke();
+            }
+
+            if ((perc < 1) && (perc > 0)) {
+                ctx.beginPath();
+                ctx.arc(20 * em, 20 * em, 12 * em, (1.0125 - perc) * 2 * Math.PI, 2 * Math.PI - 0.075);
+                ctx.strokeStyle = 'rgba(81,157,217,1)';
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(240,124,120,1)';
+                ctx.arc(20 * em, 20 * em, 12 * em, -0.9875 * 2 * Math.PI, -(perc + 0.0125) * 2 * Math.PI);
+                ctx.stroke();
+            }
+
+            ctx.font = 8 * em + "px Arial";
+            ctx.fillStyle = 'rgba(133,189,234,1)';
+            ctx.fillText(text, (canvas.width - text.length*em*4)/2 - 25, (canvas.height + 4*em)/2);
+        }
+
+        // toggle modules
+
+        var flag_showApps = false;
+        function showApps(){
+            flag_showApps = !flag_showApps;
+            if (flag_showApps){
+                $('#apps-menu-detail').css('display','block');
+            }
+            else{
+                $('#apps-menu-detail').css('display','none');
+            }
+        }
+        function showModule(id) {
+            window.location.href = "/" + id +'.html';
+        }
+</script>
+</head>
+
+<body>
+    <div class="banner">
+        <p id="left-banner">
+            <img src="/framework/sam/SAM_logo.svg" />
+            <span><lead>S</lead>AM <small>by Computerization</small></span>
+        </p>
+        <a id="apps-menu" onclick="showApps();">
+            <i style="height: 40px;line-height: 40px;" class="material-icons">apps</i>
+        </a>
+        <img id="avatar" src="/framework/material-images/user.png" height="40px">
+        <p id="right-banner" onclick="showUserPanel()">
+    </div>
+    <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
+        <ul class="list-apps" aria-dropeffect="move">
+            <li class="drag" id="app-classes">
+                <a class="app" onclick="showModule('classes')">
+                    <span class="app-img" style="background-image: url('/files/icons/classes.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Classes</div></span>
+                </a>
+            </li>
+
+            <li class="drag" id="app-settings">
+                <a class="app" onclick="showModule('settings')">
+                    <span class="app-img" style="background-image: url('/files/icons/setting.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="assignment">
+        <div id="assignment-stats" style="background-color: transparent;">
+            <canvas id="percentage" style="width: 15em;height: 15em;"></canvas>
+        </div>
+        <div id="greeting" style="background-color: transparent;">These are the assignments for today.</div>
+
+        <div id="assignment-list-wrapper">
+            <div class="vertical"></div>
+            <div id="assignment-list"></div>
+        </div>
+    </div>
+
+</body>
+<script>
+    var VerticalHeight = -40;
+
+    function loadAssignment(func){
+        $.get("/modules/assignment/studentLoadAssignment.php",function(data){
+            func();
+            data = JSON.parse(data);
+            var todayDoneTime = 0, todayTotalTime = 0, totalDoneTime = 0, totalTotalTime = 0;
+            var todayDoneItems = 0, todayTotalItems = 0, totalDoneItems = 0, totalTotalItems = 0;
+            for (var i = 0; i < data.length; i++){
+                var row = data[i];
+                var subject = convertSubject(row.subject);
+                if (row.type == "1"){
+                    var date = row.dueday;
+                    var daysLeft = DateDiff.inDays(new Date(), new Date(date));
+                    var singleTime = parseFloat(parseFloat(row.duration).toFixed(1));
+                    if (daysLeft == 1){
+                        if (row.finished == true){
+                            todayDoneTime += singleTime;
+                            todayDoneItems++;
+                        }
+                        todayTotalTime += singleTime;
+                        todayTotalItems++;
+                    }
+                    if (row.finished == true){
+                        totalDoneTime += singleTime;
+                        totalDoneItems++;
+                    }
+                    totalTotalTime += singleTime;
+                    totalTotalItems++;
+                }
+                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
+                $('#assignment-list').append(assignment.getHTML(true));
+                VerticalHeight += 189; // 189 is the height of the card.
+            }
+            if (totalTotalTime == 0){
+                totalDoneTime = 1;
+                totalTotalTime = 1;
+            }
+            var totalPercentage = parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2);
+            updatePercentage(totalPercentage);
+            $('.vertical').css('height', VerticalHeight);
+            VerticalHeight = -40;
+        });
+    }
+    loadAssignment(function(){
+        $('#assignment-list').html("");
+    });
+</script>
+</html>

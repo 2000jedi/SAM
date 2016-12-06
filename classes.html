@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SAM by Computerization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
+    <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/main.css" type="text/css">
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
+
+    <script src="/template/scripts/class.js"></script>
+    <script src="/template/scripts/base.js"></script>
+    <script src="/template/scripts/assignment.js"></script>
+    <script src="/template/scripts/user.js"></script>
+    <script>
+        var flag_showApps = false;
+        function showApps() {
+            flag_showApps = !flag_showApps;
+            if (flag_showApps) {
+                $('#apps-menu-detail').css('display', 'block');
+            }
+            else {
+                $('#apps-menu-detail').css('display', 'none');
+            }
+        }
+        function showModule(id) {
+            window.location.href = "/" + id +'.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="banner">
+        <p id="left-banner">
+            <img src="/framework/sam/SAM_logo.svg" />
+            <span><lead>S</lead>AM <small>by Computerization</small></span>
+        </p>
+        <a id="apps-menu" onclick="showApps();">
+            <i style="height: 40px;line-height: 40px;" class="material-icons">apps</i>
+        </a>
+        <img id="avatar" src="/framework/material-images/user.png" height="40px">
+        <p id="right-banner" onclick="showUserPanel()">
+    </div>
+    <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
+        <ul class="list-apps" aria-dropeffect="move">
+            <li class="drag" id="app-assignment">
+                <a class="app" onclick="showModule('student')">
+                    <span class="app-img" style="background-image: url('/files/icons/assignments.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Assignments</div></span>
+                </a>
+            </li>
+
+            <li class="drag" id="app-settings">
+                <a class="app" onclick="showModule('settings')">
+                    <span class="app-img" style="background-image: url('/files/icons/setting.svg');background-size: 64px 64px;"></span>
+                    <span class="app-desc"><div style="margin: 0 auto;">Settings</div></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="classes">
+        <div id="classList" class="class-content"></div>
+    </div>
+
+    <div id="right-part" class="" style="display:none">
+
+        <div id="right-part-view-class" style="display: none;">
+            <header id="single-class-header">
+                <div id="single-class-compile"  onclick="$('#right-part').hide()">
+                        <span class="single-class-banner">
+                            <span id="right-part-title">Manage Class</span>
+                            <span id="btn-action-cross">X</span>
+                        </span>
+                </div>
+            </header>
+            <div id="assignment-list-class">
+                <div id="assignment-list-class-pile" class="pile"></div>
+            </div>
+        </div>
+
+        <div id="right-part-view-activity" style="display: none">
+            <div id="right-part-view-activity-id" style="display: none;"></div>
+            <header class="" style="display: flex">
+                <div class="" style="padding-left: 1em; cursor: pointer" onclick="$('#right-part').hide()">
+                        <span class="m" style="display: flex; flex-direction: row">
+                            <span class="material-icons" style="display: flex">close</span>
+                            <span style="display: flex">Discussion</span>
+                        </span>
+                </div>
+            </header>
+            <button id="add-activity-comment-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--pink-300" style="position: fixed; right: 1em; bottom: 1em; z-index:100" onclick="new ManipulateActivity().addActivityCommentButtonClick()">
+                <i class="material-icons">add</i>
+            </button>
+            <div id="activity-comment-list"></div>
+        </div>
+    </div>
+</body>
+<script>
+    new Class('', '').loadClass(1, function(){
+        $('#classList').html("");
+    });
+</script>
+</html>
