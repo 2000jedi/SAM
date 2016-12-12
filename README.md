@@ -4,7 +4,7 @@ System of Assignment Management
 
 The MIT License (MIT)
 ---- 
-Copyright (c) [2015] [Computerization]
+Copyright (c) [2016] [Computerization]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,8 +44,6 @@ The structure of the code
 			- jQuery form
 		-  jq.js
 			- jQuery framework
-	-  pure/
-		- UI framework from Yahoo with some modification from Sam
 	-  sam/
 		- UI framework created by Jedi and DavidZYC
 3.  modules/
