@@ -41,15 +41,23 @@
         font-size: small;
         color: #000000;
         position: absolute;
-        right: 0;
+        right: 50px;
         margin: 0 2em 0 0;
         height: 40px;
         line-height: 40px;
     }
 
-    #right-banner:hover {
-        color: #666666;
+    #right-banner>span {
+        display: inline-block;
+        padding: 0 5px;
+        color: #b6b6b6;
+        font-size: 24px;
+        font-weight: lighter;
+        position: relative;
+    }
+    #right-banner>span:hover {
         cursor: pointer;
+        background-color: #edeff1;
     }
 
     #avatar {
