@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>SAM by Computerization</title>
+    <title>Dashboard | SAM by Computerization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
     <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
     <link rel="stylesheet" href="/framework/sam/main.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/banner.css" type="text/css">
 
     <script src="/framework/js/jq.js"></script>
     <script src="/framework/js/form.js"></script>
@@ -16,7 +17,6 @@
     <script src="/template/scripts/user.js"></script>
 
     <script>
-
         function updatePercentage(perc) { // draw assignment percentage circle
             perc = parseFloat(perc);
             em = Number(getComputedStyle(document.body, null).fontSize.replace(/[^\d]/g, ''));
@@ -62,7 +62,7 @@
         }
 
         // toggle modules
-
+/*
         var flag_showApps = false;
         function showApps(){
             flag_showApps = !flag_showApps;
@@ -73,6 +73,7 @@
                 $('#apps-menu-detail').css('display','none');
             }
         }
+*/
         function showModule(id) {
             window.location.href = "/" + id +'.html';
         }
@@ -83,14 +84,20 @@
     <div class="banner">
         <p id="left-banner">
             <img src="/framework/sam/SAM_logo.svg" />
-            <span><lead>S</lead>AM <small>by Computerization</small></span>
+            <span><lead>S</lead>AM <!--<small>by Computerization</small>--></span>
+            <span class="app app-current" onclick="showModule('dashboard');">Dashboard</span>
+            <span class="app" onclick="showModule('classes');">Classes</span>
+            <span class="app" onclick="showModule('settings');">Settings</span>
         </p>
+        <!--
         <a id="apps-menu" onclick="showApps();">
             <i style="height: 40px;line-height: 40px;" class="material-icons">apps</i>
         </a>
+        -->
         <img id="avatar" src="/framework/material-images/user.png" height="40px">
-        <p id="right-banner" onclick="showUserPanel()">
+        <p id="right-banner">
     </div>
+    <!--
     <div id="apps-menu-detail" style="display: none;" aria-label="Apps" aria-hidden="false" role="region">
         <ul class="list-apps" aria-dropeffect="move">
             <li class="drag" id="app-classes">
@@ -108,6 +115,7 @@
             </li>
         </ul>
     </div>
+    -->
 
     <div id="assignment">
         <div id="assignment-stats" style="background-color: transparent;">

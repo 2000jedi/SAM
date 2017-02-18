@@ -41,7 +41,7 @@ div#right-part-view-class, div#assignment-list-class{
     background-color: #edeff1;
 }
 
-
+/*
 #apps-menu {
     position: absolute;
     right: 87px;
@@ -49,6 +49,7 @@ div#right-part-view-class, div#assignment-list-class{
     height: 40px;
     line-height: 40px;
 }
+*/
 
 #avatar {
     position: absolute;
@@ -102,7 +103,7 @@ div#right-part-view-class, div#assignment-list-class{
     font-weight: bold;
     text-align: center;
     position: absolute;
-    right: 0px;
+    right: 0;
 }
 
 #btn-action-cross:hover {
@@ -138,16 +139,6 @@ div#right-part-view-class, div#assignment-list-class{
     a:hover{
         color: #2A579A;
     }
-    .banner {
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 50px;
-        padding-top: 10px;
-        margin: 0;
-        margin-bottom: 2px;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
 
     .single-class-banner {
         margin: 0;
@@ -157,55 +148,7 @@ div#right-part-view-class, div#assignment-list-class{
         background-color: white;
         width: 100%;
     }
-
-    #left-banner {
-        position: absolute;
-        margin: 0 0 0 1em;
-        height: 40px;
-    }
-
-    #left-banner>img {
-        height: 40px;
-    }
-
-    #left-banner>span {
-        color: #d1d1d1;
-        font-size: 28px;
-        font-weight: lighter;
-        position: relative;
-        top: -9px;
-        left: 8px;
-    }
-
-    #left-banner>span>lead {
-        color: #519dd9;
-    }
-
-    #left-banner>span>small {
-        margin-left: 4px;
-        font-size: 14px;
-    }
-
-    #right-banner {
-        font-size: small;
-        color: #000000;
-        position: absolute;
-        right: 0;
-        margin: 0 2em 0 0;
-        height: 40px;
-        line-height: 40px;
-    }
-
-    #right-banner:hover {
-        color: #666666;
-        cursor: pointer;
-    }
-
-    #avatar {
-        position: absolute;
-        right: 30px;
-    }
-
+/*
     #apps-menu:hover {
         color: #666666;
         cursor: default;
@@ -289,7 +232,7 @@ div#right-part-view-class, div#assignment-list-class{
         text-align: center;
         font-weight: 900;
     }
-
+*/
     .title, .content {
         padding: 10px;
         float: left;
@@ -321,6 +264,7 @@ div#right-part-view-class, div#assignment-list-class{
         height: calc(100% - 312px);
         display: block;
         box-sizing: border-box;
+        left: calc(17.5% - 95px - 7.5em);
     }
 
     #assignment-list {
@@ -329,8 +273,7 @@ div#right-part-view-class, div#assignment-list-class{
 
     .assignment-list {
         width: 65%;
-        margin: 0 auto;
-        margin-top: 2em;
+        margin: 2em auto 0;
         clear: both;
         background-color: white;
     }
@@ -439,8 +382,8 @@ div#right-part-view-class, div#assignment-list-class{
         width: 100%;
         padding-top: 10px;
         position: absolute;
-        bottom: 0px;
-        left: 0px;
+        bottom: 0;
+        left: 0;
         z-index: 1;
     }
 
@@ -455,14 +398,12 @@ div#right-part-view-class, div#assignment-list-class{
     .bar-finished, .bar-unfinished {
         position: relative;
         left: -75px;
-        background-color: white;
         width:50px;
         height:50px;
         -webkit-border-radius:25px;
         -moz-border-radius:25px;
         border-radius:25px;
-        background-repeat: no-repeat;
-        background-position: center;
+        background: white no-repeat center;
         z-index: 1;
     }
 
@@ -483,13 +424,10 @@ div#right-part-view-class, div#assignment-list-class{
     }
 
     .vertical {
-        width: 0px;
+        width: 0;
         border: 4px solid #d8dbe0;
         position: absolute;
         left: calc(17.5% - 95px);
-    }
-
-    #percentage {
     }
 
     .due-left {
@@ -606,64 +544,7 @@ div#right-part-view-class, div#assignment-list-class{
 }
 
 @media (max-width: 999px) {
-    .banner {
-        display: block;
-        position: relative;
-        width: 100%;
-        height: 50px;
-        margin: 0;
-        margin-bottom: 2px;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    }
-
-    #left-banner {
-        position: absolute;
-        margin: 0 0 0 1em;
-        height: 40px;
-    }
-
-    #left-banner>img {
-        height: 40px;
-    }
-
-    #left-banner>span {
-        color: #d1d1d1;
-        /*font-size: 28px;*/
-        font-weight: lighter;
-        position: relative;
-        top: -9px;
-        left: 8px;
-    }
-
-    #left-banner>span>lead {
-        color: #519dd9;
-    }
-
-    #left-banner>span>small {
-        margin-left: 4px;
-        font-size: 14px;
-    }
-
-    #right-banner {
-        font-size: small;
-        color: #000000;
-        position: absolute;
-        right: 0;
-        margin: 0 2em 0 0;
-        height: 40px;
-        line-height: 40px;
-    }
-
-    #right-banner:hover {
-        color: #666666;
-        cursor: pointer;
-    }
-
-    #avatar {
-        position: absolute;
-        right: 30px;
-    }
-
+/*
     #apps-menu:hover {
         color: #666666;
         cursor: default;
@@ -776,6 +657,7 @@ div#right-part-view-class, div#assignment-list-class{
         display: flex;
         text-align: center;
     }
+*/
 
     #greeting {
         color: rgba(133,189,234,1);
@@ -816,8 +698,7 @@ div#right-part-view-class, div#assignment-list-class{
 
     .assignment-list {
         width: 95%;
-        margin: 0em auto;
-        margin-top: 1em;
+        margin: 1em auto 0;
         clear: both;
         background-color: white;
     }
@@ -841,13 +722,12 @@ div#right-part-view-class, div#assignment-list-class{
         /*font-size: 32px;*/
         margin-top: 10px;
         margin-bottom: 10px;
-        float: left
+        float: left;
     }
 
     .subject {
         -webkit-margin-before: 0;
         -webkit-margin-after: 0;
-        /*font-size: 32px;*/
         font-weight: lighter;
         color: #85bdea;
         text-align: right;
@@ -861,7 +741,7 @@ div#right-part-view-class, div#assignment-list-class{
         line-height: 1;
         margin-top: 10px;
         position: relative;
-        bottom: 0px;
+        bottom: 0;
     }
 
     .attachment-divider {
@@ -980,7 +860,6 @@ div#right-part-view-class, div#assignment-list-class{
         background-color: white;
         clear: both;
         border-radius: 2px;
-        /* box-shadow: 2px 2px 2px lightgrey;*/
     }
 
 
