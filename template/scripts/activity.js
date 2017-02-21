@@ -3,7 +3,7 @@
  */
 function ManipulateActivity(){
     this.loadActivities = function(func){
-        $.get("/modules/activity/loadActivity.php", function(data){
+        $.get("/modules/activity/loadClub.php", function(data){
             func();
 
             data = JSON.parse(data);
