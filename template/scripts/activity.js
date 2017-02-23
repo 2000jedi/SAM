@@ -1,16 +1,16 @@
 /**
  * Created by Sam on 12/12/15.
  */
-function ManipulateActivity(){
-    this.loadActivities = function(func){
-        $.get("/modules/activity/loadClub.php", function(data){
+function ManipulateClub(){
+    this.loadClubs = function(func){
+        $.get("/modules/club/loadClub.php", function(data){
             func();
 
             data = JSON.parse(data);
             for (var i = 0; i < data.length; i++){
                 var row = data[i];
-                var activity = new Activity(row.id, row.name, row.organizer, row.nameOfOrganizer, row.description, row.attachment, row.time, row.deal, row.members, row.likes);
-                $('#activity-list').append(activity.getHTML());
+                var club = new Club(row.id, row.name, row.organizer, row.nameOfOrganizer, row.activities, row.members);
+                $('#club-list').append(club.getHTML());
             }
         });
     };
@@ -44,17 +44,13 @@ function dealWithAttachment(attachment) {
     }
 }
 
-function Activity(id, name, organizer, nameOfOrganizer, description, attachment, time, deal, members, likes){
+function Club(id, name, organizer, nameOfOrganizer, activities, members){
     this.id = id;
     this.name = name;
     this.organizer = organizer;
     this.nameOfOrganizer = nameOfOrganizer;
-    this.description = description;
-    this.attachment = dealWithAttachment(attachment);
-    this.time = time;
-    this.deal = deal;
+    this.activities = activities;
     this.members = members;
-    this.likes = likes;
 
     function count(arr){
         return arr.length;
@@ -71,38 +67,17 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
 
     this.status = {
         stateOfMember: isInArray(this.members),
-        stateOfLike: isInArray(this.likes),
-        textOfJoinLeaveDeleteButton: "Join",
-        textOfLikeUnlikeButton: "Like"
+        textOfJoinLeaveDeleteButton: "Join"
     };
 
     this.updateStatus = function(){
         if (this.status.stateOfMember) {
             this.status.textOfJoinLeaveDeleteButton = "Leave";
-            if (this.organizer == UID){
-                this.status.textOfJoinLeaveDeleteButton = "Delete";
-            }
-        }
-        if (this.status.stateOfLike) {
-            this.status.textOfLikeUnlikeButton = "UnLike";
         }
     };
 
     this.updateStatus();
-
-    this.loadComments = function(func){
-        $.get("/modules/activity/loadActivityComments.php", {id: this.id}, function(data){
-            func();
-            data = JSON.parse(data);
-            for (var i = 0; i < data.length; i++) {
-                var row = data[i];
-                var activityComment = new ActivityComment(row.id, row.uid, row.username, row.time, row.comment, row.attachment);
-                $('#activity-comment-list').append(activityComment.getHTML());
-            }
-            updateMasonry('activity-comment-list');
-        });
-    };
-
+/*
     this.openViewActivityPanel = function(){
         new Activity(id, "", "", "", "", "", "", "", [], []).loadComments(function(){
             $('#activity-comment-list').html("");
@@ -118,20 +93,20 @@ function Activity(id, name, organizer, nameOfOrganizer, description, attachment,
         $('#right-part-view-activity').show();
         $('#right-part').show();
     };
-
+*/
     this.join = function(){
-        $.get("/modules/activity/joinActivity.php", {id: this.id}, function(data){
-            new ManipulateActivity().loadActivities(function(){
-                $('#activity-list').html("");
+        $.get("/modules/club/joinClub.php", {id: this.id}, function(data){
+            new ManipulateClub().loadClubs(function(){
+                $('#club-list').html("");
             });
             alert(data);
         });
     };
 
     this.leave = function(){
-        $.get("/modules/activity/leaveActivity.php", {id: this.id}, function(data){
-            new ManipulateActivity().loadActivities(function(){
-                $('#activity-list').html("");
+        $.get("/modules/club/leaveClub.php", {id: this.id}, function(data){
+            new ManipulateClub().loadClubs(function(){
+                $('#club-list').html("");
             });
             alert(data);
         });

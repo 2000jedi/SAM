@@ -63,11 +63,120 @@ class ManipulateClubClass {
 
         $sql = "INSERT INTO club (name, organizer, activities, members) VALUES ('$name', '$organizer',;,;)";
         $conn->query($sql);
-        echo "Success";
+        return "Success";
     }
 
-    function addPost($club, $publisher, $information, $photo, $attachment) {
+    function addPost($cid, $publisher, $information, $photo, $attachment) {
         $publish = time();
+        global $conn;
+
+        $sql = "INSERT INTO club_post (club, publisher, information, photo, attachment, publish) VALUES ('$cid', '$publisher','$information','$photo', '$attachment', '$publish')";
+        $conn->query($sql);
+        return "Success";
+    }
+
+    function deletePost($cid, $postid, $uid){
+        global $conn;
+
+        $sql0 = "SELECT * FROM club_post WHERE id = '$postid'";
+        $result0 = $conn->query($sql0);
+
+        $row = $result0->fetch_assoc();
+        $author = $row['publisher'];
+        if($uid == $author){
+            $sql1 = "DELETE FROM club_post WHERE id = '$postid'";
+
+            if ($conn->query($sql1) === TRUE){
+                return "Success";
+            }else{
+                return "Unexpected error.";
+            }
+        }else{
+            return "You are not the author of this activity comment.";
+        }
+    }
+
+    function loadPost($pid){
+        global $conn;
+
+        $sql = "SELECT * FROM club_post WHERE id = '$pid'";
+        $result = $conn->query($sql);
+
+        $row = $result->fetch_assoc();
+        $post = new UnitPost();
+        $post->construct($row['id'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+        return json_encode($post);
+    }
+
+    function loadPosts($cid){
+        global $conn;
+
+        $sql = "SELECT * FROM club_post WHERE club = '$cid'";
+        $result = $conn->query($sql);
+
+        $posts = array();
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            $post = new UnitPost();
+            $post->construct($row['id'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+            $posts[$count++] = $post;
+        }
+
+        return json_encode($posts);
+    }
+
+    function joinClub($cid, $uid){
+        global $conn;
+
+        $sql = "SELECT * FROM club WHERE id = '$cid'";
+        $result = $conn->query($sql);
+
+        $row = $result->fetch_assoc();
+        $membersStr = $row['members'];
+        $membersIDs = explode(";", $membersStr);
+
+        if (count($membersIDs) > 0) {
+            for ($i = 1; $i < count($membersIDs); $i++) {
+                if ($membersIDs[$i] == $uid) {
+                    return "the student is already in this class";
+                }
+            }
+        }
+
+        $membersStr .= ";" . $uid;
+
+        $sql1 = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
+        if ($conn->query($sql1) === TRUE){
+            return "Success!";
+        }else{
+            return "Unexpected error.";
+        }
+    }
+
+    function leaveClub($cid, $uid){
+        global $conn;
+        $sql = "SELECT * FROM club WHERE id = '$cid'";
+        $result = $conn->query($sql);
+
+        $row = $result->fetch_assoc();
+        $membersStr = $row['members'];
+        $membersIDs = explode(";", $membersStr);
+        $membersStr = "";
+
+        if (count($membersIDs) > 0){
+            for ($i = 1; $i < count($membersIDs); $i++){
+                if ($membersIDs[$i] != $uid){
+                    $membersStr .= ";" . $membersIDs[$i];
+                }
+            }
+        }
+
+        $sql1 = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
+        if ($conn->query($sql1) === TRUE){
+            return "Success!";
+        }else{
+            return "Unexpected error.";
+        }
     }
 
     function processFromDBStringToArray($dbStringMembers){
