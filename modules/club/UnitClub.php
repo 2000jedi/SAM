@@ -6,17 +6,20 @@
  * Date: 2017/2/21
  * Time: 21:59
  */
+
 class UnitClub {
     var $id;
     var $name;
+    var $introduction;
     var $organizer;
     var $nameOfOrganizer;
     var $activities;
     var $members;
 
-    function construct($id, $name, $organizer, $activities, $members){
+    function construct($id, $name, $introduction, $organizer, $activities, $members){
         $this->id = $id;
         $this->name = $name;
+        $this->introduction = $introduction;
         $this->organizer = $organizer;
         $this->nameOfOrganizer = $this->nameOfPerson($organizer);
         $this->activities = $this->processFromDBStringToArray($activities);
@@ -24,7 +27,7 @@ class UnitClub {
     }
 
     function constructFromDBRow($row){
-        $this->construct($row["id"], $row["name"], $row["organizer"], $row["activities"], $row["members"]);
+        $this->construct($row["id"], $row["name"], $row["introduction"],$row["organizer"], $row["activities"], $row["members"]);
     }
 
     function nameOfPerson($uid){

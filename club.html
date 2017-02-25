@@ -1,0 +1,252 @@
+<html>
+
+<head>
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css"> -->
+    <!-- <link rel="stylesheet" href="/framework/sam/main.css" type="text/css"> -->
+    <link rel="stylesheet" href="/framework/sam/banner.css" type="text/css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #edeff1!important;
+        }
+
+        .banner-pc,
+        .banner-pc>p {
+            background-color: #ffffff!important;
+            height: 60px;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .club-card {
+            background-color: #ffffff;
+            border: 10px #edeff1 solid;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        #msg {
+            background-color: #ffffff;
+            border-radius: 2px;
+            margin: 10px;
+            padding: 10px;
+            display: none;
+        }
+
+        #nav {
+            display: flex;
+            /*justify-content: center;*/
+            margin: 10px;
+            align-items: center;
+        }
+
+        #back-arrow,
+        #header,
+        #secondary {
+            /*margin: 5px;
+          padding: 5px;*/
+        }
+
+        #header {
+            font-size: 2em;
+        }
+
+        #back-arrow {
+            width: 2em;
+            height: 2em;
+        }
+
+        .post-card {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 2px;
+            margin: 10px;
+            padding: 10px;
+        }
+
+
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            //Load Club List when Page opened.
+            $.ajax({
+                url: 'modules/club/loadClub.php?id=-1',
+                type: 'GET',
+                dataType: 'json',
+                timeout: 1000,
+                cache: false,
+                beforeSend: LoadFunction, //加载执行方法
+                error: errFunction, //错误执行方法
+                success: succFunction //成功执行方法
+            });
+
+            function LoadFunction() {
+                $("#msg").css("display", "block");
+                $("#msg").html('Loading Club List...');
+            }
+
+            function errFunction() {
+                $("#msg").css("display", "block");
+                $("#msg").html('Error');
+            }
+
+            function succFunction(data) {
+
+                var json = eval(data);
+                $.each(json, function(index, item) {
+                    var id = json[index].id;
+                    var name = json[index].name;
+                    var introduction = json[index].introduction;
+                    var dom = "<div class='col-md-3 club-card'><a class='lead' onclick=loadClubDetail(" + id + ")>" + name + "</a><p>" + introduction + " (ID:" + id + ")</p></div>"
+                    $("#club-list").append(dom);
+                });
+                $("#msg").css("display", "none");
+                $("#header").html("All Clubs");
+                $("#back-arrow").css("display", "none");
+            }
+
+
+        });
+
+
+        //Load Club Detail
+        function loadClubDetail(id) {
+            $.ajax({
+                url: 'modules/club/loadClub.php?id=' + id,
+                type: 'GET',
+                dataType: 'json',
+                timeout: 1000,
+                cache: false,
+                beforeSend: notice("Loading Club List..."), //加载执行方法
+                error: notice("Error Loading Club Detail"), //错误执行方法
+                success: function(data) {
+
+                    var json = eval(data);
+
+                    var id = json.id;
+                    var name = json.name;
+                    var introduction = json.introduction;
+                    $("#header").html(name);
+                    $("#secondary").html(introduction);
+                    $("#club-list").css("display", "none");
+                    $("#back-arrow").css("display", "");
+                    $("#club-detail").css("display", "");
+                    // $("#msg").css("display", "none");
+                }
+            });
+
+            function notice(info) {
+                $("#msg").css("display", "block");
+                $("#msg").html(info);
+            }
+
+
+            $.ajax({
+                url: 'modules/club/loadPosts.php?cid=' + id,
+                type: 'GET',
+                dataType: 'json',
+                timeout: 1000,
+                cache: false,
+                beforeSend: notice("Loading Posts..."), //加载执行方法
+                error: notice("Error Loading Posts."), //错误执行方法
+                success: function(data) {
+
+                    var json = eval(data);
+                    // json = [{
+                    //     "id": 1,
+                    //     "pname": "sam",
+                    //     "information": "yosfdihauofusahifuaf",
+                    //     "publish": "2015-2-20"
+                    // }, {
+                    //     "id": 1,
+                    //     "pname": "sam",
+                    //     "information": "yosfdihauofusahifuaf",
+                    //     "publish": "2015-2-20"
+                    // }];
+                    // $("#msg").html(json);
+                    $.each(json, function(index, item) {
+                        var id = json[index].id;
+                        var pname = json[index].pname;
+                        var information = json[index].information;
+                        var publish = json[index].publish;
+                        var dom = "<div class='post-card'><a class='lead'>" + pname + " @ "+publish+"</a><p>" + information + "</p></div>"
+
+                        $("#club-detail").append(dom);
+                    });
+                    $("#msg").css("display", "none");
+                } //成功执行方法
+            });
+
+        }
+
+        function back() {
+            $("#header").html("All Clubs");
+            $("#secondary").html("");
+            $("#club-list").css("display", "");
+            $("#club-detail").css("display", "none");
+            $("#club-detail").html("");
+            $("#back-arrow").css("display", "none");
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <div class="banner-pc">
+        <p id="left-banner">
+            <img src="/framework/sam/SAM_logo.svg" />
+            <span><lead>S</lead>AM </span>
+        </p>
+        <img id="avatar" src="/framework/material-images/user.png" height="40px">
+        <p id="right-banner">
+            <span class="app" onclick="showModule('dashboard');">Dashboard</span>
+            <span class="app app-current" onclick="showModule('dashboard');">Club</span>
+            <span class="app" onclick="showModule('classes');">Classes</span>
+            <span class="app" onclick="showModule('settings');">Settings</span>
+        </p>
+    </div>
+
+    <div class="container" id="container">
+        <div class="row">
+            <div class="msg" id="msg"></div>
+        </div>
+        <div class="row" id="nav">
+            <img class="col-md-1" id="back-arrow" onclick="back()" src="/files/icons/left-arrow.svg" />
+            <div class="col-md-3" id="header"></div>
+            <div class="lead col-md-8" id="secondary"></div>
+        </div>
+
+        <div class="row" id="club-list">
+
+        </div>
+        <div class="row" id="club-detail">
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
