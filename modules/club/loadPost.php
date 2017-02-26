@@ -9,6 +9,7 @@
 require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/club/ManipulateClubClass.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitClub.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitPost.php";
 
 $result = checkForceQuit();
 

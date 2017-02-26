@@ -41,22 +41,12 @@ div#right-part-view-class, div#assignment-list-class{
     background-color: #edeff1;
 }
 
-/*
-#apps-menu {
-    position: absolute;
-    right: 87px;
-    color: #AAAAAA;
-    height: 40px;
-    line-height: 40px;
-}
-*/
-
 #avatar {
     position: absolute;
     right: 28px;
 }
 
-#assignment, #classes, #settings {
+#assignment, #classes, #settings, #club {
     height: calc(100% - 46px);
     width: 100%;
     position: fixed;
@@ -148,91 +138,7 @@ div#right-part-view-class, div#assignment-list-class{
         background-color: white;
         width: 100%;
     }
-/*
-    #apps-menu:hover {
-        color: #666666;
-        cursor: default;
-    }
 
-    #apps-menu-detail {
-        display: block;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: absolute;
-        right: 1em;
-        top: 57px;
-        border: 1px solid #ccc;
-        background: #FFFFFF;
-        z-index: 20;
-        box-shadow: 1px 1px 7px 0 rgba(0,0,0,0.44);
-    }
-
-    .list-apps {
-        position: relative;
-        display: block;
-        background: #fff;
-        margin: 0;
-        min-height: 100px;
-        padding: 0 40px;
-        text-align: left;
-        white-space: normal;
-        width: 100%;
-        list-style-type: disc;
-        -webkit-margin-before: 1em;
-        -webkit-margin-after: 1em;
-        -webkit-margin-start: 0px;
-        -webkit-margin-end: 0px;
-        -webkit-padding-start: 40px;
-        -webkit-user-select: text;
-        font-size: 13px;
-        font-family: arial,sans-serif;
-        z-index: 996;
-    }
-
-    .drag {
-        padding: 1px;
-        display: inline-block;
-        vertical-align: top;
-        color: black;
-        z-index: 997;
-        width: 86px;
-        height: 98px;
-        border: 0;
-        margin: 0;
-        text-align: -webkit-match-parent;
-    }
-
-    .app {
-        color: #999999;
-        text-decoration: none;
-        transform: translate(88px, 0px);
-        transition: transform 0.2s cubic-bezier(0.333, 0, 0, 1);
-        position: relative;
-        cursor: pointer;
-        font-size: 13px;
-        margin: 8px 2px;
-        text-align: center;
-        outline: none;
-        z-index: 998;
-        width: 100%;
-    }
-
-    .app-img {
-        display: block;
-        width: 64px;
-        height: 64px;
-        z-index: 999;
-        margin: 0 auto;
-    }
-
-    .app-desc {
-        z-index: 999;
-        width: 90px;
-        display: flex;
-        text-align: center;
-        font-weight: 900;
-    }
-*/
     .title, .content {
         padding: 10px;
         float: left;
@@ -308,7 +214,7 @@ div#right-part-view-class, div#assignment-list-class{
         overflow: visible;
     }
 
-    .class-content {
+    .class-content, #club-list {
         width: 90%;
         min-width:1000px;
         margin: 0 auto;
@@ -511,11 +417,8 @@ div#right-part-view-class, div#assignment-list-class{
         margin-top: 40px;
         padding: 20px;
         border-radius: 2px;
-        /*float: left;*/
         width: 75%;
         clear: both;
-        /*line-height:2em;*/
-        /* box-shadow: 2px 2px 2px lightgrey; */
     }
     #assignment-list-class {
         padding-left: 10%;
@@ -529,7 +432,6 @@ div#right-part-view-class, div#assignment-list-class{
         width: 75%;
         clear: both;
         line-height:2em;
-        /* box-shadow: 2px 2px 2px lightgrey; */
     }
 
     .pile > .assignment-list-class > .title{
@@ -544,121 +446,6 @@ div#right-part-view-class, div#assignment-list-class{
 }
 
 @media (max-width: 999px) {
-/*
-    #apps-menu:hover {
-        color: #666666;
-        cursor: default;
-    }
-
-    #apps-menu-arrow-back {
-        border-color: transparent;
-        border-style: dashed dashed solid;
-        border-width: 0 8.5px 8.5px;
-        position: absolute;
-        z-index: 1;
-        height: 0;
-        width: 0;
-        border-bottom-color: #ccc;
-        border-bottom-color: rgba(0,0,0,.2);
-        right: 92px;
-        top: 39px;
-    }
-
-    #apps-menu-arrow-front {
-        border-color: transparent;
-        border-bottom-color: #fff;
-        border-style: dashed dashed solid;
-        border-width: 0 8.5px 8.5px;
-        position: absolute;
-        z-index: 1;
-        height: 0;
-        width: 0;
-        right: 92px;
-        top: 40px;
-    }
-
-    #apps-menu-detail {
-        display: block;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: absolute;
-        right: 1em;
-        top: 47px;
-        box-shadow: 1px 1px 7px 0 rgba(0,0,0,0.44);
-        padding: 0 40px 0 0;;
-        border: 1px solid #ccc;
-        background: #FFFFFF;
-        transition: height .2s ease-in-out;
-        z-index:20;
-    }
-
-
-    .list-apps {
-        position: relative;
-        display: block;
-        background: #fff;
-        margin: 0;
-        min-height: 100px;
-        padding: 0;
-        text-align: left;
-        white-space: normal;
-        width: 100%;
-        list-style-type: disc;
-        -webkit-margin-before: 1em;
-        -webkit-margin-after: 1em;
-        -webkit-margin-start: 0px;
-        -webkit-margin-end: 0px;
-        -webkit-padding-start: 40px;
-        -webkit-user-select: text;
-        font-size: 13px;
-        font-family: arial,sans-serif;
-        z-index: 996;
-    }
-
-    .drag {
-        padding: 1px;
-        display: inline-block;
-        vertical-align: top;
-        color: black;
-        z-index: 997;
-        width: 86px;
-        height: 98px;
-        border: 0;
-        margin: 0;
-        text-align: -webkit-match-parent;
-    }
-
-    .app {
-        color: #404040;
-        text-decoration: none;
-        transform: translate(88px, 0px);
-        transition: transform 0.2s cubic-bezier(0.333, 0, 0, 1);
-        position: relative;
-        cursor: pointer;
-        font-size: 13px;
-        margin: 8px 2px;
-        text-align: center;
-        outline: none;
-        z-index: 998;
-        width: 100%;
-    }
-
-    .app-img {
-        display: block;
-        width: 64px;
-        height: 64px;
-        z-index: 999;
-        margin: 0 auto;
-    }
-
-    .app-desc {
-        z-index: 999;
-        width: 90px;
-        display: flex;
-        text-align: center;
-    }
-*/
-
     #greeting {
         color: rgba(133,189,234,1);
         font-family: Tahoma, Geneva, sans-serif;
@@ -669,7 +456,6 @@ div#right-part-view-class, div#assignment-list-class{
     }
 
     .title, .content {
-        /*background-color: red;*/
         padding: 10px;
         margin: 0;
         height: auto;
@@ -734,7 +520,6 @@ div#right-part-view-class, div#assignment-list-class{
     }
 
     .content-holder{
-        /*font-size: 40px;*/
     }
 
     .attachment-holder {
@@ -749,7 +534,6 @@ div#right-part-view-class, div#assignment-list-class{
     }
 
     .attachment-holder > div > a {
-        /*font-size: 40px;*/
     }
 
     .connector, .bar-finished, .bar-unfinished, .vertical , #percentage {
@@ -792,13 +576,11 @@ div#right-part-view-class, div#assignment-list-class{
 
     .due-left {
         color: #bfbfbf;
-        /*font-size: 32px;*/
     }
 
     .due-right {
         float: right;
         color: #519dd9;
-        /*font-size: 32px;*/
     }
 
     /*settings*/

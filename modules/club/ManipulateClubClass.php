@@ -104,7 +104,7 @@ class ManipulateClubClass {
 
         $row = $result->fetch_assoc();
         $post = new UnitPost();
-        $post->construct($row['id'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+        $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
         return json_encode($post);
     }
 
@@ -118,7 +118,7 @@ class ManipulateClubClass {
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             $post = new UnitPost();
-            $post->construct($row['id'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+            $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
             $posts[$count++] = $post;
         }
 

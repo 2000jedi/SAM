@@ -27,7 +27,7 @@ class UnitClub {
     }
 
     function constructFromDBRow($row){
-        $this->construct($row["id"], $row["name"], $row["introduction"],$row["organizer"], $row["activities"], $row["members"]);
+        $this->construct($row["ID"], $row["name"], $row["introduction"],$row["organizer"], $row["activities"], $row["members"]);
     }
 
     function nameOfPerson($uid){

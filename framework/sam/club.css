@@ -1,0 +1,54 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #edeff1!important;
+}
+
+.club-card {
+    background-color: #ffffff;
+    border: 10px #edeff1 solid;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+#msg {
+    background-color: #ffffff;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+    display: none;
+}
+
+#nav {
+    display: flex;
+    /*justify-content: center;*/
+    margin: 10px;
+    align-items: center;
+}
+
+#club-back-arrow,
+#club-header,
+#club-secondary {
+    /*margin: 5px;
+  padding: 5px;*/
+}
+
+#club-header {
+    font-size: 2em;
+}
+
+#back-arrow {
+    width: 2em;
+    height: 2em;
+}
+
+.post-card {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+}
