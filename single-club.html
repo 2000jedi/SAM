@@ -1,0 +1,463 @@
+<!--
+paramerters:
+#club-background
+#club-title-about
+#club-tag
+#club-content
+#popular-posts
+#recent-posts
+
+.post-title
+.post-photo
+-->
+
+
+<html class="gr__scoutydren_wixsite_com" style="background-color: #edeff1;">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <meta charset="utf-8">
+    <title>DEMO CLUB</title>
+    <link rel="prefetch" href="https://static.parastorage.com/services/third-party/lodash/4.17.4/dist/lodash.min.js">
+
+    <meta name="fragment" content="!">
+    <style type="text/css">
+        #SITE_CONTENT {
+            width: 80%;
+            position: absolute;
+            top: 222px;
+            left: 10%;
+            height: 1156px;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        #SITE_HEADER {
+            width: 90%;
+            position: absolute;
+            top: 0;
+            height: 222px;
+            left: 10%;
+        }
+
+        #SITE_HEADER_Background {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 125%;
+            left: -12.5%;
+            background-color: rgba(43, 108, 163, 1);
+        }
+
+        #avatar {
+            width: 63px;
+            height: 63px;
+            object-fit: contain;
+            left: 28px;
+            position: absolute;
+            top: 82px;
+        }
+
+        #club-title {
+            line-height: 0.9em;
+            color: #EDEFF1;
+            left: 100px;
+            width: 558px;
+            position: absolute;
+            top: 83px;
+        }
+
+        #club-greeting {
+            color: #A5B7CC;
+            left: 102px;
+            width: 304px;
+            position: absolute;
+            top: 120px;
+        }
+
+        .post-title {
+            position: relative;
+            display: block;
+            -webkit-box-orient: vertical;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .read-more {
+            max-width: 120px;
+            width: 100%;
+            position: relative;
+            margin: 0;
+            box-sizing: border-box;
+            height: 30px;
+            min-height: 23px;
+            background-color: rgba(61, 155, 233, 1);
+            font: normal normal normal 17px/1.4em 'open sans condensed', sans-serif;
+            transition: color 0.4s ease 0s;
+            color: #FFFFFF;
+            display: inline-block;
+            white-space: nowrap;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .s25 {
+            border-bottom: 2px dotted rgba(120, 117, 117, 1);
+            height: 0 !important;
+            min-height: 0 !important;
+        }
+    </style>
+
+    <style type="text/css">
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, font, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        body {
+            font-size: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        textarea, input, select {
+            font-family: Helvetica, Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+        :focus {
+            outline: 0;
+        }
+
+        ins {
+            text-decoration: none;
+        }
+
+        del {
+            text-decoration: line-through;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            overflow-x: auto;
+            overflow-y: scroll;
+        }
+
+        .SITE_ROOT {
+            min-height: 100%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        html.device-phone body {
+            overflow-y: auto;
+        }
+
+        html.device-mobile-optimized.blockSiteScrolling > body {
+            position: fixed;
+            width: 100%;
+        }
+
+        html.device-mobile-optimized.media-zoom-mode > body {
+            touch-action: manipulation;
+        }
+
+        body.device-mobile-optimized > * {
+            max-width: 100% !important;
+        }
+
+        body.device-mobile-optimized .SITE_ROOT {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        body.device-mobile-non-optimized #SITE_CONTAINER > :not(.mobile-non-optimized-overflow) .SITE_ROOT {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body[contenteditable] {
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        ul.font_100 li, ol.font_100 li {
+            margin-bottom: 12px;
+        }
+
+        ol.wix-list-text-align p, ol.wix-list-text-align h1, ol.wix-list-text-align h2, ol.wix-list-text-align h3, ol.wix-list-text-align h4, ol.wix-list-text-align h5, ol.wix-list-text-align h6, ul.wix-list-text-align p, ul.wix-list-text-align h1, ul.wix-list-text-align h2, ul.wix-list-text-align h3, ul.wix-list-text-align h4, ul.wix-list-text-align h5, ul.wix-list-text-align h6 {
+            display: inline;
+        }
+
+        .wixapps-less-spacers-align > div,
+        .wixapps-less-spacers-align > a {
+            display: inline-block !important;
+        }
+
+        a.wixAppsLink img {
+            cursor: pointer;
+        }
+
+        [data-z-counter] {
+            z-index: 0;
+        }
+
+        [data-z-counter="0"] {
+            z-index: auto;
+        }
+
+        @-webkit-keyframes inner-rotate {
+            to {
+                opacity: 1;
+                -webkit-transform: rotate(115deg);
+                transform: rotate(115deg);
+            }
+        }
+
+        @keyframes inner-rotate {
+            to {
+                opacity: 1;
+                -webkit-transform: rotate(115deg);
+                transform: rotate(115deg);
+            }
+        }
+
+        @-webkit-keyframes semi-rotate {
+            from {
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+            45% {
+                -webkit-transform: rotate(198deg);
+                transform: rotate(198deg);
+            }
+            55% {
+                -webkit-transform: rotate(234deg);
+                transform: rotate(234deg);
+            }
+            to {
+                -webkit-transform: rotate(540deg);
+                transform: rotate(540deg);
+            }
+        }
+
+        @keyframes semi-rotate {
+            from {
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+            }
+            45% {
+                -webkit-transform: rotate(198deg);
+                transform: rotate(198deg);
+            }
+            55% {
+                -webkit-transform: rotate(234deg);
+                transform: rotate(234deg);
+            }
+            to {
+                -webkit-transform: rotate(540deg);
+                transform: rotate(540deg);
+            }
+        }
+
+        .transitioning-comp * {
+            transition: inherit !important;
+            -webkit-transition: inherit !important;
+        }
+
+        /*# sourceMappingURL=viewer.css.map */</style>
+    <link rel="stylesheet"
+          href="//fonts.googleapis.com/css?family=Anton:n,b,i,bi|Basic:n,b,i,bi|Caudex:n,b,i,bi|Chelsea+Market:n,b,i,bi|Corben:n,b,i,bi|EB+Garamond:n,b,i,bi|Enriqueta:n,b,i,bi|Forum:n,b,i,bi|Fredericka+the+Great:n,b,i,bi|Jockey+One:n,b,i,bi|Josefin+Slab:n,b,i,bi|Jura:n,b,i,bi|Kelly+Slab:n,b,i,bi|Marck+Script:n,b,i,bi|Lobster:n,b,i,bi|Mr+De+Haviland:n,b,i,bi|Niconne:n,b,i,bi|Noticia+Text:n,b,i,bi|Overlock:n,b,i,bi|Patrick+Hand:n,b,i,bi|Play:n,b,i,bi|Sarina:n,b,i,bi|Signika:n,b,i,bi|Spinnaker:n,b,i,bi|Monoton:n,b,i,bi|Sacramento:n,b,i,bi|Cookie:n,b,i,bi|Raleway:n,b,i,bi|Open+Sans+Condensed:300:n,b,i,bi|Amatic+SC:n,b,i,bi|Cinzel:n,b,i,bi|Sail:n,b,i,bi|Playfair+Display:n,b,i,bi|Libre+Baskerville:n,b,i,bi|&amp;subset=latin-ext,cyrillic,japanese,korean,arabic,hebrew,latin"
+          id="font_googleFonts">
+    <link rel="stylesheet"
+          href="https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/v3/languages.css"
+          id="font_langauges">
+    <style type="text/css">
+        .font_0 {
+            font: normal normal bold 43px/1.4em din-next-w01-light, din-next-w02-light, din-next-w10-light, sans-serif;
+            color: #ECE7E7;
+        }
+
+        .font_1 {
+            font: normal normal normal 14px/1.4em helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+            color: #FFFDFD;
+        }
+
+        .font_2 {
+            font: normal normal normal 32px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #011836;
+        }
+
+        .font_3 {
+            font: normal normal normal 34px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #011836;
+        }
+
+        .font_4 {
+            font: normal normal normal 32px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #011836;
+        }
+
+        .font_5 {
+            font: normal normal normal 26px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #011836;
+        }
+
+        .font_6 {
+            font: normal normal normal 22px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #011836;
+        }
+
+        .font_7 {
+            font: normal normal normal 19px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #4E4D4D;
+        }
+
+        .font_8 {
+            font: normal normal normal 17px/1.4em nimbus-sans-tw01con, sans-serif;
+            color: #4E4D4D;
+        }
+
+        .font_9 {
+            font: normal normal normal 14px/1.4em 'open sans condensed', sans-serif;
+            color: #4E4D4D;
+        }
+
+        .font_10 {
+            font: normal normal normal 14px/1.4em 'open sans condensed', sans-serif;
+            color: #4E4D4D;
+        }
+
+        .s12richTextContainer {
+            word-wrap: break-word;
+            text-align: left;
+            white-space: normal;
+            color: black;
+        }
+
+        .link:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body data-gr-c-s-loaded="true" class="">
+<div id="SITE_CONTAINER">
+    <div class="SITE_ROOT" id="SITE_ROOT" style="width:100%;padding-bottom:40px;">
+        <div id="SITE_HEADER">
+            <div id="SITE_HEADER_Background"></div>
+            <div id="SITE_HEADER_Content">
+                <img id="avatar" src="/framework/sam/SAM_logo.svg"/>
+                <h1 class="font_0" id="club-title">DEMO CLUB</h1>
+                <h6 class="font_6" id="club-greeting">Welcome.</h6>
+            </div>
+        </div>
+        <div id="SITE_CONTENT">
+            <div style="left: 8px; width: calc(100% - 371px); position: absolute; top: 23px; height: 458px;"
+                 class="s73" id="club-content">
+                <div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">
+                    <div class="post-title s12richTextContainer link" href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">
+                        <h2 class="font_4" style="line-height:1.2em;">
+                            Club Title
+                        </h2>
+                    </div>
+                    <div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">
+                        <p class="font_9" style="display: inline-flex;">March 6, 2017</p>
+                        <p class="font_9" style="display: inline-flex;">|</p>
+                        <p class="font_9" style="display: inline-flex;">Rachel G.</p>
+                    </div>
+                    <div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">
+                        <div class="s12richTextContainer">
+                            <p class="font_8">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat. Duis aute irure dolor in reprehender...
+                            </p>
+                        </div>
+                    </div>
+                    <div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">
+                        <a href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">
+                                <img src="https://static.wixstatic.com/media/b4600e_bea5f754bbc94c0ba0952cf6c1da8b28~mv2.png/v1/fill/w_569,h_273,al_c,usm_0.66_1.00_0.01/b4600e_bea5f754bbc94c0ba0952cf6c1da8b28~mv2.png"
+                                     style="width: 100%; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="read-more link"
+                         href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">
+                        READ MORE
+                    </div>
+                </div>
+            </div>
+            <div style="right: 36px; width: 286px; position: absolute; top: 1007px; height: 39px;"
+                 class="s10" id="club-tag">
+                <div id="ppPrt0-11t8inlineContent" class="s10inlineContent"></div>
+            </div>
+            <div style="right: 72px; width: 253px; position: absolute; top: 765px; height: 124px;">
+                <div id="recent-posts"></div>
+            </div>
+            <div style="right: 36px; width: 287px; position: absolute; top: 664px;">
+                <h5 class="font_5">Recent Posts</h5>
+            </div>
+            <div style="right: 37px; width: 286px; position: absolute; top: 925px;">
+                <h5 class="font_5">Search By Tags</h5>
+            </div>
+            <div style="right: 35px; width: 288px; position: absolute; top: 417px;"
+            ">
+            <h5 class="font_5">Popular Posts</h5>
+        </div>
+        <div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;"
+             class="s78">
+            <div id="popular-posts"></div>
+        </div>
+        <div style="right: 65px; width: 257px; position: absolute; top: 120px;">
+            <p class="font_8" id="club-background"></p>
+        </div>
+        <div style="right: 64px; width: 257px; position: absolute; top: 48px;"><h5 class="font_5" id="club-title-about">
+            About DEMO CLUB</h5></div>
+        <div style="right: 31px; width: 290px; position: absolute; top: 101px; height: 5px;" class="s25"></div>
+        <div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
+        <div style="right: 34px; width: 291px; position: absolute; top: 723px; height: 5px;" class="s25"></div>
+        <div style="right: 31px; width: 291px; position: absolute; top: 982px; height: 5px;" class="s25"></div>
+    </div>
+</div>
+
+</body>
+</html>

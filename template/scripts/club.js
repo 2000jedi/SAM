@@ -40,8 +40,6 @@ $(document).ready(function() {
         $("#club-list").css("display", "block");
         $("#right-part").css("display", "none");
     }
-
-
 });
 
 

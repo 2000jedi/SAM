@@ -15,5 +15,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="require" level="application" />
+    <orderEntry type="library" name="main-r" level="application" />
+    <orderEntry type="library" name="analytics" level="application" />
   </component>
 </module>
