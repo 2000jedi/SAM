@@ -1,0 +1,208 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: auto;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+textarea, input, select {
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+html {
+    background-color: #edeff1;
+    height: 100%;
+}
+
+.font_0 {
+    font: normal normal bold 43px/1.4em din-next-w01-light, din-next-w02-light, din-next-w10-light, sans-serif;
+    color: #ECE7E7;
+}
+.font_1 {
+    font: normal normal normal 14px/1.4em helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+    color: #FFFDFD;
+}
+.font_2 {
+    font: normal normal normal 32px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #011836;
+}
+.font_3 {
+    font: normal normal normal 34px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #011836;
+}
+.font_4 {
+    font: normal normal normal 32px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #011836;
+}
+.font_5 {
+    font: normal normal normal 26px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #011836;
+}
+.font_6 {
+    font: normal normal normal 22px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #011836;
+}
+.font_7 {
+    font: normal normal normal 19px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #4E4D4D;
+}
+.font_8 {
+    font: normal normal normal 17px/1.4em nimbus-sans-tw01con, sans-serif;
+    color: #4E4D4D;
+}
+.font_9 {
+    font: normal normal normal 14px/1.4em 'open sans condensed', sans-serif;
+    color: #4E4D4D;
+}
+.font_10 {
+    font: normal normal normal 14px/1.4em 'open sans condensed', sans-serif;
+    color: #4E4D4D;
+}
+
+.s12richTextContainer {
+    word-wrap: break-word;
+    text-align: left;
+    white-space: normal;
+    color: black;
+}
+
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#SITE_CONTENT {
+    width: 80%;
+    position: absolute;
+    top: 222px;
+    left: 10%;
+    height: 1156px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#SITE_HEADER {
+    width: 90%;
+    position: absolute;
+    top: 0;
+    height: 222px;
+    left: 10%;
+}
+
+#SITE_HEADER_Background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 125%;
+    left: -12.5%;
+    background-color: rgba(43, 108, 163, 1);
+}
+
+#avatar {
+    width: 63px;
+    height: 63px;
+    object-fit: contain;
+    left: 28px;
+    position: absolute;
+    top: 82px;
+}
+
+#club-title {
+    line-height: 0.9em;
+    color: #EDEFF1;
+    left: 100px;
+    width: 558px;
+    position: absolute;
+    top: 83px;
+}
+
+#club-greeting {
+    color: #A5B7CC;
+    left: 102px;
+    width: 304px;
+    position: absolute;
+    top: 120px;
+}
+
+.post-title {
+    position: relative;
+    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.read-more {
+    max-width: 120px;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    height: 30px;
+    min-height: 23px;
+    background-color: rgba(61, 155, 233, 1);
+    font: normal normal normal 17px/1.4em 'open sans condensed', sans-serif;
+    transition: color 0.4s ease 0s;
+    color: #FFFFFF;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 30px;
+}
+
+.s25 {
+    border-bottom: 2px dotted rgba(120, 117, 117, 1);
+    height: 0 !important;
+    min-height: 0 !important;
+}

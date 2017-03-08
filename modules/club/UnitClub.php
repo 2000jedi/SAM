@@ -52,7 +52,7 @@ class UnitClub {
         $members = array();
         for ($i = 1; $i < count($membersIDStr) ; $i++){
             $member = $membersIDStr[$i];
-            $members[$i-1] = $member;
+            $members[$i-1] = $this->nameOfPerson($member);
         }
 
         return $members;
