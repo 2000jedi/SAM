@@ -120,16 +120,25 @@ html {
     text-decoration: underline;
 }
 
+#SITE_BACKGROUND {
+    width: 80%;
+    position: fixed;
+    top: 0;
+    left: 10%;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 0;
+}
+
 #SITE_CONTENT {
     width: 80%;
     position: absolute;
     top: 222px;
     left: 10%;
-    height: 1156px;
-    background-color: rgba(255, 255, 255, 1);
 }
 
 #SITE_HEADER {
+    z-index: 1;
     width: 90%;
     position: absolute;
     top: 0;

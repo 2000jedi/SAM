@@ -32,6 +32,7 @@ paramerters:
         <h6 class="font_6" id="club-greeting">Welcome.</h6>
     </div>
 </div>
+<div id="SITE_BACKGROUND"></div>
 <div id="SITE_CONTENT">
     <div style="left: 8px; width: calc(100% - 371px); position: absolute; top: 23px; height: 458px;"
          class="s73" id="club-content">
@@ -59,46 +60,35 @@ paramerters:
 
 </body>
 <script>
-
-    var post_template = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">\
-    <div class="post-title s12richTextContainer link" href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">\
-        <h2 class="font_4" style="line-height:1.2em;">\
-        Club Title\
-    </h2>\
-    </div>\
-    <div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">\
-        <p class="font_9" style="display: inline-flex;">March 6, 2017</p>\
-    <p class="font_9" style="display: inline-flex;">|</p>\
-        <p class="font_9" style="display: inline-flex;">Rachel G.</p>\
-    </div>\
-    <div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">\
-        <div class="s12richTextContainer">\
-        <p class="font_8">\
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do\
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim\
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\
-    consequat. Duis aute irure dolor in reprehender...\
-    </p>\
-    </div>\
-    </div>\
-    <div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">\
-        <a href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">\
-        <img src="https://static.wixstatic.com/media/b4600e_bea5f754bbc94c0ba0952cf6c1da8b28~mv2.png/v1/fill/w_569,h_273,al_c,usm_0.66_1.00_0.01/b4600e_bea5f754bbc94c0ba0952cf6c1da8b28~mv2.png"\
-    style="width: 100%; object-fit: contain;">\
-        </a>\
-        </div>\
-        <div class="read-more link"\
-    href="https://scoutydren.wixsite.com/clubdemo/single-post/2017/03/06/New-post-with-image">\
-        READ MORE\
-    </div>\
-    </div>';
-
     function dealWithMembers(members){
         var member_str = "";
         $.each(members, function(index, item) {
             member_str += item + "<br>";
         });
         return member_str;
+    }
+
+    function dealWithPosts(post){
+        var html = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">';
+        html += '<div class="post-title s12richTextContainer link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"><h2 class="font_4" style="line-height:1.2em;">';
+        html += post.information.split("\\n", 1)[0] + "</h2></div>";
+        html += '<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">';
+
+        html += '<p class="font_9" style="display: inline-flex;">' + post.publish + '</p>';
+        html += '<p class="font_9" style="display: inline-flex;">|</p>';
+        html += '<p class="font_9" style="display: inline-flex;">' + post.pname + '</p></div>';
+        html += '<div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">';
+        html += '<div class="s12richTextContainer">';
+        html += '<p class="font_8">';
+        html += post.information + '</p></div></div>';
+        html += '<div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">';
+
+        var url = '/framework/sam/login-bg.png';
+        html += '<a href="' + url + '">';
+        html += '<img src="'+ url +'"style="width: 100%; object-fit: contain;"></a></div>';
+        html += '<div class="read-more link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"> READ MORE</div></div>';
+
+        return html;
     }
 
     function load(id){
@@ -117,21 +107,12 @@ paramerters:
                 $("#club-organizer").html("Organizer: " + json.nameOfOrganizer + "<hr>" + dealWithMembers(json.members));
                 var activity_html = "";
                 $.each(json.activities, function(index, item) {
-                    activity_html += post_template;
+                    activity_html += dealWithPosts(item);
                 });
                 $("#club-content").html(activity_html);
             }
         });
     }
-    /*
-    var $id;
-    var $name;
-    var $introduction;
-    var $organizer;
-    var $nameOfOrganizer;
-    var $activities;
-    var $members;
-    */
     load(1);
 
 

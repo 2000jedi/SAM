@@ -22,8 +22,8 @@ class UnitClub {
         $this->introduction = $introduction;
         $this->organizer = $organizer;
         $this->nameOfOrganizer = $this->nameOfPerson($organizer);
-        $this->activities = $this->processFromDBStringToArray($activities);
-        $this->members = $this->processFromDBStringToArray($members);
+        $this->activities = $this->processPosts($activities);
+        $this->members = $this->processMembers($members);
     }
 
     function constructFromDBRow($row){
@@ -46,13 +46,36 @@ class UnitClub {
         return $name;
     }
 
-    function processFromDBStringToArray($dbStringMembers){
+    function processMembers($dbStringMembers){
         $membersIDStr = explode(";", $dbStringMembers);
 
         $members = array();
         for ($i = 1; $i < count($membersIDStr) ; $i++){
             $member = $membersIDStr[$i];
             $members[$i-1] = $this->nameOfPerson($member);
+        }
+
+        return $members;
+    }
+
+    function getPosts($post_id){
+        global $conn;
+        $sql = "SELECT * FROM club_post WHERE ID = '$post_id'";
+        $result = $conn->query($sql);
+
+        $row = $result->fetch_assoc();
+        $post = new UnitPost();
+        $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish']);
+        return $post;
+    }
+
+    function processPosts($dbStringMembers){
+        $membersIDStr = explode(";", $dbStringMembers);
+
+        $members = array();
+        for ($i = 1; $i < count($membersIDStr) ; $i++){
+            $member = $membersIDStr[$i];
+            $members[$i-1] = $this->getPosts($member);
         }
 
         return $members;
