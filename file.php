@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 
 function _post($str){
     $val = !empty($_POST[$str]) ? $_POST[$str] : null;
@@ -8,10 +7,6 @@ function _post($str){
 
 header("Content-Type:text/html; charset=utf-8");
 if(_post('submit')){
-=======
-header("Content-Type:text/html; charset=utf-8");
-if($_POST['submit']){
->>>>>>> origin/master
 	$upfiles = new Upload();
 	$upfiles->upload_file();
 }
@@ -98,8 +93,4 @@ class Upload{
 
 <form enctype="multipart/form-data" method="POST" action="">
 <input type="file" name="file"><input type="submit" name="submit" value="上传">
-<<<<<<< HEAD
 </form>
-=======
-</form>
->>>>>>> origin/master
