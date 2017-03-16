@@ -182,6 +182,49 @@ html {
     top: 120px;
 }
 
+#new-selector {
+    position: absolute;
+    top: 176px;
+    width: 80%;
+    left: 10%;
+    height: 46px;
+    z-index: 2;
+}
+
+#banner-coloring {
+    z-index: 1;
+    top: 176px;
+    position: absolute;
+    width: 100%;
+    height: 46px;
+    pointer-events: none;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: rgba(119, 182, 231, 1);
+}
+
+.selector-box {
+    display: inherit;
+    color: grey;
+    width: 125px;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.selector-box > div {
+    display: inline-block;
+    color: #EDEFF1;
+    line-height: 46px;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    font: normal normal 700 16px/1.4em americantypwrteritcw01--731025,americantypwrteritcw02--737091,serif;
+    transition: color 0.4s ease 0s;
+}
+
 .post-title {
     position: relative;
     display: block;
