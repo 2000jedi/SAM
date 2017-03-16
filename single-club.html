@@ -1,17 +1,3 @@
-<!--
-paramerters:
-#club-background
-#club-title-about
-#club-tag
-#club-content
-#popular-posts
-#recent-posts
-
-.post-title
-.post-photo
--->
-
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -33,10 +19,22 @@ paramerters:
 		</div>
 	</div>
 	<div id="banner-coloring"></div>
-	<div id="new-selector" style="">
-		<div class="selector-box selector-active">
-			<div>HOME</div>
+	<div id="new-selector">
+		<div class="selector-box" onclick="window.location.href='/dashboard.html';">
+			<div>Dashboard</div>
 		</div>
+        <div class="selector-box" onclick="window.location.href='/club.html';">
+            <div>Club</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/classes.html';">
+            <div>Classes</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/settings.html';">
+            <div>Settings</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/club-add.html';">
+            <div>Add Post</div>
+        </div>
 	</div>
 	<div id="SITE_BACKGROUND"></div>
 	<div id="SITE_CONTENT">
@@ -123,8 +121,8 @@ paramerters:
 	function request(paras){   
 		var url = location.href;   
 		var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");   
-		var paraObj = {}   
-		for (i=0; j=paraString[i]; i++){   
+		var paraObj = {};
+		for (var i=0, j; j=paraString[i]; i++){
 			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);   
 		}   
 		var returnValue = paraObj[paras.toLowerCase()];   
@@ -135,7 +133,5 @@ paramerters:
 		}   
 	}
 	load(request("id"));
-
-
 </script>
 </html>

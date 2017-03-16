@@ -205,23 +205,28 @@ html {
 }
 
 .selector-box {
-    display: inherit;
-    color: grey;
+    display: inline-block;
+    color: #EDEFF1;
     width: 125px;
     height: 100%;
     position: relative;
-    box-sizing: border-box;
     overflow: visible;
+}
+
+.selector-box:hover {
+    cursor: pointer;
+    background-color: #EDEFF1;
+    transition: background-color 0.4s ease 0s;
+    color: #2B689C;
 }
 
 .selector-box > div {
     display: inline-block;
-    color: #EDEFF1;
-    line-height: 46px;
     text-align: center;
     height: 100%;
     width: 100%;
     font: normal normal 700 16px/1.4em americantypwrteritcw01--731025,americantypwrteritcw02--737091,serif;
+    line-height: 46px;
     transition: color 0.4s ease 0s;
 }
 

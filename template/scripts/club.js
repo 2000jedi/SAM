@@ -29,11 +29,11 @@ $(document).ready(function() {
 
     function succFunction(data) {
         var json = eval(data);
-        $.each(json, function(index, item) {
+        $.each(json, function (index, item) {
             var id = json[index].id;
             var name = json[index].name;
-            var introduction = json[index].introduction;
-            var dom = "<div class='class-list' onclick=loadClubDetail(" + id + ")><h2>" + name + "</h2><div>" + introduction + " (ID:" + id + ")</div></div>"
+            var organizer = json[index].nameOfOrganizer;
+            var dom = "<div class='class-list' onclick=loadClubDetail(" + id + ")><h2>" + name + "</h2><div>Organizer: " + organizer + "</div></div>";
             $("#club-list").append(dom);
         });
         $("#msg-stats").css("display", "none");
@@ -42,14 +42,6 @@ $(document).ready(function() {
     }
 });
 
-
-//Load Club Detail
 function loadClubDetail(id) {
     window.location.href="/single-club.html?id=" + id;
-}
-
-function back() {
-    $("#msg-stats").css("display", "none");
-    $("#club-list").css("display", "block");
-    $("#right-part").css("display", "none");
 }
