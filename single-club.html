@@ -2,8 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>DEMO</title>
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Anton:n,b,i,bi|Basic:n,b,i,bi|Caudex:n,b,i,bi|Chelsea+Market:n,b,i,bi|Corben:n,b,i,bi|EB+Garamond:n,b,i,bi|Enriqueta:n,b,i,bi|Forum:n,b,i,bi|Fredericka+the+Great:n,b,i,bi|Jockey+One:n,b,i,bi|Josefin+Slab:n,b,i,bi|Jura:n,b,i,bi|Kelly+Slab:n,b,i,bi|Marck+Script:n,b,i,bi|Lobster:n,b,i,bi|Mr+De+Haviland:n,b,i,bi|Niconne:n,b,i,bi|Noticia+Text:n,b,i,bi|Overlock:n,b,i,bi|Patrick+Hand:n,b,i,bi|Play:n,b,i,bi|Sarina:n,b,i,bi|Signika:n,b,i,bi|Spinnaker:n,b,i,bi|Monoton:n,b,i,bi|Sacramento:n,b,i,bi|Cookie:n,b,i,bi|Raleway:n,b,i,bi|Open+Sans+Condensed:300:n,b,i,bi|Amatic+SC:n,b,i,bi|Cinzel:n,b,i,bi|Sail:n,b,i,bi|Playfair+Display:n,b,i,bi|Libre+Baskerville:n,b,i,bi|&amp;subset=latin-ext,cyrillic,japanese,korean,arabic,hebrew,latin">
-	<link rel="stylesheet" href="https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/v3/languages.css">
+	<link rel="stylesheet" href="/framework/googlefont/languages.css">
 	<link rel="stylesheet" href="/framework/sam/single-club.css">
 	<script src="/framework/js/jq.js"></script>
 	<script src="/framework/js/form.js"></script>
@@ -32,7 +31,7 @@
         <div class="selector-box" onclick="window.location.href='/settings.html';">
             <div>Settings</div>
         </div>
-        <div class="selector-box" onclick="window.location.href='/club-add.html';">
+        <div class="selector-box" onclick="window.location.href=addPost;">
             <div>Add Post</div>
         </div>
 	</div>
@@ -132,6 +131,8 @@
 			return returnValue;   
 		}   
 	}
-	load(request("id"));
+	var id = request("id");
+	var addPost = '/club-add.html?id='+id;
+    load(id);
 </script>
 </html>
