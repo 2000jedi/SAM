@@ -1,8 +1,11 @@
 <?php
 header("Content-Type:text/html; charset=utf-8");
-if($_POST['submit']){
+if(isset($_POST['submit'])){
 	$upfiles = new Upload();
-	$upfiles->upload_file();
+	$msg = $upfiles->upload_file();
+	echo $msg;
+} else {
+	echo "No Files.";
 }
 class Upload{
 
@@ -14,10 +17,11 @@ class Upload{
 	public $upload_filetype ;
 	public $allow_uploadedfile_type;
 	public $upload_file_size;
-	public $allow_uploaded_maxsize=10000000;
+	public $allow_uploaded_maxsize=100000000;
 
 	public function __construct()
 	{
+		$this->upload_file = $_FILES["file"];
 		$this->upload_name = $_FILES["file"]["name"];
 		$this->upload_filetype = $_FILES["file"]["type"];
 		$this->upload_tmp_name = $_FILES["file"]["tmp_name"];
@@ -29,6 +33,11 @@ class Upload{
 
 	public function upload_file()
 	{
+
+		if(!($this->checkSubmissionValid($this->upload_file))){
+			return "Authentication Failed.";
+		}
+
 		$upload_filetype = $this->getFileExt($this->upload_name);
 
 		if(in_array($upload_filetype,$this->allow_uploadedfile_type)){
@@ -52,19 +61,28 @@ class Upload{
         }
 
 				if(move_uploaded_file($this->upload_tmp_name,$this->upload_target_path)){
-          echo $this->upload_target_path;
+          return $this->upload_target_path;
         }else{
-          echo "failed.";
+          return "failed.";
         }
 
 			}
 			else{
-				echo("Size limitation exceed.");
+				return "Size limitation exceed.";
 			}
 		}
 		else{
-			echo("File Type not supported");
+			return "File Type not supported";
 		}
+	}
+
+	public function checkSubmissionValid($upload_file){
+
+		// further check file
+		// return false if failed.
+
+		return true;
+
 	}
 
    public function getFileExt($filename){
@@ -84,7 +102,3 @@ class Upload{
 
 }
 ?>
-
-<form enctype="multipart/form-data" method="POST" action="">
-<input type="file" name="file"><input type="submit" name="submit" value="上传">
-</form>
