@@ -17,10 +17,14 @@ class Upload{
 	public $upload_filetype ;
 	public $allow_uploadedfile_type;
 	public $upload_file_size;
+	// SHA-512 for "Make Computerization Great Again"
+	public $authentication_key = "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4";
+	public $user_key;
 	public $allow_uploaded_maxsize=100000000;
 
 	public function __construct()
 	{
+		$this->user_key = $_POST['auth_key'];
 		$this->upload_file = $_FILES["file"];
 		$this->upload_name = $_FILES["file"]["name"];
 		$this->upload_filetype = $_FILES["file"]["type"];
@@ -34,7 +38,7 @@ class Upload{
 	public function upload_file()
 	{
 
-		if(!($this->checkSubmissionValid($this->upload_file))){
+		if(!($this->checkSubmissionValid($this->upload_file,$this->user_key))){
 			return "Authentication Failed.";
 		}
 
@@ -63,7 +67,7 @@ class Upload{
 				if(move_uploaded_file($this->upload_tmp_name,$this->upload_target_path)){
           return $this->upload_target_path;
         }else{
-          return "failed.";
+          return "Failed.";
         }
 
 			}
@@ -76,12 +80,16 @@ class Upload{
 		}
 	}
 
-	public function checkSubmissionValid($upload_file){
+	public function checkSubmissionValid($upload_file,$user_key){
 
 		// further check file
 		// return false if failed.
 
-		return true;
+		if ($user_key == $this->authentication_key) {
+			return true;
+		}
+
+		return false;
 
 	}
 
