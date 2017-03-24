@@ -13,7 +13,7 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitPost.php";
 
 $result = checkForceQuit();
 
-$pid = $_GET["postid"];
+$pid = $_GET["id"];
 
 $manipulation = new ManipulateClubClass();
 echo $manipulation->loadPost($pid);

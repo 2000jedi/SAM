@@ -1,120 +1,138 @@
-<!--
-paramerters:
-#club-background
-#club-title-about
-#club-tag
-#club-content
-#popular-posts
-#recent-posts
-
-.post-title
-.post-photo
--->
-
-
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>DEMO</title>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Anton:n,b,i,bi|Basic:n,b,i,bi|Caudex:n,b,i,bi|Chelsea+Market:n,b,i,bi|Corben:n,b,i,bi|EB+Garamond:n,b,i,bi|Enriqueta:n,b,i,bi|Forum:n,b,i,bi|Fredericka+the+Great:n,b,i,bi|Jockey+One:n,b,i,bi|Josefin+Slab:n,b,i,bi|Jura:n,b,i,bi|Kelly+Slab:n,b,i,bi|Marck+Script:n,b,i,bi|Lobster:n,b,i,bi|Mr+De+Haviland:n,b,i,bi|Niconne:n,b,i,bi|Noticia+Text:n,b,i,bi|Overlock:n,b,i,bi|Patrick+Hand:n,b,i,bi|Play:n,b,i,bi|Sarina:n,b,i,bi|Signika:n,b,i,bi|Spinnaker:n,b,i,bi|Monoton:n,b,i,bi|Sacramento:n,b,i,bi|Cookie:n,b,i,bi|Raleway:n,b,i,bi|Open+Sans+Condensed:300:n,b,i,bi|Amatic+SC:n,b,i,bi|Cinzel:n,b,i,bi|Sail:n,b,i,bi|Playfair+Display:n,b,i,bi|Libre+Baskerville:n,b,i,bi|&amp;subset=latin-ext,cyrillic,japanese,korean,arabic,hebrew,latin">
-    <link rel="stylesheet" href="https://static.parastorage.com/services/santa-resources/resources/viewer/user-site-fonts/v3/languages.css">
-    <link rel="stylesheet" href="/framework/sam/single-club.css">
-    <script src="/framework/js/jq.js"></script>
-    <script src="/framework/js/form.js"></script>
-    <script src="/framework/js/masonry.js"></script>
+	<meta charset="utf-8">
+	<title>DEMO</title>
+	<link rel="stylesheet" href="/framework/googlefont/languages.css">
+	<link rel="stylesheet" href="/framework/sam/single-club.css">
+	<script src="/framework/js/jq.js"></script>
+	<script src="/framework/js/form.js"></script>
+	<script src="/framework/js/masonry.js"></script>
 </head>
 <body>
-<div id="SITE_HEADER">
-    <div id="SITE_HEADER_Background"></div>
-    <div id="SITE_HEADER_Content">
-        <img id="avatar" src="/framework/sam/SAM_logo.svg"/>
-        <h1 class="font_0" id="club-title">DEMO CLUB</h1>
-        <h6 class="font_6" id="club-greeting">Welcome.</h6>
-    </div>
-</div>
-<div id="SITE_BACKGROUND"></div>
-<div id="SITE_CONTENT">
-    <div style="left: 8px; width: calc(100% - 371px); position: absolute; top: 23px; height: 458px;"
-         class="s73" id="club-content">
-    </div>
-    <div style="right: 72px; width: 253px; position: absolute; top: 765px; height: 124px;">
-        <div id="club-organizer"></div>
-    </div>
-    <div style="right: 36px; width: 287px; position: absolute; top: 664px;">
-        <h5 class="font_5">Members</h5>
-    </div>
-    <div style="right: 35px; width: 288px; position: absolute; top: 417px;">
-    <h5 class="font_5">Popular Posts</h5>
-</div>
-<div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;" class="s78">
-    <div id="popular-posts"></div>
-</div>
-<div style="right: 65px; width: 257px; position: absolute; top: 120px;">
-    <p class="font_8" id="club-background"></p>
-</div>
-<div style="right: 64px; width: 257px; position: absolute; top: 48px;"><h5 class="font_5" id="club-title-about">
-    About DEMO CLUB</h5></div>
-<div style="right: 31px; width: 290px; position: absolute; top: 101px; height: 5px;" class="s25"></div>
-<div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
-<div style="right: 34px; width: 291px; position: absolute; top: 723px; height: 5px;" class="s25"></div>
-
+	<div id="SITE_HEADER">
+		<div id="SITE_HEADER_Background"></div>
+		<div id="SITE_HEADER_Content">
+			<img id="avatar" src="/framework/sam/SAM_logo.svg"/>
+			<h1 class="font_0" id="club-title">DEMO CLUB</h1>
+			<h6 class="font_6" id="club-greeting">Welcome.</h6>
+		</div>
+	</div>
+	<div id="banner-coloring"></div>
+	<div id="new-selector">
+		<div class="selector-box" onclick="window.location.href='/dashboard.html';">
+			<div>Dashboard</div>
+		</div>
+        <div class="selector-box" onclick="window.location.href='/club.html';">
+            <div>Club</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/classes.html';">
+            <div>Classes</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/settings.html';">
+            <div>Settings</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href=addPost;">
+            <div>Add Post</div>
+        </div>
+	</div>
+	<div id="SITE_BACKGROUND"></div>
+	<div id="SITE_CONTENT">
+		<div style="left: 8px; width: calc(100% - 371px); position: absolute; top: 23px; height: 458px;"
+		class="s73" id="club-content">
+	</div>
+	<div style="right: 72px; width: 253px; position: absolute; top: 765px; height: 124px;">
+		<div id="club-organizer"></div>
+	</div>
+	<div style="right: 36px; width: 287px; position: absolute; top: 664px;">
+		<h5 class="font_5">Members</h5>
+	</div>
+	<div style="right: 35px; width: 288px; position: absolute; top: 417px;">
+		<h5 class="font_5">Popular Posts</h5>
+	</div>
+	<div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;" class="s78">
+		<div id="popular-posts"></div>
+	</div>
+	<div style="right: 65px; width: 257px; position: absolute; top: 120px;">
+		<p class="font_8" id="club-background"></p>
+	</div>
+	<div style="right: 64px; width: 257px; position: absolute; top: 48px;"><h5 class="font_5" id="club-title-about">
+		About DEMO CLUB</h5></div>
+		<div style="right: 31px; width: 290px; position: absolute; top: 101px; height: 5px;" class="s25"></div>
+		<div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
+		<div style="right: 34px; width: 291px; position: absolute; top: 723px; height: 5px;" class="s25"></div>
+	</div>
 </body>
 <script>
-    function dealWithMembers(members){
-        var member_str = "";
-        $.each(members, function(index, item) {
-            member_str += item + "<br>";
-        });
-        return member_str;
-    }
+	function dealWithMembers(members){
+		var member_str = "";
+		$.each(members, function(index, item) {
+			member_str += item + "<br>";
+		});
+		return member_str;
+	}
 
-    function dealWithPosts(post){
-        var html = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">';
-        html += '<div class="post-title s12richTextContainer link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"><h2 class="font_4" style="line-height:1.2em;">';
-        html += post.information.split("\\n", 1)[0] + "</h2></div>";
-        html += '<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">';
+	function dealWithPosts(post){
+		var html = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">';
+		html += '<div class="post-title s12richTextContainer link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"><h2 class="font_4" style="line-height:1.2em;">';
+		html += post.information.split("\\n", 1)[0] + "</h2></div>";
+		html += '<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">';
 
-        html += '<p class="font_9" style="display: inline-flex;">' + post.publish + '</p>';
-        html += '<p class="font_9" style="display: inline-flex;">|</p>';
-        html += '<p class="font_9" style="display: inline-flex;">' + post.pname + '</p></div>';
-        html += '<div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">';
-        html += '<div class="s12richTextContainer">';
-        html += '<p class="font_8">';
-        html += post.information + '</p></div></div>';
-        html += '<div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">';
+		html += '<p class="font_9" style="display: inline-flex;">' + post.publish + '</p>';
+		html += '<p class="font_9" style="display: inline-flex;">|</p>';
+		html += '<p class="font_9" style="display: inline-flex;">' + post.pname + '</p></div>';
+		html += '<div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">';
+		html += '<div class="s12richTextContainer">';
+		html += '<p class="font_8">';
+		html += post.information + '</p></div></div>';
+		html += '<div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">';
 
-        var url = '/framework/sam/login-bg.png';
-        html += '<a href="' + url + '">';
-        html += '<img src="'+ url +'"style="width: 100%; object-fit: contain;"></a></div>';
-        html += '<div class="read-more link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"> READ MORE</div></div>';
+		var url = '/framework/sam/login-bg.png';
+		html += '<a href="' + url + '">';
+		html += '<img src="'+ url +'"style="width: 100%; object-fit: contain;"></a></div>';
+		html += '<div class="read-more link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"> READ MORE</div></div>';
 
-        return html;
-    }
+		return html;
+	}
 
-    function load(id){
-        $.ajax({
-            url: 'modules/club/loadClub.php?id=' + id,
-            type: 'GET',
-            dataType: 'json',
-            timeout: 1000,
-            cache: false,
-            success: function (data){
-                var json = eval(data);
-                document.title=json.name;
-                $("#club-title").html(json.name);
-                $("#club-title-about").html("About " + json.name);
-                $("#club-background").html(json.introduction);
-                $("#club-organizer").html("Organizer: " + json.nameOfOrganizer + "<hr>" + dealWithMembers(json.members));
-                var activity_html = "";
-                $.each(json.activities, function(index, item) {
-                    activity_html += dealWithPosts(item);
-                });
-                $("#club-content").html(activity_html);
-            }
-        });
-    }
-    load(1);
+	function load(id){
+		$.ajax({
+			url: 'modules/club/loadClub.php?id=' + id,
+			type: 'GET',
+			dataType: 'json',
+			timeout: 1000,
+			cache: false,
+			success: function (data){
+				var json = eval(data);
+				document.title=json.name;
+				$("#club-title").html(json.name);
+				$("#club-title-about").html("About " + json.name);
+				$("#club-background").html(json.introduction);
+				$("#club-organizer").html("Organizer: " + json.nameOfOrganizer + "<hr>" + dealWithMembers(json.members));
+				var activity_html = "";
+				$.each(json.activities, function(index, item) {
+					activity_html += dealWithPosts(item);
+				});
+				$("#club-content").html(activity_html);
+			}
+		});
+	}
 
-
+	function request(paras){   
+		var url = location.href;   
+		var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");   
+		var paraObj = {};
+		for (var i=0, j; j=paraString[i]; i++){
+			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);   
+		}   
+		var returnValue = paraObj[paras.toLowerCase()];   
+		if(typeof(returnValue)=="undefined"){   
+			return "";   
+		}else{   
+			return returnValue;   
+		}   
+	}
+	var id = request("id");
+	var addPost = '/club-add.html?id='+id;
+    load(id);
 </script>
 </html>

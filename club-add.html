@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Post</title>
+    <script src="/framework/ckeditor/ckeditor.js"></script>
+    <link rel="stylesheet" href="/framework/sam/single-club.css">
+    <link rel="stylesheet" href="/framework/googlefont/languages.css">
+</head>
+<body>
+    <form>
+        <label for="title">Title: </label><input type="text" id="title" name="title" />
+        <textarea name="editor" id="editor1" rows="10" cols="80">
+        </textarea>
+        Resources:
+        <input type="file" class="files" />
+    </form>
+    <div class="read-more link" onclick="submit(id);"> READ MORE</div>
+</body>
+<script>
+    CKEDITOR.replace('editor');
+
+    function submit() {
+        CKEDITOR.instances.editor.getData();
+    }
+
+    function request(paras){
+        var url = location.href;
+        var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
+        var paraObj = {};
+        for (var i=0, j; j=paraString[i]; i++){
+            paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+        }
+        var returnValue = paraObj[paras.toLowerCase()];
+        if(typeof(returnValue)=="undefined"){
+            return "";
+        }else{
+            return returnValue;
+        }
+    }
+    var id = request("id");
+</script>
+</html>

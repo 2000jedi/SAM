@@ -62,19 +62,12 @@
     #right-banner>span:hover {
         cursor: pointer;
         background-color: #edeff1;
+        transition: background-color 0.4s ease 0s;
     }
 
     #avatar {
         position: absolute;
         right: 30px;
-    }
-
-    .app {
-
-    }
-
-    .app-current {
-
     }
 }
 
