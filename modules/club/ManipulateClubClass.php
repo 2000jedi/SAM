@@ -145,17 +145,27 @@ class ManipulateClubClass {
 
         $membersStr .= ";" . $uid;
 
-        $sql1 = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
-        if ($conn->query($sql1) === TRUE){
-            return "Success!";
-        }else{
+        $sql = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
+        if ($conn->query($sql) !== TRUE){
             return "Unexpected error.";
         }
+
+        $sql = "SELECT watchClubs FROM student WHERE id='$cid'";
+
+        $membersStr = $row['watchclubs'];
+        $membersStr .= ";" . $cid;
+
+        $sql = "UPDATE student SET watchClubs = '$membersStr' WHERE id= '$uid'";
+        if ($conn->query($sql) !== TRUE){
+            return "Unexpected error.";
+        }
+
+        return "Success";
     }
 
     function leaveClub($cid, $uid){
         global $conn;
-        $sql = "SELECT * FROM club WHERE id = '$cid'";
+        $sql = "SELECT members FROM club WHERE id = '$cid'";
         $result = $conn->query($sql);
 
         $row = $result->fetch_assoc();
@@ -171,12 +181,29 @@ class ManipulateClubClass {
             }
         }
 
-        $sql1 = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
-        if ($conn->query($sql1) === TRUE){
-            return "Success!";
-        }else{
+        $sql = "UPDATE club SET members = '$membersStr' WHERE id = '$cid'";
+        if ($conn->query($sql) !== TRUE){
             return "Unexpected error.";
         }
+        
+        $sql = "SELECT watchClubs FROM student WHERE id='$cid'";
+        $row = $result->fetch_assoc();
+        $membersStr = $row['watchClubs'];
+        $membersIDs = explode(";", $membersStr);
+        $membersStr = "";
+
+        if (count($membersIDs) > 0){
+            for ($i = 1; $i < count($membersIDs); $i++){
+                if ($membersIDs[$i] != $uid){
+                    $membersStr .= ";" . $membersIDs[$i];
+                }
+            }
+        }
+        $sql = "UPDATE student SET watchClubs='$membersStr' WHERE id='$cid'";
+        if ($conn->query($sql) !== TRUE){
+            return "Unexpected error.";
+        }
+        return "Success";
     }
 
     function processFromDBStringToArray($dbStringMembers){
