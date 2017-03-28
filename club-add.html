@@ -1,21 +1,109 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Add Post</title>
     <script src="/framework/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="/framework/sam/single-club.css">
     <link rel="stylesheet" href="/framework/googlefont/languages.css">
+    <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <style>
+        /*#title {
+        width: 500px; !important;
+        padding: 5px;
+        line-height: 22px;
+        font-size: 18px;
+        border: 2px solid grey;
+        border-radius: 4px;
+      }
+      .form-group {
+        padding: 5px;
+        margin: 5px;
+        font-size: 20px;
+      }*/
+
+        #submit {
+            margin: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    <form>
-        <label for="title">Title: </label><input type="text" id="title" name="title" />
-        <textarea name="editor" id="editor1" rows="10" cols="80">
-        </textarea>
-        Resources:
-        <input type="file" class="files" />
-    </form>
-    <div class="read-more link" onclick="submit(id);"> READ MORE</div>
+
+    <div class="container">
+        <a href="#" class="btn">Back</a>
+        <div class="row">
+            <form class="col-md-9">
+
+                <div class="form-group">
+                    <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
+                </div>
+
+                <textarea name="editor" id="editor1" rows="10" cols="80">
+          </textarea>
+
+                <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
+
+            </form>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">File Manager</h4>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
+                        <p class="card-text">Upload and manage your image and file here.</p>
+                        <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
+
+                        <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">File Manager</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                           <span aria-hidden="true">&times;</span>
+                                         </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="form-control-label">Recipient:</label>
+                                                <input type="text" class="form-control" id="recipient-name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message-text" class="form-control-label">Message:</label>
+                                                <textarea class="form-control" id="message-text"></textarea>
+                                            </div>
+                                            <div>
+                                              <div class="card mb-3">
+                                            <img class="card-img-top" src="..." alt="Card image cap">
+                                            <div class="card-block">
+                                              <h4 class="card-title">File.name</h4>
+                                              <p class="card-text">Hint</p>
+                                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                            </div>
+                                          </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
 </body>
 <script>
     CKEDITOR.replace('editor');
@@ -24,20 +112,22 @@
         CKEDITOR.instances.editor.getData();
     }
 
-    function request(paras){
+    function request(paras) {
         var url = location.href;
-        var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
+        var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
         var paraObj = {};
-        for (var i=0, j; j=paraString[i]; i++){
-            paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+        for (var i = 0, j; j = paraString[i]; i++) {
+            paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
         }
         var returnValue = paraObj[paras.toLowerCase()];
-        if(typeof(returnValue)=="undefined"){
+        if (typeof(returnValue) == "undefined") {
             return "";
-        }else{
+        } else {
             return returnValue;
         }
     }
     var id = request("id");
 </script>
+
+
 </html>
