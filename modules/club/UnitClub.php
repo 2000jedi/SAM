@@ -65,7 +65,7 @@ class UnitClub {
 
         $row = $result->fetch_assoc();
         $post = new UnitPost();
-        $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish']);
+        $post->construct($row['ID'], $row['club'], $row['publisher'], $row['title'],$row['information'], $row['attachment'], $row['publish']);
         return $post;
     }
 

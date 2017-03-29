@@ -17,14 +17,14 @@ class UnitPost{
     var $attachment;
     var $publish;
 
-    function construct($id, $cid, $publisher, $information, $photo, $attachment, $publish){
+    function construct($id, $cid, $publisher, $title, $information, $attachment, $publish){
         global $conn;
 
         $this->id = $id;
         $this->cid = $cid;
         $this->publisher = $publisher;
+        $this->title = $title;
         $this->information = $information;
-        $this->photo = $photo;
         $this->attachment = $attachment;
         $this->publish = $publish;
 

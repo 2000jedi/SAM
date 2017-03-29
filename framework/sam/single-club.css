@@ -265,3 +265,12 @@ html {
     height: 0 !important;
     min-height: 0 !important;
 }
+
+#submit {
+    margin: 10px;
+}
+
+.container {
+    margin-top: 1em;
+    width: 100%;
+}

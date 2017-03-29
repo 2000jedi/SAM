@@ -66,11 +66,11 @@ class ManipulateClubClass {
         return "Success";
     }
 
-    function addPost($cid, $publisher, $information, $photo, $attachment) {
+    function addPost($cid, $publisher, $title, $information, $attachment) {
         $publish = time();
         global $conn;
 
-        $sql = "INSERT INTO club_post (club, publisher, information, photo, attachment, publish) VALUES ('$cid', '$publisher','$information','$photo', '$attachment', '$publish')";
+        $sql = "INSERT INTO club_post (club, publisher, title, information, attachment, publish) VALUES ('$cid', '$publisher', '$title', '$information', '$attachment', '$publish')";
         $conn->query($sql);
         return "Success";
     }
@@ -104,7 +104,7 @@ class ManipulateClubClass {
 
         $row = $result->fetch_assoc();
         $post = new UnitPost();
-        $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+        $post->construct($row['ID'], $row['club'], $row['title'], $row['publisher'], $row['information'],$row['attachment'], $row['publish'] );
         return json_encode($post);
     }
 
@@ -118,7 +118,7 @@ class ManipulateClubClass {
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             $post = new UnitPost();
-            $post->construct($row['ID'], $row['club'], $row['publisher'], $row['information'],$row['photo'], $row['attachment'], $row['publish'] );
+            $post->construct($row['ID'], $row['club'], $row['title'], $row['publisher'], $row['information'],$row['attachment'], $row['publish'] );
             $posts[$count++] = $post;
         }
 

@@ -5,92 +5,100 @@
     <meta charset="utf-8">
     <title>Add Post</title>
     <script src="/framework/ckeditor/ckeditor.js"></script>
-    <link rel="stylesheet" href="/framework/sam/single-club.css">
     <link rel="stylesheet" href="/framework/googlefont/languages.css">
     <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/framework/sam/single-club.css">
     <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <style>
-        /*#title {
-        width: 500px; !important;
-        padding: 5px;
-        line-height: 22px;
-        font-size: 18px;
-        border: 2px solid grey;
-        border-radius: 4px;
-      }
-      .form-group {
-        padding: 5px;
-        margin: 5px;
-        font-size: 20px;
-      }*/
-
-        #submit {
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <body>
+    <div id="SITE_HEADER">
+		<div id="SITE_HEADER_Background"></div>
+		<div id="SITE_HEADER_Content">
+			<img id="avatar" src="/framework/sam/SAM_logo.svg"/>
+			<h1 class="font_0" id="club-title">DEMO CLUB</h1>
+			<h6 class="font_6" id="club-greeting">Welcome.</h6>
+		</div>
+	</div>
+	<div id="banner-coloring"></div>
+	<div id="new-selector">
+		<div class="selector-box" onclick="window.location.href='/dashboard.html';">
+			<div>Dashboard</div>
+		</div>
+        <div class="selector-box" onclick="window.location.href='/club.html';">
+            <div>Club</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/classes.html';">
+            <div>Classes</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href='/settings.html';">
+            <div>Settings</div>
+        </div>
+        <div class="selector-box" onclick="window.location.href=addPost;">
+            <div>Add Post</div>
+        </div>
+	</div>
+	<div id="SITE_BACKGROUND"></div>
+    <div id="SITE_CONTENT">
+        <div class="container">
+            <div class="row">
+                <form class="col-md-9">
 
-    <div class="container">
-        <a href="#" class="btn">Back</a>
-        <div class="row">
-            <form class="col-md-9">
+                    <div class="form-group">
+                        <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
+                    </div>
 
-                <div class="form-group">
-                    <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
-                </div>
+                    <textarea name="editor" id="editor1" rows="10" cols="80">
+            </textarea>
 
-                <textarea name="editor" id="editor1" rows="10" cols="80">
-          </textarea>
+                    <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
 
-                <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
+                </form>
 
-            </form>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">File Manager</h4>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text">Upload and manage your image and file here.</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
 
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-block">
-                        <h4 class="card-title">File Manager</h4>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <p class="card-text">Upload and manage your image and file here.</p>
-                        <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
-
-                        <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">File Manager</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                         </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="recipient-name" class="form-control-label">Recipient:</label>
-                                                <input type="text" class="form-control" id="recipient-name">
+                            <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">File Manager</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="form-control-label">Recipient:</label>
+                                                    <input type="text" class="form-control" id="recipient-name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="form-control-label">Message:</label>
+                                                    <textarea class="form-control" id="message-text"></textarea>
+                                                </div>
+                                                <div>
+                                                <div class="card mb-3">
+                                                <img class="card-img-top" src="..." alt="Card image cap">
+                                                <div class="card-block">
+                                                <h4 class="card-title">File.name</h4>
+                                                <p class="card-text">Hint</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="message-text" class="form-control-label">Message:</label>
-                                                <textarea class="form-control" id="message-text"></textarea>
-                                            </div>
-                                            <div>
-                                              <div class="card mb-3">
-                                            <img class="card-img-top" src="..." alt="Card image cap">
-                                            <div class="card-block">
-                                              <h4 class="card-title">File.name</h4>
-                                              <p class="card-text">Hint</p>
-                                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                            </div>
-                                          </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Send message</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Send message</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -98,18 +106,34 @@
                     </div>
                 </div>
             </div>
+
         </div>
-
     </div>
-
-
-
 </body>
 <script>
     CKEDITOR.replace('editor');
+    var files = ";";
 
     function submit() {
-        CKEDITOR.instances.editor.getData();
+        function getCookie(c_name){
+            if (document.cookie.length>0){
+                c_start=document.cookie.indexOf(c_name + "=");
+                if (c_start!=-1){ 
+                    c_start=c_start + c_name.length+1;
+                    c_end=document.cookie.indexOf(";",c_start);
+                    if (c_end==-1)
+                        c_end=document.cookie.length;
+                    return unescape(document.cookie.substring(c_start,c_end));
+    　　　　　　} 
+　　　　    }
+　　　　    return "";
+        }
+        var html = CKEDITOR.instances.editor.getData();
+        var title = $("#title").val();
+        var username = getCookie("username");
+        var password = getCookie("password");
+
+        var 
     }
 
     function request(paras) {
@@ -128,6 +152,4 @@
     }
     var id = request("id");
 </script>
-
-
 </html>

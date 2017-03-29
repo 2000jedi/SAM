@@ -63,6 +63,19 @@
 	</div>
 </body>
 <script>
+	function loadSinglePost(post_id){
+		$.ajax({
+            url: 'modules/club/loadPost.php?id=' + post_id,
+            type: 'GET',
+            dataType: 'json',
+            timeout: 1000,
+            cache: false,
+            success: function (data){
+                $('#SITE_CONTENT').html(eval(data).information);
+            }
+        });
+	}
+
 	function dealWithMembers(members){
 		var member_str = "";
 		$.each(members, function(index, item) {
@@ -73,8 +86,8 @@
 
 	function dealWithPosts(post){
 		var html = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">';
-		html += '<div class="post-title s12richTextContainer link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"><h2 class="font_4" style="line-height:1.2em;">';
-		html += post.information.split("\\n", 1)[0] + "</h2></div>";
+		html += '<div class="post-title s12richTextContainer link" onclick="loadSinglePost(' + post.id + ');"><h2 class="font_4" style="line-height:1.2em;">';
+		html += post.title + "</h2></div>";
 		html += '<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">';
 
 		html += '<p class="font_9" style="display: inline-flex;">' + post.publish + '</p>';
