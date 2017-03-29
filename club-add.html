@@ -44,16 +44,11 @@
         <div class="container">
             <div class="row">
                 <form class="col-md-9">
-
                     <div class="form-group">
                         <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
                     </div>
-
-                    <textarea name="editor" id="editor1" rows="10" cols="80">
-            </textarea>
-
+                    <textarea name="editor" id="editor1" rows="10" cols="80"></textarea>
                     <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
-
                 </form>
 
                 <div class="col-md-3">
@@ -84,14 +79,14 @@
                                                     <textarea class="form-control" id="message-text"></textarea>
                                                 </div>
                                                 <div>
-                                                <div class="card mb-3">
-                                                <img class="card-img-top" src="..." alt="Card image cap">
-                                                <div class="card-block">
-                                                <h4 class="card-title">File.name</h4>
-                                                <p class="card-text">Hint</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div>
-                                            </div>
+                                                    <div class="card mb-3">
+                                                        <img class="card-img-top" src="..." alt="Card image cap">
+                                                        <div class="card-block">
+                                                            <h4 class="card-title">File.name</h4>
+                                                            <p class="card-text">Hint</p>
+                                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
@@ -106,7 +101,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </body>
@@ -130,10 +124,6 @@
         }
         var html = CKEDITOR.instances.editor.getData();
         var title = $("#title").val();
-        var username = getCookie("username");
-        var password = getCookie("password");
-
-        var 
     }
 
     function request(paras) {
@@ -150,6 +140,6 @@
             return returnValue;
         }
     }
-    var id = request("id");
+    var class_id = request("id");
 </script>
 </html>
