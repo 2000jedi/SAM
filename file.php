@@ -1,6 +1,6 @@
 <?php
 header("Content-Type:text/html; charset=utf-8");
-if(isset($_POST['submit'])){
+if(isset($_FILES['file'])){
 	$upfiles = new Upload();
 	$msg = $upfiles->upload_file();
 	echo $msg;
@@ -65,7 +65,9 @@ class Upload{
         }
 
 				if(move_uploaded_file($this->upload_tmp_name,$this->upload_target_path)){
-          return $this->upload_target_path;
+
+			      $fileinfo = array('path' => $this->upload_target_path, 'filename' => $this->upload_final_name, 'ext' => $this->getFileExt($this->upload_name), 'is_img' => $this->getFilePath($this->upload_name));
+						return json_encode($fileinfo);
         }else{
           return "Failed.";
         }
@@ -107,6 +109,7 @@ class Upload{
        return false;
      }
    }
+
 
 }
 ?>
