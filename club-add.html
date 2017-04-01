@@ -58,8 +58,6 @@
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text">Upload and manage your image and file here.</p>
                             <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
-
-
                                                                         <div id="file-container">
                                                                             <div class="card mb-3">
                                                                                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
@@ -93,14 +91,7 @@
                                                     <input class="form-control" type="file" id="file1" name="file"></input>
                                                 </div>
                                                 <input type="button" class="btn btn-primary" id="upload" value="上传" />
-
-
                                             </form>
-
-
-
-
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -153,9 +144,7 @@
         }
     }
     var class_id = request("id");
-</script>
 
-<script>
     $(function() {
         $("#upload").click(function() {
 
@@ -163,14 +152,14 @@
             formData.append("file", document.getElementById("file1").files[0]);
             formData.append("auth_key", "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4");
             $.ajax({
-                url: "file.php",
+                url: "http://188.166.151.67/file.php",
                 type: "POST",
                 data: formData,
                 contentType: false,
                 processData: false,
                 success: function(data) {
 
-                    alert("file upload success.");
+                    alert("file upload success");
                     //
                     // var fileData = new FormData();
                     var time = now();
@@ -200,7 +189,7 @@
 
                 },
                 error: function() {
-                    alert("上传失败！");
+                    alert("file upload fails");
                 }
             });
 
