@@ -13,21 +13,21 @@ class UnitClub {
     var $introduction;
     var $organizer;
     var $nameOfOrganizer;
-    var $activities;
     var $members;
+    var $activities;
 
-    function construct($id, $name, $introduction, $organizer, $activities, $members){
+    function construct($id, $name, $introduction, $organizer, $members){
         $this->id = $id;
         $this->name = $name;
         $this->introduction = $introduction;
         $this->organizer = $organizer;
         $this->nameOfOrganizer = $this->nameOfPerson($organizer);
-        $this->activities = $this->processPosts($activities);
         $this->members = $this->processMembers($members);
+        $this->activities = $this->processPosts();
     }
 
     function constructFromDBRow($row){
-        $this->construct($row["ID"], $row["name"], $row["introduction"],$row["organizer"], $row["activities"], $row["members"]);
+        $this->construct($row["ID"], $row["name"], $row["introduction"],$row["organizer"], $row["members"]);
     }
 
     function nameOfPerson($uid){
@@ -69,13 +69,15 @@ class UnitClub {
         return $post;
     }
 
-    function processPosts($dbStringMembers){
-        $membersIDStr = explode(";", $dbStringMembers);
+    function processPosts(){
+        global $conn;
 
+        $sql = "SELECT ID FROM club_post WHERE club = '$this->id' ORDER BY publish DESC";
+        $result = $conn->query($sql);
+        
         $members = array();
-        for ($i = 1; $i < count($membersIDStr) ; $i++){
-            $member = $membersIDStr[$i];
-            $members[$i-1] = $this->getPosts($member);
+        while($row = $result->fetch_assoc()) {
+            $members[] = $this->getPosts($row["ID"]);
         }
 
         return $members;

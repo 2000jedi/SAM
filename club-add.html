@@ -48,7 +48,7 @@
                         <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
                     </div>
                     <textarea name="editor" id="editor1" rows="10" cols="80"></textarea>
-                    <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
+                    <button type="button" class="btn btn-primary" id="submit" onclick="submit_request(class_id);">Submit</button>
                 </form>
 
                 <div class="col-md-3">
@@ -58,9 +58,24 @@
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text">Upload and manage your image and file here.</p>
                             <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
+<<<<<<< HEAD
 
 
                             <div id="file-selection" class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+=======
+                            <div id="file-container">
+                                <div class="card mb-3">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                    <div class="card-block">
+                                        <h4 class="card-title">File.name</h4>
+                                        <p class="card-text">Hint</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+>>>>>>> origin/master
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -82,10 +97,11 @@
                                                     <input class="form-control" type="file" id="file1" name="file"></input>
                                                 </div>
                                                 <input type="button" class="btn btn-primary" id="upload" value="上传" />
-
-
                                             </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -128,22 +144,13 @@
     CKEDITOR.replace('editor');
     var files = ";";
 
-    function submit() {
-        function getCookie(c_name) {
-            if (document.cookie.length > 0) {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1) {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1)
-                        c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start, c_end));　　　　　　
-                }　　　　
-            }　　　　
-            return "";
-        }
-        var html = CKEDITOR.instances.editor.getData();
-        var title = $("#title").val();
+    function submit_request(cid) {
+        $.post("/modules/club/addPost.php", {
+            cid: cid,
+            title: $("#title").val(),
+            html: CKEDITOR.instances.editor1.getData(),
+            attachment: files
+        },function(){window.location.href="/single-club.html?id="+cid})
     }
 
     function request(paras) {
@@ -161,8 +168,8 @@
         }
     }
     var class_id = request("id");
-</script>
 
+<<<<<<< HEAD
 <script>
 
 function getNowFormatDate() {
@@ -183,6 +190,8 @@ function getNowFormatDate() {
     return currentdate;
 }
 
+=======
+>>>>>>> origin/master
     $(function() {
         $("#upload").click(function() {
 
@@ -190,7 +199,11 @@ function getNowFormatDate() {
             formData.append("file", document.getElementById("file1").files[0]);
             formData.append("auth_key", "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4");
             $.ajax({
+<<<<<<< HEAD
                 url: "http://188.166.151.67:82/file.php",
+=======
+                url: "http://188.166.151.67/file.php",
+>>>>>>> origin/master
                 type: "POST",
                 data: formData,
                 dataType:"jsonp",
@@ -198,9 +211,13 @@ function getNowFormatDate() {
                 processData: false,
                 success: function(str) {
 
+<<<<<<< HEAD
                     // $("#card").append("Hello");
                     var data = eval("(" + str + ")");
                     // alert("file upload success.");
+=======
+                    alert("file upload success");
+>>>>>>> origin/master
                     //
                     // var fileData = new FormData();
                     var time = getNowFormatDate();
@@ -237,7 +254,7 @@ $('#upload-success').modal('show');
 
                 },
                 error: function() {
-                    alert("上传失败！");
+                    alert("file upload fails");
                 }
             });
 

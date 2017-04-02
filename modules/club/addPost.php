@@ -14,10 +14,10 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitPost.php";
 $result = checkForceQuit();
 
 $publisher = $result->uid;
-$class_id = $_GET["cid"];
-$title = $_GET["title"];
-$information = $_GET["html"];
-$attachment = $_GET["attachment"];
+$class_id = $_POST["cid"];
+$title = $_POST["title"];
+$information = $_POST["html"];
+$attachment = $_POST["attachment"];
 
 $club = new ManipulateClubClass();
 echo $club->addPost($class_id, $publisher, $title, $information, $attachment);
