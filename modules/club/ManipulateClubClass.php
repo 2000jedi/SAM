@@ -58,19 +58,18 @@ class ManipulateClubClass {
         return json_encode($club);
     }
 
-    function addClub($name, $organizer){
+    function addClub($name, $organizer, $introduction){
         global $conn;
 
-        $sql = "INSERT INTO club (name, organizer, activities, members) VALUES ('$name', '$organizer',;,;)";
+        $sql = "INSERT INTO club (name, organizer, members, introduction) VALUES ('$name', '$organizer',;, '$introduction')";
         $conn->query($sql);
         return "Success";
     }
 
     function addPost($cid, $publisher, $title, $information, $attachment) {
-        $publish = time();
         global $conn;
 
-        $sql = "INSERT INTO club_post (club, publisher, title, information, attachment, publish) VALUES ('$cid', '$publisher', '$title', '$information', '$attachment', '$publish')";
+        $sql = "INSERT INTO club_post (club, publisher, title, information, attachment, publish) VALUES ('$cid', '$publisher', '$title', '$information', '$attachment', now())";
         $conn->query($sql);
         return "Success";
     }
@@ -111,15 +110,14 @@ class ManipulateClubClass {
     function loadPosts($cid){
         global $conn;
 
-        $sql = "SELECT * FROM club_post WHERE club = '$cid'";
+        $sql = "SELECT * FROM club_post WHERE club = '$cid' ORDER BY publish DESC";
         $result = $conn->query($sql);
 
         $posts = array();
-        $count = 0;
         while ($row = $result->fetch_assoc()) {
             $post = new UnitPost();
             $post->construct($row['ID'], $row['club'], $row['title'], $row['publisher'], $row['information'],$row['attachment'], $row['publish'] );
-            $posts[$count++] = $post;
+            $posts[] = $post;
         }
 
         return json_encode($posts);

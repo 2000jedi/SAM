@@ -48,7 +48,7 @@
                         <input type="text" id="title" placeholder="Title" class="form-control" name="title" />
                     </div>
                     <textarea name="editor" id="editor1" rows="10" cols="80"></textarea>
-                    <button type="button" class="btn btn-primary" id="submit" onclick="submit(id);">Submit</button>
+                    <button type="button" class="btn btn-primary" id="submit" onclick="submit_request(class_id);">Submit</button>
                 </form>
 
                 <div class="col-md-3">
@@ -58,16 +58,16 @@
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
                             <p class="card-text">Upload and manage your image and file here.</p>
                             <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
-                                                                        <div id="file-container">
-                                                                            <div class="card mb-3">
-                                                                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                                                                <div class="card-block">
-                                                                                    <h4 class="card-title">File.name</h4>
-                                                                                    <p class="card-text">Hint</p>
-                                                                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                            <div id="file-container">
+                                <div class="card mb-3">
+                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                    <div class="card-block">
+                                        <h4 class="card-title">File.name</h4>
+                                        <p class="card-text">Hint</p>
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -111,22 +111,13 @@
     CKEDITOR.replace('editor');
     var files = ";";
 
-    function submit() {
-        function getCookie(c_name) {
-            if (document.cookie.length > 0) {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1) {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1)
-                        c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start, c_end));　　　　　　
-                }　　　　
-            }　　　　
-            return "";
-        }
-        var html = CKEDITOR.instances.editor.getData();
-        var title = $("#title").val();
+    function submit_request(cid) {
+        $.post("/modules/club/addPost.php", {
+            cid: cid,
+            title: $("#title").val(),
+            html: CKEDITOR.instances.editor1.getData(),
+            attachment: files
+        },function(){window.location.href="/single-club.html?id="+cid})
     }
 
     function request(paras) {
