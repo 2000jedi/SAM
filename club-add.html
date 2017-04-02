@@ -52,7 +52,7 @@
                 </form>
 
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card" id="card">
                         <div class="card-block">
                             <h4 class="card-title">File Manager</h4>
                             <h6 class="card-subtitle mb-2 text-muted"></h6>
@@ -60,18 +60,7 @@
                             <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
 
 
-                                                                        <div id="file-container">
-                                                                            <div class="card mb-3">
-                                                                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                                                                                <div class="card-block">
-                                                                                    <h4 class="card-title">File.name</h4>
-                                                                                    <p class="card-text">Hint</p>
-                                                                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                            <div class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div id="file-selection" class="modal fade file-manager" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -97,10 +86,6 @@
 
                                             </form>
 
-
-
-
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -109,7 +94,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div id="upload-success" class="modal fade">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Success</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>File uploaded Successfully.</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -156,6 +164,25 @@
 </script>
 
 <script>
+
+function getNowFormatDate() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+            + " " + date.getHours() + seperator2 + date.getMinutes()
+            + seperator2 + date.getSeconds();
+    return currentdate;
+}
+
     $(function() {
         $("#upload").click(function() {
 
@@ -163,17 +190,28 @@
             formData.append("file", document.getElementById("file1").files[0]);
             formData.append("auth_key", "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4");
             $.ajax({
-                url: "file.php",
+                url: "http://188.166.151.67:82/file.php",
                 type: "POST",
                 data: formData,
+                dataType:"jsonp",
                 contentType: false,
                 processData: false,
-                success: function(data) {
+                success: function(str) {
 
-                    alert("file upload success.");
+                    // $("#card").append("Hello");
+                    var data = eval("(" + str + ")");
+                    // alert("file upload success.");
                     //
                     // var fileData = new FormData();
-                    var time = now();
+                    var time = getNowFormatDate();
+                    var card = "<div class='card mb-3'> <div class='card-block'>  <h4 class='card-title' style='overflow:hidden;'>" + data.filename + "</h4>    <p class='card-text'>" + data.path +
+                        "</p>     <p class='card-text'><small class='text-muted'>" +time + "</small></p>  </div>  </div> ";
+                    $("#card").append(card);
+                    $("#card").append(data);
+
+$('#file-selection').modal('hide');
+$('#upload-success').modal('show');
+
                     // fileData.append("cid", 1);
                     // fileData.append("path", data.path);
                     // fileData.append("filename", data.filename);
@@ -196,7 +234,6 @@
                     //     }
                     // });
 
-                    $('#file-container').append('<div class="card mb-3"> <div class="card-block">  <h4 class="card-title">'+data.filename+'</h4>    <p class="card-text">'+data.description+'</p>     <p class="card-text"><small class="text-muted">'+time+'</small></p>  </div>  </div> ');
 
                 },
                 error: function() {
