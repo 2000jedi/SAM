@@ -60,7 +60,7 @@
                             <button class="btn btn-primary" data-toggle="modal" data-target=".file-manager">Open File Manager</button>
                             <div id="file-container">
                                 <div class="card mb-3">
-                                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                                    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                                     <div class="card-block">
                                         <h4 class="card-title">File.name</h4>
                                         <p class="card-text">Hint</p>
@@ -79,7 +79,9 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+
+                                          <iframe src="http://188.166.151.67/file.html" height="100%" width="100%"></iframe>
+                                            <!-- <form>
                                                 <div>Upload New File</div>
                                                 <div class="form-group">
                                                     <label for="file-description" class="form-control-label">Description</label>
@@ -91,7 +93,7 @@
                                                     <input class="form-control" type="file" id="file1" name="file"></input>
                                                 </div>
                                                 <input type="button" class="btn btn-primary" id="upload" value="上传" />
-                                            </form>
+                                            </form> -->
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -117,7 +119,9 @@
             title: $("#title").val(),
             html: CKEDITOR.instances.editor1.getData(),
             attachment: files
-        },function(){window.location.href="/single-club.html?id="+cid})
+        }, function() {
+            window.location.href = "/single-club.html?id=" + cid
+        })
     }
 
     function request(paras) {
@@ -135,57 +139,61 @@
         }
     }
     var class_id = request("id");
-
-    $(function() {
-        $("#upload").click(function() {
-
-            var formData = new FormData();
-            formData.append("file", document.getElementById("file1").files[0]);
-            formData.append("auth_key", "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4");
-            $.ajax({
-                url: "http://188.166.151.67/file.php",
-                type: "POST",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-
-                    alert("file upload success");
-                    //
-                    // var fileData = new FormData();
-                    var time = now();
-                    // fileData.append("cid", 1);
-                    // fileData.append("path", data.path);
-                    // fileData.append("filename", data.filename);
-                    // fileData.append("ext", data.ext);
-                    // fileData.append("is_img", data.is_img);
-                    // fileData.append("description", document.getElementById("file-description").val);
-                    // fileData.append("date_time", time);
-                    // $.ajax({
-                    //     url: "./modules/file/addFile.php",
-                    //     type: "POST",
-                    //     data: fileData,
-                    //     contentType: false,
-                    //     processData: false,
-                    //     success: function(json) {
-                    //         //  this.data = data;
-                    //         alert("success"+json);
-                    //     },
-                    //     error: function() {
-                    //         alert("上传失败！");
-                    //     }
-                    // });
-
-                    $('#file-container').append('<div class="card mb-3"> <div class="card-block">  <h4 class="card-title">'+data.filename+'</h4>    <p class="card-text">'+data.description+'</p>     <p class="card-text"><small class="text-muted">'+time+'</small></p>  </div>  </div> ');
-
-                },
-                error: function() {
-                    alert("file upload fails");
-                }
-            });
-
-        });
-    });
+    //
+    // $(function() {
+    //     $("#upload").click(function() {
+    //
+    //         var formData = new FormData();
+    //         formData.append("file", document.getElementById("file1").files[0]);
+    //         formData.append("auth_key", "cd30d21199b0cf0fda01047e8608081fcb2fd227836fd6fcf282f7f93d406c143da365df48014310ac049a754af3cea04dd24d4596797995fd7a724d4e830dd4");
+    //         // formdata.append("jsonpcallback","jsonpcallback");
+    //         $.ajax({
+    //             url: "http://188.166.151.67/file.php",
+    //             type: "POST",
+    //             // dataType: "jsonp",
+    //             // jsonp: "jsonpcallback",
+    //             data: formData,
+    //             contentType: false,
+    //             processData: false,
+    //             success: function(data) {
+    //
+    //                 alert("file upload success");
+    //                 //
+    //                 // var fileData = new FormData();
+    //                 var time = now();
+    //                 // fileData.append("cid", 1);
+    //                 // fileData.append("path", data.path);
+    //                 // fileData.append("filename", data.filename);
+    //                 // fileData.append("ext", data.ext);
+    //                 // fileData.append("is_img", data.is_img);
+    //                 // fileData.append("description", document.getElementById("file-description").val);
+    //                 // fileData.append("date_time", time);
+    //                 // $.ajax({
+    //                 //     url: "./modules/file/addFile.php",
+    //                 //     type: "POST",
+    //                 //     data: fileData,
+    //                 //     contentType: false,
+    //                 //     processData: false,
+    //                 //     success: function(json) {
+    //                 //         //  this.data = data;
+    //                 //         alert("success"+json);
+    //                 //     },
+    //                 //     error: function() {
+    //                 //         alert("上传失败！");
+    //                 //     }
+    //                 // });
+    //
+    //                 $('#file-container').append('<div class="card mb-3"> <div class="card-block">  <h4 class="card-title">' + data.filename + '</h4>    <p class="card-text">' + data.description +
+    //                     '</p>     <p class="card-text"><small class="text-muted">' + time + '</small></p>  </div>  </div> ');
+    //
+    //             },
+    //             error: function() {
+    //                 alert("file upload fails");
+    //             }
+    //         });
+    //
+    //     });
+    // });
 </script>
 
 </html>
