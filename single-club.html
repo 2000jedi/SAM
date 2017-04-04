@@ -97,7 +97,7 @@
 		html += '<div class="s12richTextContainer">';
 		html += '<p class="font_8">';
 		html += post.information + '</p></div></div>';
-		html += '<div class="read-more link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"> READ MORE</div></div>';
+		html += '<div class="read-more link" onclick="loadSinglePost(' + post.id + ')"> READ MORE</div></div>';
 
 		return html;
 	}
@@ -140,7 +140,12 @@
 		}   
 	}
 	var id = request("id");
-	var addPost = '/club-add.html?id='+id;
-    load(id);
+	var post = request("post");
+	if(post!=="")
+		loadSinglePost(post)
+	else{
+		var addPost = '/club-add.html?id='+id;
+    	load(id);
+	}
 </script>
 </html>

@@ -96,6 +96,30 @@
 
 </body>
 <script>
+    function PostHtml(row){
+        var html = "";
+
+        html += "<div class='assignment-list'>";
+        html += "<div class='connector'></div> ";
+        html += "       <div class='title'>" +
+            "<div class='title-text'>" + row.cname + "</div>" +
+            "<hr>" +
+            "<div class='assignment-info'>Publisher</div>";
+        html += "           <h2 class='subject'> " + row.pname + "</h2>";
+        html += "       </div>";
+        html += "       <div class='content'>";
+        html += "           <div class='content-text'>";
+        html += "               <div class='content-holder-no-hover'>" + row.information + "</div>";
+        html += "           </div>";
+        html += "       </div>";
+        html += "       <div class='action'>";
+        html += "<a href='#' class='btn-action-mark' onclick='window.location.href=" + '"' + "/single-club.html?post=" + row.id + '"' + "';> READ MORE</a>"
+        html += "       </div>";
+        html += "   <div class='footer'></div>";
+        html += "</div>";
+        return html;
+    }
+
     var VerticalHeight = -40;
 
     $.get("/modules/dashboard/getDashboard.php",function(data){
@@ -114,7 +138,7 @@
                 var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished, row.class);
                 $('#assignment-list').append(assignment.getHTML(true));
             } else {
-                
+                $('#assignment-list').append(PostHtml(row));
             }
             VerticalHeight += 189; // 189 is the height of the card.
         }

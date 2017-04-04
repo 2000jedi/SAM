@@ -243,6 +243,13 @@ div#right-part-view-class, div#assignment-list-class{
         z-index: 0;
     }
 
+    .content-holder-no-hover{
+        position: relative;
+        max-height: 130px;
+        overflow: hidden;
+        z-index: 0;
+    }
+
     .content-holder:hover{
         z-index: 999;
         overflow: visible;
