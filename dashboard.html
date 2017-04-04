@@ -121,33 +121,35 @@
     }
 
     var VerticalHeight = -40;
-
-    $.get("/modules/dashboard/getDashboard.php",function(data){
-        $('#assignment-list').html("");
-        data = JSON.parse(data);
-        var totalDoneTime = 0, totalTotalTime = 0;
-        for (var i = 0; i < data.length; i++){
-            var row = data[i];
-            if (row.type == "1" || row.type == "2"){
-                if (row.type == "1"){
-                    var singleTime = parseFloat(row.duration);
-                    if (row.finished)
-                        totalDoneTime += singleTime;
-                    totalTotalTime += singleTime;
+    function loadAssignment(){
+        $.get("/modules/dashboard/getDashboard.php",function(data){
+            $('#assignment-list').html("");
+            data = JSON.parse(data);
+            var totalDoneTime = 0, totalTotalTime = 0;
+            for (var i = 0; i < data.length; i++){
+                var row = data[i];
+                if (row.type == "1" || row.type == "2"){
+                    if (row.type == "1"){
+                        var singleTime = parseFloat(row.duration);
+                        if (row.finished)
+                            totalDoneTime += singleTime;
+                        totalTotalTime += singleTime;
+                    }
+                    var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished, row.class);
+                    $('#assignment-list').append(assignment.getHTML(true));
+                } else {
+                    $('#assignment-list').append(PostHtml(row));
                 }
-                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished, row.class);
-                $('#assignment-list').append(assignment.getHTML(true));
-            } else {
-                $('#assignment-list').append(PostHtml(row));
+                VerticalHeight += 189; // 189 is the height of the card.
             }
-            VerticalHeight += 189; // 189 is the height of the card.
-        }
-        if (totalTotalTime == 0)
-            updatePercentage(1.00);
-        else
-            updatePercentage(totalDoneTime / totalTotalTime);
-        $('.vertical').css('height', VerticalHeight);
-        VerticalHeight = -40;
-    });
+            if (totalTotalTime == 0)
+                updatePercentage(1.00);
+            else
+                updatePercentage(totalDoneTime / totalTotalTime);
+            $('.vertical').css('height', VerticalHeight);
+            VerticalHeight = -40;
+        });
+    }
+    loadAssignment();
 </script>
 </html>

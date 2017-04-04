@@ -58,9 +58,7 @@ function ManipulateAssignment(id){
      this.markCompletion = function(){
         var actual = 0;
         $.post("/modules/assignment/markCompletion.php",{id: this.id, actual: actual}, function(data){
-            loadAssignment(function(){
-                $('#assignment-list').html("");
-            });
+            loadAssignment();
         });
     };
 
@@ -71,9 +69,7 @@ function ManipulateAssignment(id){
     };
     this.markUnCompletion = function(){
         $.post("/modules/assignment/markUnCompletion.php",{id: this.id}, function(data){
-            loadAssignment(function(){
-                $('#assignment-list').html("");
-            });
+            loadAssignment();
         });
     };
 
