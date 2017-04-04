@@ -97,11 +97,6 @@
 		html += '<div class="s12richTextContainer">';
 		html += '<p class="font_8">';
 		html += post.information + '</p></div></div>';
-		html += '<div style="position:relative;display:block;flex-direction:column;box-sizing:border-box;margin-top:20px;margin-bottom:20px;width:100%;" class="post-photo">';
-
-		var url = '/framework/sam/login-bg.png';
-		html += '<a href="' + url + '">';
-		html += '<img src="'+ url +'"style="width: 100%; object-fit: contain;"></a></div>';
 		html += '<div class="read-more link" onclick="window.location.href=\'/post.html?id=' + post.id + '\'"> READ MORE</div></div>';
 
 		return html;

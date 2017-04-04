@@ -13,6 +13,7 @@ class UnitAssignment {
      *
      * Type 1 = Assignment
      * Type 2 = Notification
+     * Type 3 = Club Post (Exist in UnitPost)
      *
      */
     var $content;

@@ -16,6 +16,7 @@ class UnitPost{
     var $photo;
     var $attachment;
     var $publish;
+    var $type = 3; // Information Type: Unit Post
 
     function construct($id, $cid, $publisher, $title, $information, $attachment, $publish){
         global $conn;

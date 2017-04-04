@@ -18,7 +18,6 @@
 
     <script>
         function updatePercentage(perc) { // draw assignment percentage circle
-            perc = parseFloat(perc);
             em = Number(getComputedStyle(document.body, null).fontSize.replace(/[^\d]/g, ''));
 
             var canvas = document.getElementById("percentage");
@@ -35,16 +34,12 @@
                 ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
                 ctx.strokeStyle = 'rgba(81,157,217,1)';
                 ctx.stroke();
-            }
-
-            if (perc == 0.0) {
+            } else if (perc == 0.0) {
                 ctx.beginPath();
                 ctx.arc(20 * em, 20 * em, 12 * em, 0, 2 * Math.PI);
                 ctx.strokeStyle = 'rgba(240,124,120,1)';
                 ctx.stroke();
-            }
-
-            if ((perc < 1) && (perc > 0)) {
+            } else {
                 ctx.beginPath();
                 ctx.arc(20 * em, 20 * em, 12 * em, (1.0125 - perc) * 2 * Math.PI, 2 * Math.PI - 0.075);
                 ctx.strokeStyle = 'rgba(81,157,217,1)';
@@ -103,50 +98,32 @@
 <script>
     var VerticalHeight = -40;
 
-    function loadAssignment(func){
-        $.get("/modules/assignment/studentLoadAssignment.php",function(data){
-            func();
-            data = JSON.parse(data);
-            var todayDoneTime = 0, todayTotalTime = 0, totalDoneTime = 0, totalTotalTime = 0;
-            var todayDoneItems = 0, todayTotalItems = 0, totalDoneItems = 0, totalTotalItems = 0;
-            for (var i = 0; i < data.length; i++){
-                var row = data[i];
-                var subject = convertSubject(row.subject);
-                if (row.type == "1"){
-                    var date = row.dueday;
-                    var daysLeft = DateDiff.inDays(new Date(), new Date(date));
-                    var singleTime = parseFloat(parseFloat(row.duration).toFixed(1));
-                    if (daysLeft == 1){
-                        if (row.finished == true){
-                            todayDoneTime += singleTime;
-                            todayDoneItems++;
-                        }
-                        todayTotalTime += singleTime;
-                        todayTotalItems++;
-                    }
-                    if (row.finished == true){
-                        totalDoneTime += singleTime;
-                        totalDoneItems++;
-                    }
-                    totalTotalTime += singleTime;
-                    totalTotalItems++;
-                }
-                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, subject, row.duration, row.finished, row.class);
-                $('#assignment-list').append(assignment.getHTML(true));
-                VerticalHeight += 189; // 189 is the height of the card.
-            }
-            if (totalTotalTime == 0){
-                totalDoneTime = 1;
-                totalTotalTime = 1;
-            }
-            var totalPercentage = parseFloat(parseFloat(totalDoneTime / totalTotalTime)).toFixed(2);
-            updatePercentage(totalPercentage);
-            $('.vertical').css('height', VerticalHeight);
-            VerticalHeight = -40;
-        });
-    }
-    loadAssignment(function(){
+    $.get("/modules/dashboard/getDashboard.php",function(data){
         $('#assignment-list').html("");
+        data = JSON.parse(data);
+        var totalDoneTime = 0, totalTotalTime = 0;
+        for (var i = 0; i < data.length; i++){
+            var row = data[i];
+            if (row.type == "1" || row.type == "2"){
+                if (row.type == "1"){
+                    var singleTime = parseFloat(row.duration);
+                    if (row.finished)
+                        totalDoneTime += singleTime;
+                    totalTotalTime += singleTime;
+                }
+                var assignment = new Assignment("student", row.id, row.type, row.content, row.attachment, row.publish, row.dueday, convertSubject(row.subject), row.duration, row.finished, row.class);
+                $('#assignment-list').append(assignment.getHTML(true));
+            } else {
+                
+            }
+            VerticalHeight += 189; // 189 is the height of the card.
+        }
+        if (totalTotalTime == 0)
+            updatePercentage(1.00);
+        else
+            updatePercentage(totalDoneTime / totalTotalTime);
+        $('.vertical').css('height', VerticalHeight);
+        VerticalHeight = -40;
     });
 </script>
 </html>

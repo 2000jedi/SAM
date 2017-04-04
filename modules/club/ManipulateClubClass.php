@@ -15,12 +15,10 @@ class ManipulateClubClass {
         $result = $conn->query($sql);
 
         $clubs = array();
-        $counter = 0;
         while($row = $result->fetch_assoc()) {
             $uC = new UnitClub();
             $uC->constructFromDBRow($row);
-            $clubs[$counter] = $uC;
-            $counter++;
+            $clubs[] = $uC;
         }
 
         return json_encode($clubs);
