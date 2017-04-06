@@ -79,7 +79,7 @@
             cache: false,
             success: function (data){
 				var json = eval(data);
-                $('#SITE_CONTENT').html("<iframe style='width: 100%;height: 100%;' frameborder='0' scrolling='no' src='/modules/club/post.html?id=" + json.id + "'></iframe>");
+                $('#SITE_CONTENT').html("<iframe style='width: 100%;height: 100%; margin: 1em;' frameborder='0' scrolling='no' src='/modules/club/post.html?id=" + json.id + "'></iframe>");
 				$('#club-title').html(json.cname);
 				document.title = json.cname;
 				addPost = '/club-add.html?id=' + json.cid;
