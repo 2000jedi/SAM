@@ -34,7 +34,7 @@ class UnitPost{
         $row = $result->fetch_assoc();
         $this->cname = $row['name'];
 
-        $sql = "SELECT * FROM userinfo WHERE uid = '$publisher'";
+        $sql = "SELECT * FROM userInfo WHERE uid = '$publisher'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $ChineseName = $row["ChineseName"];

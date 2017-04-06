@@ -93,7 +93,7 @@ while($row = $result->fetch_assoc()) {
     }
 }
 
-$sql = "SELECT * FROM club_post ORDER BY publish DESC";
+$sql = "SELECT * FROM club_post WHERE to_days(now()) - to_days(publish) < 7 ORDER BY publish DESC";
 $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {

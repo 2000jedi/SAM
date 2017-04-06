@@ -1,0 +1,43 @@
+<html style="width:100%;">
+    <head>
+        <script src="/framework/js/jq.js"></script>
+        <style>
+img {
+    max-width: 100%;
+    height: auto !important;
+}
+div p {
+    max-width: 100%;
+}
+        </style>
+    </head>
+    <body style="margin: 0;width:100%;">
+    </body>
+    <script>
+    function request(paras) {
+        var url = location.href;
+        var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+        var paraObj = {};
+        for (var i = 0, j; j = paraString[i]; i++) {
+            paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+        }
+        var returnValue = paraObj[paras.toLowerCase()];
+        if (typeof(returnValue) == "undefined") {
+            return "";
+        } else {
+            return returnValue;
+        }
+    }
+    var post = request("id");
+    $.ajax({
+        url: '/modules/club/loadPost.php?id=' + post,
+        type: 'GET',
+        dataType: 'json',
+        timeout: 1000,
+        cache: false,
+        success: function (data){
+            $('body').html(eval(data).information);
+        }
+    });
+    </script>
+</html>

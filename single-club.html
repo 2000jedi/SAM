@@ -7,13 +7,15 @@
 	<script src="/framework/js/jq.js"></script>
 	<script src="/framework/js/form.js"></script>
 	<script src="/framework/js/masonry.js"></script>
+	<script src="/framework/js/vue.min.js"></script>
 </head>
 <body>
+	<div id="app">
 	<div id="SITE_HEADER">
 		<div id="SITE_HEADER_Background"></div>
 		<div id="SITE_HEADER_Content">
 			<img id="avatar" src="/framework/sam/SAM_logo.svg"/>
-			<h1 class="font_0" id="club-title">DEMO CLUB</h1>
+			<h1 class="font_0" id="club-title">{{clubname}}</h1>
 			<h6 class="font_6" id="club-greeting">Welcome.</h6>
 		</div>
 	</div>
@@ -39,27 +41,32 @@
 	<div id="SITE_CONTENT">
 		<div style="left: 8px; width: calc(100% - 371px); position: absolute; top: 23px; height: 458px;"
 		class="s73" id="club-content">
+		<post v-for="post in posts" v-bind:json="post"></post>
+		</div>
+		<div style="right: 35px; width: 288px; position: absolute; top: 417px;">
+			<h5 class="font_5">Members</h5>
+		</div>
+		<div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;" class="s78">
+			<div>
+				Organizer: {{organizer}} 
+				<hr />
+				<ol>
+				<li v-for='member in members'>
+					{{member}}
+					<br>
+				</li>
+				</ol>
+			</div>
+		</div>
+		<div style="right: 65px; width: 257px; position: absolute; top: 120px;">
+			<p class="font_8">{{introduction}}</p>
+		</div>
+		<div style="right: 64px; width: 257px; position: absolute; top: 48px;"><h5 class="font_5" id="club-title-about">
+			About {{clubname}}</h5></div>
+			<div style="right: 31px; width: 290px; position: absolute; top: 101px; height: 5px;" class="s25"></div>
+			<div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
+		</div>
 	</div>
-	<div style="right: 72px; width: 253px; position: absolute; top: 765px; height: 124px;">
-		<div id="club-organizer"></div>
-	</div>
-	<div style="right: 36px; width: 287px; position: absolute; top: 664px;">
-		<h5 class="font_5">Members</h5>
-	</div>
-	<div style="right: 35px; width: 288px; position: absolute; top: 417px;">
-		<h5 class="font_5">Popular Posts</h5>
-	</div>
-	<div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;" class="s78">
-		<div id="popular-posts"></div>
-	</div>
-	<div style="right: 65px; width: 257px; position: absolute; top: 120px;">
-		<p class="font_8" id="club-background"></p>
-	</div>
-	<div style="right: 64px; width: 257px; position: absolute; top: 48px;"><h5 class="font_5" id="club-title-about">
-		About DEMO CLUB</h5></div>
-		<div style="right: 31px; width: 290px; position: absolute; top: 101px; height: 5px;" class="s25"></div>
-		<div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
-		<div style="right: 34px; width: 291px; position: absolute; top: 723px; height: 5px;" class="s25"></div>
 	</div>
 </body>
 <script>
@@ -71,36 +78,30 @@
             timeout: 1000,
             cache: false,
             success: function (data){
-                $('#SITE_CONTENT').html(eval(data).information);
+				var json = eval(data);
+                $('#SITE_CONTENT').html("<iframe style='width: 100%;height: 100%;' frameborder='0' scrolling='no' src='/modules/club/post.html?id=" + json.id + "'></iframe>");
+				$('#club-title').html(json.cname);
+				document.title = json.cname;
+				addPost = '/club-add.html?id=' + json.cid;
             }
         });
 	}
 
-	function dealWithMembers(members){
-		var member_str = "";
-		$.each(members, function(index, item) {
-			member_str += item + "<br>";
-		});
-		return member_str;
-	}
-
-	function dealWithPosts(post){
-		var html = '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">';
-		html += '<div class="post-title s12richTextContainer link" onclick="loadSinglePost(' + post.id + ');"><h2 class="font_4" style="line-height:1.2em;">';
-		html += post.title + "</h2></div>";
-		html += '<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">';
-
-		html += '<p class="font_9" style="display: inline-flex;">' + post.publish + '</p>';
-		html += '<p class="font_9" style="display: inline-flex;">|</p>';
-		html += '<p class="font_9" style="display: inline-flex;">' + post.pname + '</p></div>';
-		html += '<div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">';
-		html += '<div class="s12richTextContainer">';
-		html += '<p class="font_8">';
-		html += post.information + '</p></div></div>';
-		html += '<div class="read-more link" onclick="loadSinglePost(' + post.id + ')"> READ MORE</div></div>';
-
-		return html;
-	}
+	Vue.component('post', {
+		props: ['json'],
+		template: '<div style="position:relative;display:block;flex:1;box-sizing:border-box;margin: 1em;">\
+		<div class="post-title s12richTextContainer link" v-bind:onclick="\'loadSinglePost(\' + json.id + \');\'"><h2 class="font_4" style="line-height:1.2em;">\
+		{{json.title}}</h2></div>\
+		<div id="date-author" style="position:relative;flex-direction:row;box-sizing:border-box;">\
+		<p class="font_9" style="display: inline-flex;">{{json.publish}}</p>\
+		<p class="font_9" style="display: inline-flex;">|</p>\
+		<p class="font_9" style="display: inline-flex;">{{json.pname}}</p></div>\
+		<div style="position:relative;display:block;box-sizing:border-box;height:auto;text-align:left;white-space:normal;overflow:hidden;margin-top:20px;">\
+		<div class="s12richTextContainer">\
+		<p class="font_8">\
+		<iframe style="width: 100%;max-height: 300px;" frameborder="0" scrolling="no" v-bind:src="\'/modules/club/post.html?id=\' + json.id"></iframe></p></div></div>\
+		<div class="read-more link" v-bind:onclick="\'loadSinglePost(\' + json.id + \');\'"> READ MORE</div></div>'
+	})
 
 	function load(id){
 		$.ajax({
@@ -112,15 +113,13 @@
 			success: function (data){
 				var json = eval(data);
 				document.title=json.name;
-				$("#club-title").html(json.name);
-				$("#club-title-about").html("About " + json.name);
-				$("#club-background").html(json.introduction);
-				$("#club-organizer").html("Organizer: " + json.nameOfOrganizer + "<hr>" + dealWithMembers(json.members));
-				var activity_html = "";
-				$.each(json.activities, function(index, item) {
-					activity_html += dealWithPosts(item);
-				});
-				$("#club-content").html(activity_html);
+				new Vue({el: "#app", data: {
+					clubname: json.name, 
+					introduction: json.introduction, 
+					members: json.members,
+					organizer: json.nameOfOrganizer,
+					posts: json.activities
+				}});
 			}
 		});
 	}
@@ -141,10 +140,12 @@
 	}
 	var id = request("id");
 	var post = request("post");
-	if(post!=="")
-		loadSinglePost(post)
+	var addPost = '';
+	if(post!==""){
+		loadSinglePost(post);
+	}
 	else{
-		var addPost = '/club-add.html?id='+id;
+		addPost = '/club-add.html?id=' + id;
     	load(id);
 	}
 </script>
