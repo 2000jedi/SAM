@@ -67,6 +67,26 @@ class ManipulateClubClass {
     function addPost($cid, $publisher, $title, $information, $attachment) {
         global $conn;
 
+        $sql = "SELECT organizer, members FROM club WHERE ID = '$cid'";
+        $valid = false;
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()){
+            if ($publisher === $row["organizer"]){
+                $valid = true;
+                break;
+            }
+            $membersIDs = explode(";", $row["members"]);
+            for ($i = 1; $i < count($membersIDs); $i++) {
+                if ($membersIDs[$i] === $publisher) {
+                    $valid = true;
+                    break;
+                }
+            }
+        }
+        if (!$valid){
+            return "Failed";
+        }
+
         $sql = "INSERT INTO club_post (club, publisher, title, information, attachment, publish) VALUES ('$cid', '$publisher', '$title', '$information', '$attachment', now())";
         $conn->query($sql);
         return "Success";

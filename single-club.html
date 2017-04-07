@@ -1,7 +1,7 @@
-<html>
+<html style="overflow-x: hidden;">
 <head>
 	<meta charset="utf-8">
-	<title>DEMO</title>
+	<title>ERROR</title>
 	<link rel="stylesheet" href="/framework/googlefont/languages.css">
 	<link rel="stylesheet" href="/framework/sam/single-club.css">
 	<script src="/framework/js/jq.js"></script>
@@ -79,7 +79,7 @@
             cache: false,
             success: function (data){
 				var json = eval(data);
-                $('#SITE_CONTENT').html("<iframe style='width: 100%;height: 100%; margin: 1em;' frameborder='0' scrolling='no' src='/modules/club/post.html?id=" + json.id + "'></iframe>");
+                $('#SITE_CONTENT').html("<iframe style='width: calc(100% - 2em);height: 100%;margin: 1em;' frameborder='0' scrolling='no' src='/modules/club/post.html?id=" + json.id + "'></iframe>");
 				$('#club-title').html(json.cname);
 				document.title = json.cname;
 				addPost = '/club-add.html?id=' + json.cid;
