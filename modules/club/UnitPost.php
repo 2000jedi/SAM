@@ -10,6 +10,7 @@ class UnitPost{
     var $id;
     var $cid;
     var $cname;
+    var $title;
     var $publisher;
     var $pname;
     var $information;
