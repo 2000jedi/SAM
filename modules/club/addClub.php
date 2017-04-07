@@ -18,8 +18,9 @@ if ($admin != "t001"){
     die("Permission Denied!");
 }
 
-$class_name = $_GET["name"];
-$organizer_id = $_GET["uid"];
+$class_name = $_POST["name"];
+$organizer_id = $_POST["organizer"];
+$introduction = $_POST["introduction"];
 
 $club = new ManipulateClubClass();
-echo $club->addClub($name, $uid);
+echo $club->addClub($class_name, $organizer_id, $introduction);

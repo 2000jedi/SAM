@@ -58,10 +58,12 @@ class ManipulateClubClass {
 
     function addClub($name, $organizer, $introduction){
         global $conn;
-
-        $sql = "INSERT INTO club (name, organizer, members, introduction) VALUES ('$name', '$organizer',;, '$introduction')";
-        $conn->query($sql);
-        return "Success";
+        if ($name !== "" && $organizer !== "" && $introduction !== ""){
+            $sql = "INSERT INTO club (name, organizer, members, introduction) VALUES ('$name', '$organizer',';' , '$introduction')";
+            $conn->query($sql);
+            return "Success";
+        }
+        return "Failed";
     }
 
     function addPost($cid, $publisher, $title, $information, $attachment) {

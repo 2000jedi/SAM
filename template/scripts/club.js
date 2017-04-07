@@ -1,45 +1,25 @@
 /**
  * Created by 2000jedi on 2017/2/26.
  */
-$(document).ready(function() {
 
-    //Load Club List when Page opened.
-    $.ajax({
-        url: 'modules/club/loadClub.php?id=-1',
-        type: 'GET',
-        dataType: 'json',
-        timeout: 1000,
-        cache: false,
-        beforeSend: LoadFunction, //加载执行方法
-        error: errFunction, //错误执行方法
-        success: succFunction //成功执行方法
+Vue.component('club', {
+    props: ['json'],
+    template: "<div class='class-list' @click='loadClubDetail(json.id)'>\
+        <h2>{{json.name}}</h2>\
+        <div>Organizer: {{json.nameOfOrganizer}}</div>\
+    </div>"
+});
+
+axios.get('modules/club/loadClub.php', {params:{id:-1}}).then(function(json){
+    new Vue({
+        el: "#club",
+        data: {
+            clubs: json.data
+        }
     });
-
-    function LoadFunction() {
-        $("#msg-stats").css("display", "block").html('Loading Club List...');
-        $("#club-list").css("display", "none");
-        $("#right-part").css("display", "none");
-    }
-
-    function errFunction() {
-        $("#msg-stats").css("display", "block").html('Error During Loading, Please Refresh');
-        $("#club-list").css("display", "none");
-        $("#right-part").css("display", "none");
-    }
-
-    function succFunction(data) {
-        var json = eval(data);
-        $.each(json, function (index, item) {
-            var id = json[index].id;
-            var name = json[index].name;
-            var organizer = json[index].nameOfOrganizer;
-            var dom = "<div class='class-list' onclick=loadClubDetail(" + id + ")><h2>" + name + "</h2><div>Organizer: " + organizer + "</div></div>";
-            $("#club-list").append(dom);
-        });
-        $("#msg-stats").css("display", "none");
-        $("#club-list").css("display", "block");
-        $("#right-part").css("display", "none");
-    }
+}).catch(function(error){
+    console.log(error);
+    alert("Network Unreachable");
 });
 
 function loadClubDetail(id) {

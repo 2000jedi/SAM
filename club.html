@@ -1,7 +1,7 @@
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <title>Club | SAM by Computerization</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
     <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/framework/sam/banner.css" type="text/css">
     <link rel="stylesheet" href="/framework/sam/club.css" type="text/css">
 
-    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="/framework/js/vue.min.js"></script>
+    <script src="/framework/js/axios.min.js"></script>
     <script src="/template/scripts/user.js"></script>
     <script src="/template/scripts/club.js"></script>
     <script>
@@ -35,9 +36,9 @@
     </div>
 
     <div id="club">
-        <p id="msg-stats"></p>
-
-        <div id="club-list"></div>
+        <div id="club-list">
+            <club v-for="item in clubs" :json="item"></club>
+        </div>
     </div>
 
 </body>
