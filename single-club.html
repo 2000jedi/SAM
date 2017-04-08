@@ -6,6 +6,18 @@
 	<link rel="stylesheet" href="/framework/sam/single-club.css">
 	<script src="/framework/js/vue.min.js"></script>
 	<script src="/framework/js/axios.min.js"></script>
+	<style>
+
+		.post-title {
+			font-size: 2em;
+			margin: 20px;
+		}
+
+		.divider {
+			border: 2px lightgrey solid;
+		}
+
+	</style>
 </head>
 <body>
 	<div id="app">
@@ -46,7 +58,7 @@
 			</div>
 			<div style="right: 59px; width: 263px; position: absolute; top: 487px; height: 63px;" class="s78">
 				<div>
-					Organizer: {{organizer}} 
+					Organizer: {{organizer}}
 					<hr />
 					<ol>
 					<li v-for='member in members'>
@@ -66,8 +78,9 @@
 			<div style="right: 32px; width: 289px; position: absolute; top: 467px; height: 5px;" class="s25"></div>
 		</div>
 		<div id="SITE_CONTENT" v-else>
-			<div>{{postname}}</div>
-			<iframe style='width: calc(100% - 2em);height: 100%;margin: 1em;' frameborder='0' scrolling='no' :src='"/modules/club/post.html?id=" + pid'></iframe>
+			<div class="post-title">{{postname}}</div>
+			<hr class="divider">
+			<iframe id='frame_content' style='width: calc(100% - 2em);margin: 1em;' frameborder='0' scrolling='no' :src='"/modules/club/post.html?id=" + pid' scrolling='auto'></iframe>
 		</div>
 	</div>
 </body>
@@ -117,11 +130,11 @@
 		axios.get('modules/club/loadClub.php', {params:{id:id}}).then(function(json){
 			document.title=json.data.name;
 			vm = new Vue({
-				el: "#app", 
+				el: "#app",
 				data: {
 					is_club: true,
-					clubname: json.data.name, 
-					introduction: json.data.introduction, 
+					clubname: json.data.name,
+					introduction: json.data.introduction,
 					members: json.data.members,
 					organizer: json.data.nameOfOrganizer,
 					posts: json.data.activities
@@ -132,19 +145,19 @@
         });
 	}
 
-	function request(paras){   
-		var url = location.href;   
-		var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");   
+	function request(paras){
+		var url = location.href;
+		var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
 		var paraObj = {};
 		for (var i=0, j; j=paraString[i]; i++){
-			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);   
-		}   
-		var returnValue = paraObj[paras.toLowerCase()];   
-		if(typeof(returnValue)=="undefined"){   
-			return "";   
-		}else{   
-			return returnValue;   
-		}   
+			paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length);
+		}
+		var returnValue = paraObj[paras.toLowerCase()];
+		if(typeof(returnValue)=="undefined"){
+			return "";
+		}else{
+			return returnValue;
+		}
 	}
 	var vm;
 	var id = request("id");
@@ -157,5 +170,15 @@
 		addPost = '/club-add.html?id=' + id;
     	load(id);
 	}
+
+	function reinitIframe(){
+	var iframe = document.getElementById("frame_content");
+	try{
+	iframe.height = iframe.contentWindow.document.documentElement.scrollHeight;
+	}catch (ex){}
+	}
+	window.setInterval("reinitIframe()", 200);
+
+
 </script>
 </html>
