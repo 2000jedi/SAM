@@ -17,7 +17,7 @@ class StatisticsClass {
 
 		$tableHTML = "<table border = '1' style='margin: 0 auto'><tr><td>Name</td><td>Occurrence</td></tr>";
 
-		$sql = "SELECT uid, COUNT(*) AS count FROM OperationLog WHERE time > DATE_ADD(CURDATE(), INTERVAL -$minusDay DAY)  GROUP BY uid ORDER BY count DESC";
+		$sql = "SELECT uid, COUNT(*) AS count FROM OperationLog WHERE time > DATE_ADD(CURDATE(), INTERVAL -$minusDay DAY) GROUP BY uid ORDER BY count DESC";
 		$users = $conn->query($sql);
 
 		while ($i = $users->fetch_assoc()){
@@ -36,7 +36,7 @@ class StatisticsClass {
 
 		echo "<div style='text-align: center'>";
 
-		$this->printActiveUsers("All active users", 10000);
+		$this->printActiveUsers("Active users in half a year", 180);
 		$this->printActiveUsers("Active User in a month", 30);
 		$this->printActiveUsers("Active User in a week", 7);
 		$this->printActiveUsers("Active User in a day", 1);
