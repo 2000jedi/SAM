@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Contacts | SAM by Computerization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/framework/geodesic/base.css" type="text/css">
+    <link rel="stylesheet" href="/framework/geodesic/settings.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/main.css" type="text/css">
+    <link rel="stylesheet" href="/framework/sam/banner.css" type="text/css">
+
+    <script src="/framework/js/jq.js"></script>
+    <script src="/framework/js/form.js"></script>
+    <script src="/framework/js/masonry.js"></script>
+
+    <script src="/template/scripts/class.js"></script>
+    <script src="/template/scripts/base.js"></script>
+    <script src="/template/scripts/assignment.js"></script>
+    <script src="/template/scripts/user.js"></script>
+    <script src="/template/scripts/contacts.js"></script>
+    <script>
+        function showModule(id) {
+            window.location.href = "/" + id +'.html';
+        }
+    </script>
+</head>
+
+<body>
+<div class="banner-pc">
+    <p id="left-banner">
+        <img src="/framework/sam/SAM_logo.svg" />
+        <span><lead>S</lead>AM</span>
+    </p>
+    <img id="avatar" src="/framework/material-images/user.png" height="40px">
+    <p id="right-banner">
+        <span class="app" onclick="showModule('dashboard');">Dashboard</span>
+        <span class="app" onclick="showModule('club');">Club</span>
+        <span class="app" onclick="showModule('classes');">Classes</span>
+        <span class="app app-current" onclick="showModule('contacts');">Contacts</span>
+        <span class="app" onclick="showModule('settings');">Settings</span>
+    </p>
+</div>
+    <div id="contacts" style="background-color: #edeff1;">
+        <div id="contactsList" class="contacts-content" style="background-color: #edeff1;"></div>
+    </div>
+</body>
+<script>
+    loadAllPersonalInfo();
+</script>
+</html>

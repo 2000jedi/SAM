@@ -41,6 +41,27 @@ class User {
         }
     }
 
+    function changeInfo($newInfo){
+        global $conn;
+        $sql = "UPDATE user SET info = '$newInfo' WHERE uid = $this->uid";
+        if ($conn->query($sql) === TRUE) {
+            echo "success";
+        } else {
+            echo "Unexpected error.";
+        }
+    }
+
+    function loadInfo(){
+        global $conn;
+        $sql = "SELECT info FROM user WHERE uid = $this->uid";
+        $result = $conn->query($sql);
+
+        while($row = $result->fetch_assoc()) {
+            echo $row["info"];
+            return;
+        }
+    }
+
     function __destruct(){}
 }
 

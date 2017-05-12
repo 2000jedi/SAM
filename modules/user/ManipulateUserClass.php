@@ -353,6 +353,8 @@ class ManipulateUserClass {
      * Then admin can decide which subject teacher should join SAM the next to maximize our working efficiency
      *
      * enumUserIP() enumerates user's IP
+     * 
+     * loadUserPersonalInfo() gives all the personal info that user fills into.
      *
      */
     function listUserInfo(){
@@ -574,6 +576,7 @@ class ManipulateUserClass {
         }
         echo $tableHTML;
     }
+
     function enumUserIP(){
         $tableHTML = "<table border = '1'><tr><td>Username</td><td>IP</td></tr>";
         global $conn;
@@ -601,6 +604,67 @@ class ManipulateUserClass {
         //enumerate username then print to the screen, find the ip according to the previous uid
     }
 
+    function reorganizePersonalInfoIntoClasses($arr){
+        $finalArr = array();
+        $counter = 0;
+        for ($i = 0; $i < count($arr); $i++) {
+            $personalInfoObj = $arr[$i];
+            $added = false;
+            for ($j = 0; $j < $counter; $j++) {
+                $added = $finalArr[$j]->addPersonalInfo($personalInfoObj);
+                if ( $added ) {
+                    break;
+                }
+            }
+            if (!$added){
+                // still not added, which means we need to add a new class in the array
+                $classObj = new UnitClassofPersonalInfo($personalInfoObj->class);
+                $classObj->addPersonalInfo($personalInfoObj);
+                $finalArr[$counter] = $classObj;
+                $counter++;
+            }
+        }
+        return $finalArr;
+    }
+
+    function loadUserPersonalInfo(){
+        global $conn;
+
+        $sql = "SELECT * FROM user WHERE username LIKE 's%' ORDER BY username ASC";
+        $result = $conn->query($sql);
+
+        $arr = array();
+        $counter = 0;
+
+        while($row = $result->fetch_assoc()) {
+            $uid = $row["uid"];
+            $username = $row["username"];
+            if (strlen($username)>7) {
+                // something like s001 does not count.
+                $class = substr($username, 1, 6); // format 201481
+                $ChineseName = "";
+                $EnglishName = "";
+                $info = $row["info"];
+
+                $sql2 = "SELECT * FROM userInfo WHERE uid = '$uid'";
+                $result2 = $conn->query($sql2);
+
+                while($row2 = $result2->fetch_assoc()) {
+                    $ChineseName = $row2['ChineseName'];
+                    $EnglishName = $row2['EnglishName'];
+                }
+                
+                $personalInfoObj = new UnitPersonalInfo($class, $ChineseName, $EnglishName, $info);
+                $arr[$counter] = $personalInfoObj;
+
+                $counter++;
+            }
+        }
+        echo json_encode($this->reorganizePersonalInfoIntoClasses($arr));
+    }
+
     // Part III ends
 
 }
+
+?>

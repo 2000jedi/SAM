@@ -84,7 +84,6 @@ if (!function_exists('checkForceQuit')){
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/floatBox.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/class.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/settings.js";
-        require $_SERVER['DOCUMENT_ROOT']."/template/scripts/waterfall.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/assignment.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/search.js";
         require $_SERVER['DOCUMENT_ROOT']."/template/scripts/presentation.js";
