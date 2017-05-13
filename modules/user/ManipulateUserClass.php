@@ -644,7 +644,7 @@ class ManipulateUserClass {
                 $class = substr($username, 1, 6); // format 201481
                 $ChineseName = "";
                 $EnglishName = "";
-                $info = $row["info"];
+                $info = "";
 
                 $sql2 = "SELECT * FROM userInfo WHERE uid = '$uid'";
                 $result2 = $conn->query($sql2);
@@ -652,6 +652,7 @@ class ManipulateUserClass {
                 while($row2 = $result2->fetch_assoc()) {
                     $ChineseName = $row2['ChineseName'];
                     $EnglishName = $row2['EnglishName'];
+                    $info = $row2["info"];
                 }
                 
                 $personalInfoObj = new UnitPersonalInfo($class, $ChineseName, $EnglishName, $info);
