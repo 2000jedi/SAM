@@ -46,7 +46,7 @@ div#right-part-view-class, div#assignment-list-class{
     right: 28px;
 }
 
-#assignment, #classes, #settings, #club {
+#assignment, #classes, #settings, #club{
     height: calc(100% - 46px);
     width: 100%;
     position: fixed;
@@ -123,7 +123,7 @@ div#right-part-view-class, div#assignment-list-class{
     margin: 8px 0;
     padding: 4px;
     font-size: 16px;
-    width: calc(100% - 8px);
+    width: 90%;
 }
 
 @media (min-width: 1000px) {
@@ -381,7 +381,7 @@ div#right-part-view-class, div#assignment-list-class{
         color: #5E5E5E;
         line-height:2em;
         box-shadow: 2px 2px 2px lightgrey;
-        height: 270px;
+        height: 250px;
     }
 
     label {
@@ -454,6 +454,10 @@ div#right-part-view-class, div#assignment-list-class{
 }
 
 @media (max-width: 999px) {
+    .a-button{
+        color: white;
+    }
+    
     #greeting {
         color: rgba(133,189,234,1);
         font-family: Tahoma, Geneva, sans-serif;

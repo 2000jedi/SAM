@@ -9,10 +9,6 @@
         box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     }
 
-    .banner-mobile {
-        display: none;
-    }
-
     #left-banner {
         position: absolute;
         margin: 0 0 0 1em;
@@ -72,9 +68,6 @@
 }
 
 @media (max-width: 999px) {
-    .banner-pc {
-        display: none;
-    }
 
     .banner-mobile {
         display: block;
@@ -87,6 +80,7 @@
 
     #left-banner {
         position: absolute;
+        top: 5px;
         margin: 0 0 0 1em;
         height: 40px;
     }
@@ -100,7 +94,7 @@
         /*font-size: 28px;*/
         font-weight: lighter;
         position: relative;
-        top: -9px;
+        top: -12px;
         left: 8px;
     }
 
@@ -114,7 +108,8 @@
     }
 
     #right-banner {
-        font-size: small;
+        top: 5px;
+        font-size: 1em;
         color: #000000;
         position: absolute;
         right: 0;
@@ -123,13 +118,11 @@
         line-height: 40px;
     }
 
-    #right-banner:hover {
-        color: #666666;
-        cursor: pointer;
+    #right-banner>span{
+        margin-left: 5px;
     }
 
     #avatar {
-        position: absolute;
-        right: 30px;
+        display: none;
     }
 }

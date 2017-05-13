@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<div class="banner-pc">
+<div class="banner-pc banner-mobile">
     <p id="left-banner">
         <img src="/framework/sam/SAM_logo.svg" />
         <span><lead>S</lead>AM</span>
@@ -75,33 +75,21 @@
                 </a>
             </div>
         </div>
-        <div class="">
-            <h2 class="">Change Contact and Personal Information</h2>
-            <div>You can write anything here, including contact info or even steam trade url.</div>
-            <div class="">
-                <textarea class="input-text" type="text" id="change-personal-info" placeholder="What's special about you?" style="height:100px"></textarea>
-                <label class="" for="change-personal-info">What's special about you?</label>
-            </div>
-            <div class="button">
-                <a class="a-button" onclick="changeInfo()">
-                    Change Personal Info
-                </a>
-            </div>
-        </div>
         <div class="" >
             <h2 class="c">More</h2>
             <div class="">Computerization Proudly Present</div>
             <div class="">Version 17.04.01</div>
-            <a class="a-button" onclick="signOut()">
-                Sign Out
-            </a> -
-            <a class="a-button" onclick="window.location='mailto:jedi.primer@yandex.com'">
-                Bug Report
-            </a>
+            <div class="button">
+                <a class="a-button" onclick="signOut()">
+                    Sign Out
+                </a>
+            </div>
+            <div class="button">
+                <a class="a-button" onclick="window.location='mailto:jedi.primer@yandex.com'">
+                    Bug Report
+                </a>
+            </div>
         </div>
     </div>
 </body>
 </html>
-<script>
-    loadInfo();
-</script>

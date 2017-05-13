@@ -1,3 +1,22 @@
+function changeInfo(){
+    var info = $('#change-personal-info').val();
+    $.post("/modules/user/changeInfo.php", {info: info}, function(data){
+        if (data == "success") {
+            alert("You have successfully changed your personal info.");
+        }else{
+            alert(data);
+        }
+    })
+}
+
+function loadInfo(){
+    $.get("/modules/user/loadInfo.php", function(content){
+        content = content.replace(/<br.*?>/g, "\n");
+        $('#change-personal-info').val(content);
+    })
+    
+}
+
 function loadAllPersonalInfo(){
 	$.get("/modules/user/loadAllInfo.php", function(data){
 		data = JSON.parse(data);
