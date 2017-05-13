@@ -391,6 +391,18 @@ textarea, input{
     margin: 10px 0;
     word-break: break-word;
 }
+
+.heightTransitionHide {
+    max-height: 0;
+    transition: max-height 0.4s ease-out;
+    overflow: hidden;
+}
+
+.heightTransitionShow {
+    max-height: 10000px;
+    transition: max-height 0.4s ease-in;
+}
+
 .card{
     margin-left: 1em;
     margin-right: 1em;
