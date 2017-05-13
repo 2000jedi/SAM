@@ -27,7 +27,7 @@ function loadAllPersonalInfo(){
 			var classPersonalInfoArray = oneClass.personalInfoArr;
 			html += "<div class='card'>";
         	html += "	<h2 class=''>" + className +"</h2>";
-        	html += "   <div><a class='a-button' onclick='ExpandORCollapseClass("+className+")'>Expand/Collapse</a></div>";
+        	html += "   <div class='button'><a class='a-button' onclick='ExpandORCollapseClass("+className+")'>Expand/Collapse</a></div>";
 			html += "	<div id='info-list-container-"+className+"' class='heightTransitionHide' style='padding: 0 5px; position: relative; overflow: hidden'>"
 			for (var j = 0; j < classPersonalInfoArray.length; j++) {
 				var onePerson = classPersonalInfoArray[j];
