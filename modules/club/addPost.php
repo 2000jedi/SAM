@@ -10,6 +10,8 @@ require $_SERVER['DOCUMENT_ROOT']."/modules/user/checkValid.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/club/ManipulateClubClass.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitClub.php";
 require $_SERVER['DOCUMENT_ROOT']."/modules/club/UnitPost.php";
+require $_SERVER['DOCUMENT_ROOT']."/modules/club/securityClass.php";
+
 
 $result = checkForceQuit();
 
@@ -17,12 +19,13 @@ $publisher = $result->uid;
 $class_id = $_POST["cid"];
 $title = $_POST["title"];
 $information = $_POST["html"];
+//
+// $information = str_replace("<iframe>","&lt;iframe&gt;",$information);
+// $information = str_replace("</iframe>","&lt;/iframe&gt;",$information);
+//
+// $information = str_replace("<script>","&lt;script&gt;",$information);
+// $information = str_replace("</script>","&lt;/script&gt;",$information);
 
-$information = str_replace("<iframe>","&lt;iframe&gt;",$information);
-$information = str_replace("</iframe>","&lt;/iframe&gt;",$information);
-
-$information = str_replace("<script>","&lt;script&gt;",$information);
-$information = str_replace("</script>","&lt;/script&gt;",$information);
 
 $attachment = $_POST["attachment"];
 
