@@ -16,4 +16,4 @@ $result = checkForceQuit();
 $pid = $_GET["id"];
 
 $manipulation = new ManipulateClubClass();
-echo $manipulation->loadPost($pid);
+echo "<noscript>".$manipulation->loadPost($pid)."</noscript>";
