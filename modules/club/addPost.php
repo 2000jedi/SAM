@@ -17,6 +17,13 @@ $publisher = $result->uid;
 $class_id = $_POST["cid"];
 $title = $_POST["title"];
 $information = $_POST["html"];
+
+$information = str_replace("<iframe>","&lt;iframe&gt;",$information);
+$information = str_replace("</iframe>","&lt;/iframe&gt;",$information);
+
+$information = str_replace("<script>","&lt;script&gt;",$information);
+$information = str_replace("</script>","&lt;/script&gt;",$information);
+
 $attachment = $_POST["attachment"];
 
 $club = new ManipulateClubClass();
