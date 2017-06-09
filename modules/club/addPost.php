@@ -26,6 +26,8 @@ $information = $_POST["html"];
 // $information = str_replace("<script>","&lt;script&gt;",$information);
 // $information = str_replace("</script>","&lt;/script&gt;",$information);
 
+$security = new Security();
+$information = $security -> RemoveXSS($information);
 
 $attachment = $_POST["attachment"];
 
