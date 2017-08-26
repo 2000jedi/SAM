@@ -52,7 +52,7 @@ html, body {
   color: #fff;
   position: absolute;
   top: 40%;
-  margin-left: 40%;
+  left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);

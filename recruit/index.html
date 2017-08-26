@@ -110,6 +110,44 @@
 	            }
 	        }
 	    });
+
+					var startX;
+					var startY;
+					var moveEndX;
+					var moveEndY;
+					var X;
+					var Y;
+			　　$("body").on("touchstart", function(e) {
+			// 　　　　e.preventDefault();
+			　　　　startX = e.originalEvent.changedTouches[0].pageX,
+			　　　　startY = e.originalEvent.changedTouches[0].pageY;
+			　　});
+			　　$("body").on("touchend", function(e) {
+			// 　　　　e.preventDefault();
+			　　　　moveEndX = e.originalEvent.changedTouches[0].pageX,
+			　　　　moveEndY = e.originalEvent.changedTouches[0].pageY,
+			　　　　X = moveEndX - startX,
+			　　　　Y = moveEndY - startY;
+
+			　　　　if ( Math.abs(X) > Math.abs(Y) && X > 0 ) {
+			// 　　　　　　alert("left 2 right");
+			　　　　}
+			　　　　else if ( Math.abs(X) > Math.abs(Y) && X < 0 ) {
+			// 　　　　　　alert("right 2 left");
+			　　　　}
+			　　　　else if ( Math.abs(Y) > Math.abs(X) && Y > 0) {
+			// 　　　　　　alert("top 2 bottom");
+			navigateUp();
+			　　　　}
+			　　　　else if ( Math.abs(Y) > Math.abs(X) && Y < 0 ) {
+			// 　　　　　　alert("bottom 2 top");
+			navigateDown();
+			　　　　}
+			　　　　else{
+			// 　　　　　　alert("just touch");
+			　　　　}
+			　　});
+
 	    $(document).on('click', '.scroll-btn', function () {
 	        if ($(this).hasClass('up')) {
 	            navigateUp();
