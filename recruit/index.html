@@ -1,347 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="zh">
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <title>Computerization Recruitment</title>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
-
-    <!-- Template styles -->
-    <style rel="stylesheet">
-        /* TEMPLATE STYLES */
-        /* Necessary for full page carousel*/
-
-        html,
-        body,
-        .view {
-            height: 100%;
-        }
-        /* Navigation*/
-
-        .navbar {
-            background-color: transparent;
-        }
-
-        .scrolling-navbar {
-            -webkit-transition: background .25s ease-in-out, padding .25s ease-in-out;
-            -moz-transition: background .25s ease-in-out, padding .25s ease-in-out;
-            transition: background .25s ease-in-out, padding .25s ease-in-out;
-        }
-
-        .top-nav-collapse {
-            background-color: #1C2331;
-        }
-
-        footer.page-footer {
-            background-color: #1C2331;
-            margin-top: 0;
-        }
-
-        @media only screen and (max-width: 768px) {
-            .navbar {
-                /* background-color: #1C2331; */
-                background-color: transparent;
-            }
-            .carousel-indicators{
-                display: none;
-            }
-        }
-        /* Carousel*/
-
-        .carousel,
-        .carousel-item,
-        .active {
-            height: 100%;
-        }
-
-        .carousel-inner {
-            height: 100%;
-        }
-
-        .carousel-item:nth-child(1) {
-            background-image: url("img/1.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .carousel-item:nth-child(2) {
-            background-image: url("img/2.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .carousel-item:nth-child(3) {
-            background-image: url("img/3.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .carousel-item:nth-child(4) {
-            background-image: url("img/4.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-        /*Caption*/
-
-        .flex-center {
-            color: #fff;
-        }
-
-        @media (min-width: 776px) {
-            .carousel .view ul li {
-                display: inline;
-            }
-            .carousel .view .full-bg-img ul li .flex-item {
-                margin-bottom: 1.5rem;
-            }
-        }
-
-        .hm-black-light .full-bg-img, .hm-black-light .mask {
-            background-color: rgba(0,0,0,.5);
-        }
-    </style>
-
-    <script>
-
-        document.addEventListener('touchstart', handleTouchStart, false);
-        document.addEventListener('touchmove', handleTouchMove, false);
-
-        var xDown = null;
-        var yDown = null;
-
-        function handleTouchStart(evt) {
-            xDown = evt.touches[0].clientX;
-            yDown = evt.touches[0].clientY;
-        }
-
-        function handleTouchMove(evt) {
-            if ( ! xDown || ! yDown ) {
-                return;
-            }
-
-            var xUp = evt.touches[0].clientX;
-            var yUp = evt.touches[0].clientY;
-
-            var xDiff = xDown - xUp;
-            var yDiff = yDown - yUp;
-
-            /* reset values */
-            xDown = null;
-            yDown = null;
-
-            if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-                if ( xDiff > 0 ) {
-                    $(".icon-next").click();
-                    return 1; // left
-                } else {
-                    $(".icon-prev").click();
-                    return 2; // right
-                }
-            } else {
-                if ( yDiff > 0 ) {
-                    return 3; // up
-                } else {
-                    return 4; // down
-                }
-            }
-        }
-    </script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Computerization Recruit</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<script type="text/javascript" src="js/modernizr.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/buttons.css">
 
 </head>
-
 <body>
-<div style='overflow:hidden; width:0px; height:0; margin:0 auto; position:absolute; top:-800px;'>
-    <img src="img/icon.png" />
-</div>
+	<div class="wrapper active-page1">
+	  <div class="page page1">
+			<div class="title">
+				<h2>Welcome to Computerization</h2>
+				<h4>Home of SAM. <br><br>We're Recruiting. A CAS Group in WFLA Shanghai.</h4>
+			</div>
+	  </div>
+	  <div class="page page2">
+			<div class="title">
+				<h2>We apply Next Generation Technologies</h2>
+				<h4>Our school-on-cloud platform SAM applies latest technologies in web development. Powered by PHP and based on the laravel framework, SAM uses Bootstrap, Material Design, Vue.js in its front-end user interface.</h4>
+			</div>
+	  </div>
+	  <div class="page page3">
+			<div class="title">
+		    <h2>We build Next Generation Applications</h2>
+				<h4>SAM has a unique design in both UI and UX, which enhances user experience.</h4>
+			</div>
+	  </div>
+	  <div class="page page4">
+			<div class="title">
+				<h2>We redefine Next Generation Online Collaboration Experiences</h2>
+				<h4>SAM has an operation history of 3 years. From moodle to independently developed platform, SAM aims at providing a powerful platform connecting students, teachers, and organizations in school.</h4>
+			</div>
+		</div>
 
-<!--Navbar-->
-<nav class="navbar navbar-dark navbar-fixed-top scrolling-navbar">
+	  <div class="page page5">
+			<div class="title">
+				<h2>Computerization, A place for Innovators.</h2>
+				<h4>We're looking forward to build #SAMNextGeneration with you!</h4>
+				<a href="info.html" style="margin-top:2em;" class="button button-3d button-rounded button-jumbo">Join us Now</a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-panel">
+	  <div class="scroll-btn up"></div>
+	  <div class="scroll-btn down"></div>
+	  <nav>
+	    <ul>
+	      <li data-target="1" class="nav-btn nav-page1 active"></li>
+	      <li data-target="2" class="nav-btn nav-page2"></li>
+	      <li data-target="3" class="nav-btn nav-page3"></li>
+	      <li data-target="4" class="nav-btn nav-page4"></li>
+	      <li data-target="5" class="nav-btn nav-page5"></li>
+	    </ul>
+	  </nav>
+	</div>
 
-    <!-- Collapse button-->
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx">
-        <i class="fa fa-bars"></i>
-    </button>
-
-    <div class="container">
-
-        <!--Collapse content-->
-        <div class="navbar-toggleable-xs" id="collapseEx">
-            <!--Navbar Brand-->
-            <a class="navbar-brand" href="http://mdbootstrap.com/material-design-for-bootstrap/" target="_blank">Computerization</a>
-        </div>
-        <!--/.Collapse content-->
-
-    </div>
-
-</nav>
-<!--/.Navbar-->
-
-<!--Carousel Wrapper-->
-<div id="carousel-example-1" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
-    <!--Indicators-->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-1" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-1" data-slide-to="1"></li>
-        <li data-target="#carousel-example-1" data-slide-to="2"></li>
-        <li data-target="#carousel-example-1" data-slide-to="3"></li>
-    </ol>
-    <!--/.Indicators-->
-
-    <!--Slides-->
-    <div class="carousel-inner" role="listbox">
-
-        <!--First slide-->
-        <div class="carousel-item active">
-            <!--Mask-->
-            <div class="view hm-black-light">
-                <div class="full-bg-img flex-center">
-                    <ul class="animated fadeInUp col-md-12">
-                        <li>
-                            <h1 class="h1-responsive flex-item">We are pioneers and trailblazers.</h1>
-                        </li>
-                        <li>
-                            <p class="flex-item">We want innovators who are unsatisfied with the present.</p>
-                        </li>
-                        <li>
-                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an innovator!</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/.Mask-->
-        </div>
-        <!--/.First slide-->
-
-        <!--Second slide -->
-        <div class="carousel-item">
-            <!--Mask-->
-            <div class="view hm-black-light">
-                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                    <ul class="animated fadeInUp col-md-12">
-                        <li>
-                            <h1 class="h1-responsive flex-item">We will solve your problems.</h1>
-                        </li>
-                        <li>
-                            <p class="flex-item">We want scientists who solve the problem of next generation.</p>
-                        </li>
-                        <li>
-                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be a scientist!</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/.Mask-->
-        </div>
-        <!--/.Second slide -->
-
-        <!--Third slide-->
-        <div class="carousel-item">
-            <!--Mask-->
-            <div class="view hm-black-light">
-                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                    <ul class="animated fadeInUp col-md-12">
-                        <li>
-                            <h1 class="h1-responsive flex-item">We transform inspirations into workable code.</h1>
-                        </li>
-                        <li>
-                            <p class="flex-item">We want engineers who turn word into code.</p>
-                        </li>
-                        <li>
-                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to an engineer!</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/.Mask-->
-        </div>
-        <!--/.Third slide-->
-
-        <!--Fourth slide-->
-        <div class="carousel-item">
-            <!--Mask-->
-            <div class="view hm-black-light">
-                <div class="full-bg-img flex-center" style="background-color: rgba(0,0,0,.7);">
-                    <ul class="animated fadeInUp col-md-12">
-                        <li>
-                            <h1 class="h1-responsive flex-item">Our struggle finally becomes the platform SAM. </h1>
-                        </li>
-                        <li>
-                            <p class="flex-item">We want artists who define everything we see.</p>
-                        </li>
-                        <li>
-                            <a target="_blank" href="/recruit/signUp.html" class="btn btn-primary btn-lg flex-item">Sign up to be an artist!</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!--/.Mask-->
-        </div>
-        <!--/.Fourth slide-->
-    </div>
-    <!--/.Slides-->
-
-    <!--Controls-->
-    <a class="left carousel-control" href="#carousel-example-1" role="button" data-slide="prev">
-        <span class="icon-prev" aria-hidden="true" style="font-size: 3em;"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-1" role="button" data-slide="next">
-        <span class="icon-next" aria-hidden="true" style="font-size: 3em;"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    <!--/.Controls-->
-</div>
-<!--/.Carousel Wrapper-->
-<!--/.Main layout-->
-
-
-
-<!--Footer-->
-<footer class="page-footer center-on-small-only">
-    <!--Copyright-->
-    <div class="footer-copyright">
-        <div class="container-fluid">
-            Using Material Design from © 2015 Copyright: <a href="http://www.MDBootstrap.com"> MDBootstrap.com </a>
-
-        </div>
-    </div>
-    <!--/.Copyright-->
-
-</footer>
-<!--/.Footer-->
-
-
-<!-- SCRIPTS -->
-
-<!-- JQuery -->
-<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
-
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/tether.min.js"></script>
-
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
-
-
+	<script src='js/stopExecutionOnTimeout.js?t=1'></script>
+	<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+	<script>
+	'use strict';
+	$(document).ready(function () {
+	    var $wrap = $('.wrapper'), pages = $('.page').length, scrolling = false, currentPage = 1, $navPanel = $('.nav-panel'), $scrollBtn = $('.scroll-btn'), $navBtn = $('.nav-btn');
+	    function manageClasses() {
+	        $wrap.removeClass(function (index, css) {
+	            return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+	        });
+	        $wrap.addClass('active-page' + currentPage);
+	        $navBtn.removeClass('active');
+	        $('.nav-btn.nav-page' + currentPage).addClass('active');
+	        $navPanel.addClass('invisible');
+	        scrolling = true;
+	        setTimeout(function () {
+	            $navPanel.removeClass('invisible');
+	            scrolling = false;
+	        }, 1000);
+	    }
+	    function navigateUp() {
+	        if (currentPage > 1) {
+	            currentPage--;
+	            if (Modernizr.csstransforms) {
+	                manageClasses();
+	            } else {
+	                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    }
+	    function navigateDown() {
+	        if (currentPage < pages) {
+	            currentPage++;
+	            if (Modernizr.csstransforms) {
+	                manageClasses();
+	            } else {
+	                $wrap.animate({ 'top': '-' + (currentPage - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    }
+	    $(document).on('mousewheel DOMMouseScroll', function (e) {
+	        if (!scrolling) {
+	            if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+	                navigateUp();
+	            } else {
+	                navigateDown();
+	            }
+	        }
+	    });
+	    $(document).on('click', '.scroll-btn', function () {
+	        if ($(this).hasClass('up')) {
+	            navigateUp();
+	        } else {
+	            navigateDown();
+	        }
+	    });
+	    $(document).on('click', '.nav-btn:not(.active)', function () {
+	        if (!scrolling) {
+	            var target = $(this).attr('data-target');
+	            if (Modernizr.csstransforms) {
+	                $wrap.removeClass(function (index, css) {
+	                    return (css.match(/(^|\s)active-page\S+/g) || []).join(' ');
+	                });
+	                $wrap.addClass('active-page' + target);
+	                $navBtn.removeClass('active');
+	                $(this).addClass('active');
+	                $navPanel.addClass('invisible');
+	                currentPage = target;
+	                scrolling = true;
+	                setTimeout(function () {
+	                    $navPanel.removeClass('invisible');
+	                    scrolling = false;
+	                }, 1000);
+	            } else {
+	                $wrap.animate({ 'top': '-' + (target - 1) * 100 + '%' }, 1000);
+	            }
+	        }
+	    });
+	});
+	</script>
 </body>
-
 </html>
