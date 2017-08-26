@@ -43,7 +43,7 @@
 			<div class="title">
 				<h2>Computerization, A place for Innovators.</h2>
 				<h4>We're looking forward to build #SAMNextGeneration with you!</h4>
-				<a href="info.html" style="margin-top:2em;" class="button button-3d button-rounded button-jumbo">Join us Now</a>
+				<a id="joinbtn" href="info.html" style="margin-top:2em;" class="button button-3d button-rounded button-jumbo">Join us Now</a>
 			</div>
 		</div>
 	</div>
@@ -122,6 +122,10 @@
 			　　　　startX = e.originalEvent.changedTouches[0].pageX,
 			　　　　startY = e.originalEvent.changedTouches[0].pageY;
 			　　});
+
+			$("body").on("touchmove", function(e) {
+			　　　　e.preventDefault();
+			　　});
 			　　$("body").on("touchend", function(e) {
 			// 　　　　e.preventDefault();
 			　　　　moveEndX = e.originalEvent.changedTouches[0].pageX,
@@ -147,6 +151,10 @@
 			// 　　　　　　alert("just touch");
 			　　　　}
 			　　});
+			// 
+			// $("#joinbtn").on("click", function (){
+			// 	alert("Hello");
+			// });
 
 	    $(document).on('click', '.scroll-btn', function () {
 	        if ($(this).hasClass('up')) {
